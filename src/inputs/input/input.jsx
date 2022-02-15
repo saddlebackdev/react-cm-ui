@@ -10,11 +10,11 @@ import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../../dataDisplay/icon';
+import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
 import {
     DOT_KEY_CODE,
     MINUS_KEY_CODE,
-} from '../../global/constants';
+} from '../../global/constants.js';
 
 const propTypes = {
     /**
@@ -44,11 +44,11 @@ const propTypes = {
      */
     dataTestId: PropTypes.string,
     /**
-     * An Input can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * An Input can be disabled.
      */
     disabled: PropTypes.bool,
     /**
@@ -62,6 +62,15 @@ const propTypes = {
      * An input can take on the size of its container.
      */
     fluid: PropTypes.bool,
+    /**
+     * Forwarded Ref
+     */
+    forwardedRef: PropTypes.oneOfType([
+        // Either a function
+        PropTypes.func,
+        // Or the instance of a DOM native element (see the note about SSR)
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]),
     /**
      * Indicates whether or not the Input should be in guide mode.
      */
@@ -200,6 +209,7 @@ const defaultProps = {
     disabled: false,
     error: null,
     fluid: false,
+    forwardedRef: undefined,
     guide: false,
     icon: null,
     id: null,
@@ -226,10 +236,11 @@ const defaultProps = {
     style: null,
     tabIndex: null,
     type: null,
+    value: undefined,
 };
 
 /**
- * The Input represents a field for storing a value. 
+ * The Input represents a field for storing a value.
  */
 class Input extends React.PureComponent {
     constructor(props) {
@@ -325,6 +336,7 @@ class Input extends React.PureComponent {
             min,
             required,
         } = this.props;
+
         const isDisabled = disable || disabled;
 
         if (!isDisabled) {
@@ -511,7 +523,6 @@ class Input extends React.PureComponent {
             onChange,
         } = this.props;
 
-
         if (isFunction(onChange)) {
             onChange(value);
         } else if (mask) {
@@ -542,7 +553,6 @@ class Input extends React.PureComponent {
             disabled,
             error,
             fluid,
-            forwardedRef,
             guide,
             icon,
             id,
@@ -721,12 +731,23 @@ class Input extends React.PureComponent {
     }
 }
 
-const InputWrapper = React.forwardRef((props, ref) => {
-    return <Input {...props} forwardedRef={ref} />;
-});
+Input.propTypes = propTypes;
+Input.defaultProps = defaultProps;
+
+const InputWrapper = React.forwardRef((props, ref) => ((
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Input {...props} forwardedRef={ref} />
+)));
 
 InputWrapper.displayName = 'Input';
-InputWrapper.propTypes = propTypes;
-InputWrapper.defaultProps = defaultProps;
+
+const wrapperPropTypes = { ...propTypes };
+delete wrapperPropTypes.forwardedRef;
+
+const wrapperDefaultProps = { ...defaultProps };
+delete wrapperDefaultProps.forwardedRef;
+
+InputWrapper.propTypes = wrapperPropTypes;
+InputWrapper.defaultProps = wrapperDefaultProps;
 
 export default InputWrapper;

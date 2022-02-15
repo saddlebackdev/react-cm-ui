@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from './button';
-import ButtonDeprecated from './buttonDeprecated';
+import Button from './button'; // eslint-disable-line import/extensions
+import ButtonDeprecated from './buttonDeprecated.jsx';
 
 const propTypes = {
     children: PropTypes.node.isRequired,

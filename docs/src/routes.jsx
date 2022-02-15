@@ -1,17 +1,16 @@
 import {
-    isEmpty,
     map,
 } from 'lodash';
 import { IndexRoute, Route } from 'react-router';
 import React from 'react';
-import CoreApp from './app/app';
-import { navigationItems } from './app/navigationConstants';
+import CoreApp from './app/app.jsx';
+import { navigationItems } from './app/navigationConstants.js';
 
 const routes = (
     <Route path="/" component={CoreApp}>
         <IndexRoute
             getComponent={(location, callback) => {
-                import('./app/home')
+                import('./app/home.jsx')
                     .then((module) => callback(null, module.default));
             }}
         />

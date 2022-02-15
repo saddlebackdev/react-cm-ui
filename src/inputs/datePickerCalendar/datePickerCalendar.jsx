@@ -3,11 +3,11 @@ import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
-import DatePickerDropdownMonth from '../datePickerCalendar/datePickerDropdownMonth';
-import DatePickerDropdownYear from '../datePickerCalendar/datePickerDropdownYear';
-import DatePickerMonth from './datePickerMonth';
-import DatePickerUtils from '../../utils/datePickerUtils';
-import Icon from '../../dataDisplay/icon';
+import DatePickerDropdownMonth from './datePickerDropdownMonth.jsx';
+import DatePickerDropdownYear from './datePickerDropdownYear.jsx';
+import DatePickerMonth from './datePickerMonth.jsx';
+import DatePickerUtils from '../../utils/datePickerUtils.js';
+import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
 
 class DatePickerCalendar extends React.PureComponent {
     constructor(props) {

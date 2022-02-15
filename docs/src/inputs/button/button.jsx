@@ -1,25 +1,25 @@
 import {
     Typography,
-} from 'react-cm-ui';
+} from 'react-cm-ui'; // eslint-disable-line import/no-unresolved
 import {
     camelCase,
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
-import Example from '../../global/example';
-import ExampleOutline from './examples/exampleButtonOutline';
-import ExamplePill from './examples/exampleButtonPill';
-import ExamplePillOutline from './examples/exampleButtonPillOutline';
-import ExampleSolid from './examples/exampleButtonSolid';
-import ExampleTextExample from './examples/exampleButtonText';
-import ExampleTransparentButton from './examples/exampleTransparentButton';
-import Heading from '../../global/heading';
-import Main from '../../global/main';
-import MarkdownContainer from '../../global/markdownContainer';
-/* eslint-disable import/no-named-default, import/extensions */
+import ComponentVersionIdentifier from '../../global/componentVersionIdentifier.jsx';
+import Example from '../../global/example.jsx';
+import ExampleOutline from './examples/exampleButtonOutline.jsx';
+import ExamplePill from './examples/exampleButtonPill.jsx';
+import ExamplePillOutline from './examples/exampleButtonPillOutline.jsx';
+import ExampleSolid from './examples/exampleButtonSolid.jsx';
+import ExampleTextExample from './examples/exampleButtonText.jsx';
+import ExampleTransparentButton from './examples/exampleTransparentButton.jsx';
+import Heading from '../../global/heading.jsx';
+import Main from '../../global/main.jsx';
+import MarkdownContainer from '../../global/markdownContainer.jsx';
+/* eslint-disable import/no-named-default, import/extensions, import/no-unresolved */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/button/button';
-/* eslint-enable import/no-named-default, import/extensions */
+/* eslint-enable import/no-named-default, import/extensions, import/no-unresolved */
 
 const propTypes = {
     location: PropTypes.shape({

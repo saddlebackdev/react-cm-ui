@@ -2,11 +2,11 @@ import {
     camelCase,
 } from 'lodash';
 import React from 'react';
-import ComponentApi from '../../../global/componentApi';
-import Main from '../../../global/main';
-/* eslint-disable import/no-named-default, import/extensions */
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/button/button';
-/* eslint-enable import/no-named-default, import/extensions */
+import ComponentApi from '../../../global/componentApi.jsx';
+import Main from '../../../global/main.jsx';
+/* eslint-disable import/no-named-default, import/extensions, import/no-unresolved */
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/button/button'; // eslint
+/* eslint-enable import/no-named-default, import/extensions, import/no-unresolved */
 
 function DocsApi() {
     const {

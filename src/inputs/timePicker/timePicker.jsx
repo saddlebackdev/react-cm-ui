@@ -18,10 +18,10 @@ import ClassNames from 'classnames';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
-import CreatableOptionComponent from './timePickerCreatableOption';
-import Icon from '../../dataDisplay/icon';
-import Input from '../input';
-import Select from '../select/select';
+import CreatableOptionComponent from './timePickerCreatableOption.jsx';
+import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
+import Input from '../input'; // eslint-disable-line import/extensions
+import Select from '../select/select.jsx';
 
 const propTypes = {
     /**
@@ -29,9 +29,13 @@ const propTypes = {
     */
     className: PropTypes.string,
     /**
-    * A TimePicker can be disabled.
+    * Deprecated prop. Please use `disabled` instead.
     */
     disable: PropTypes.bool,
+    /**
+    * A TimePicker can be disabled.
+    */
+    disabled: PropTypes.bool,
     /**
     * A TimePicker can be in an error state for input validation purposes.
     */
@@ -121,6 +125,7 @@ const propTypes = {
 const defaultProps = {
     className: undefined,
     disable: false,
+    disabled: false,
     error: undefined,
     id: undefined,
     label: undefined,
@@ -446,6 +451,7 @@ class TimePicker extends React.Component {
         const {
             className,
             disable,
+            disabled,
             error,
             id,
             label,
@@ -466,6 +472,8 @@ class TimePicker extends React.Component {
             value,
             zoneOptions,
         } = this.state;
+
+        const isDisabled = disabled || disable;
 
         const containerClasses = ClassNames('ui', 'time-picker', className, {
             'time-picker-disable': disable,
@@ -541,7 +549,7 @@ class TimePicker extends React.Component {
             >
                 <Input
                     className="time-picker-input"
-                    disabled={disable}
+                    disabled={isDisabled}
                     error={error}
                     guide
                     icon={(
@@ -569,7 +577,7 @@ class TimePicker extends React.Component {
                     <Select
                         className="time-picker-zone-dropdown"
                         clearable={false}
-                        disable={disable}
+                        disabled={isDisabled}
                         id={id ? `${id}-zone_dropdown` : null}
                         matchProp={zoneMatchProp || 'label'}
                         menuMaxHeight={448}

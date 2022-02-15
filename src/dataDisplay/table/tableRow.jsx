@@ -1,11 +1,10 @@
-
 import {
     isFunction,
 } from 'lodash';
 import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import Utils from '../../utils/utils';
+import Utils from '../../utils/utils.js';
 
 const propTypes = {
     active: PropTypes.bool,
@@ -15,11 +14,11 @@ const propTypes = {
     ]).isRequired,
     className: PropTypes.string,
     /**
-     * A TableRow can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A TableRow can be disabled.
      */
     disabled: PropTypes.bool,
     draggable: PropTypes.bool,
@@ -73,19 +72,12 @@ class TableRow extends React.Component {
 
     componentDidUpdate(prevProps) {
         const {
-            disabled: prevDisabled,
             selected: prevSelected,
         } = prevProps;
 
         const {
-            disabled,
             selected,
         } = this.props;
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('TableRow (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
 
         if (selected !== prevSelected) {
             this.setState({ selected });
@@ -95,6 +87,7 @@ class TableRow extends React.Component {
     onClick() {
         const { onClick } = this.props;
         const isTextHighlighted = window.getSelection().toString();
+
         if (!isTextHighlighted && isFunction(onClick)) {
             onClick();
         }

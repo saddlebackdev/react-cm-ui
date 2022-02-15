@@ -15,9 +15,9 @@ import ScrollBar from 'react-custom-scrollbars';
 import {
     BEM_SELECT,
     UI_CLASS_NAME,
-} from '../../global/constants';
-import Icon from '../../dataDisplay/icon';
-import makeStyles from '../../styles/makeStyles';
+} from '../../global/constants.js';
+import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
+import makeStyles from '../../styles/makeStyles.js';
 
 const propTypes = {
     /**
@@ -39,9 +39,13 @@ const propTypes = {
     */
     creatable: PropTypes.bool,
     /**
-    * A Select can be disabled
+    * Deprecated prop. Please use `disabled` instead.
     */
     disable: PropTypes.bool,
+    /**
+    * A Select can be disabled
+    */
+    disabled: PropTypes.bool,
     /**
     * Supply style to dropdown menu container
     */
@@ -145,6 +149,7 @@ const defaultProps = {
     clearable: false,
     creatable: false,
     disable: false,
+    disabled: false,
     dropdownMenuContainerStyle: null,
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
@@ -748,7 +753,8 @@ const Select = React.forwardRef(function Select(props, ref) {
         className,
         clearable: isClearable,
         creatable: isCreatable,
-        disable: isDisabled,
+        disable: disableProp,
+        disabled: disabledProp,
         dropdownMenuContainerStyle,
         dropdownMenuStyle,
         dropdownMenuMaxHeight,
@@ -1020,7 +1026,7 @@ const Select = React.forwardRef(function Select(props, ref) {
                     </div>
                 )}
                 clearable={isClearable}
-                disabled={isDisabled}
+                disabled={disabledProp || disableProp}
                 matchProp={!isCreatable ? matchProp : null}
                 menuContainerStyle={dropdownMenuContainerStyle}
                 menuRenderer={menuRenderer}

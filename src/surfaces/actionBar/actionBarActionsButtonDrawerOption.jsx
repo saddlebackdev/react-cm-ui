@@ -2,11 +2,11 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import colorStyles from '../../styles/colorExports'; // eslint-disable-line import/extensions
+import colorStyles from '../../styles/colorExports.scss';
 import ActionBarActionsButtonDrawerSubOption, {
     singleOptionPropTypeShape,
-} from './actionBarActionsButtonDrawerSubOption';
-import Icon from '../../dataDisplay/icon';
+} from './actionBarActionsButtonDrawerSubOption.jsx';
+import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
 
 const rootOptionPropTypeShape = {
     ...singleOptionPropTypeShape,

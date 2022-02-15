@@ -5,21 +5,21 @@ import ReactPhoneInput, {
 } from 'react-phone-number-input/max';
 import _ from 'lodash';
 import ClassNames from 'classnames';
+import flags from 'react-phone-number-input/flags';
 import PropTypes from 'prop-types';
 import React from 'react';
-import PhoneInputCountryDropdown from './phoneInputCountryDropdown';
-import flags from 'react-phone-number-input/flags'
+import PhoneInputCountryDropdown from './phoneInputCountryDropdown.jsx';
 
 const propTypes = {
     className: PropTypes.string,
     country: PropTypes.string,
     countryOptions: PropTypes.arrayOf(PropTypes.string),
     /**
-     * A PhoneInput can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A PhoneInput can be disabled.
      */
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
@@ -56,20 +56,6 @@ class PhoneInput extends React.PureComponent {
         super();
 
         this.onChange = this.onChange.bind(this);
-    }
-
-    componentDidUpdate(prevProps) {
-        const {
-            disabled: prevDisabled,
-        } = prevProps;
-        const {
-            disabled,
-        } = this.props;
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('PhoneInput (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
     }
 
     onChange(value) {

@@ -1,10 +1,10 @@
 import {
     isNumber,
 } from 'lodash';
-import React, { useEffect } from 'react';
+import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import Utils from '../../utils/utils';
+import Utils from '../../utils/utils.js';
 
 const columnNumberEnums = [
     'auto',
@@ -36,11 +36,11 @@ const propTypes = {
         PropTypes.oneOf(columnNumberEnums),
     ]),
     /**
-     * A TableCell can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A TableCell can be disabled.
      */
     disabled: PropTypes.bool,
     fontSize: PropTypes.oneOf([
@@ -140,13 +140,6 @@ function TableCell(props) {
         verticalAlign,
         width,
     } = props;
-
-    useEffect(() => {
-        if (disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('TableCell (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
-    }, [disabled]);
 
     const cellPrefix = 'table-cell';
 

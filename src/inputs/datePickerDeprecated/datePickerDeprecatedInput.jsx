@@ -317,7 +317,6 @@ class DatePickerInput extends React.Component {
                             onClick={this.onClick}
                             onFocus={this.onFocus}
                             placeholder={placeholder}
-                            ref="inputStart"
                             required={this.props.required}
                             tabIndex={this.props.tabIndex}
                             type="text"

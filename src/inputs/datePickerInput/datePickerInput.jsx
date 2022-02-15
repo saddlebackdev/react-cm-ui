@@ -10,17 +10,13 @@ import moment from 'moment-timezone';
 import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
-import {
-    UI_CLASS_NAME,
-} from '../../global/constants';
-import DatePickerUtils from '../../utils/datePickerUtils';
-import DateUtils from '../../utils/dateUtils';
-import Icon from '../../dataDisplay/icon';
-import Input from '../input';
-import DatePickerCalendarOnClickOutside from '../datePickerCalendar/datePickerCalendarOnClickOutside';
-import withStyles from '../../styles/withStyles';
+import DatePickerUtils from '../../utils/datePickerUtils.js';
+import DateUtils from '../../utils/dateUtils.js';
+import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
+import Input from '../input'; // eslint-disable-line import/extensions
+import DatePickerCalendarOnClickOutside from '../datePickerCalendar/datePickerCalendarOnClickOutside.jsx';
+import withStyles from '../../styles/withStyles.js';
 
 const propTypes = {
     /**
@@ -57,12 +53,12 @@ const propTypes = {
     dateTo: MomentPropTypes.momentObj,
 
     /**
-     * A DatePickerInput can be disabled.
+     * Deprecated prop. Please use `disable` instead.
      */
     disable: PropTypes.bool,
 
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A DatePickerInput can be disabled.
      */
     disabled: PropTypes.bool,
 
@@ -95,6 +91,16 @@ const propTypes = {
      * The DatePickerInput will be resized to its parent container's width.
      */
     fluid: PropTypes.bool,
+
+    /**
+     * Forwarded Ref
+     */
+    forwardedRef: PropTypes.oneOfType([
+        // Either a function
+        PropTypes.func,
+        // Or the instance of a DOM native element (see the note about SSR)
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]),
 
     /**
      * Specify an element ID this DatePickerInput control.
@@ -185,6 +191,7 @@ const defaultProps = {
     excludeDates: null,
     filterDates: null,
     fluid: false,
+    forwardedRef: undefined,
     id: null,
     includeDates: null,
     label: null,
@@ -280,22 +287,13 @@ class DatePickerInput extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         const {
-            disabled: prevDisabled,
-        } = prevProps;
-        const {
             date,
             dateFrom,
             dateTo,
-            disabled,
             locale,
             rangeFrom,
             rangeTo,
         } = this.props;
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('DatePickerInput (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
 
         if (!DatePickerUtils.isSameDay(date, prevProps.date) ||
             !DatePickerUtils.isSameDay(dateFrom, prevProps.dateFrom) ||
@@ -331,6 +329,7 @@ class DatePickerInput extends React.PureComponent {
             disabled,
             onChange,
         } = this.props;
+
         const isNotDisabled = !disable && !disabled;
         const isOnChangeFunc = isFunction(onChange);
 
@@ -359,6 +358,7 @@ class DatePickerInput extends React.PureComponent {
             disable,
             disabled,
         } = this.props;
+
         const isNotDisabled = !disable && !disabled;
 
         if (isNotDisabled) {
@@ -384,6 +384,7 @@ class DatePickerInput extends React.PureComponent {
             rangeFrom,
             rangeTo,
         } = this.props;
+
         const { dateFrom, dateTo } = this.state;
         const date = moment(value, this.dateFormats, locale || moment.locale(), true);
         const isNotDisabled = !disable && !disabled;
@@ -617,13 +618,22 @@ class DatePickerInput extends React.PureComponent {
     }
 }
 
-const DatePickerInputWrapper = React.forwardRef((props, ref) => {
-    return <DatePickerInput {...props} forwardedRef={ref} />;
-});
+DatePickerInput.propTypes = propTypes;
+DatePickerInput.defaultProps = defaultProps;
 
+const DatePickerInputWrapper = React.forwardRef((props, ref) => ((
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <DatePickerInput {...props} forwardedRef={ref} />
+)));
 
-DatePickerInputWrapper.propTypes = propTypes;
-DatePickerInputWrapper.defaultProps = defaultProps;
+const wrapperPropTypes = { ...propTypes };
+delete wrapperPropTypes.forwardedRef;
+
+const wrapperDefaultProps = { ...defaultProps };
+delete wrapperDefaultProps.forwardedRef;
+
+DatePickerInputWrapper.propTypes = wrapperPropTypes;
+DatePickerInputWrapper.defaultProps = wrapperDefaultProps;
 DatePickerInputWrapper.displayName = 'DatePickerInput';
 
 export default withStyles(styles)(DatePickerInputWrapper);

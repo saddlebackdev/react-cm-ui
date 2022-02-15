@@ -2,16 +2,15 @@ import {
     clone,
     includes,
     isArray,
-    isEqual,
     isFunction,
     remove,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ENTER_KEY_CODE } from '../../global/constants';
-import RadioItem from './radioItem';
-import withStyles from '../../styles/withStyles';
+import { ENTER_KEY_CODE } from '../../global/constants.js';
+import RadioItem from './radioItem.jsx';
+import withStyles from '../../styles/withStyles.js';
 
 const propTypes = {
     align: PropTypes.oneOf(['left', 'right']),
@@ -33,11 +32,11 @@ const propTypes = {
     }),
     className: PropTypes.string,
     /**
-     * A Radio can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A Radio can be disabled.
      */
     disabled: PropTypes.bool,
     fluid: PropTypes.bool,
@@ -301,21 +300,14 @@ class Radio extends React.Component {
     componentDidUpdate(prevProps) {
         const {
             checked: prevChecked,
-            disabled: prevDisabled,
         } = prevProps;
 
         const {
             checked,
-            disabled,
         } = this.props;
 
-        if (!isEqual(checked, prevChecked)) {
+        if (checked !== prevChecked) {
             this.setState({ isChecked: checked });
-        }
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('Radio (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
         }
     }
 
