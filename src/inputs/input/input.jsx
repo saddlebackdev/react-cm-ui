@@ -58,6 +58,7 @@ const propTypes = {
         PropTypes.bool,
         PropTypes.string,
     ]),
+    forwardedRef: PropTypes.shape({}).isRequired,
     /**
      * An input can take on the size of its container.
      */
@@ -226,10 +227,11 @@ const defaultProps = {
     style: null,
     tabIndex: null,
     type: null,
+    value: '',
 };
 
 /**
- * The Input represents a field for storing a value. 
+ * The Input represents a field for storing a value.
  */
 class Input extends React.PureComponent {
     constructor(props) {
@@ -238,8 +240,6 @@ class Input extends React.PureComponent {
         this.state = {
             isFocused: false,
             inputActionsTopPosition: 0,
-            showRequiredIndicator: props.required,
-            // value: props.value || props.value === 0 ? props.value : ''
         };
 
         this.onBlur = this.onBlur.bind(this);
@@ -285,22 +285,6 @@ class Input extends React.PureComponent {
 
             this.setState({
                 isFocused: true,
-            });
-        }
-    }
-
-    componentDidUpdate(prevProps) {
-        const {
-            required: prevRequired,
-        } = prevProps;
-        const {
-            required: nextRequired,
-            value: nextValue,
-        } = this.props;
-
-        if (prevRequired !== nextRequired) {
-            this.setState({
-                showRequiredIndicator: nextRequired && !nextValue,
             });
         }
     }
@@ -359,13 +343,11 @@ class Input extends React.PureComponent {
                         }
                     }
 
-                    this.setNewValue(newValue);
+                    this.setNewValue(event, newValue);
                 }, 500);
             }
 
-            this.setNewValue(newValue);
-
-            this.shouldShowRequiredIndicator(newValue);
+            this.setNewValue(event, newValue);
         }
     }
 
@@ -461,9 +443,7 @@ class Input extends React.PureComponent {
                 default:
             }
 
-            this.setNewValue(newValue);
-
-            this.shouldShowRequiredIndicator(newValue);
+            this.setNewValue({}, newValue);
         }
     }
 
@@ -505,31 +485,18 @@ class Input extends React.PureComponent {
         return newType;
     }
 
-    setNewValue(value) {
+    setNewValue(event, value) {
         const {
             mask,
             onChange,
         } = this.props;
 
-
         if (isFunction(onChange)) {
-            onChange(value);
+            onChange(value, event);
         } else if (mask) {
             this.input.current.inputElement.value = value;
         } else {
             this.input.current.value = value;
-        }
-    }
-
-    shouldShowRequiredIndicator(value) {
-        const { required } = this.props;
-
-        if (required && this.previousInputValue !== value) {
-            this.previousInputValue = value;
-
-            this.setState({
-                showRequiredIndicator: required && !value,
-            });
         }
     }
 
@@ -569,7 +536,6 @@ class Input extends React.PureComponent {
         const {
             isFocused,
             inputActionsTopPosition,
-            showRequiredIndicator,
         } = this.state;
 
         const type = this.getType();
@@ -602,11 +568,13 @@ class Input extends React.PureComponent {
                 return null;
             }
 
+            const shouldShowRequiredIndicator = required && !value;
+
             return (
                 <label className={labelContainerClassNames} htmlFor={id} style={labelStyle}>
                     {label}
 
-                    {showRequiredIndicator && (
+                    {shouldShowRequiredIndicator && (
                         <span className="input-required-indicator">*</span>
                     )}
                 </label>
@@ -721,9 +689,11 @@ class Input extends React.PureComponent {
     }
 }
 
-const InputWrapper = React.forwardRef((props, ref) => {
-    return <Input {...props} forwardedRef={ref} />;
-});
+Input.propTypes = propTypes;
+Input.defaultProps = defaultProps;
+
+// eslint-disable-next-line react/jsx-props-no-spreading
+const InputWrapper = React.forwardRef((props, ref) => <Input {...props} forwardedRef={ref} />);
 
 InputWrapper.displayName = 'Input';
 InputWrapper.propTypes = propTypes;
