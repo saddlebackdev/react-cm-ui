@@ -343,11 +343,11 @@ class Input extends React.PureComponent {
                         }
                     }
 
-                    this.setNewValue(event, newValue);
+                    this.setNewValue(newValue);
                 }, 500);
             }
 
-            this.setNewValue(event, newValue);
+            this.setNewValue(newValue);
         }
     }
 
@@ -485,14 +485,14 @@ class Input extends React.PureComponent {
         return newType;
     }
 
-    setNewValue(event, value) {
+    setNewValue(value) {
         const {
             mask,
             onChange,
         } = this.props;
 
         if (isFunction(onChange)) {
-            onChange(value, event);
+            onChange(value);
         } else if (mask) {
             this.input.current.inputElement.value = value;
         } else {
