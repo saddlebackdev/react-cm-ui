@@ -443,7 +443,7 @@ class Input extends React.PureComponent {
                 default:
             }
 
-            this.setNewValue({}, newValue);
+            this.setNewValue(newValue);
         }
     }
 
