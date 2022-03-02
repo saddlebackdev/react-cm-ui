@@ -5,7 +5,7 @@ import React from 'react';
 import ComponentApi from '../../../global/componentApi';
 import Main from '../../../global/main';
 /* eslint-disable import/no-named-default, import/extensions, import/no-unresolved */
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/button/button'; // eslint
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/button/button';
 /* eslint-enable import/no-named-default, import/extensions, import/no-unresolved */
 
 function DocsApi() {
