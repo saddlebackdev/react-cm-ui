@@ -73,7 +73,7 @@ const propTypes = {
      */
     fullWidth: PropTypes.bool,
     /**
-     * ??? I don't know what to put here because I don't fully understand what this does =)
+     * If `true`, the Dropown Button will be a square, housing the icon child.
      */
     icon: PropTypes.bool,
     /**
