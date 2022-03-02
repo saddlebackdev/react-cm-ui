@@ -3,8 +3,8 @@ import {
 } from 'lodash';
 import { IndexRoute, Route } from 'react-router';
 import React from 'react';
-import CoreApp from './app/app.jsx';
-import { navigationItems } from './app/navigationConstants.js';
+import CoreApp from './app/app';
+import { navigationItems } from './app/navigationConstants';
 
 const routes = (
     <Route path="/" component={CoreApp}>
