@@ -58,6 +58,7 @@ const propTypes = {
         PropTypes.bool,
         PropTypes.string,
     ]),
+    forwardedRef: PropTypes.shape({}).isRequired,
     /**
      * An input can take on the size of its container.
      */
@@ -249,8 +250,6 @@ class Input extends React.PureComponent {
         this.state = {
             isFocused: false,
             inputActionsTopPosition: 0,
-            showRequiredIndicator: props.required,
-            // value: props.value || props.value === 0 ? props.value : ''
         };
 
         this.onBlur = this.onBlur.bind(this);
@@ -296,22 +295,6 @@ class Input extends React.PureComponent {
 
             this.setState({
                 isFocused: true,
-            });
-        }
-    }
-
-    componentDidUpdate(prevProps) {
-        const {
-            required: prevRequired,
-        } = prevProps;
-        const {
-            required: nextRequired,
-            value: nextValue,
-        } = this.props;
-
-        if (prevRequired !== nextRequired) {
-            this.setState({
-                showRequiredIndicator: nextRequired && !nextValue,
             });
         }
     }
@@ -376,8 +359,6 @@ class Input extends React.PureComponent {
             }
 
             this.setNewValue(newValue);
-
-            this.shouldShowRequiredIndicator(newValue);
         }
     }
 
@@ -474,8 +455,6 @@ class Input extends React.PureComponent {
             }
 
             this.setNewValue(newValue);
-
-            this.shouldShowRequiredIndicator(newValue);
         }
     }
 
@@ -532,18 +511,6 @@ class Input extends React.PureComponent {
         }
     }
 
-    shouldShowRequiredIndicator(value) {
-        const { required } = this.props;
-
-        if (required && this.previousInputValue !== value) {
-            this.previousInputValue = value;
-
-            this.setState({
-                showRequiredIndicator: required && !value,
-            });
-        }
-    }
-
     render() {
         const {
             autoComplete,
@@ -579,7 +546,6 @@ class Input extends React.PureComponent {
         const {
             isFocused,
             inputActionsTopPosition,
-            showRequiredIndicator,
         } = this.state;
 
         const type = this.getType();
@@ -612,11 +578,13 @@ class Input extends React.PureComponent {
                 return null;
             }
 
+            const shouldShowRequiredIndicator = required && !value;
+
             return (
                 <label className={labelContainerClassNames} htmlFor={id} style={labelStyle}>
                     {label}
 
-                    {showRequiredIndicator && (
+                    {shouldShowRequiredIndicator && (
                         <span className="input-required-indicator">*</span>
                     )}
                 </label>
