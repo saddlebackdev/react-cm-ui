@@ -1,10 +1,12 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-webpack-loader-syntax */
 
+/* eslint-disable import/no-unresolved */
 import {
     Card,
     Header,
 } from 'react-cm-ui';
+/* eslint-enable import/no-unresolved */
 import _ from 'lodash';
 import React from 'react';
 import { buttonDocProps } from '../button/buttonConstants';

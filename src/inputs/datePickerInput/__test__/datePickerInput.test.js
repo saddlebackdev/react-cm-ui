@@ -9,7 +9,7 @@ import {
     render,
     screen,
 } from '../../../testUtils';
-import DatePickerInput from '../datePickerInput.jsx';
+import DatePickerInput from '../datePickerInput';
 
 describe('<DatePickerInput />', () => {
     describe('render()', () => {

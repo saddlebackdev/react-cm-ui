@@ -44,11 +44,11 @@ const propTypes = {
      */
     dataTestId: PropTypes.string,
     /**
-     * An Input can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * An Input can be disabled.
      */
     disabled: PropTypes.bool,
     /**
@@ -63,6 +63,15 @@ const propTypes = {
      * An input can take on the size of its container.
      */
     fluid: PropTypes.bool,
+    /**
+     * Forwarded Ref
+     */
+    forwardedRef: PropTypes.oneOfType([
+        // Either a function
+        PropTypes.func,
+        // Or the instance of a DOM native element (see the note about SSR)
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]),
     /**
      * Indicates whether or not the Input should be in guide mode.
      */
@@ -201,6 +210,7 @@ const defaultProps = {
     disabled: false,
     error: null,
     fluid: false,
+    forwardedRef: undefined,
     guide: false,
     icon: null,
     id: null,
@@ -227,7 +237,7 @@ const defaultProps = {
     style: null,
     tabIndex: null,
     type: null,
-    value: '',
+    value: undefined,
 };
 
 /**
@@ -309,6 +319,7 @@ class Input extends React.PureComponent {
             min,
             required,
         } = this.props;
+
         const isDisabled = disable || disabled;
 
         if (!isDisabled) {
@@ -509,7 +520,6 @@ class Input extends React.PureComponent {
             disabled,
             error,
             fluid,
-            forwardedRef,
             guide,
             icon,
             id,
@@ -692,11 +702,20 @@ class Input extends React.PureComponent {
 Input.propTypes = propTypes;
 Input.defaultProps = defaultProps;
 
-// eslint-disable-next-line react/jsx-props-no-spreading
-const InputWrapper = React.forwardRef((props, ref) => <Input {...props} forwardedRef={ref} />);
+const InputWrapper = React.forwardRef((props, ref) => ((
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Input {...props} forwardedRef={ref} />
+)));
 
 InputWrapper.displayName = 'Input';
-InputWrapper.propTypes = propTypes;
-InputWrapper.defaultProps = defaultProps;
+
+const wrapperPropTypes = { ...propTypes };
+delete wrapperPropTypes.forwardedRef;
+
+const wrapperDefaultProps = { ...defaultProps };
+delete wrapperDefaultProps.forwardedRef;
+
+InputWrapper.propTypes = wrapperPropTypes;
+InputWrapper.defaultProps = wrapperDefaultProps;
 
 export default InputWrapper;

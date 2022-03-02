@@ -3,10 +3,13 @@ import {
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import {
     ICON_PROP_TYPES,
 } from '../../dataDisplay/icon/iconConstants';
+import {
+    VARIANTS,
+} from '../button/buttonConstants';
 import Button from '../button';
 import DropdownMenu from '../dropdownMenu/dropdownMenu';
 import DropdownMenuDivider from '../dropdownMenu/dropdownMenuDivider';
@@ -17,6 +20,14 @@ import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**
+     * Dropdown Menu options
+     */
+    children: PropTypes.node.isRequired,
+    /**
+     * Additional classes.
+     */
+    className: PropTypes.string,
+    /**
      * Override or extend the styles applied to ButtonDropdown.
      */
     classes: PropTypes.shape({
@@ -24,10 +35,50 @@ const propTypes = {
         root: PropTypes.string,
     }),
     /**
+     * Color of the Dropdown Button.
+     */
+    color: PropTypes.oneOf([
+        'active',
+        'default',
+        'error',
+        'link',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+    ]),
+    /**
+     * A Dropdown Button can reduce its padding.
+     */
+    compact: PropTypes.bool,
+    /**
      * Dependent on the designVersion number, the component can either use our old Button component
      * or the new Button component.
      */
     designVersion: PropTypes.number,
+    /**
+     * Deprecated prop. Please use `disabled` instead.
+     */
+    disable: PropTypes.bool,
+    /**
+     * A Dropdown Button can be disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * The Dropown Button will be resized to its parent container's width. (Using v1 Button)
+     */
+    fluid: PropTypes.bool,
+    /**
+     * The Dropown Button will be resized to its parent container's width. (Using v2 Button)
+     */
+    fullWidth: PropTypes.bool,
+    /**
+     * If `true`, the Dropown Button will be a square, housing the icon child.
+     */
+    icon: PropTypes.bool,
+    /**
+     * Props to control the Icon in the Dropdown Button
+     */
     iconProps: PropTypes.shape({
         ...ICON_PROP_TYPES,
     }),
@@ -52,7 +103,19 @@ const propTypes = {
         'plus',
     ]),
     /**
-     * The ButtonDropdown's label.
+     * Assign the Dropdown Button an id attribute value.
+     */
+    id: PropTypes.string,
+    /**
+     * Allows for style overrides of the Dropdown Button's inner container.
+     */
+    innerStyle: PropTypes.shape({}),
+    /**
+     * A Dropdown Button can be formatted to appear on dark backgrounds better.
+     */
+    inverse: PropTypes.bool,
+    /**
+     * The Dropdown Button's label.
      */
     label: PropTypes.oneOfType([
         PropTypes.string,
@@ -66,21 +129,85 @@ const propTypes = {
         'light',
     ]),
     /**
+     * A Dropdown Button can be outlined.
+     */
+    outline: PropTypes.bool,
+    /**
+     * Set a Dropdown Button with a pill like form.
+     */
+    pill: PropTypes.bool,
+    /**
+     * A Dropdown Button can relax its padding.
+     */
+    relax: PropTypes.bool,
+    /**
+     * Apply inline styles to the Dropdown Button.
+     */
+    style: PropTypes.shape({}),
+    /**
      * Indicates whether or not the Dropdown Button can be focused.
      */
     tabIndex: PropTypes.number,
+    /**
+     * Where to display the linked URL.  (Button prop; probably not relevant for a Dropdown Button)
+     */
+    target: PropTypes.oneOf(['_blank']),
+    /**
+     * If `true`, only the Dropdown Button's text is shown.
+     */
+    text: PropTypes.bool,
+    /**
+     * The title attribute.
+     */
+    title: PropTypes.string,
+    /**
+     * Set transparent styles.
+     */
+    transparent: PropTypes.bool,
+    /**
+     * The variant to use.
+     */
+    variant: PropTypes.oneOf([VARIANTS.contained, VARIANTS.outlined, VARIANTS.text]),
+    /**
+     * Set a fixed width.
+     */
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
 };
 
 const defaultProps = {
     classes: undefined,
+    className: undefined,
+    color: undefined,
+    compact: false,
     designVersion: 1,
+    disable: false,
+    disabled: false,
+    fluid: false,
+    fullWidth: false,
+    icon: false,
     iconPosition: 'left',
     iconProps: undefined,
     iconSize: 16,
     iconType: 'chevron-down',
+    id: undefined,
+    innerStyle: {},
+    inverse: false,
     label: undefined,
     optionsTheme: 'dark',
+    outline: false,
+    pill: false,
+    relax: false,
+    style: {},
     tabIndex: -1,
+    target: undefined,
+    text: false,
+    title: undefined,
+    transparent: false,
+    variant: VARIANTS.contained,
+    width: undefined,
 };
 
 const useStyles = makeStyles({
@@ -129,16 +256,20 @@ function DropdownButton(props) {
         width,
     } = props;
 
-    function getParentContainer() {
-        return dropdownButtonRef.current;
-    }
+    const getParentContainer = useCallback(() => (dropdownButtonRef.current), [
+        dropdownButtonRef,
+    ]);
 
-    function onMenuToggle(event) {
+    const onMenuToggle = useCallback((event) => {
         if (!isEmpty(event)) {
             event.stopPropagation();
         }
+
         setIsOpen(!isMenuOpen);
-    }
+    }, [
+        isMenuOpen,
+        setIsOpen,
+    ]);
 
     const bemClassName = 'button_dropdown';
     const rootClasses = ClassNames(
@@ -197,6 +328,7 @@ function DropdownButton(props) {
             compact,
             designVersion,
             disable,
+            disabled,
             fluid,
             icon,
             id,

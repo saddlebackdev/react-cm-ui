@@ -18,6 +18,7 @@ import withStyles from '../../styles/withStyles';
 const propTypes = {
     ...buttonDesignV2PropTypes,
 };
+
 const defaultProps = {
     ...buttonDesignV2DefaultProps,
 };
