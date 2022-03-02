@@ -5,7 +5,7 @@ import React from 'react';
 import colorStyles from '../../styles/colorExports.scss';
 import ActionBarActionsButtonDrawerSubOption, {
     singleOptionPropTypeShape,
-} from './actionBarActionsButtonDrawerSubOption.jsx';
+} from './actionBarActionsButtonDrawerSubOption';
 import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
 
 const rootOptionPropTypeShape = {

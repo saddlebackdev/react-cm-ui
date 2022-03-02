@@ -6,9 +6,9 @@ import React from 'react';
 import {
     buttonDeprecatedPropTypes,
     buttonDeprecatedDefaultProps,
-} from './buttonConstants.js';
-import Utils from '../../utils/utils.js';
-import withStyles from '../../styles/withStyles.js';
+} from './buttonConstants';
+import Utils from '../../utils/utils';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     ...buttonDeprecatedPropTypes,

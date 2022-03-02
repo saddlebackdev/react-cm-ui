@@ -15,9 +15,9 @@ import ScrollBar from 'react-custom-scrollbars';
 import {
     BEM_SELECT,
     UI_CLASS_NAME,
-} from '../../global/constants.js';
+} from '../../global/constants';
 import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
-import makeStyles from '../../styles/makeStyles.js';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**

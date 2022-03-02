@@ -14,7 +14,7 @@ import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensi
 import {
     DOT_KEY_CODE,
     MINUS_KEY_CODE,
-} from '../../global/constants.js';
+} from '../../global/constants';
 
 const propTypes = {
     /**

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Utils from '../../utils/utils.js';
+import Utils from '../../utils/utils';
 
 export const VARIANTS = {
     contained: 'contained',

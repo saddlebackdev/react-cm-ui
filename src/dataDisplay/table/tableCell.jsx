@@ -4,7 +4,7 @@ import {
 import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import Utils from '../../utils/utils.js';
+import Utils from '../../utils/utils';
 
 const columnNumberEnums = [
     'auto',

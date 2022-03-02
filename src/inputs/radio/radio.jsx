@@ -8,9 +8,9 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ENTER_KEY_CODE } from '../../global/constants.js';
-import RadioItem from './radioItem.jsx';
-import withStyles from '../../styles/withStyles.js';
+import { ENTER_KEY_CODE } from '../../global/constants';
+import RadioItem from './radioItem';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     align: PropTypes.oneOf(['left', 'right']),

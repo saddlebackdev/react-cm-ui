@@ -7,13 +7,13 @@ import {
     buttonDesignV2PropTypes,
     buttonDesignV2DefaultProps,
     VARIANTS,
-} from './buttonConstants.js';
+} from './buttonConstants';
 import {
     UI_CLASS_NAME,
     BEM_BUTTON,
-} from '../../global/constants.js';
-import Utils from '../../utils/utils.js';
-import withStyles from '../../styles/withStyles.js';
+} from '../../global/constants';
+import Utils from '../../utils/utils';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     ...buttonDesignV2PropTypes,

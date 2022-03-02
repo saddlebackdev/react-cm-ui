@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dropdown from '../dropdown'; // eslint-disable-line import/extensions
-import PhoneInputCountryDropdownItem from './phoneInputCountryDropdownItem.jsx';
-import PhoneInputCountryDropdownValue from './phoneInputCountryDropdownValue.jsx';
+import PhoneInputCountryDropdownItem from './phoneInputCountryDropdownItem';
+import PhoneInputCountryDropdownValue from './phoneInputCountryDropdownValue';
 
 const propTypes = {
     /**

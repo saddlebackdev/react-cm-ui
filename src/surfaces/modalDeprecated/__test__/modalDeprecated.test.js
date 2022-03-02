@@ -9,7 +9,7 @@ import {
     screen,
 } from '../../../testUtils';
 import { createMatchMedia } from '../../../testUtils/enzymeHelpers';
-import ModalDeprecated from '../modalDeprecated.jsx';
+import ModalDeprecated from '../modalDeprecated';
 
 const childContainerDataTestId = `foo_block--bar_modal_content`;
 const closeButtonDataTestId = `foo_block--bar_modal_close_button`;

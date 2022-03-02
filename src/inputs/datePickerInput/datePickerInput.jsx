@@ -11,12 +11,12 @@ import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
 import TetherComponent from 'react-tether';
-import DatePickerUtils from '../../utils/datePickerUtils.js';
-import DateUtils from '../../utils/dateUtils.js';
+import DatePickerUtils from '../../utils/datePickerUtils';
+import DateUtils from '../../utils/dateUtils';
 import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
 import Input from '../input'; // eslint-disable-line import/extensions
-import DatePickerCalendarOnClickOutside from '../datePickerCalendar/datePickerCalendarOnClickOutside.jsx';
-import withStyles from '../../styles/withStyles.js';
+import DatePickerCalendarOnClickOutside from '../datePickerCalendar/datePickerCalendarOnClickOutside';
+import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     /**

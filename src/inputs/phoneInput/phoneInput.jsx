@@ -8,7 +8,7 @@ import ClassNames from 'classnames';
 import flags from 'react-phone-number-input/flags';
 import PropTypes from 'prop-types';
 import React from 'react';
-import PhoneInputCountryDropdown from './phoneInputCountryDropdown.jsx';
+import PhoneInputCountryDropdown from './phoneInputCountryDropdown';
 
 const propTypes = {
     className: PropTypes.string,

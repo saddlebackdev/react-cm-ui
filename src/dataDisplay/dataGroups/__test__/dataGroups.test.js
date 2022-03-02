@@ -7,7 +7,7 @@ import {
  render,
  screen,
 } from '../../../testUtils';
-import DataGroups from '../dataGroups.jsx';
+import DataGroups from '../dataGroups';
 
 const someDataObject = {
     foo: 'Foo Property Value',

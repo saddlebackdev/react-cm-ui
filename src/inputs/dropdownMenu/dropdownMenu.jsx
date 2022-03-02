@@ -7,13 +7,13 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import domUtils from '../../utils/domUtils.js';
+import domUtils from '../../utils/domUtils';
 import {
     BEM_BLOCK_NAME,
     OPTION_INNER_CLASS_NAME,
     OPTIONS_THEME_LIGHT,
-} from './dropdownMenuConstants.js';
-import makeStyles from '../../styles/makeStyles.js';
+} from './dropdownMenuConstants';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     children: PropTypes.node.isRequired,

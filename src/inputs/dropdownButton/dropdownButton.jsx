@@ -6,17 +6,17 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useRef, useState } from 'react';
 import {
     ICON_PROP_TYPES,
-} from '../../dataDisplay/icon/iconConstants.js';
+} from '../../dataDisplay/icon/iconConstants';
 import {
     VARIANTS,
-} from '../button/buttonConstants.js';
+} from '../button/buttonConstants';
 import Button from '../button'; // eslint-disable-line import/extensions
-import DropdownMenu from '../dropdownMenu/dropdownMenu.jsx';
-import DropdownMenuDivider from '../dropdownMenu/dropdownMenuDivider.jsx';
-import DropdownMenuHeading from '../dropdownMenu/dropdownMenuHeading.jsx';
-import DropdownMenuOption from '../dropdownMenu/dropdownMenuOption.jsx';
+import DropdownMenu from '../dropdownMenu/dropdownMenu';
+import DropdownMenuDivider from '../dropdownMenu/dropdownMenuDivider';
+import DropdownMenuHeading from '../dropdownMenu/dropdownMenuHeading';
+import DropdownMenuOption from '../dropdownMenu/dropdownMenuOption';
 import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
-import makeStyles from '../../styles/makeStyles.js';
+import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**

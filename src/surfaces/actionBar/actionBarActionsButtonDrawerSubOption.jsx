@@ -3,7 +3,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
-import Utils from '../../utils/utils.js';
+import Utils from '../../utils/utils';
 
 export const singleOptionPropTypeShape = {
     disable: PropTypes.bool,
