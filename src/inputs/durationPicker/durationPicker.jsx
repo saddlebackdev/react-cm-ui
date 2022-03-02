@@ -33,10 +33,10 @@ import {
     YEARS_PLURAL,
 } from './constants';
 import { UI_CLASS_NAME } from '../../global/constants';
-import { withStyles } from '../../styles'; // eslint-disable-line import/extensions
-import Dropdown from '../dropdown'; // eslint-disable-line import/extensions
-import Grid from '../../layout/grid'; // eslint-disable-line import/extensions
-import Typography from '../../dataDisplay/typography'; // eslint-disable-line import/extensions
+import { withStyles } from '../../styles';
+import Dropdown from '../dropdown';
+import Grid from '../../layout/grid';
+import Typography from '../../dataDisplay/typography';
 
 const propTypes = {
     /**

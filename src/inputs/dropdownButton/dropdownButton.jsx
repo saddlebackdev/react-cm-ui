@@ -10,12 +10,12 @@ import {
 import {
     VARIANTS,
 } from '../button/buttonConstants';
-import Button from '../button'; // eslint-disable-line import/extensions
+import Button from '../button';
 import DropdownMenu from '../dropdownMenu/dropdownMenu';
 import DropdownMenuDivider from '../dropdownMenu/dropdownMenuDivider';
 import DropdownMenuHeading from '../dropdownMenu/dropdownMenuHeading';
 import DropdownMenuOption from '../dropdownMenu/dropdownMenuOption';
-import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
+import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {

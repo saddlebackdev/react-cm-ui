@@ -13,8 +13,8 @@ import React from 'react';
 import TetherComponent from 'react-tether';
 import DatePickerUtils from '../../utils/datePickerUtils';
 import DateUtils from '../../utils/dateUtils';
-import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
-import Input from '../input'; // eslint-disable-line import/extensions
+import Icon from '../../dataDisplay/icon';
+import Input from '../input';
 import DatePickerCalendarOnClickOutside from '../datePickerCalendar/datePickerCalendarOnClickOutside';
 import withStyles from '../../styles/withStyles';
 

@@ -16,7 +16,7 @@ import {
     BEM_SELECT,
     UI_CLASS_NAME,
 } from '../../global/constants';
-import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
+import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {

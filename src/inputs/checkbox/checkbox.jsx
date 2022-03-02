@@ -4,7 +4,7 @@ import {
 import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
+import Icon from '../../dataDisplay/icon';
 
 const propTypes = {
     align: PropTypes.oneOf(['left', 'right']),

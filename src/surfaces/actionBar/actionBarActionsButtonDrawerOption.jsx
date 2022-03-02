@@ -6,7 +6,7 @@ import colorStyles from '../../styles/colorExports.scss';
 import ActionBarActionsButtonDrawerSubOption, {
     singleOptionPropTypeShape,
 } from './actionBarActionsButtonDrawerSubOption';
-import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
+import Icon from '../../dataDisplay/icon';
 
 const rootOptionPropTypeShape = {
     ...singleOptionPropTypeShape,

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from './button'; // eslint-disable-line import/extensions
+import Button from './button';
 import ButtonDeprecated from './buttonDeprecated';
 
 const propTypes = {

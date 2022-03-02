@@ -19,8 +19,8 @@ import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
 import CreatableOptionComponent from './timePickerCreatableOption';
-import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
-import Input from '../input'; // eslint-disable-line import/extensions
+import Icon from '../../dataDisplay/icon';
+import Input from '../input';
 import Select from '../select/select';
 
 const propTypes = {

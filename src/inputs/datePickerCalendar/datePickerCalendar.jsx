@@ -7,7 +7,7 @@ import DatePickerDropdownMonth from './datePickerDropdownMonth';
 import DatePickerDropdownYear from './datePickerDropdownYear';
 import DatePickerMonth from './datePickerMonth';
 import DatePickerUtils from '../../utils/datePickerUtils';
-import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
+import Icon from '../../dataDisplay/icon';
 
 class DatePickerCalendar extends React.PureComponent {
     constructor(props) {

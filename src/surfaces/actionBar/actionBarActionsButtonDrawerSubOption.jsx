@@ -2,7 +2,7 @@ import { isFunction } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../../dataDisplay/icon'; // eslint-disable-line import/extensions
+import Icon from '../../dataDisplay/icon';
 import Utils from '../../utils/utils';
 
 export const singleOptionPropTypeShape = {
