@@ -10,7 +10,7 @@ const routes = (
     <Route path="/" component={CoreApp}>
         <IndexRoute
             getComponent={(location, callback) => {
-                import('./app/home.jsx')
+                import('./app/home')
                     .then((module) => callback(null, module.default));
             }}
         />
