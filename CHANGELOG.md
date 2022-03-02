@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.11
+_March 02, 2022_
+
+### Core
+- Removed `.scss` extension. [7c0737e](https://github.com/saddlebackdev/react-cm-ui/commit/7c0737ee120c1390bee8655f4077923424277e48)
+
 ## 10.3.10
 _March 02, 2022_
 
