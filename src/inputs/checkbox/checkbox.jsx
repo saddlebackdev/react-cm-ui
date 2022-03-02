@@ -11,14 +11,23 @@ const propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
     /**
-     * A Checkbox can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A Checkbox can be disabled.
      */
     disabled: PropTypes.bool,
     fluid: PropTypes.bool,
+    /**
+     * Forwarded Ref
+     */
+    forwardedRef: PropTypes.oneOfType([
+        // Either a function
+        PropTypes.func,
+        // Or the instance of a DOM native element (see the note about SSR)
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]),
     id: PropTypes.string,
     inverse: PropTypes.bool,
     label: PropTypes.oneOfType([
@@ -48,6 +57,7 @@ const defaultProps = {
     disable: false,
     disabled: false,
     fluid: false,
+    forwardedRef: undefined,
     id: null,
     inverse: null,
     label: null,
@@ -90,18 +100,9 @@ class Checkbox extends React.Component {
 
     componentDidUpdate(prevProps) {
         const {
-            disabled: prevDisabled,
-        } = prevProps;
-        const {
             checked,
-            disabled,
             onChange,
         } = this.props;
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('Checkbox (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
 
         if (isFunction(onChange) && prevProps.checked !== checked) {
             this.setState({
@@ -257,12 +258,22 @@ class Checkbox extends React.Component {
     }
 }
 
-const CheckboxWrapper = React.forwardRef((props, ref) => {
-    return <Checkbox {...props} forwardedRef={ref} />;
-});
+Checkbox.propTypes = propTypes;
+Checkbox.defaultProps = defaultProps;
+
+const CheckboxWrapper = React.forwardRef((props, ref) => ((
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Checkbox {...props} forwardedRef={ref} />
+)));
+
+const wrapperPropTypes = { ...propTypes };
+delete wrapperPropTypes.forwardedRef;
+
+const wrapperDefaultProps = { ...defaultProps };
+delete wrapperDefaultProps.forwardedRef;
 
 CheckboxWrapper.displayName = 'Checkbox';
-CheckboxWrapper.propTypes = propTypes;
-CheckboxWrapper.defaultProps = defaultProps;
+CheckboxWrapper.propTypes = wrapperPropTypes;
+CheckboxWrapper.defaultProps = wrapperDefaultProps;
 
 export default CheckboxWrapper;

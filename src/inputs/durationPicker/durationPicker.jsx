@@ -58,9 +58,13 @@ const propTypes = {
      */
     className: PropTypes.string,
     /**
-     * A DurationPicker can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
+    /**
+     * A DurationPicker can be disabled.
+     */
+    disabled: PropTypes.bool,
     /**
      * Indicate that there is a validation error for this DurationPicker input control.
      */
@@ -122,6 +126,7 @@ const defaultProps = {
     classes: null,
     className: null,
     disable: false,
+    disabled: false,
     error: null,
     id: null,
     label: null,
@@ -431,6 +436,7 @@ class DurationPicker extends React.PureComponent {
             classes,
             className,
             disable,
+            disabled,
             error,
             id,
             label,
@@ -464,6 +470,7 @@ class DurationPicker extends React.PureComponent {
         );
 
         const realId = id || BEM_BLOCK_NAME;
+        const isDisabled = disabled || disable;
 
         return (
             <div
@@ -499,7 +506,7 @@ class DurationPicker extends React.PureComponent {
                             <Dropdown
                                 className={classes.dropdown}
                                 clearable={false}
-                                disable={disable}
+                                disable={isDisabled}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--years_dropdown`}
                                 onChange={this.onYearsChange}
@@ -517,7 +524,7 @@ class DurationPicker extends React.PureComponent {
                             <Dropdown
                                 className={classes.dropdown}
                                 clearable={false}
-                                disable={disable}
+                                disable={isDisabled}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--months_dropdown`}
                                 onChange={this.onMonthsChange}
@@ -535,7 +542,7 @@ class DurationPicker extends React.PureComponent {
                             <Dropdown
                                 className={classes.dropdown}
                                 clearable={false}
-                                disable={disable}
+                                disable={isDisabled}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--days_dropdown`}
                                 onChange={this.onDaysChange}
@@ -553,7 +560,7 @@ class DurationPicker extends React.PureComponent {
                             <Dropdown
                                 className={classes.dropdown}
                                 clearable={false}
-                                disable={disable}
+                                disable={isDisabled}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--hours_dropdown`}
                                 onChange={this.onHoursChange}
@@ -571,7 +578,7 @@ class DurationPicker extends React.PureComponent {
                             <Dropdown
                                 className={classes.dropdown}
                                 clearable={false}
-                                disable={disable}
+                                disable={isDisabled}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--minutes_dropdown`}
                                 onChange={this.onMinutesChange}
@@ -589,7 +596,7 @@ class DurationPicker extends React.PureComponent {
                             <Dropdown
                                 className={classes.dropdown}
                                 clearable={false}
-                                disable={disable}
+                                disable={isDisabled}
                                 fluid
                                 id={`${id || BEM_BLOCK_NAME}--seconds_dropdown`}
                                 onChange={this.onSecondsChange}

@@ -289,20 +289,6 @@ class ButtonDeprecated extends React.PureComponent {
         this.onMouseDown = this.onMouseDown.bind(this);
     }
 
-    componentDidUpdate(prevProps) {
-        const {
-            disabled: prevDisabled,
-        } = prevProps;
-        const {
-            disabled,
-        } = this.props;
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('ButtonDeprecated (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
-    }
-
     onClick(event) {
         const { onClick } = this.props;
 
@@ -324,7 +310,7 @@ class ButtonDeprecated extends React.PureComponent {
             color,
             compact,
             disable: disableProp,
-            disabled,
+            disabled: disabledProp,
             fluid,
             href,
             icon,
@@ -340,7 +326,7 @@ class ButtonDeprecated extends React.PureComponent {
             ...otherProps
         } = this.props;
 
-        const disable = disableProp || disabled;
+        const disabled = disabledProp || disableProp;
         const ElementType = Utils.getElementType(as, this.props);
 
         const rootClasses = ClassNames(
@@ -350,18 +336,18 @@ class ButtonDeprecated extends React.PureComponent {
             className,
             {
                 [classes.inverse]: inverse,
-                [classes.colorActive]: !disable && color === 'active',
-                [classes.colorAlert]: !disable && color === 'alert',
-                [classes.colorAlternate]: !disable && color === 'alternate',
-                [classes.colorDisable]: disable || color === 'disable',
-                [classes.colorInverse]: !disable && color === 'inverse',
-                [classes.colorLight]: !disable && color === 'light',
-                [classes.colorOutline]: !disable && color === 'outline',
-                [classes.colorPrimary]: !disable && (!color || color === 'primary'),
-                [classes.colorSecondary]: !disable && color === 'secondary',
-                [classes.colorSuccess]: !disable && color === 'success',
-                [classes.colorTransparent]: !disable && color === 'transparent',
-                [classes.colorWarning]: !disable && color === 'warning',
+                [classes.colorActive]: !disabled && color === 'active',
+                [classes.colorAlert]: !disabled && color === 'alert',
+                [classes.colorAlternate]: !disabled && color === 'alternate',
+                [classes.colorDisable]: disabled || color === 'disable',
+                [classes.colorInverse]: !disabled && color === 'inverse',
+                [classes.colorLight]: !disabled && color === 'light',
+                [classes.colorOutline]: !disabled && color === 'outline',
+                [classes.colorPrimary]: !disabled && (!color || color === 'primary'),
+                [classes.colorSecondary]: !disabled && color === 'secondary',
+                [classes.colorSuccess]: !disabled && color === 'success',
+                [classes.colorTransparent]: !disabled && color === 'transparent',
+                [classes.colorWarning]: !disabled && color === 'warning',
                 [classes.compact]: compact,
                 [classes.fluid]: fluid,
                 [classes.icon]: icon,
@@ -381,7 +367,7 @@ class ButtonDeprecated extends React.PureComponent {
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...otherProps}
                 className={rootClasses}
-                disabled={disable}
+                disabled={disabled}
                 id={id}
                 href={href}
                 onClick={this.onClick}

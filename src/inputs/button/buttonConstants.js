@@ -169,11 +169,11 @@ export const buttonDeprecatedPropTypes = {
      */
     compact: PropTypes.bool,
     /**
-     * A button can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A button can be disabled.
      */
     disabled: PropTypes.bool,
     /**

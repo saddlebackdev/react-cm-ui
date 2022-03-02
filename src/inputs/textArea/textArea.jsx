@@ -15,11 +15,11 @@ const propTypes = {
     className: PropTypes.string,
     columns: PropTypes.number,
     /**
-     * A TextArea can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A TextArea can be disabled.
      */
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
@@ -27,6 +27,15 @@ const propTypes = {
         PropTypes.string,
     ]),
     fluid: PropTypes.bool,
+    /**
+     * Forwarded Ref
+     */
+    forwardedRef: PropTypes.oneOfType([
+        // Either a function
+        PropTypes.func,
+        // Or the instance of a DOM native element (see the note about SSR)
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]),
     id: PropTypes.string,
     inverse: PropTypes.bool,
     label: PropTypes.string,
@@ -65,6 +74,7 @@ const defaultProps = {
     disabled: false,
     error: null,
     fluid: false,
+    forwardedRef: undefined,
     id: null,
     inverse: false,
     label: null,
@@ -130,21 +140,6 @@ class TextArea extends React.Component {
             this.setState({
                 isFocused: true,
             });
-        }
-    }
-
-    componentDidUpdate(prevProps) {
-        const {
-            disabled: prevDisabled,
-        } = prevProps;
-
-        const {
-            disabled,
-        } = this.props;
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('TextArea (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
         }
     }
 
@@ -321,13 +316,22 @@ class TextArea extends React.Component {
     }
 }
 
-const TextAreaWrapper = React.forwardRef((props, ref) => {
-    return <TextArea {...props} forwardedRef={ref} />;
-});
+TextArea.propTypes = propTypes;
+TextArea.defaultProps = defaultProps;
+
+const TextAreaWrapper = React.forwardRef((props, ref) => ((
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <TextArea {...props} forwardedRef={ref} />
+)));
+
+const wrapperPropTypes = { ...propTypes };
+delete wrapperPropTypes.forwardedRef;
+
+const wrapperDefaultProps = { ...defaultProps };
+delete wrapperDefaultProps.forwardedRef;
 
 TextAreaWrapper.displayName = 'TextArea';
-TextAreaWrapper.propTypes = propTypes;
-TextAreaWrapper.defaultProps = defaultProps;
+TextAreaWrapper.propTypes = wrapperPropTypes;
+TextAreaWrapper.defaultProps = wrapperDefaultProps;
 
 export default TextAreaWrapper;
-

@@ -43,30 +43,13 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
         this.onClick = this.onClick.bind(this);
     }
 
-    componentDidUpdate(prevProps) {
-        const {
-            subOption: {
-                disabled: prevSubOptionDisabled,
-            },
-        } = prevProps;
-        const {
-            subOption: {
-                disabled: subOptionDisabled,
-            },
-        } = this.props;
-
-        if (prevSubOptionDisabled !== subOptionDisabled && subOptionDisabled) {
-            // eslint-disable-next-line no-console
-            console.warn('ActionBarActionsButtonDrawerSubOption (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
-    }
-
     onClick() {
         const {
             onRequestPrompt,
             onDrawerToggle,
             subOption,
         } = this.props;
+
         const {
             disable,
             disabled,
@@ -101,6 +84,7 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
             subOption,
             subOptionClassNameNum,
         } = this.props;
+
         const isSubOptionDisabled = subOption.disable || subOption.disabled;
         const classNameNumber = subOptionClassNameNum;
         const subOptionClasses = ClassNames(
