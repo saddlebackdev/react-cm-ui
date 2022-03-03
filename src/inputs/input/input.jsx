@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../../dataDisplay/icon';
 import {
+    BACKSPACE_KEY_CODE,
     DOT_KEY_CODE,
     MINUS_KEY_CODE,
 } from '../../global/constants';
@@ -229,7 +230,7 @@ const defaultProps = {
 };
 
 /**
- * The Input represents a field for storing a value. 
+ * The Input represents a field for storing a value.
  */
 class Input extends React.PureComponent {
     constructor(props) {
@@ -407,9 +408,12 @@ class Input extends React.PureComponent {
         }
 
         if (type === 'number') {
-            const shouldAllowCharacter = (event.keyCode >= 48 && event.keyCode <= 57) || // character is a digit
-                (allowDecimals && event.keyCode === DOT_KEY_CODE) || // character is the decimal separator / TODO/FIXME: some locales use comma instead of dot!
-                (allowNegativeNumbers && event.keyCode === MINUS_KEY_CODE); // character is the negative sign
+            const shouldAllowCharacter =
+                event.keyCode === BACKSPACE_KEY_CODE || // allow the backspace key
+                (event.keyCode >= 48 && event.keyCode <= 57) || // allow digits 0-9 from the "normal" number keys at the top of the keybaord
+                (event.keyCode >= 96 && event.keyCode <= 105) || // allow digits 0-9 from the numeric keypad to the left of the keyboard - https://stackoverflow.com/a/13196983/7415670
+                (allowDecimals && event.keyCode === DOT_KEY_CODE) || // allow dot as the decimal separator if `allowDecimals` is `true` / TODO/FIXME: some locales use comma instead of dot!
+                (allowNegativeNumbers && event.keyCode === MINUS_KEY_CODE); // allow minus sign if `allowNegativeNumbers` is true
 
             if (!shouldAllowCharacter) {
                 event.preventDefault();

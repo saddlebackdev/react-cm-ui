@@ -1,3 +1,4 @@
+export const BACKSPACE_KEY_CODE = 8; // TODO: We should consider an enum here for all the key codes of interest
 export const DOT_KEY_CODE = 190;
 export const ENTER_KEY_CODE = 13;
 export const MINUS_KEY_CODE = 189;
