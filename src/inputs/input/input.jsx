@@ -190,6 +190,17 @@ const propTypes = {
     ]),
 };
 
+// See https://www.educba.com/javascript-keycodes/ for a list of commonly used key codes
+const KEY_CODE_CTRL_KEY = 17;
+const KEY_CODE_LETTER_A = 65;
+const KEY_CODE_LETTER_C = 67;
+const KEY_CODE_LETTER_V = 86;
+const KEY_CODE_LETTER_X = 88;
+const KEY_CODE_NORMAL_NUMBERS_0 = 48;
+const KEY_CODE_NORMAL_NUMBERS_9 = KEY_CODE_NORMAL_NUMBERS_0 + 9;
+const KEY_CODE_NUMBER_PAD_0 = 96;
+const KEY_CODE_NUMBER_PAD_9 = KEY_CODE_NUMBER_PAD_0 + 9;
+
 const defaultProps = {
     autoComplete: null,
     allowDecimals: true,
@@ -408,12 +419,20 @@ class Input extends React.PureComponent {
         }
 
         if (type === 'number') {
+            const isCtrlKey = event.ctrlKey ?? event.keyCode === KEY_CODE_CTRL_KEY;
+
             const shouldAllowCharacter =
                 event.keyCode === BACKSPACE_KEY_CODE || // allow the backspace key
-                (event.keyCode >= 48 && event.keyCode <= 57) || // allow digits 0-9 from the "normal" number keys at the top of the keybaord
-                (event.keyCode >= 96 && event.keyCode <= 105) || // allow digits 0-9 from the numeric keypad to the left of the keyboard - https://stackoverflow.com/a/13196983/7415670
+                /* eslint-disable max-len */
+                (event.keyCode >= KEY_CODE_NORMAL_NUMBERS_0 && event.keyCode <= KEY_CODE_NORMAL_NUMBERS_9) || // allow digits 0-9 from the "normal" number keys at the top of the keybaord
+                (event.keyCode >= KEY_CODE_NUMBER_PAD_0 && event.keyCode <= KEY_CODE_NUMBER_PAD_9) || // allow digits 0-9 from the numeric keypad to the left of the keyboard - https://stackoverflow.com/a/13196983/7415670
+                /* eslint-enable max-len */
                 (allowDecimals && event.keyCode === DOT_KEY_CODE) || // allow dot as the decimal separator if `allowDecimals` is `true` / TODO/FIXME: some locales use comma instead of dot!
-                (allowNegativeNumbers && event.keyCode === MINUS_KEY_CODE); // allow minus sign if `allowNegativeNumbers` is true
+                (allowNegativeNumbers && event.keyCode === MINUS_KEY_CODE) || // allow minus sign if `allowNegativeNumbers` is true
+                (isCtrlKey && event.keyCode === KEY_CODE_LETTER_A) || // allow CTRL+A for Select All
+                (isCtrlKey && event.keyCode === KEY_CODE_LETTER_C) || // allow CTRL+C for Copy
+                (isCtrlKey && event.keyCode === KEY_CODE_LETTER_V) || // allow CTRL+V for Paste
+                (isCtrlKey && event.keyCode === KEY_CODE_LETTER_X); // allow CTRL+X for Cut
 
             if (!shouldAllowCharacter) {
                 event.preventDefault();
