@@ -3,9 +3,9 @@
  * npx jest ./src/dataDisplay/personPanel/__test__/personPanelDetails.test.js
  */
 import React from 'react';
-import mountWithTheme from '../../../testUtils/enzymeHelpers';
-import PersonPanelDetails from '../personPanelDetails';
-import { ENTER_KEY_CODE } from '../../../global/constants';
+import mountWithTheme from '../../../testUtils/enzymeHelpers.jsx';
+import PersonPanelDetails from '../personPanelDetails.jsx';
+import KeyCode from '../../../global/keyCode.js';
 
 describe('<PersonPanelDetails />', () => {
     const helloWorld = 'hello world';
@@ -240,7 +240,7 @@ describe('<PersonPanelDetails />', () => {
         const selectButton = wrapper.find('.block_name--select').first();
 
         selectButton.simulate('click');
-        selectButton.props().onKeyDown({ keyCode: ENTER_KEY_CODE });
+        selectButton.props().onKeyDown({ keyCode: KeyCode.Enter });
 
         expect(selectButton).toBeDefined();
         expect(props.selectButtonProps.onClick).toHaveBeenCalledTimes(1);
@@ -249,13 +249,12 @@ describe('<PersonPanelDetails />', () => {
         const viewRecordButton = wrapper.find('.block_name--view_record').first();
 
         viewRecordButton.simulate('click');
-        viewRecordButton.props().onKeyDown({ keyCode: ENTER_KEY_CODE });
+        viewRecordButton.props().onKeyDown({ keyCode: KeyCode.Enter });
 
         expect(viewRecordButton).toBeDefined();
         expect(props.viewRecordButtonProps.onClick).toHaveBeenCalledTimes(1);
         expect(props.viewRecordButtonProps.onKeyDown).toHaveBeenCalledTimes(1);
     });
-
 
     it('Should disable select record button and apply a custom label using \'selectButtonProps\'', () => {
         const testCaseProps = {
