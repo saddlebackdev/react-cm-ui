@@ -9,9 +9,9 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ENTER_KEY_CODE } from '../../global/constants';
-import RadioItem from './radioItem';
-import withStyles from '../../styles/withStyles';
+import KeyCode from '../../global/keyCode.js';
+import RadioItem from './radioItem.jsx';
+import withStyles from '../../styles/withStyles.js';
 
 const propTypes = {
     align: PropTypes.oneOf(['left', 'right']),
@@ -349,7 +349,7 @@ class Radio extends React.Component {
             pill,
         } = this.props;
 
-        if (event.keyCode === ENTER_KEY_CODE) {
+        if (event.keyCode === KeyCode.Enter) {
             const newValue = this.setIsChecked(idArg);
             const isNotDisabled = !disable && !disabled;
 

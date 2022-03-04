@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import React, {
     useCallback,
 } from 'react';
-import { ENTER_KEY_CODE } from '../../global/constants';
-import makeStyles from '../../styles/makeStyles';
+import KeyCode from '../../global/keyCode.js';
+import makeStyles from '../../styles/makeStyles.js';
 
 const propTypes = {
     children: PropTypes.node,
@@ -80,7 +80,7 @@ function A(props) {
         if (!isDisabled) {
             if (isFunction(onKeyDownProp)) {
                 onKeyDownProp(event);
-            } else if (event.keyCode === ENTER_KEY_CODE) {
+            } else if (event.keyCode === KeyCode.Enter) {
                 onClick();
             }
         }
