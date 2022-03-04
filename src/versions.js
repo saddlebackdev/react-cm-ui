@@ -18,7 +18,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.3.12',
+        package: '10.3.13',
         components: {
             dataDisplay: {
                 chip: {
@@ -48,6 +48,11 @@ const versions = {
                 },
                 image: {
                     devLibraryVersion: '> 1.0.1',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
+                personPanel: {
+                    devLibraryVersion: '2.0.0',
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'N/A',
                 },
