@@ -196,6 +196,8 @@ const KEY_CODE_LETTER_A = 65;
 const KEY_CODE_LETTER_C = 67;
 const KEY_CODE_LETTER_V = 86;
 const KEY_CODE_LETTER_X = 88;
+const KEY_CODE_LETTER_Y = 89;
+const KEY_CODE_LETTER_Z = 90;
 const KEY_CODE_NORMAL_NUMBERS_0 = 48;
 const KEY_CODE_NORMAL_NUMBERS_9 = KEY_CODE_NORMAL_NUMBERS_0 + 9;
 const KEY_CODE_NUMBER_PAD_0 = 96;
@@ -419,7 +421,9 @@ class Input extends React.PureComponent {
         }
 
         if (type === 'number') {
-            const isCtrlKey = event.ctrlKey ?? event.keyCode === KEY_CODE_CTRL_KEY;
+            const isCtrlKey = event.metaKey || // detects Apple Command key - https://stackoverflow.com/a/3922353/7415670 | https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/metaKey
+                event.ctrlKey || // CTRL key modifier flag
+                event.keyCode === KEY_CODE_CTRL_KEY; // key code signifies the CTRL key
 
             const shouldAllowCharacter =
                 event.keyCode === BACKSPACE_KEY_CODE || // allow the backspace key
@@ -432,7 +436,9 @@ class Input extends React.PureComponent {
                 (isCtrlKey && event.keyCode === KEY_CODE_LETTER_A) || // allow CTRL+A for Select All
                 (isCtrlKey && event.keyCode === KEY_CODE_LETTER_C) || // allow CTRL+C for Copy
                 (isCtrlKey && event.keyCode === KEY_CODE_LETTER_V) || // allow CTRL+V for Paste
-                (isCtrlKey && event.keyCode === KEY_CODE_LETTER_X); // allow CTRL+X for Cut
+                (isCtrlKey && event.keyCode === KEY_CODE_LETTER_X) || // allow CTRL+X for Cut
+                (isCtrlKey && event.keyCode === KEY_CODE_LETTER_Y) || // allow CTRL+Y for Redo
+                (isCtrlKey && event.keyCode === KEY_CODE_LETTER_Z); // allow CTRL+Z for Undo
 
             if (!shouldAllowCharacter) {
                 event.preventDefault();
