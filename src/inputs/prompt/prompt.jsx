@@ -5,8 +5,8 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ENTER_KEY_CODE } from '../../global/constants';
-import withStyles from '../../styles/withStyles';
+import KeyCode from '../../global/keyCode.js';
+import withStyles from '../../styles/withStyles.js';
 
 const propTypes = {
     children: PropTypes.oneOfType([
@@ -211,7 +211,7 @@ class Prompt extends React.Component {
 
         if (isFunction(onKeyDown)) {
             onKeyDown(event);
-        } else if (event.keyCode === ENTER_KEY_CODE) {
+        } else if (event.keyCode === KeyCode.Enter) {
             this.onClick();
         }
     }

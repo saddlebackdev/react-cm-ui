@@ -14,13 +14,14 @@ import {
     GENDER_PROP_TYPE,
     RECORD_TYPE_COLOR,
     RECORD_TYPE_PROP_TYPE,
-} from './personPanelConstants';
-import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../../global/constants';
+} from './personPanelConstants.js';
+import KeyCode from '../../global/keyCode.js';
+import { UI_CLASS_NAME } from '../../global/constants.js';
 import Grid from '../../layout/grid';
 import Image from '../image';
-import makeStyles from '../../styles/makeStyles';
-import PersonContactInfo from '../personContactInfo/personContactInfo';
-import Typography from '../typography/typography';
+import makeStyles from '../../styles/makeStyles.js';
+import PersonContactInfo from '../personContactInfo/personContactInfo.jsx';
+import Typography from '../typography/typography.jsx';
 
 const propTypes = {
     /**
@@ -489,7 +490,7 @@ function PersonPanelSummary(props) {
     };
 
     const onKeyDown = (event) => {
-        if (event.keyCode === ENTER_KEY_CODE) {
+        if (event.keyCode === KeyCode.Enter) {
             onClickProp(event);
         }
     };
