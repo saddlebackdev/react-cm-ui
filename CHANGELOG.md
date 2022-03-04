@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.9-hotfix
+_March 4, 2022_
+
+### Core
+- Fix Input (of `type="number"`) so that some other useful keyboard keys and key combinations still work. [PR #366](https://github.com/saddlebackdev/react-cm-ui/pull/366)
+  - This inadvertently regressed in 10.3.7 ( [PR #353](https://github.com/saddlebackdev/react-cm-ui/pull/353) ) as part of an attempt to prevent invalid input by using the `onKeyDown` event to cancel keystrokes deemed not valid for entering a number.  That attempt was, to say the least, a bit overzealous.  This fix should make the number Input much more functional now.
+
 ## 10.3.11
 _March 02, 2022_
 

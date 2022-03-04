@@ -3,9 +3,9 @@
  * npx jest ./src/dataDisplay/personPanel/__test__/personPanelDetailsActionButton.test.js
  */
 import React from 'react';
-import PersonPanelDetailsActionButton from '../personPanelDetailsActionButton';
-import mountWithTheme from '../../../testUtils/enzymeHelpers';
-import { ENTER_KEY_CODE } from '../../../global/constants';
+import PersonPanelDetailsActionButton from '../personPanelDetailsActionButton.jsx';
+import mountWithTheme from '../../../testUtils/enzymeHelpers.jsx';
+import KeyCode from '../../../global/keyCode.js';
 
 describe('<personPanelDetailsActionButton />', () => {
     const props = {
@@ -132,7 +132,7 @@ describe('<personPanelDetailsActionButton />', () => {
             />,
         );
 
-        wrapper.find('PersonPanelDetailsActionButton').props().onKeyDown({ keyCode: ENTER_KEY_CODE });
+        wrapper.find('PersonPanelDetailsActionButton').props().onKeyDown({ keyCode: KeyCode.Enter });
 
         expect(props.onKeyDown).toHaveBeenCalledTimes(1);
     });

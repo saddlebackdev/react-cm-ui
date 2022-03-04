@@ -11,10 +11,7 @@ import InputMasked from 'react-text-mask';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../../dataDisplay/icon';
-import {
-    DOT_KEY_CODE,
-    MINUS_KEY_CODE,
-} from '../../global/constants';
+import KeyCode from '../../global/keyCode.js';
 
 const propTypes = {
     /**
@@ -400,9 +397,27 @@ class Input extends React.PureComponent {
         }
 
         if (type === 'number') {
-            const shouldAllowCharacter = (event.keyCode >= 48 && event.keyCode <= 57) || // character is a digit
-                (allowDecimals && event.keyCode === DOT_KEY_CODE) || // character is the decimal separator / TODO/FIXME: some locales use comma instead of dot!
-                (allowNegativeNumbers && event.keyCode === MINUS_KEY_CODE); // character is the negative sign
+            const isCtrlKey = event.metaKey || // detects Apple Command key - https://stackoverflow.com/a/3922353/7415670 | https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/metaKey
+                event.ctrlKey || // CTRL key modifier flag
+                event.keyCode === KeyCode.Ctrl; // key code signifies the CTRL key
+
+            const shouldAllowCharacter =
+                event.keyCode === KeyCode.Backspace || // allow the backspace key
+                event.keyCode === KeyCode.LeftArrow || // allow left arraw
+                event.keyCode === KeyCode.RightArrow || // allow right arrow
+                event.keyCode === KeyCode.Tab || // allow tab key
+                /* eslint-disable max-len */
+                (event.keyCode >= KeyCode.NormalNumber_0 && event.keyCode <= KeyCode.NormalNumber_9) || // allow digits 0-9 from the "normal" number keys at the top of the keybaord
+                (event.keyCode >= KeyCode.NumberPad_0 && event.keyCode <= KeyCode.NumberPad_9) || // allow digits 0-9 from the numeric keypad to the left of the keyboard - https://stackoverflow.com/a/13196983/7415670
+                /* eslint-enable max-len */
+                (allowDecimals && event.keyCode === KeyCode.Dot) || // allow dot as the decimal separator if `allowDecimals` is `true` / TODO/FIXME: some locales use comma instead of dot!
+                (allowNegativeNumbers && event.keyCode === KeyCode.Minus) || // allow minus sign if `allowNegativeNumbers` is true
+                (isCtrlKey && event.keyCode === KeyCode.Letter_A) || // allow CTRL+A for Select All
+                (isCtrlKey && event.keyCode === KeyCode.Letter_C) || // allow CTRL+C for Copy
+                (isCtrlKey && event.keyCode === KeyCode.Letter_V) || // allow CTRL+V for Paste
+                (isCtrlKey && event.keyCode === KeyCode.Letter_X) || // allow CTRL+X for Cut
+                (isCtrlKey && event.keyCode === KeyCode.Letter_Y) || // allow CTRL+Y for Redo
+                (isCtrlKey && event.keyCode === KeyCode.Letter_Z); // allow CTRL+Z for Undo
 
             if (!shouldAllowCharacter) {
                 event.preventDefault();
