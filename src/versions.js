@@ -108,7 +108,7 @@ const versions = {
                 radio: {
                     devLibraryVersion: '2.0.0',
                     designLibraryVersion: 'N/A',
-                    designLibraryDoc: 'N/A
+                    designLibraryDoc: 'N/A',
                 },
                 select: {
                     devLibraryVersion: '2.0.1',
