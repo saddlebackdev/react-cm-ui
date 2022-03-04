@@ -14,14 +14,14 @@ import {
     GENDER_PROP_TYPE,
     RECORD_TYPE_COLOR,
     RECORD_TYPE_PROP_TYPE,
-} from './personPanelConstants.js';
-import KeyCode from '../../global/keyCode.js';
-import { UI_CLASS_NAME } from '../../global/constants.js';
-import Grid from '../../layout/grid';
-import Image from '../image';
-import makeStyles from '../../styles/makeStyles.js';
-import PersonContactInfo from '../personContactInfo/personContactInfo.jsx';
-import Typography from '../typography/typography.jsx';
+} from './personPanelConstants';
+import KeyCode from '../../global/keyCode';
+import { UI_CLASS_NAME } from '../../global/constants';
+import Grid from '../../layout/grid/index';
+import Image from '../image/index';
+import makeStyles from '../../styles/makeStyles';
+import PersonContactInfo from '../personContactInfo/personContactInfo';
+import Typography from '../typography/typography';
 
 const propTypes = {
     /**

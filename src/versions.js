@@ -51,6 +51,11 @@ const versions = {
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'N/A',
                 },
+                personPanel: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
                 table: {
                     devLibraryVersion: '< 1.0.1',
                     designLibraryVersion: '2.0.0',
