@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.9-hotfix-2
+_March 4, 2022_
+
+### Core
+- Import Fixes. [ea848cd](https://github.com/saddlebackdev/react-cm-ui/commit/ea848cdc02f20aece855ad91f2ac39f42bccbdd2)
+
 ## 10.3.9-hotfix
 _March 4, 2022_
 
