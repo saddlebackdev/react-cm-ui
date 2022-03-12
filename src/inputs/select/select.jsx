@@ -18,6 +18,7 @@ import {
 } from '../../global/constants';
 import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
+import Chip from '../../dataDisplay/chip/chip.jsx';
 
 const propTypes = {
     /**
@@ -889,6 +890,23 @@ const Select = React.forwardRef(function Select(props, ref) {
         );
     };
 
+    const valueRenderer = () => {
+        const mapedChip = map(value, (o) => (
+            <Chip
+                key={`chip-${o.value}`}
+                color="green"
+                deleteIcon={true}
+                label={o.label}
+            />
+        ));
+
+        return (
+            <div>
+                {mapedChip}
+            </div>
+        );
+    };
+
     const onInputKeyDown = (event) => {
         switch (event.keyCode) {
             case 38: // up
@@ -1046,6 +1064,7 @@ const Select = React.forwardRef(function Select(props, ref) {
                 tabIndex={tabIndex}
                 value={value}
                 valueComponent={valueComponent}
+                valueRenderer={multiple ? valueRenderer : null}
             >
                 {isCreatable && CustomCreatableSelect}
             </ReactSelectComponent>
