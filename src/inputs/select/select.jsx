@@ -3,6 +3,7 @@ import {
     has,
     isEmpty,
     isFunction,
+    isString,
     map,
     noop,
     size,
@@ -62,6 +63,13 @@ const propTypes = {
     * Supply dropdown menu style
     */
     dropdownMenuStyle: PropTypes.shape({}),
+    /**
+     * Indicates that the Select has an error.
+     */
+    error: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+    ]),
     /**
      * A Select will be resized to its parent container's width.
      */
@@ -148,6 +156,7 @@ const defaultProps = {
     className: null,
     clearable: false,
     creatable: false,
+    error: null,
     disable: false,
     disabled: false,
     dropdownMenuContainerStyle: null,
@@ -225,6 +234,7 @@ const CustomCreatableSelect = (props) => (
 const useStyles = makeStyles((theme) => {
     const {
         palette: p,
+        spacing,
         typography,
     } = theme;
 
@@ -307,6 +317,12 @@ const useStyles = makeStyles((theme) => {
                 opacity: 1,
             },
         },
+        errorMessage: {
+            color: p.error.main,
+            fontSize: typography.pxToRem(14),
+            marginTop: spacing(0.5),
+        },
+        hasError: {},
         isFluid: {},
         isUnderlined: {},
         label: {
@@ -366,6 +382,9 @@ const useStyles = makeStyles((theme) => {
                 '& .Select-input:focus': {
                     outline: 'none',
                 },
+            },
+            '&$hasError .Select-control': {
+                borderColor: p.error.main,
             },
             '& .is-searchable.is-open > .Select-control': {
                 cursor: 'text',
@@ -759,6 +778,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         dropdownMenuStyle,
         dropdownMenuMaxHeight,
         dropdownMenuMinHeight,
+        error,
         fluid: isFluid,
         id,
         label,
@@ -946,6 +966,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         classes.root,
         className,
         {
+            [classes.hasError]: !!error,
             [classes.isFluid]: isFluid,
             [classes.isUnderlined]: isUnderlined,
         },
@@ -1049,6 +1070,11 @@ const Select = React.forwardRef(function Select(props, ref) {
             >
                 {isCreatable && CustomCreatableSelect}
             </ReactSelectComponent>
+            {isString(error) && !!error && (
+                <p className={classes.errorMessage}>
+                    {error}
+                </p>
+            )}
         </div>
     );
 });

@@ -10,6 +10,7 @@ import ExampleClearableSelect from '../examples/exampleClearableSelect';
 import ExampleCreatableSelect from '../examples/exampleCreatableSelect';
 import ExampleCreatableAdvancedSelect from '../examples/exampleCreatableAdvancedSelect';
 import ExampleDisableSelect from '../examples/exampleDisableSelect';
+import ExampleErrorSelect from '../examples/exampleErrorSelect';
 import ExampleLabelSelect from '../examples/exampleLabelSelect';
 import ExampleMultipleSelect from '../examples/exampleMultipleSelect';
 import ExampleRequiredSelect from '../examples/exampleRequiredSelect';
@@ -65,10 +66,23 @@ function ElementsSelect() {
                     </Example>
 
                     <Heading
+                        anchorLink="select-error"
+                        variant="h2"
+                    >
+                        Select with a Validation Error
+                    </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!../examples/exampleErrorSelect').default}
+                    >
+                        <ExampleErrorSelect />
+                    </Example>
+
+                    <Heading
                         anchorLink="select-disable"
                         variant="h2"
                     >
-                        Disable Select
+                        Disabled Select
                     </Heading>
 
                     <Example
