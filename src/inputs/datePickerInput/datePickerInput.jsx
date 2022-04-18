@@ -7,9 +7,9 @@ import {
 } from 'lodash';
 import ClassNames from 'classnames';
 import moment from 'moment-timezone';
+import MomentPropTypes from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
 import DatePickerUtils from '../../utils/datePickerUtils';
 import DateUtils from '../../utils/dateUtils';
@@ -23,47 +23,163 @@ const propTypes = {
      * Override or extend the styles applied to DatePickerInput.
      */
     classes: PropTypes.shape({
+        isFluid: PropTypes.string,
         root: PropTypes.string,
     }),
-    className: PropTypes.string,
-    date: PropTypes.shape({}),
-    dateFrom: PropTypes.shape({}),
-    dateTo: PropTypes.shape({}),
+
     /**
-     * A DatePickerInput can be disabled.
+    * Assign additional class names to DatePickerInput.
+    */
+    className: PropTypes.string,
+
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
      */
-    disable: PropTypes.bool,
+    dataTestId: PropTypes.string,
+
+    /**
+     * Single date value.  Moment object.
+     */
+    date: MomentPropTypes.momentObj,
+
+    /**
+     * 'From' ('Start') Date for a Date Range.  Moment object.
+     */
+    dateFrom: MomentPropTypes.momentObj,
+
+    /**
+     * 'To' ('End') Date for a Date Range.  Moment object.
+     */
+    dateTo: MomentPropTypes.momentObj,
+
     /**
      * Deprecated prop. Please use `disable` instead.
      */
+    disable: PropTypes.bool,
+
+    /**
+     * A DatePickerInput can be disabled.
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * String specifying the way the date value will be formatted.
+     */
     displayFormat: PropTypes.string,
+
+    /**
+     * Indicate that there is a validation error for this DatePickerInput control.
+     */
     errorMessage: PropTypes.string,
-    events: PropTypes.arrayOf(PropTypes.shape({})),
-    excludeDates: PropTypes.arrayOf(PropTypes.shape({})),
+
+    /**
+     * Indicates dates that should be highlighted on the DatePickerInput's calendar control.  Array of Moment objects.
+     */
+    events: PropTypes.arrayOf(MomentPropTypes.momentObj),
+
+    /**
+     * Specifies a range of dates that are not selectable.  Array of Moment objects.
+     */
+    excludeDates: PropTypes.arrayOf(MomentPropTypes.momentObj),
+
+    /**
+     * Function that is used to filter out dates that are to not be selectable.
+     */
     filterDates: PropTypes.func,
+
+    /**
+     * The DatePickerInput will be resized to its parent container's width.
+     */
+    fluid: PropTypes.bool,
+
+    /**
+     * Forwarded Ref
+     */
+    forwardedRef: PropTypes.oneOfType([
+        // Either a function
+        PropTypes.func,
+        // Or the instance of a DOM native element (see the note about SSR)
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]),
+
+    /**
+     * Specify an element ID this DatePickerInput control.
+     */
     id: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
     ]),
-    includeDates: PropTypes.arrayOf(PropTypes.shape({})),
+
+    /**
+     * Specifies a range of dates that are selectable.  Array of Moment objects.
+     */
+    includeDates: PropTypes.arrayOf(MomentPropTypes.momentObj),
+
+    /**
+     * Specifies a label for the DatePickerInput control.
+     */
     label: PropTypes.string,
+
+    /**
+     * Specifies which locale will be used when formatting date values.
+     */
     locale: PropTypes.string,
-    maxDate: PropTypes.shape({}),
-    minDate: PropTypes.shape({}),
+
+    /**
+     * Specifies maximum selectable date.  Moment object.
+     */
+    maxDate: MomentPropTypes.momentObj,
+
+    /**
+     * Specifies minimum selectable date.   Moment object.
+     */
+    minDate: MomentPropTypes.momentObj,
+
+    /**
+     * DatePickerInput can handle an onBlur event from parent.
+     */
     onBlur: PropTypes.func,
+
+    /**
+     * Event handler for consumer to control state outside of the DatePickerInput.
+     */
     onChange: PropTypes.func,
+
+    /**
+     * Event handler called when the month in the DatePickerInput's calendar control changes.
+     */
     onMonthChange: PropTypes.func,
+
+    /**
+     * If true, specifies that the DatePickerInput represents the 'From' (or 'Start') date of a date range.
+     */
     rangeFrom: PropTypes.bool,
+
+    /**
+     * If true, specifies that the DatePickerInput represents the 'To' (or 'End') date of a date range.
+     */
     rangeTo: PropTypes.bool,
+
+    /**
+     * Indicates whether the DatePickerInput control represents a required field.
+     */
     required: PropTypes.bool,
+
+    /**
+     * Supply any inline styles to the DatePickerInput's container. Mainly used for padding and margins.
+     */
     style: PropTypes.shape({}),
+
+    /**
+     * Allows the DatePickerInput to be focused via the Tab key.
+     */
     tabIndex: PropTypes.number,
 };
 
 const defaultProps = {
     classes: null,
     className: null,
+    dataTestId: undefined,
     date: null,
     dateFrom: null,
     dateTo: null,
@@ -74,6 +190,8 @@ const defaultProps = {
     events: null,
     excludeDates: null,
     filterDates: null,
+    fluid: false,
+    forwardedRef: undefined,
     id: null,
     includeDates: null,
     label: null,
@@ -93,7 +211,11 @@ const defaultProps = {
 const styles = (theme) => ({
     root: {
         display: 'inline-block',
+        '&$isFluid': {
+            width: '100%',
+        },
     },
+    isFluid: {},
     '@global': {
         '.date-picker-tether-element': {
             zIndex: theme.zIndex.datePickerInputCalendar,
@@ -101,6 +223,14 @@ const styles = (theme) => ({
     },
 });
 
+/**
+ * The DatePickerInput represents an input for storing a date value.
+ *
+ * When clicked, it can display an interactive calendar control for selecting
+ * the date.
+ *
+ * A date value can also be typed into the input manually.
+ */
 class DatePickerInput extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -142,6 +272,8 @@ class DatePickerInput extends React.PureComponent {
         this.onInputFocus = this.onInputFocus.bind(this);
         this.onInputKeyDown = this.onInputKeyDown.bind(this);
         this.onMonthChange = this.onMonthChange.bind(this);
+
+        this.datePickerInput = props.forwardedRef ?? React.createRef();
     }
 
     componentDidMount() {
@@ -155,22 +287,13 @@ class DatePickerInput extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         const {
-            disabled: prevDisabled,
-        } = prevProps;
-        const {
             date,
             dateFrom,
             dateTo,
-            disabled,
             locale,
             rangeFrom,
             rangeTo,
         } = this.props;
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('DatePickerInput (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
 
         if (!DatePickerUtils.isSameDay(date, prevProps.date) ||
             !DatePickerUtils.isSameDay(dateFrom, prevProps.dateFrom) ||
@@ -206,6 +329,7 @@ class DatePickerInput extends React.PureComponent {
             disabled,
             onChange,
         } = this.props;
+
         const isNotDisabled = !disable && !disabled;
         const isOnChangeFunc = isFunction(onChange);
 
@@ -234,11 +358,11 @@ class DatePickerInput extends React.PureComponent {
             disable,
             disabled,
         } = this.props;
+
         const isNotDisabled = !disable && !disabled;
 
         if (isNotDisabled) {
-            // eslint-disable-next-line no-underscore-dangle, react/no-find-dom-node
-            ReactDOM.findDOMNode(this._datePickerInput._input).focus();
+            this.datePickerInput.current.inputElement.focus();
         }
     }
 
@@ -260,6 +384,7 @@ class DatePickerInput extends React.PureComponent {
             rangeFrom,
             rangeTo,
         } = this.props;
+
         const { dateFrom, dateTo } = this.state;
         const date = moment(value, this.dateFormats, locale || moment.locale(), true);
         const isNotDisabled = !disable && !disabled;
@@ -356,12 +481,14 @@ class DatePickerInput extends React.PureComponent {
             classes,
             className,
             errorMessage,
+            dataTestId,
             disable,
             disabled,
             displayFormat,
             events,
             excludeDates,
             filterDates,
+            fluid,
             id,
             includeDates,
             label,
@@ -387,6 +514,9 @@ class DatePickerInput extends React.PureComponent {
             'date-picker-input',
             classes.root,
             className,
+            {
+                [classes.isFluid]: fluid,
+            },
         );
 
         let iconColor;
@@ -450,7 +580,9 @@ class DatePickerInput extends React.PureComponent {
                             <Input
                                 autoComplete="off"
                                 data-parsley-error-message={errorMessage}
+                                dataTestId={dataTestId}
                                 disable={isDisabled}
+                                fluid={fluid}
                                 guide
                                 icon={(
                                     <Icon
@@ -471,8 +603,7 @@ class DatePickerInput extends React.PureComponent {
                                 onKeyDown={this.onInputKeyDown}
                                 placeholder="mm/dd/yyyy"
                                 required={required}
-                                // eslint-disable-next-line no-underscore-dangle
-                                ref={(inputRef) => { this._datePickerInput = inputRef; }}
+                                ref={this.datePickerInput}
                                 tabIndex={tabIndex}
                                 type="text"
                                 value={inputString}
@@ -490,4 +621,19 @@ class DatePickerInput extends React.PureComponent {
 DatePickerInput.propTypes = propTypes;
 DatePickerInput.defaultProps = defaultProps;
 
-export default withStyles(styles)(DatePickerInput);
+const DatePickerInputWrapper = React.forwardRef((props, ref) => ((
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <DatePickerInput {...props} forwardedRef={ref} />
+)));
+
+const wrapperPropTypes = { ...propTypes };
+delete wrapperPropTypes.forwardedRef;
+
+const wrapperDefaultProps = { ...defaultProps };
+delete wrapperDefaultProps.forwardedRef;
+
+DatePickerInputWrapper.propTypes = wrapperPropTypes;
+DatePickerInputWrapper.defaultProps = wrapperDefaultProps;
+DatePickerInputWrapper.displayName = 'DatePickerInput';
+
+export default withStyles(styles)(DatePickerInputWrapper);

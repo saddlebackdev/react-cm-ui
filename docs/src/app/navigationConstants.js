@@ -186,6 +186,13 @@ export const navigationItems = [
                     {
                         component: 'table',
                         label: 'Table',
+                        levelFour: [
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                         path: 'table',
                     },
                     {
@@ -294,6 +301,18 @@ export const navigationItems = [
                         component: 'datePickerInput',
                         label: 'Date Picker Input',
                         path: 'date-picker-input',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                     },
                     {
                         component: 'dropdownDeprecated',
@@ -333,6 +352,18 @@ export const navigationItems = [
                         component: 'input',
                         label: 'Input',
                         path: 'input',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
                     },
                     {
                         component: 'phoneInput',

@@ -7,11 +7,11 @@ import PhoneInputCountryDropdownValue from './phoneInputCountryDropdownValue';
 
 const propTypes = {
     /**
-     * A PhoneInputCountryDropdown can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A PhoneInputCountryDropdown can be disabled.
      */
     disabled: PropTypes.bool,
     options: PropTypes.arrayOf(PropTypes.shape({})),
@@ -31,7 +31,10 @@ class PhoneInputCountryDropdown extends React.PureComponent {
         super(props);
 
         this.state = {
-            selectedOption: _.find(props.options, (o) => !o.divider && o.value && o.value === props.value),
+            selectedOption: _.find(
+                props.options,
+                (o) => !o.divider && o.value && o.value === props.value,
+            ),
         };
 
         this.onChange = this.onChange.bind(this);
@@ -39,21 +42,13 @@ class PhoneInputCountryDropdown extends React.PureComponent {
 
     componentDidUpdate(prevProps, prevState) {
         const {
-            disabled: prevDisabled,
-        } = prevProps;
-        const {
-            disabled,
             onChange,
             options,
             value,
         } = this.props;
 
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('PhoneInputCountryDropdown (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
-
-        if (prevProps.value !== value && prevState.selectedOption.value !== value) {
+        if (prevProps.value !== value &&
+            prevState.selectedOption?.value !== value) {
             this.setState({
                 selectedOption: _.find(options, (o) => !o.divider && o.value && o.value === value),
             }, () => {
@@ -63,7 +58,6 @@ class PhoneInputCountryDropdown extends React.PureComponent {
     }
 
     onChange(selectedOption) {
-
         if (selectedOption) {
             const { onChange } = this.props;
 
@@ -81,6 +75,7 @@ class PhoneInputCountryDropdown extends React.PureComponent {
             disabled,
             options,
         } = this.props;
+
         const { selectedOption } = this.state;
 
         return (

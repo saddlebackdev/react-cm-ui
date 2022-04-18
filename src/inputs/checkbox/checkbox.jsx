@@ -11,14 +11,23 @@ const propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
     /**
-     * A Checkbox can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A Checkbox can be disabled.
      */
     disabled: PropTypes.bool,
     fluid: PropTypes.bool,
+    /**
+     * Forwarded Ref
+     */
+    forwardedRef: PropTypes.oneOfType([
+        // Either a function
+        PropTypes.func,
+        // Or the instance of a DOM native element (see the note about SSR)
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]),
     id: PropTypes.string,
     inverse: PropTypes.bool,
     label: PropTypes.oneOfType([
@@ -48,6 +57,7 @@ const defaultProps = {
     disable: false,
     disabled: false,
     fluid: false,
+    forwardedRef: undefined,
     id: null,
     inverse: null,
     label: null,
@@ -74,6 +84,8 @@ class Checkbox extends React.Component {
         this.onKeyDown = this.onKeyDown.bind(this);
         this.onLabelClick = this.onLabelClick.bind(this);
         this.onLabelKeyDown = this.onLabelKeyDown.bind(this);
+
+        this.checkbox = props.forwardedRef ?? React.createRef();
     }
 
     componentDidMount() {
@@ -82,31 +94,22 @@ class Checkbox extends React.Component {
         if (checked) {
             // isChecked is already set by the props.checked in the constructor.
             // eslint-disable-next-line no-underscore-dangle
-            this._inputRef.checked = checked;
+            this.checkbox.current.checked = checked;
         }
     }
 
     componentDidUpdate(prevProps) {
         const {
-            disabled: prevDisabled,
-        } = prevProps;
-        const {
             checked,
-            disabled,
             onChange,
         } = this.props;
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('Checkbox (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
-        }
 
         if (isFunction(onChange) && prevProps.checked !== checked) {
             this.setState({
                 isChecked: checked,
             }, () => {
                 // eslint-disable-next-line no-underscore-dangle
-                this._inputRef.checked = checked;
+                this.checkbox.current.checked = checked;
             });
         }
     }
@@ -123,7 +126,7 @@ class Checkbox extends React.Component {
                     isChecked: !isChecked,
                 }, () => {
                     // eslint-disable-next-line no-underscore-dangle
-                    this._inputRef.checked = !isChecked;
+                    this.checkbox.current.checked = !isChecked;
                 });
             }
         } else {
@@ -214,7 +217,7 @@ class Checkbox extends React.Component {
                     name={name}
                     readOnly
                     // eslint-disable-next-line no-underscore-dangle
-                    ref={(ref) => { this._inputRef = ref; }}
+                    ref={this.checkbox}
                     type="checkbox"
                     value={newValue}
                 />
@@ -258,4 +261,19 @@ class Checkbox extends React.Component {
 Checkbox.propTypes = propTypes;
 Checkbox.defaultProps = defaultProps;
 
-export default Checkbox;
+const CheckboxWrapper = React.forwardRef((props, ref) => ((
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Checkbox {...props} forwardedRef={ref} />
+)));
+
+const wrapperPropTypes = { ...propTypes };
+delete wrapperPropTypes.forwardedRef;
+
+const wrapperDefaultProps = { ...defaultProps };
+delete wrapperDefaultProps.forwardedRef;
+
+CheckboxWrapper.displayName = 'Checkbox';
+CheckboxWrapper.propTypes = wrapperPropTypes;
+CheckboxWrapper.defaultProps = wrapperDefaultProps;
+
+export default CheckboxWrapper;

@@ -2,7 +2,8 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import colorStyles from '../../styles/colorExports'; // eslint-disable-line import/extensions
+// eslint-disable-next-line import/extensions, import/no-unresolved
+import colorStyles from '../../styles/colorExports';
 import ActionBarActionsButtonDrawerSubOption, {
     singleOptionPropTypeShape,
 } from './actionBarActionsButtonDrawerSubOption';
@@ -19,6 +20,7 @@ const propTypes = {
     isSelected: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     onRequestPrompt: PropTypes.func,
+    onDrawerToggle: PropTypes.func,
     option: PropTypes.shape(rootOptionPropTypeShape).isRequired,
 };
 
@@ -27,6 +29,7 @@ const defaultProps = {
     idNumber: false,
     isSelected: false,
     onRequestPrompt: undefined,
+    onDrawerToggle: undefined,
 };
 
 class ActionBarActionsButtonDrawerOption extends React.PureComponent {
@@ -41,27 +44,28 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
             isSelected,
             onClick,
             onRequestPrompt,
+            onDrawerToggle,
             option,
         } = this.props;
 
         if (_.isFunction(option.onClick)) {
             if (option.disabled) {
-                return false;
+                return;
             }
 
             if (option.requiresPrompt) {
                 if (_.isFunction(onRequestPrompt)) {
                     onRequestPrompt(option);
-                    return false;
+                    return;
                 }
             }
 
+            onDrawerToggle();
             option.onClick();
-            return false;
+            return;
         }
 
         onClick(isSelected ? {} : option);
-        return true;
     }
 
     render() {
@@ -70,6 +74,7 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
             idNumber,
             isSelected,
             onRequestPrompt,
+            onDrawerToggle,
             option,
         } = this.props;
 
@@ -145,6 +150,7 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
                                     isSelected={isSelected}
                                     key={`actions_button_drawer_sub_option-${subOptionKeyNum++/* eslint-disable-line no-plusplus */}`}
                                     onRequestPrompt={onRequestPrompt}
+                                    onDrawerToggle={onDrawerToggle}
                                     subOption={subOption}
                                     subOptionClassNameNum={classNameNumber}
                                 />

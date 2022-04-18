@@ -18,6 +18,7 @@ import withStyles from '../../styles/withStyles';
 const propTypes = {
     ...buttonDesignV2PropTypes,
 };
+
 const defaultProps = {
     ...buttonDesignV2DefaultProps,
 };
@@ -359,6 +360,7 @@ class Button extends React.PureComponent {
             target,
             title,
             transparent,
+            type,
             variant,
             width,
             ...otherProps
@@ -413,6 +415,7 @@ class Button extends React.PureComponent {
                 style={style}
                 target={target}
                 title={title}
+                type={as === 'button' ? type ?? 'button' : null}
             >
                 <span
                     className={innerContainerClasses}

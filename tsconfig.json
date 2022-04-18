@@ -12,6 +12,7 @@
       "DOM"                                 // https://testing-library.com/docs/webdriverio-testing-library/intro/#typescript
     ],
     "module": "commonjs",                   // Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'.
+    "outDir": "./core",
     "target": "es2015",                     // Changes which JS features are downleveled and which are left intact.
     "types": [                              // Packages listed will be included in the global scope
       "@testing-library/jest-dom",
@@ -20,8 +21,16 @@
     ],
   },
   "include": [                              // Specifies an array of filenames or patterns to include in the program
+    "docs/**/*",
+    "docs/**/.*",
     "src/**/*",
     "src/**/.*",
     "types/.*",
+  ],
+  "exclude": [
+    "core",
+    "coverage",
+    "lib",
+    "node_modules",
   ]
 }

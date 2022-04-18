@@ -1,6 +1,127 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.13
+_March 4, 2022_
+
+### Core
+- Import Fixes. [ea848cd](https://github.com/saddlebackdev/react-cm-ui/commit/ea848cdc02f20aece855ad91f2ac39f42bccbdd2)
+
+## 10.3.12
+_March 4, 2022_
+
+- Fix Input (of `type="number"`) so that some other useful keyboard keys and key combinations still work. [PR #366](https://github.com/saddlebackdev/react-cm-ui/pull/366)
+  - This inadvertently regressed in 10.3.7 ( [PR #353](https://github.com/saddlebackdev/react-cm-ui/pull/353) ) as part of an attempt to prevent invalid input by using the `onKeyDown` event to cancel keystrokes deemed not valid for entering a number.  That attempt was, to say the least, a bit overzealous.  This fix should make the number Input much more functional now.
+
+## 10.3.9-hotfix-2
+_March 4, 2022_
+
+### Core
+- Import Fixes. [ea848cd](https://github.com/saddlebackdev/react-cm-ui/commit/ea848cdc02f20aece855ad91f2ac39f42bccbdd2)
+
+## 10.3.9-hotfix
+_March 4, 2022_
+
+### Core
+- Fix Input (of `type="number"`) so that some other useful keyboard keys and key combinations still work. [PR #366](https://github.com/saddlebackdev/react-cm-ui/pull/366)
+  - This inadvertently regressed in 10.3.7 ( [PR #353](https://github.com/saddlebackdev/react-cm-ui/pull/353) ) as part of an attempt to prevent invalid input by using the `onKeyDown` event to cancel keystrokes deemed not valid for entering a number.  That attempt was, to say the least, a bit overzealous.  This fix should make the number Input much more functional now.
+
+## 10.3.11
+_March 02, 2022_
+
+### Core
+- Removed `.scss` extension. [7c0737e](https://github.com/saddlebackdev/react-cm-ui/commit/7c0737ee120c1390bee8655f4077923424277e48)
+
+## 10.3.10
+_March 02, 2022_
+
+### Core
+- Remove console warnings about use of disabled prop. [PR #362](https://github.com/saddlebackdev/react-cm-ui/pull/362)
+- Removed Input's `showRequiredIndicator` component state [PR #365](https://github.com/saddlebackdev/react-cm-ui/pull/365)
+
+### Docs
+- Eslint clean up. [PR #359](https://github.com/saddlebackdev/react-cm-ui/pull/359)
+
+## 10.3.9
+_February 15, 2022_
+
+### Core
+- Mobile ActionBar menu drawer now closes on an option click. [PR #359](https://github.com/saddlebackdev/react-cm-ui/pull/359)
+- ESLINT is back baby! [PR #361](https://github.com/saddlebackdev/react-cm-ui/pull/361)
+
+## 10.3.8
+_February 04, 2022_
+
+### Core
+- Fix to undefined `PropType` and removal of a prop warning.
+
+## 10.3.7
+_February 04, 2022_
+
+### Core
+- Fix data-testid issue for <DataGroups>. [PR #354](https://github.com/saddlebackdev/react-cm-ui/pull/354)
+- Warning message is not displaying a properly format. [PR #353](https://github.com/saddlebackdev/react-cm-ui/pull/353)
+- ForwardedRefs, Button Type Prop, and Select Bug Fixes. [PR #356](https://github.com/saddlebackdev/react-cm-ui/pull/356)
+- close Actions Bar Drawer after option is clicked [PR #355](https://github.com/saddlebackdev/react-cm-ui/pull/355)
+
+### Docs
+- Updated Input Documentation. [PR #353](https://github.com/saddlebackdev/react-cm-ui/pull/353)
+
+## 10.3.6
+_January 27, 2022_
+
+### Core
+- Added `onFocus` function prop To Action Bar Search component.  [PR #352](https://github.com/saddlebackdev/react-cm-ui/pull/352)
+  - This is to allow consumers to be notified when the search input is focused (e.g. using `autoFocus` prop) and, if necessary, make adjustments to the content area (esp. at smaller viewport widths).
+
+## 10.3.5
+_January 20, 2022_
+
+### Core
+- Fixed Modal TS types.  [9df63a8](https://github.com/saddlebackdev/react-cm-ui/commit/9df63a8ca6f0740b536daebb1bc8de9599ffc057)
+
+## 10.3.4
+_January 19, 2022_
+
+### Core
+- Added data-testid To Drawer Container.  [PR #351](https://github.com/saddlebackdev/react-cm-ui/pull/351)
+- Add some data-testid support for <ModalDeprecated> and add Close Button data-testid to <Modal>  [PR #349](https://github.com/saddlebackdev/react-cm-ui/pull/349)
+
+## 10.3.3
+_January 12, 2022_
+
+### Core
+- Chip, Drawer, Label, and Table type fixes.  [PR #346](https://github.com/saddlebackdev/react-cm-ui/pull/346)
+- DatePickerInput enhancements.  [PR #347](https://github.com/saddlebackdev/react-cm-ui/pull/347)
+  - Add `fluid` prop to `<DatePickerInput>`
+  - Add `dataTestId` support for `<DatePickerInput>` and add a unit test fixture for it, testing basic render and `onChange` event handling.
+  - Also had to add `dataTestId` support for `<Input>`.
+  - When you specify a `dataTestId` for `<DatePickerInput>` it actually is passed into the `<Input>` and ends up as a `data-testid` attribute on the underling HTML `<input>` element.
+  - The rationale here is that the likeliest unit testing scenario (for higher level molecules and organisms using `<DatePickerInput>`) is needing to be able to trigger a change event and specify a value to the `<DatePickerInput>` directly (i.e. not attempting to interact with the calendar control).
+
+### Docs
+- DatePickerInput enhancements.  [PR #347](https://github.com/saddlebackdev/react-cm-ui/pull/347)
+  - Refactor/modernize the documentation for `<DatePickerInput>`
+  - Divide into main page, Dev Sandbox section, and API section
+  - Move all examples into separate component files and refactor them to use functional style.
+
+## 10.3.2
+_January 05, 2022_
+
+### Core
+- Minor Table fixes.  [PR #345](https://github.com/saddlebackdev/react-cm-ui/pull/345)
+  - Added scroll autoHide
+  - Fixed table size header cell styling.
+  - Moved Table SCSS to JSS.
+
+### Docs
+- Minor Table updates to docs.  [PR #345](https://github.com/saddlebackdev/react-cm-ui/pull/345)
+## 10.3.1
+_December 20, 2021_
+
+### Core
+- Added a defensive check in PhoneInputCountryDropwdown.  [PR #344](https://github.com/saddlebackdev/react-cm-ui/pull/344)
+
 ## 10.3.0
 _November 29, 2021_
 

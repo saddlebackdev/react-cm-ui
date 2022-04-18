@@ -48,6 +48,12 @@ const propTypes = {
      */
     className: PropTypes.string,
     /**
+     * Add a `data-testid` attribute to the Modal's Close Button.
+     * Used for DOM Testing.
+     * See https://testing-library.com/docs/queries/bytestid/.
+     */
+    closeButtonDataTestId: PropTypes.string,
+    /**
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
      */
     dataTestId: PropTypes.string,
@@ -95,7 +101,7 @@ const propTypes = {
         PropTypes.string,
     ]),
     /**
-     * Event handler that is called when user clicks outside of a Modal.
+     * Boolean indicating whether or not the Modal can be closed when the user clicks outside of it.
      */
     onClickOutside: PropTypes.bool,
     /**
@@ -569,6 +575,7 @@ class Modal extends React.Component {
             children,
             classes,
             className,
+            closeButtonDataTestId,
             dataTestId,
             id,
             onClose: onCloseProp,
@@ -626,6 +633,7 @@ class Modal extends React.Component {
                                 classes={{
                                     root: classes.closeButton,
                                 }}
+                                data-testid={closeButtonDataTestId}
                                 designVersion={2}
                                 onClick={this.onClose}
                                 icon
@@ -633,6 +641,7 @@ class Modal extends React.Component {
                             >
                                 <Icon
                                     compact
+                                    title={false}
                                     type="close"
                                 />
                             </Button>

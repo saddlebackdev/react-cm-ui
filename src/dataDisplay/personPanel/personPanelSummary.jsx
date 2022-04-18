@@ -15,9 +15,10 @@ import {
     RECORD_TYPE_COLOR,
     RECORD_TYPE_PROP_TYPE,
 } from './personPanelConstants';
-import { ENTER_KEY_CODE, UI_CLASS_NAME } from '../../global/constants';
-import Grid from '../../layout/grid';
-import Image from '../image';
+import KeyCode from '../../global/keyCode';
+import { UI_CLASS_NAME } from '../../global/constants';
+import Grid from '../../layout/grid/index';
+import Image from '../image/index';
 import makeStyles from '../../styles/makeStyles';
 import PersonContactInfo from '../personContactInfo/personContactInfo';
 import Typography from '../typography/typography';
@@ -489,7 +490,7 @@ function PersonPanelSummary(props) {
     };
 
     const onKeyDown = (event) => {
-        if (event.keyCode === ENTER_KEY_CODE) {
+        if (event.keyCode === KeyCode.Enter) {
             onClickProp(event);
         }
     };

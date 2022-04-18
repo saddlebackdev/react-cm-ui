@@ -1,5 +1,4 @@
 import {
-    isEmpty,
     map,
 } from 'lodash';
 import { IndexRoute, Route } from 'react-router';

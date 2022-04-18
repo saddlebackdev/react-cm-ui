@@ -39,9 +39,13 @@ const propTypes = {
     */
     creatable: PropTypes.bool,
     /**
-    * A Select can be disabled
+    * Deprecated prop. Please use `disabled` instead.
     */
     disable: PropTypes.bool,
+    /**
+    * A Select can be disabled
+    */
+    disabled: PropTypes.bool,
     /**
     * Supply style to dropdown menu container
     */
@@ -145,6 +149,7 @@ const defaultProps = {
     clearable: false,
     creatable: false,
     disable: false,
+    disabled: false,
     dropdownMenuContainerStyle: null,
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
@@ -748,7 +753,8 @@ const Select = React.forwardRef(function Select(props, ref) {
         className,
         clearable: isClearable,
         creatable: isCreatable,
-        disable: isDisabled,
+        disable: disableProp,
+        disabled: disabledProp,
         dropdownMenuContainerStyle,
         dropdownMenuStyle,
         dropdownMenuMaxHeight,
@@ -851,9 +857,6 @@ const Select = React.forwardRef(function Select(props, ref) {
                 <div
                     aria-selected={isSelected}
                     className={optionClass}
-                    isDisabled={o.disabled}
-                    isFocused={isFocused}
-                    isSelected={isSelected}
                     key={`select-option-key-${i}`}
                     onClick={() => params.selectValue(o)}
                     onFocus={noop}
@@ -1023,7 +1026,7 @@ const Select = React.forwardRef(function Select(props, ref) {
                     </div>
                 )}
                 clearable={isClearable}
-                disabled={isDisabled}
+                disabled={disabledProp || disableProp}
                 matchProp={!isCreatable ? matchProp : null}
                 menuContainerStyle={dropdownMenuContainerStyle}
                 menuRenderer={menuRenderer}

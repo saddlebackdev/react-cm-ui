@@ -8,7 +8,6 @@ import autosize from 'autosize';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 const propTypes = {
     autoFocus: PropTypes.bool,
@@ -16,11 +15,11 @@ const propTypes = {
     className: PropTypes.string,
     columns: PropTypes.number,
     /**
-     * A TextArea can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A TextArea can be disabled.
      */
     disabled: PropTypes.bool,
     error: PropTypes.oneOfType([
@@ -28,6 +27,15 @@ const propTypes = {
         PropTypes.string,
     ]),
     fluid: PropTypes.bool,
+    /**
+     * Forwarded Ref
+     */
+    forwardedRef: PropTypes.oneOfType([
+        // Either a function
+        PropTypes.func,
+        // Or the instance of a DOM native element (see the note about SSR)
+        PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]),
     id: PropTypes.string,
     inverse: PropTypes.bool,
     label: PropTypes.string,
@@ -66,6 +74,7 @@ const defaultProps = {
     disabled: false,
     error: null,
     fluid: false,
+    forwardedRef: undefined,
     id: null,
     inverse: false,
     label: null,
@@ -98,6 +107,8 @@ class TextArea extends React.Component {
         };
 
         this.onAutoHeightResized = this.onAutoHeightResized.bind(this);
+
+        this.textArea = props.forwardedRef ?? React.createRef();
     }
 
     componentDidMount() {
@@ -108,9 +119,8 @@ class TextArea extends React.Component {
             value,
         } = this.props;
 
-        if (autoHeight && this.textArea) {
-            // eslint-disable-next-line react/no-find-dom-node
-            const textArea = ReactDOM.findDOMNode(this.textArea);
+        if (autoHeight && this.textArea.current) {
+            const textArea = this.textArea.current;
 
             const autoResize = setInterval(() => {
                 if (value || get(this, 'textArea.value')) {
@@ -124,27 +134,12 @@ class TextArea extends React.Component {
             }, 150);
         }
 
-        if (autoFocus && this.textArea) {
-            // eslint-disable-next-line react/no-find-dom-node
-            ReactDOM.findDOMNode(this.textArea).focus();
+        if (autoFocus && this.textArea.current) {
+            this.textArea.current.focus();
 
             this.setState({
                 isFocused: true,
             });
-        }
-    }
-
-    componentDidUpdate(prevProps) {
-        const {
-            disabled: prevDisabled,
-        } = prevProps;
-        const {
-            disabled,
-        } = this.props;
-
-        if (prevDisabled !== disabled && disabled) {
-            // eslint-disable-next-line no-console
-            console.warn('TextArea (react-cm-ui): The prop \'disabled\' is deprecrated. Please use \'disable\' instead.');
         }
     }
 
@@ -155,10 +150,9 @@ class TextArea extends React.Component {
         } = this.props;
 
         if (autoHeight && isFunction(onAutoHeightResized)) {
-            // eslint-disable-next-line react/no-find-dom-node
-            const textArea = ReactDOM.findDOMNode(this.textArea);
+            const textAreaElement = this.textArea.current;
 
-            textArea.removeEventListener('autosize:resized', this.onAutoHeightResized);
+            textAreaElement.removeEventListener('autosize:resized', this.onAutoHeightResized);
         }
     }
 
@@ -188,12 +182,13 @@ class TextArea extends React.Component {
         const {
             onChange,
         } = this.props;
+
         const valueEvent = event.target.value;
 
         if (isFunction(onChange)) {
             onChange(valueEvent);
         } else {
-            this.textArea.value = valueEvent;
+            this.textArea.current.value = valueEvent;
         }
     }
 
@@ -211,6 +206,7 @@ class TextArea extends React.Component {
         const {
             onFocus,
         } = this.props;
+
         const {
             isFocused,
         } = this.state;
@@ -257,11 +253,14 @@ class TextArea extends React.Component {
             style,
             value,
         } = this.props;
+
         const {
             isFocused,
         } = this.state;
+
         const isDisabled = disable || disabled;
-        const containerClasses = ClassNames('ui', 'text-area', className, {
+
+        const rootClasses = ClassNames('ui', 'text-area', className, {
             'text-area-auto-height': autoHeight,
             'text-area-disabled': isDisabled,
             'text-area-error': error,
@@ -272,7 +271,7 @@ class TextArea extends React.Component {
         });
 
         return (
-            <div className={containerClasses} style={style}>
+            <div className={rootClasses} style={style}>
                 {label && (
                     <label className="label" htmlFor={id} style={labelStyle}>
                         {label}
@@ -297,7 +296,7 @@ class TextArea extends React.Component {
                         onFocus={this.onFocus.bind(this)}
                         onKeyDown={this.onKeyDown.bind(this)}
                         placeholder={placeholder}
-                        ref={(ref) => { this.textArea = ref; }}
+                        ref={this.textArea}
                         required={required}
                         rows={rows}
                         style={{
@@ -320,4 +319,19 @@ class TextArea extends React.Component {
 TextArea.propTypes = propTypes;
 TextArea.defaultProps = defaultProps;
 
-export default TextArea;
+const TextAreaWrapper = React.forwardRef((props, ref) => ((
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <TextArea {...props} forwardedRef={ref} />
+)));
+
+const wrapperPropTypes = { ...propTypes };
+delete wrapperPropTypes.forwardedRef;
+
+const wrapperDefaultProps = { ...defaultProps };
+delete wrapperDefaultProps.forwardedRef;
+
+TextAreaWrapper.displayName = 'TextArea';
+TextAreaWrapper.propTypes = wrapperPropTypes;
+TextAreaWrapper.defaultProps = wrapperDefaultProps;
+
+export default TextAreaWrapper;

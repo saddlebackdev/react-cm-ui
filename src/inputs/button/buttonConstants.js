@@ -105,6 +105,14 @@ export const buttonDesignV2PropTypes = {
      */
     transparent: PropTypes.bool,
     /**
+     * Set transparent styles.
+     */
+    type: PropTypes.oneOf([
+        'button',
+        'reset',
+        'submit',
+    ]),
+    /**
      * The variant to use.
      */
     variant: PropTypes.oneOf([VARIANTS.contained, VARIANTS.outlined, VARIANTS.text]),
@@ -137,6 +145,7 @@ export const buttonDesignV2DefaultProps = {
     target: undefined,
     text: false,
     title: undefined,
+    type: undefined,
     variant: VARIANTS.contained,
     width: undefined,
 };
@@ -160,11 +169,11 @@ export const buttonDeprecatedPropTypes = {
      */
     compact: PropTypes.bool,
     /**
-     * A button can be disabled.
+     * Deprecated prop. Please use `disabled` instead.
      */
     disable: PropTypes.bool,
     /**
-     * Deprecated prop. Please use `disable` instead.
+     * A button can be disabled.
      */
     disabled: PropTypes.bool,
     /**
