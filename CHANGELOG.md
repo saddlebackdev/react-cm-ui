@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.4.0
+_April 18, 2022_
+
+### Core
+- Move React and React-DOM to devDependencies and added React to peerDependencies . [PR #343](https://github.com/saddlebackdev/react-cm-ui/pull/343)
+
 ## 10.3.14
 _April 18, 2022_
 
