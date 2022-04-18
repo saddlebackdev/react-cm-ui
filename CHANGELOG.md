@@ -1,7 +1,7 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 10.4.0
+## 10.4.1
 _April 18, 2022_
 
 ### Core
