@@ -18,7 +18,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.3.13',
+        package: '10.3.14',
         components: {
             dataDisplay: {
                 chip: {
@@ -76,7 +76,7 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/9578614A-F3CD-4BA2-940C-60367CCD887F',
                 },
                 checkbox: {
-                    devLibraryVersion: '< 1.0.1',
+                    devLibraryVersion: '< 1.0.2',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/10182F0A-F2AC-4458-8ABF-C1422BD07B92',
                 },
@@ -101,7 +101,7 @@ const versions = {
                     designLibraryDoc: 'N/A',
                 },
                 input: {
-                    devLibraryVersion: '< 1.0.1',
+                    devLibraryVersion: '< 1.0.2',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/8KKjya',
                 },
@@ -121,7 +121,7 @@ const versions = {
                     designLibraryDoc: 'N/A',
                 },
                 select: {
-                    devLibraryVersion: '2.0.2',
+                    devLibraryVersion: '2.1.0',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/45DC2CF5-702E-4572-9EDF-D952D3A22727',
                 },

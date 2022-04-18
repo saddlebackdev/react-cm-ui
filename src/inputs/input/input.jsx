@@ -55,7 +55,6 @@ const propTypes = {
         PropTypes.bool,
         PropTypes.string,
     ]),
-    forwardedRef: PropTypes.shape({}).isRequired,
     /**
      * An input can take on the size of its container.
      */
