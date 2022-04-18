@@ -115,17 +115,24 @@ class Checkbox extends React.Component {
     }
 
     onClick(event) {
-        const { disabled, id, onChange } = this.props;
+        const {
+            disable,
+            disabled,
+            id,
+            onChange,
+        } = this.props;
+
         const { isChecked } = this.state;
 
-        if (!disabled) {
+        const isDisabled = disabled || disable;
+
+        if (!isDisabled) {
             if (isFunction(onChange)) {
                 onChange(id, !isChecked, event);
             } else {
                 this.setState({
                     isChecked: !isChecked,
                 }, () => {
-                    // eslint-disable-next-line no-underscore-dangle
                     this.checkbox.current.checked = !isChecked;
                 });
             }

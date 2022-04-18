@@ -1,6 +1,16 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.3.14
+_April 18, 2022_
+
+### Core
+- Checkboxes disabled with disable can be still be clicked. [PR #367](https://github.com/saddlebackdev/react-cm-ui/pull/367)
+- Add error prop support for Select component. [PR #371](https://github.com/saddlebackdev/react-cm-ui/pull/371)
+
+### Docs
+- Add error prop support for Select component. [PR #371](https://github.com/saddlebackdev/react-cm-ui/pull/371)
+
 ## 10.3.13
 _March 4, 2022_
 
