@@ -38,7 +38,7 @@
     "test": "jest"
   },
   "peerDependencies": {
-    "react": "^16.8.6 || ^17"
+    "react": "^16.8.6 || ^18"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
