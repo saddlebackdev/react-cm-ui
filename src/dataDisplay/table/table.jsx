@@ -407,8 +407,6 @@ class Table extends React.PureComponent {
             stickyColumnCount,
         } = this.props;
 
-        console.log('this.tableRef', this.tableRef);
-
         const stickyCells =
             this.tableRef?.querySelectorAll(`.table-cell:nth-child(${stickyColumnCount})`) ?? null;
 
