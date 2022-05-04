@@ -2,8 +2,9 @@ import ClassNames from 'classnames';
 import {
     debounce,
     get,
+    isNil,
 } from 'lodash';
-import PropTypes, { shape } from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 import {
@@ -35,6 +36,7 @@ const propTypes = {
      * Override or extend the styles applied to the Table.
      */
     classes: PropTypes.shape({
+        root: PropTypes.string,
         tableSticky: PropTypes.string,
         tableStickyColumns: PropTypes.string,
     }),
@@ -168,7 +170,7 @@ const styles = ({
         borderRadius: shape.borderRadius.main,
         borderSpacing: 0,
         color: palette.text.primary,
-        margin: `calc(2rem - .14285em) 0 1rem`,
+        margin: 'calc(2rem - .14285em) 0 1rem',
         textAlign: 'left',
         width: '100%',
         '&:first-child': {
@@ -318,79 +320,83 @@ class Table extends React.PureComponent {
         } = this.props;
 
         if (stickyColumnCount > 0 && this.tableRef) {
-            const stickyCells = this.tableRef.querySelectorAll(`.table-cell:nth-child(-n+${stickyColumnCount})`);
-            let cellWidths = 0;
-            let cellCount = 0;
-            /**
-             * Reducing each left sticky column position will help to not have a separation
-             * between them, so the content behind won't be visible when scrolling
-             */
-            let leftOverFloatSpace = 1;
-            let auxLeftOverFloatSpace = 0;
+            const stickyCells =
+                this.tableRef.querySelectorAll(`.table-cell:nth-child(-n+${stickyColumnCount})`) ?? null;
 
-            if (basic) {
-                leftOverFloatSpace = 4;
-                auxLeftOverFloatSpace = -1;
+            if (!isNil(stickyCells)) {
+                let cellWidths = 0;
+                let cellCount = 0;
+                /**
+                 * Reducing each left sticky column position will help to not have a separation
+                 * between them, so the content behind won't be visible when scrolling
+                 */
+                let leftOverFloatSpace = 1;
+                let auxLeftOverFloatSpace = 0;
 
-                if (celled) {
+                if (basic) {
                     leftOverFloatSpace = 4;
                     auxLeftOverFloatSpace = -1;
-                }
 
-                if (fixed || singleLine) {
-                    leftOverFloatSpace = 4;
+                    if (celled) {
+                        leftOverFloatSpace = 4;
+                        auxLeftOverFloatSpace = -1;
+                    }
+
+                    if (fixed || singleLine) {
+                        leftOverFloatSpace = 4;
+                        auxLeftOverFloatSpace = 1;
+                    }
+                } else {
+                    leftOverFloatSpace = 2;
                     auxLeftOverFloatSpace = 1;
-                }
-            } else {
-                leftOverFloatSpace = 2;
-                auxLeftOverFloatSpace = 1;
 
-                if (celled) {
-                    auxLeftOverFloatSpace = 2;
-                }
+                    if (celled) {
+                        auxLeftOverFloatSpace = 2;
+                    }
 
-                if (fixed || singleLine) {
-                    leftOverFloatSpace = 3;
-                    auxLeftOverFloatSpace = 2;
-                }
-            }
-
-            for (let rootIndex = 0; rootIndex < stickyCells.length; rootIndex += 1) {
-                cellCount += 1;
-                const shouldChangeInitialDefinitionCell = definition &&
-                    !fullWidth && rootIndex === 0;
-
-                if (shouldChangeInitialDefinitionCell) {
-                    stickyCells[rootIndex].style.backgroundColor = get(palette, 'background.primary');
-                }
-
-                if (cellCount <= stickyColumnCount && cellCount > 1) {
-                    cellWidths += stickyCells[rootIndex - 1].clientWidth;
-                    /**
-                     * This makes definition/fullwidth work
-                     * otherwise we'd have big separation space between sticky columns
-                     */
-                    if (definition && !basic) {
-                        const isFirstHeaderColumn = rootIndex > 0 && cellCount > 0 && stickyCells[rootIndex].className.includes('header');
-                        const definitionLeftOverflow = isFirstHeaderColumn ? 4 : 3;
-                        stickyCells[rootIndex].style.left = `${cellWidths - definitionLeftOverflow}px`;
-                    } else {
-                        cellWidths -= leftOverFloatSpace + (
-                            cellCount >= 3 ?
-                                auxLeftOverFloatSpace :
-                                0
-                        );
-                        stickyCells[rootIndex].style.left = `${cellWidths}px`;
+                    if (fixed || singleLine) {
+                        leftOverFloatSpace = 3;
+                        auxLeftOverFloatSpace = 2;
                     }
                 }
 
-                if (cellCount === stickyColumnCount) {
-                    // used to get the max cell resizable width according to the table container
-                    this.setState({
-                        adjacentStickyColumnsTotalWidth: cellWidths,
-                    });
-                    cellCount = 0;
-                    cellWidths = 0;
+                for (let rootIndex = 0; rootIndex < stickyCells.length; rootIndex += 1) {
+                    cellCount += 1;
+                    const shouldChangeInitialDefinitionCell = definition &&
+                        !fullWidth && rootIndex === 0;
+
+                    if (shouldChangeInitialDefinitionCell) {
+                        stickyCells[rootIndex].style.backgroundColor = get(palette, 'background.primary');
+                    }
+
+                    if (cellCount <= stickyColumnCount && cellCount > 1) {
+                        cellWidths += stickyCells[rootIndex - 1].clientWidth;
+                        /**
+                         * This makes definition/fullwidth work
+                         * otherwise we'd have big separation space between sticky columns
+                         */
+                        if (definition && !basic) {
+                            const isFirstHeaderColumn = rootIndex > 0 && cellCount > 0 && stickyCells[rootIndex].className.includes('header');
+                            const definitionLeftOverflow = isFirstHeaderColumn ? 4 : 3;
+                            stickyCells[rootIndex].style.left = `${cellWidths - definitionLeftOverflow}px`;
+                        } else {
+                            cellWidths -= leftOverFloatSpace + (
+                                cellCount >= 3 ?
+                                    auxLeftOverFloatSpace :
+                                    0
+                            );
+                            stickyCells[rootIndex].style.left = `${cellWidths}px`;
+                        }
+                    }
+
+                    if (cellCount === stickyColumnCount) {
+                        // used to get the max cell resizable width according to the table container
+                        this.setState({
+                            adjacentStickyColumnsTotalWidth: cellWidths,
+                        });
+                        cellCount = 0;
+                        cellWidths = 0;
+                    }
                 }
             }
         }
@@ -401,13 +407,16 @@ class Table extends React.PureComponent {
             stickyColumnCount,
         } = this.props;
 
-        const stickyCells = this.tableRef.querySelectorAll(`.table-cell:nth-child(${stickyColumnCount})`);
+        const stickyCells =
+            this.tableRef?.querySelectorAll(`.table-cell:nth-child(${stickyColumnCount})`) ?? null;
 
-        for (let i = 0; i < stickyCells.length; i += 1) {
-            stickyCells[i].style.whiteSpace = shouldBreakSpaces ? 'break-spaces' : 'nowrap';
+        if (!isNil(stickyCells)) {
+            for (let i = 0; i < stickyCells.length; i += 1) {
+                stickyCells[i].style.whiteSpace = shouldBreakSpaces ? 'break-spaces' : 'nowrap';
+            }
+
+            this.setStickyColumnPositions();
         }
-
-        this.setStickyColumnPositions();
     }
 
     setStickyCellsStylesOnScroll({ scrollLeft }) {
@@ -420,19 +429,23 @@ class Table extends React.PureComponent {
             },
         } = this.props;
 
-        const stickyCellsFirstOfRow = this.tableRef.querySelectorAll(`.${STICKY_CELL_FIRST_OF_ROW_CLASS}`);
-        const stickyCellBorderStyle = this.getStickyCellBorderStyle();
-        const stickyCellBorderLeftStyle = scrollLeft > 0 && !basic ? stickyCellBorderStyle : '';
+        const stickyCellsFirstOfRow =
+            this.tableRef?.querySelectorAll(`.${STICKY_CELL_FIRST_OF_ROW_CLASS}`) ?? null;
 
-        for (let i = 0; i < stickyCellsFirstOfRow.length; i += 1) {
-            stickyCellsFirstOfRow[i].style.borderLeft = stickyCellBorderLeftStyle;
-            const isInitalDefinitionCell = definition && !fullWidth && i === 0;
+        if (!isNil(stickyCellsFirstOfRow)) {
+            const stickyCellBorderStyle = this.getStickyCellBorderStyle();
+            const stickyCellBorderLeftStyle = scrollLeft > 0 && !basic ? stickyCellBorderStyle : '';
 
-            if (isInitalDefinitionCell) {
-                stickyCellsFirstOfRow[i].style.borderTop = get(palette, 'background.primary');
-                stickyCellsFirstOfRow[i].style.boxShadow = '';
-                stickyCellsFirstOfRow[i].style.borderLeft = '';
-                stickyCellsFirstOfRow[i].style.borderRight = stickyCellBorderStyle;
+            for (let i = 0; i < stickyCellsFirstOfRow.length; i += 1) {
+                stickyCellsFirstOfRow[i].style.borderLeft = stickyCellBorderLeftStyle;
+                const isInitalDefinitionCell = definition && !fullWidth && i === 0;
+
+                if (isInitalDefinitionCell) {
+                    stickyCellsFirstOfRow[i].style.borderTop = get(palette, 'background.primary');
+                    stickyCellsFirstOfRow[i].style.boxShadow = '';
+                    stickyCellsFirstOfRow[i].style.borderLeft = '';
+                    stickyCellsFirstOfRow[i].style.borderRight = stickyCellBorderStyle;
+                }
             }
         }
     }
@@ -516,33 +529,37 @@ class Table extends React.PureComponent {
             fullWidth,
         } = this.props;
 
-        const stickyCells = this.tableRef.querySelectorAll(`.table-cell:nth-child(-n+${stickyColumnCount})`);
+        const stickyCells =
+            this.tableRef?.querySelectorAll(`.table-cell:nth-child(-n+${stickyColumnCount})`) ?? null;
 
-        for (let i = 0; i < stickyCells.length; i += 1) {
-            const stickyCell = stickyCells[i];
-            stickyCell.classList.add(STICKY_CELL_CLASS);
-            const isDefinitionInitalCell = definition && !fullWidth && i === 0;
+        if (!isNil(stickyCells)) {
+            for (let i = 0; i < stickyCells.length; i += 1) {
+                const stickyCell = stickyCells[i];
+                stickyCell.classList.add(STICKY_CELL_CLASS);
+                const isDefinitionInitalCell = definition && !fullWidth && i === 0;
 
-            if (isDefinitionInitalCell) {
-                stickyCell.style.boxShadow = '';
-            }
+                if (isDefinitionInitalCell) {
+                    stickyCell.style.boxShadow = '';
+                }
 
-            const isFirstRowCell = (stickyColumnCount === 1 || (i + 1) % stickyColumnCount === 1);
+                const isFirstRowCell =
+                    (stickyColumnCount === 1 || (i + 1) % stickyColumnCount === 1);
 
-            if (isFirstRowCell) {
-                stickyCell.classList.add(STICKY_CELL_FIRST_OF_ROW_CLASS);
-            }
+                if (isFirstRowCell) {
+                    stickyCell.classList.add(STICKY_CELL_FIRST_OF_ROW_CLASS);
+                }
 
-            const isResizableCell = (i + 1) % stickyColumnCount === 0;
+                const isResizableCell = (i + 1) % stickyColumnCount === 0;
 
-            if (isResizableCell) {
-                stickyCell.classList.add(STICKY_CELL_RESIZABLE_CLASS);
-            }
+                if (isResizableCell) {
+                    stickyCell.classList.add(STICKY_CELL_RESIZABLE_CLASS);
+                }
 
-            const isLastColumnCell = stickyCells.length - i <= stickyColumnCount;
+                const isLastColumnCell = stickyCells.length - i <= stickyColumnCount;
 
-            if (isLastColumnCell) {
-                stickyCell.classList.add(STICKY_CELL_LAST_OF_COLUMN_CLASS);
+                if (isLastColumnCell) {
+                    stickyCell.classList.add(STICKY_CELL_LAST_OF_COLUMN_CLASS);
+                }
             }
         }
     }
