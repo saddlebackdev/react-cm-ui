@@ -4,7 +4,6 @@ import {
     map,
     isArray,
     isNil,
-    isObject,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
