@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.4.2
+_May 3, 2022_
+
+### Core
+- Check on Table's this.tableRef. [PR #373](https://github.com/saddlebackdev/react-cm-ui/pull/373)
+
 ## 10.4.1
 _April 18, 2022_
 
