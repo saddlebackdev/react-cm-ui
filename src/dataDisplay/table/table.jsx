@@ -36,6 +36,7 @@ const propTypes = {
      * Override or extend the styles applied to the Table.
      */
     classes: PropTypes.shape({
+        root: PropTypes.string,
         tableSticky: PropTypes.string,
         tableStickyColumns: PropTypes.string,
     }),
@@ -543,7 +544,8 @@ class Table extends React.PureComponent {
                     stickyCell.style.boxShadow = '';
                 }
 
-                const isFirstRowCell = (stickyColumnCount === 1 || (i + 1) % stickyColumnCount === 1);
+                const isFirstRowCell =
+                    (stickyColumnCount === 1 || (i + 1) % stickyColumnCount === 1);
 
                 if (isFirstRowCell) {
                     stickyCell.classList.add(STICKY_CELL_FIRST_OF_ROW_CLASS);
