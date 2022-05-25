@@ -8,7 +8,7 @@ function ExampleInputMask() {
             guide={true}
             keepCharPositions={true}
             label="Phone Number"
-            mask={['(', /[1-9]/, /d/, /d/, ')', ' ', /d/, /d/, /d/, '-', /d/, /d/, /d/, /d/]}
+            mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
             placeholder="(555) 495-3947"
         />
     );
