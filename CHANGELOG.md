@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.4.3
+_May 25, 2022_
+
+### Core
+- Moved Drawer's `onClickOutside` event listener. [PR #374](https://github.com/saddlebackdev/react-cm-ui/pull/374)
+
 ## 10.4.2
 _May 3, 2022_
 
