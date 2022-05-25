@@ -17,7 +17,7 @@ const propTypes = {
     dataTestId: PropTypes.string,
     style: PropTypes.shape({}),
     title: PropTypes.oneOfType([
-        PropTypes.shape({}),
+        PropTypes.node,
         PropTypes.string,
     ]),
     titleStyle: PropTypes.shape({}),

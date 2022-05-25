@@ -235,7 +235,9 @@ class Drawer extends React.Component {
     }
 
     onClickOutside(event) {
-        const { onClickOutside } = this.props;
+        const {
+            onClickOutside,
+        } = this.props;
 
         if (this.drawerContainerRef.contains(event.target) || !onClickOutside) {
             return;
@@ -326,10 +328,6 @@ class Drawer extends React.Component {
         const zIndex = theme.zIndex.drawer + 2; // adding 2 accounts for the frist .drawer and .drawer-dimmers- z-indexes
 
         this.drawerContainerRef.addEventListener(animationEvent, this.onOpenAnimationComplete);
-
-        if (onClickOutside) {
-            document.addEventListener('click', this.onClickOutside);
-        }
 
         if (!dimmer || !isModal || numberOfModalDrawers >= 2) {
             this.drawerRef.style.pointerEvents = 'none';
@@ -427,7 +425,9 @@ class Drawer extends React.Component {
         const {
             dimmer,
             isModal,
+            onClickOutside,
         } = this.props;
+
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
         this.drawerContainerRef.removeEventListener(animationEvent, this.onOpenAnimationComplete);
 
@@ -439,6 +439,10 @@ class Drawer extends React.Component {
 
         if (dimmer && isModal) {
             BODY.classList.add('drawer-dimmers');
+        }
+
+        if (onClickOutside) {
+            document.addEventListener('click', this.onClickOutside);
         }
     }
 
