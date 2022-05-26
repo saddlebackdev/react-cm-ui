@@ -45,7 +45,7 @@ export interface DrawerPropTypes {
     positionYOffset?: number;
     shadowSize?: 'large' | 'small' | 'xsmall';
     /**
-     * If `true`, the drawer will close if user clicks on the outside of the Drawer.
+     * If `true`, Drawer will close if user clicks on the outside it.
      */
     shouldCloseOnClickOutside?: boolean;
     /**
