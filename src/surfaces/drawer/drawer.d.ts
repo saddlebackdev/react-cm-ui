@@ -37,7 +37,6 @@ export interface DrawerPropTypes {
     isModal?: boolean;
     maxHeight?: number;
     maxWidth?: number | string;
-    onClickOutside?: Function;
     onClose?: Function;
     onCloseComplete?: Function;
     onOpenComplete?: Function;
@@ -45,6 +44,10 @@ export interface DrawerPropTypes {
     positionY?: 'bottom' | 'top';
     positionYOffset?: number;
     shadowSize?: 'large' | 'small' | 'xsmall';
+    /**
+     * If `true`, Drawer will close if user clicks on the outside it.
+     */
+    shouldCloseOnClickOutside?: boolean;
     /**
      * Supply any inline styles to the Drawer.
      */
@@ -73,6 +76,6 @@ export interface DrawerComponent extends React.FC<DrawerPropTypes> {
     Wing: typeof DrawerWing
 }
 
-declare const Drawer: DrawerComponent
+declare const Drawer: DrawerComponent;
 
 export default Drawer;

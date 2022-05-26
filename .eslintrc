@@ -79,6 +79,7 @@
                         "ignoreTemplateLiterals": true
                     }
                 ],
+                "no-console": ["warn", { "allow": ["error", "info", "warn"] }],
                 "operator-linebreak": ["error", "after"],
                 "react/jsx-filename-extension": ["error", {
                     "extensions": [
