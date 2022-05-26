@@ -76,6 +76,6 @@ export interface DrawerComponent extends React.FC<DrawerPropTypes> {
     Wing: typeof DrawerWing
 }
 
-declare const Drawer: DrawerComponent
+declare const Drawer: DrawerComponent;
 
 export default Drawer;
