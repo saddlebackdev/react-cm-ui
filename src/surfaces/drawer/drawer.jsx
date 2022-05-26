@@ -72,7 +72,7 @@ const defaultProps = {
     isModal: true,
     maxHeight: undefined,
     maxWidth: undefined,
-    shouldCloseOnClickOutside: undefined,
+    shouldCloseOnClickOutside: false,
     onClose: undefined,
     onCloseComplete: undefined,
     onOpenComplete: undefined,
@@ -254,9 +254,10 @@ class Drawer extends React.Component {
         }
 
         if (isFunction(onClose)) {
-            onClose(...arguments); // eslint-disable-line prefer-rest-params
+            // eslint-disable-next-line prefer-rest-params
+            onClose(...arguments);
         } else {
-            console.warning('Drawer\'s onClose prop is required when using the prop shouldCloseOnClickOutside'); // eslint-disable-line no-console
+            console.warn('Drawer\'s onClose prop is required when using the prop shouldCloseOnClickOutside');
         }
     }
 
