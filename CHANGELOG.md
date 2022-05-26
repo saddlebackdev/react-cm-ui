@@ -1,6 +1,15 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.4.4
+_May 26, 2022_
+
+### Core
+- Changed Drawer's `onClickOutside` prop to `shouldCloseOnClickOutside`. [PR #376](https://github.com/saddlebackdev/react-cm-ui/pull/376)
+
+### Docs
+- Input fields ExampleInputMask not working correctly. [PR #375](https://github.com/saddlebackdev/react-cm-ui/pull/375)
+
 ## 10.4.3
 _May 25, 2022_
 
