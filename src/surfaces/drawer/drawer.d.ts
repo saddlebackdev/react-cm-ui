@@ -37,7 +37,6 @@ export interface DrawerPropTypes {
     isModal?: boolean;
     maxHeight?: number;
     maxWidth?: number | string;
-    onClickOutside?: Function;
     onClose?: Function;
     onCloseComplete?: Function;
     onOpenComplete?: Function;
@@ -45,6 +44,10 @@ export interface DrawerPropTypes {
     positionY?: 'bottom' | 'top';
     positionYOffset?: number;
     shadowSize?: 'large' | 'small' | 'xsmall';
+    /**
+     * If `true`, the drawer will close if user clicks on the outside of the Drawer.
+     */
+    shouldCloseOnClickOutside?: boolean;
     /**
      * Supply any inline styles to the Drawer.
      */
