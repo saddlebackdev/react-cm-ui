@@ -310,7 +310,6 @@ class Drawer extends React.Component {
             isModal,
             maxWidth,
             maxHeight,
-            shouldCloseOnClickOutside,
             positionYOffset,
             positionY,
             shadowSize,
