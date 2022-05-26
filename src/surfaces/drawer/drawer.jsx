@@ -46,7 +46,6 @@ const propTypes = {
         PropTypes.number,
         PropTypes.string,
     ]),
-    onClickOutside: PropTypes.bool,
     onClose: PropTypes.func,
     onCloseComplete: PropTypes.func,
     onOpenComplete: PropTypes.func,
@@ -54,6 +53,7 @@ const propTypes = {
     positionY: PropTypes.oneOf(['bottom', 'top']),
     positionYOffset: PropTypes.number,
     shadowSize: PropTypes.oneOf(['large', 'small', 'xsmall']),
+    shouldCloseOnClickOutside: PropTypes.bool,
     style: PropTypes.shape({}),
     theme: PropTypes.shape({
         zIndex: PropTypes.shape({
@@ -72,7 +72,7 @@ const defaultProps = {
     isModal: true,
     maxHeight: undefined,
     maxWidth: undefined,
-    onClickOutside: undefined,
+    shouldCloseOnClickOutside: false,
     onClose: undefined,
     onCloseComplete: undefined,
     onOpenComplete: undefined,
@@ -236,10 +236,10 @@ class Drawer extends React.Component {
 
     onClickOutside(event) {
         const {
-            onClickOutside,
+            shouldCloseOnClickOutside,
         } = this.props;
 
-        if (this.drawerContainerRef.contains(event.target) || !onClickOutside) {
+        if (this.drawerContainerRef.contains(event.target) || !shouldCloseOnClickOutside) {
             return;
         }
 
@@ -247,25 +247,26 @@ class Drawer extends React.Component {
     }
 
     onClose() {
-        const { onClickOutside, onClose } = this.props;
+        const { shouldCloseOnClickOutside, onClose } = this.props;
 
-        if (onClickOutside) {
+        if (shouldCloseOnClickOutside) {
             document.removeEventListener('click', this.onClickOutside);
         }
 
         if (isFunction(onClose)) {
-            onClose(...arguments); // eslint-disable-line prefer-rest-params
+            // eslint-disable-next-line prefer-rest-params
+            onClose(...arguments);
         } else {
-            console.warning('Drawer\'s onClose prop is required when using the prop onClickOutside'); // eslint-disable-line no-console
+            console.warn('Drawer\'s onClose prop is required when using the prop shouldCloseOnClickOutside');
         }
     }
 
     onCloseAnimationComplete() {
-        const { onCloseComplete, onClickOutside } = this.props;
+        const { onCloseComplete, shouldCloseOnClickOutside } = this.props;
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
         const numberOfModalDrawers = document.querySelectorAll('.ui.drawer-is_modal').length;
 
-        if (onClickOutside) {
+        if (shouldCloseOnClickOutside) {
             document.removeEventListener('click', this.onClickOutside);
         }
 
@@ -310,7 +311,6 @@ class Drawer extends React.Component {
             isModal,
             maxWidth,
             maxHeight,
-            onClickOutside,
             positionYOffset,
             positionY,
             shadowSize,
@@ -425,7 +425,7 @@ class Drawer extends React.Component {
         const {
             dimmer,
             isModal,
-            onClickOutside,
+            shouldCloseOnClickOutside,
         } = this.props;
 
         const animationEvent = domUtils.cssTransitionType(this.drawerContainerRef);
@@ -441,7 +441,7 @@ class Drawer extends React.Component {
             BODY.classList.add('drawer-dimmers');
         }
 
-        if (onClickOutside) {
+        if (shouldCloseOnClickOutside) {
             document.addEventListener('click', this.onClickOutside);
         }
     }
