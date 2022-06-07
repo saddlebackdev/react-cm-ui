@@ -204,9 +204,9 @@ const styles = (theme) => {
                         fill: theme.palette.secondary.main,
                     },
                     '&$inverse': {
-                        boxShadow: `${outlinedWidth} ${theme.palette.secondary.constrastMain}`,
+                        boxShadow: `${outlinedWidth} ${theme.palette.common.white}`,
                         '& .icon .icon-use-path': {
-                            fill: theme.palette.secondary.constrastMain,
+                            fill: theme.palette.common.white,
                         },
                     },
                 },
@@ -326,9 +326,12 @@ class Button extends React.PureComponent {
     }
 
     onClick(event) {
-        const { onClick } = this.props;
+        const {
+            disabled,
+            onClick,
+        } = this.props;
 
-        if (isFunction(onClick)) {
+        if (!disabled && isFunction(onClick)) {
             onClick(event);
         }
     }

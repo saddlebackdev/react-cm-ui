@@ -131,7 +131,7 @@ export const buttonDesignV2DefaultProps = {
     classes: undefined,
     color: 'default',
     compact: false,
-    disable: 'false',
+    disabled: false,
     fullWidth: false,
     href: undefined,
     icon: false,
