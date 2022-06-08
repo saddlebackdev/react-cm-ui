@@ -122,9 +122,9 @@ export const navigationItems = [
                         label: 'Icon',
                         levelFour: [
                             {
-                                component: 'iconExamples',
-                                label: 'Examples',
-                                path: 'examples',
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
                             },
                             {
                                 component: 'api/index.js',
