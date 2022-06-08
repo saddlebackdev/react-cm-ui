@@ -44,7 +44,16 @@ module.exports = (env, options) => {
                             root: path.join(__dirname, '..'),
                         },
                     },
-                }, {
+                },
+                {
+                    test: /\.tsx?$/,
+                    use: 'ts-loader',
+                    include: [
+                        path.join(__dirname, 'src'),
+                        path.join(__dirname, '../src'),
+                    ],
+                },
+                {
                     test: /\.scss$/,
                     use: [
                         MiniCssExtractPlugin.loader,
