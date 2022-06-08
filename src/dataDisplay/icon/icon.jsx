@@ -277,8 +277,6 @@ class Icon extends React.PureComponent {
             default:
         }
 
-        console.log('renderGradientColor', renderGradientColor);
-
         let circle;
         let path;
         let polygon;
