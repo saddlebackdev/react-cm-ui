@@ -2,10 +2,9 @@ import {
     isFunction,
 } from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    buttonDesignV2PropTypes,
-    buttonDesignV2DefaultProps,
     VARIANTS,
 } from './buttonConstants';
 import {
@@ -15,12 +14,170 @@ import {
 import Utils from '../../utils/utils';
 import withStyles from '../../styles/withStyles';
 
-const propTypes = {
-    ...buttonDesignV2PropTypes,
+export const propTypes = {
+    as: PropTypes.oneOf(['a', 'button']),
+    /**
+     * Primary content.
+     */
+    children: PropTypes.node.isRequired,
+    /**
+     * Additional classes.
+     */
+    className: PropTypes.string,
+    /**
+     * Override or extend the styles applied to ButtonDropdown.
+     */
+    classes: PropTypes.shape({
+        colorActive: PropTypes.string,
+        colorDefault: PropTypes.string,
+        colorError: PropTypes.string,
+        colorLink: PropTypes.string,
+        colorPrimary: PropTypes.string,
+        colorSecondary: PropTypes.string,
+        colorSuccess: PropTypes.string,
+        colorWarning: PropTypes.string,
+        compact: PropTypes.string,
+        contained: PropTypes.string,
+        disabled: PropTypes.string,
+        fixedWidth: PropTypes.string,
+        fullWidth: PropTypes.string,
+        icon: PropTypes.string,
+        innerContainer: PropTypes.string,
+        inverse: PropTypes.string,
+        outlined: PropTypes.string,
+        pill: PropTypes.string,
+        relax: PropTypes.string,
+        root: PropTypes.string,
+        text: PropTypes.string,
+        transparent: PropTypes.string,
+    }),
+    /**
+     * Color of the button.
+     */
+    color: PropTypes.oneOf([
+        'active',
+        'default',
+        'error',
+        'link',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+    ]),
+    /**
+     * A button can reduce its padding.
+     */
+    compact: PropTypes.bool,
+    /**
+     * A button can be disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * The Button will be resized to its parent container's width.
+     */
+    fullWidth: PropTypes.bool,
+    /**
+     * The URL that the hyperlink points to.
+     */
+    href: PropTypes.string,
+    /**
+     * If `true`, the button will be a square, housing the icon child.
+     */
+    icon: PropTypes.bool,
+    /**
+     * Assign the button an id attribute value.
+     */
+    id: PropTypes.string,
+    /**
+     * Allows for style overrides of the Button's inner container.
+     */
+    innerStyle: PropTypes.shape({}),
+    /**
+     * A button can be formatted to appear on dark backgrounds better.
+     */
+    inverse: PropTypes.bool,
+    /**
+     * The onClick event handler.
+     */
+    onClick: PropTypes.func,
+    /**
+     * A button can be outlined.
+     */
+    outline: PropTypes.bool,
+    /**
+     * Set a button with a pill like form.
+     */
+    pill: PropTypes.bool,
+    /**
+     * A button can relax its padding.
+     */
+    relax: PropTypes.bool,
+    /**
+     * A button can relax its padding.
+     */
+    style: PropTypes.shape({}),
+    /**
+     * Where to display the linked URL.
+     */
+    target: PropTypes.oneOf(['_blank']),
+    /**
+     * If `true`, only the button's text is shown.
+     */
+    text: PropTypes.bool,
+    /**
+     * The title attribute.
+     */
+    title: PropTypes.string,
+    /**
+     * Set transparent styles.
+     */
+    transparent: PropTypes.bool,
+    /**
+     * Set transparent styles.
+     */
+    type: PropTypes.oneOf([
+        'button',
+        'reset',
+        'submit',
+    ]),
+    /**
+     * The variant to use.
+     */
+    variant: PropTypes.oneOf(Object.values(VARIANTS)),
+    /**
+     * Set a fixed width.
+     */
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
 };
 
 const defaultProps = {
-    ...buttonDesignV2DefaultProps,
+    as: 'button',
+    className: undefined,
+    classes: undefined,
+    color: 'default',
+    compact: false,
+    disabled: false,
+    fullWidth: false,
+    href: undefined,
+    icon: false,
+    id: undefined,
+    innerStyle: {},
+    inverse: false,
+    onClick: undefined,
+    outline: false,
+    pill: false,
+    relax: false,
+    style: {},
+    target: undefined,
+    text: false,
+    title: undefined,
+    transparent: false,
+    type: undefined,
+    variant: VARIANTS.contained,
+    width: undefined,
 };
 
 const styles = (theme) => {
