@@ -31,7 +31,7 @@ export const propTypes = {
     /**
      * Color of the icon.
      */
-    color: ColorType,
+    color: PropTypes.oneOf(Object.values(ColorType)),
     /**
      * If `true`, removes the margin.
      */
