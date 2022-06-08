@@ -5,8 +5,8 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useRef, useState } from 'react';
 import {
-    ICON_PROP_TYPES,
-} from '../../dataDisplay/icon/iconConstants';
+    propTypes as iconPropTypes,
+} from '../../dataDisplay/icon/icon';
 import {
     VARIANTS,
 } from '../button/buttonConstants';
@@ -80,7 +80,7 @@ const propTypes = {
      * Props to control the Icon in the Dropdown Button
      */
     iconProps: PropTypes.shape({
-        ...ICON_PROP_TYPES,
+        ...iconPropTypes,
     }),
     /**
      * Change the position of the icon.
