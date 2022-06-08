@@ -106,7 +106,7 @@
     "gulp-clean-css": "^4.2.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^26.0.1",
+    "jest": "^27.5.1",
     "jest-junit": "^10.0.0",
     "jest-react-hooks-shallow": "^1.4.1",
     "jsdom": "^16.2.2",
