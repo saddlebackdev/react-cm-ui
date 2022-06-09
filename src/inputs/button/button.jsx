@@ -127,7 +127,8 @@ export const propTypes = {
      */
     transparent: PropTypes.bool,
     /**
-     * Set transparent styles.
+     * The default behavior of the button.
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type
      */
     type: PropTypes.oneOf(Object.values(ButtonType)),
     /**

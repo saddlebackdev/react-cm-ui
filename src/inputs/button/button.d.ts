@@ -1,8 +1,8 @@
 import React from 'react';
 import {
     AsType,
+    ButtonType,
     ColorType,
-    Type,
     VariantType,
 } from './models';
 
@@ -116,9 +116,10 @@ export interface ButtonPropTypes {
      */
     transparent?: boolean;
     /**
-     * Set transparent styles.
+     * The default behavior of the button.
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type
      */
-    type?: Type;
+    type?: ButtonType;
     /**
      * The variant to use.
      */
