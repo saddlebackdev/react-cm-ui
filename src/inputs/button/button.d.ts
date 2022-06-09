@@ -1,7 +1,13 @@
 import React from 'react';
+import {
+    AsType,
+    ColorType,
+    Type,
+    VariantType,
+} from './models';
 
 export interface ButtonPropTypes {
-    as?: 'a' | 'button';
+    as?: AsType;
     /**
      * Primary content.
      */
@@ -40,7 +46,7 @@ export interface ButtonPropTypes {
     /**
      * Color of the button.
      */
-    color?: 'active' | 'default' | 'error' | 'link' | 'primary' | 'secondary' | 'success' | 'warning';
+    color?: ColorType;
     /**
      * A button can reduce its padding.
      */
@@ -112,11 +118,11 @@ export interface ButtonPropTypes {
     /**
      * Set transparent styles.
      */
-    type?: 'button' | 'reset' | 'submit';
+    type?: Type;
     /**
      * The variant to use.
      */
-    variant?: 'contained' | 'outlined' | 'text';
+    variant?: VariantType;
     /**
      * Set a fixed width.
      */

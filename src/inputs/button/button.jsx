@@ -5,17 +5,20 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    VARIANTS,
-} from './buttonConstants';
-import {
     UI_CLASS_NAME,
     BEM_BUTTON,
 } from '../../global/constants';
 import Utils from '../../utils/utils';
 import withStyles from '../../styles/withStyles';
+import {
+    AsType,
+    ColorType,
+    Type,
+    VariantType,
+} from './models';
 
 export const propTypes = {
-    as: PropTypes.oneOf(['a', 'button']),
+    as: PropTypes.oneOf(Object.values(AsType)),
     /**
      * Primary content.
      */
@@ -54,16 +57,7 @@ export const propTypes = {
     /**
      * Color of the button.
      */
-    color: PropTypes.oneOf([
-        'active',
-        'default',
-        'error',
-        'link',
-        'primary',
-        'secondary',
-        'success',
-        'warning',
-    ]),
+    color: PropTypes.oneOf(Object.values(ColorType)),
     /**
      * A button can reduce its padding.
      */
@@ -135,15 +129,11 @@ export const propTypes = {
     /**
      * Set transparent styles.
      */
-    type: PropTypes.oneOf([
-        'button',
-        'reset',
-        'submit',
-    ]),
+    type: PropTypes.oneOf(Object.values(Type)),
     /**
      * The variant to use.
      */
-    variant: PropTypes.oneOf(Object.values(VARIANTS)),
+    variant: PropTypes.oneOf(Object.values(VariantType)),
     /**
      * Set a fixed width.
      */
@@ -154,10 +144,10 @@ export const propTypes = {
 };
 
 const defaultProps = {
-    as: 'button',
+    as: AsType.Button,
     className: undefined,
     classes: undefined,
-    color: 'default',
+    color: ColorType.Default,
     compact: false,
     disabled: false,
     fullWidth: false,
@@ -176,7 +166,7 @@ const defaultProps = {
     title: undefined,
     transparent: false,
     type: undefined,
-    variant: VARIANTS.contained,
+    variant: VariantType.Contained,
     width: undefined,
 };
 
@@ -534,25 +524,25 @@ class Button extends React.PureComponent {
             classes.root,
             className,
             {
-                [classes.colorActive]: !disabled && color === 'active',
-                [classes.colorDefault]: !disabled && color === 'default',
-                [classes.colorError]: !disabled && color === 'error',
-                [classes.colorLink]: !disabled && color === 'link',
-                [classes.colorPrimary]: !disabled && color === 'primary',
-                [classes.colorSecondary]: !disabled && color === 'secondary',
-                [classes.colorSuccess]: !disabled && color === 'success',
-                [classes.colorWarning]: !disabled && color === 'warning',
+                [classes.colorActive]: !disabled && color === ColorType.Active,
+                [classes.colorDefault]: !disabled && color === ColorType.Default,
+                [classes.colorError]: !disabled && color === ColorType.Error,
+                [classes.colorLink]: !disabled && color === ColorType.Link,
+                [classes.colorPrimary]: !disabled && color === ColorType.Primary,
+                [classes.colorSecondary]: !disabled && color === ColorType.Secondary,
+                [classes.colorSuccess]: !disabled && color === ColorType.Success,
+                [classes.colorWarning]: !disabled && color === ColorType.Warning,
                 [classes.compact]: compact,
                 [classes.disabled]: disabled,
                 [classes.fixedWidth]: !!width,
                 [classes.fullWidth]: fullWidth,
                 [classes.icon]: icon,
                 [classes.inverse]: inverse,
-                [classes.contained]: variant === VARIANTS.contained,
-                [classes.outlined]: variant === VARIANTS.outlined,
+                [classes.contained]: variant === VariantType.Contained,
+                [classes.outlined]: variant === VariantType.Outlined,
                 [classes.pill]: pill,
                 [classes.relax]: relax,
-                [classes.text]: variant === VARIANTS.text,
+                [classes.text]: variant === VariantType.Text,
                 [classes.transparent]: transparent,
             },
         );
@@ -575,7 +565,7 @@ class Button extends React.PureComponent {
                 style={style}
                 target={target}
                 title={title}
-                type={as === 'button' ? type ?? 'button' : null}
+                type={as === AsType.Button ? type ?? AsType.Button : null}
             >
                 <span
                     className={innerContainerClasses}

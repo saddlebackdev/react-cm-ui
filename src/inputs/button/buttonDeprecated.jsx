@@ -2,19 +2,120 @@ import {
     isFunction,
 } from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
-import {
-    buttonDeprecatedPropTypes,
-    buttonDeprecatedDefaultProps,
-} from './buttonConstants';
 import Utils from '../../utils/utils';
 import withStyles from '../../styles/withStyles';
 
 const propTypes = {
-    ...buttonDeprecatedPropTypes,
+    as: PropTypes.oneOf(['a', 'button']),
+    /**
+     * Primary content.
+     */
+    children: PropTypes.node.isRequired,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        inverse: PropTypes.string,
+        colorActive: PropTypes.string,
+        colorAlert: PropTypes.string,
+        colorAlternate: PropTypes.string,
+        colorDisable: PropTypes.string,
+        colorInverse: PropTypes.string,
+        colorLight: PropTypes.string,
+        colorOutline: PropTypes.string,
+        colorPrimary: PropTypes.string,
+        colorSecondary: PropTypes.string,
+        colorSuccess: PropTypes.string,
+        colorTransparent: PropTypes.string,
+        colorWarning: PropTypes.string,
+        compact: PropTypes.string,
+        fluid: PropTypes.string,
+        icon: PropTypes.string,
+        fixedWidth: PropTypes.string,
+        outlined: PropTypes.string,
+        relax: PropTypes.string,
+        innerContainer: PropTypes.string,
+    }),
+    /**
+     * Additional classes.
+     */
+    className: PropTypes.string,
+    /**
+     * Color of the button.
+     */
+    color: PropTypes.oneOf(Utils.colorEnums()),
+    /**
+     * A button can reduce its padding.
+     */
+    compact: PropTypes.bool,
+    /**
+     * Deprecated prop. Please use `disabled` instead.
+     */
+    disable: PropTypes.bool,
+    /**
+     * A button can be disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * The Button will be resized to its parent container's width.
+     */
+    fluid: PropTypes.bool,
+    href: PropTypes.string,
+    icon: PropTypes.bool,
+    /**
+     * Assign the button an id attribute value.
+     */
+    id: PropTypes.string,
+    innerStyle: PropTypes.shape({}),
+    /**
+     * A button can be formatted to appear on dark backgrounds better.
+     */
+    inverse: PropTypes.bool,
+    onClick: PropTypes.func,
+    /**
+     * A button can be outlined.
+     */
+    outlined: PropTypes.bool,
+    /**
+     * A button can relax its padding.
+     */
+    relax: PropTypes.bool,
+    /**
+     * A button can relax its padding.
+     */
+    style: PropTypes.shape({}),
+    target: PropTypes.oneOf(['_blank']),
+    title: PropTypes.string,
+    /**
+     * Set a fixed width.
+     */
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
 };
+
 const defaultProps = {
-    ...buttonDeprecatedDefaultProps,
+    as: 'button',
+    className: undefined,
+    classes: undefined,
+    color: 'primary',
+    compact: false,
+    disable: false,
+    disabled: false,
+    fluid: false,
+    href: undefined,
+    icon: false,
+    id: undefined,
+    innerStyle: {},
+    inverse: false,
+    onClick: undefined,
+    outlined: false,
+    relax: false,
+    style: {},
+    target: undefined,
+    title: undefined,
+    width: undefined,
 };
 
 const styles = (theme) => {
