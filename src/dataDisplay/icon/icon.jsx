@@ -5,26 +5,107 @@ import {
     uniqueId,
 } from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 import {
     UI_CLASS_NAME,
 } from '../../global/constants';
 import {
-    ICON_PROP_TYPES,
+    TITLE_PROP_TYPE,
 } from './iconConstants';
+import {
+    ColorType,
+} from './models';
 import IconSVG from './iconSVG';
+import Utils from '../../utils/utils';
 
-const propTypes = {
-    ...ICON_PROP_TYPES,
+export const propTypes = {
+    /**
+     * Changes the margin from left or right.
+     */
+    align: PropTypes.oneOf(['left', 'right']),
+    /**
+     * Additional classes.
+     */
+    className: PropTypes.string,
+    /**
+     * Color of the icon.
+     */
+    color: PropTypes.oneOf(Object.values(ColorType)),
+    /**
+     * If `true`, removes the margin.
+     */
+    compact: PropTypes.bool,
+    /**
+     * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
+     */
+    dataTestId: PropTypes.string,
+    /**
+     * If `true`, an icon can be disabled.
+     */
+    disable: PropTypes.bool,
+    /**
+     * If defined, `color` will be overriden and the `gradient.linearGradient` will be used.
+     * Note: `id` needs to be defined on the `<linearGradient>` element.
+     */
+    gradient: PropTypes.element,
+    /**
+     * The `id` of the icon.
+     */
+    id: PropTypes.string,
+    /**
+     * If `true`, a icon can be formatted to appear on dark backgrounds.
+     */
+    inverse: PropTypes.bool,
+    /**
+     * Event handler for onClick
+     */
+    onClick: PropTypes.func,
+    /**
+     * Event handler for onKeyDown
+     */
+    onKeyDown: PropTypes.func,
+    /**
+     * Transforms the rotation of the icon with the given number.
+     */
+    rotate: PropTypes.number,
+    /**
+     * Changes the height and width of the icon with the given number.
+     */
+    size: PropTypes.oneOfType([
+        PropTypes.oneOf(Utils.sizeEnums()),
+        PropTypes.number,
+    ]),
+    /**
+     * If `true`, endlessly spins the icon counter-clockwise
+     */
+    spin: PropTypes.bool,
+    /**
+     * Supply any inline styles to the icon.
+     */
+    style: PropTypes.shape({}),
+    /**
+     * Indicates whether or not the Icon can be focused.
+     */
+    tabIndex: PropTypes.number,
+    /**
+     * Provides a human-readable title for the element that contains it.
+     */
+    title: TITLE_PROP_TYPE,
+    /**
+     * The string for the icon you want to display.
+     */
+    type: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
     align: 'left',
     className: null,
-    color: 'primary',
+    color: ColorType.Primary,
     dataTestId: `${UI_CLASS_NAME}-icon`,
     compact: false,
     disable: false,
+    gradient: null,
     id: null,
     inverse: false,
     onClick: null,
@@ -86,6 +167,7 @@ class Icon extends React.PureComponent {
             compact,
             dataTestId,
             disable,
+            gradient,
             id,
             inverse,
             onClick,
@@ -109,13 +191,13 @@ class Icon extends React.PureComponent {
                 'icon-align-left': (!align && !compact) || align === 'left',
                 'icon-align-right': !compact && align === 'right',
                 'icon-clickable': onClick,
-                'icon-color-alert': color === 'alert',
-                'icon-color-disable': color === 'disable',
-                'icon-color-highlight': color === 'highlight',
-                'icon-color-primary': (isNil(color) && !disable) || color === 'primary',
-                'icon-color-static': color === 'static',
-                'icon-color-success': color === 'success',
-                'icon-color-warning': color === 'warning',
+                'icon-color-alert': color === ColorType.Alert,
+                'icon-color-disable': color === ColorType.Disable,
+                'icon-color-highlight': color === ColorType.Highlight,
+                'icon-color-primary': (isNil(color) && !disable) || color === ColorType.Primary,
+                'icon-color-static': color === ColorType.Static,
+                'icon-color-success': color === ColorType.Success,
+                'icon-color-warning': color === ColorType.Warning,
                 'icon-compact': compact,
                 'icon-disable': disable,
                 'icon-inverse': inverse,
@@ -142,7 +224,7 @@ class Icon extends React.PureComponent {
             transform: isNumber(rotate) ? `rotate(${rotate}deg)` : null,
         };
 
-        const gradientId = `icon-svg-gradient-color-${color}-${type}-${iconUniqueId()}`;
+        const gradientId = gradient?.props?.id ?? `icon-svg-gradient-color-${color}-${type}-${iconUniqueId()}`;
         const maskId = `icon-svg-mask-${type}-${iconUniqueId()}`;
         const pathId = `icon-svg-path-${type}-${iconUniqueId()}`;
         const polygonId = `icon-svg-polygon-${type}-${iconUniqueId()}`;
@@ -151,7 +233,7 @@ class Icon extends React.PureComponent {
         let renderGradientColor;
 
         switch (color) {
-            case 'action':
+            case ColorType.Action:
                 renderGradientColor = (
                     <linearGradient x1="112.199955%" y1="32.8609914%" x2="-2.68483922%" y2="32.8609914%" id={gradientId}>
                         <stop stopColor="#F99E49" offset="0%" />
@@ -160,7 +242,7 @@ class Icon extends React.PureComponent {
                 );
 
                 break;
-            case 'condition':
+            case ColorType.Condition:
                 renderGradientColor = (
                     <linearGradient x1="100%" y1="57.7671349%" x2="0%" y2="57.7671349%" id={gradientId}>
                         <stop stopColor="#56C4C4" offset="0%" />
@@ -169,7 +251,7 @@ class Icon extends React.PureComponent {
                 );
 
                 break;
-            case 'configuration':
+            case ColorType.Configuration:
                 renderGradientColor = (
                     <linearGradient x1="100%" y1="57.3795795%" x2="2.77555756e-15%" y2="57.3795795%" id={gradientId}>
                         <stop stopColor="#5AC9F5" offset="0%" />
@@ -178,14 +260,18 @@ class Icon extends React.PureComponent {
                 );
 
                 break;
-            case 'object':
-            case 'subject':
+            case ColorType.Object:
+            case ColorType.Subject:
                 renderGradientColor = (
                     <linearGradient x1="100.881138%" y1="32.8609914%" x2="-2.68483922%" y2="32.8609914%" id={gradientId}>
                         <stop stopColor="#9958D1" offset="0%" />
                         <stop stopColor="#134174" offset="100%" />
                     </linearGradient>
                 );
+
+                break;
+            case ColorType.CustomGradient:
+                renderGradientColor = gradient;
 
                 break;
             default:
