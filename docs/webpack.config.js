@@ -44,7 +44,16 @@ module.exports = (env, options) => {
                             root: path.join(__dirname, '..'),
                         },
                     },
-                }, {
+                },
+                {
+                    test: /\.tsx?$/,
+                    use: 'ts-loader',
+                    include: [
+                        path.join(__dirname, 'src'),
+                        path.join(__dirname, '../src'),
+                    ],
+                },
+                {
                     test: /\.scss$/,
                     use: [
                         MiniCssExtractPlugin.loader,
@@ -72,21 +81,23 @@ module.exports = (env, options) => {
         },
         resolve: {
             extensions: [
-                '.js',
-                '.jsx',
-                '.scss',
-                '.ico',
-                '.png',
-                '.jpg',
-                '.gif',
                 '.eot',
+                '.gif',
+                '.ico',
+                '.jpg',
+                '.js',
+                '.json',
+                '.jsx',
+                '.pdf',
+                '.png',
+                '.scss',
+                '.sketch',
+                '.svg',
+                '.ts',
+                '.tsx',
                 '.ttf',
                 '.woff',
                 '.woff2',
-                '.svg',
-                '.json',
-                '.sketch',
-                '.pdf',
             ],
             modules: [
                 'node_modules',

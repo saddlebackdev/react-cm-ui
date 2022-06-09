@@ -5,12 +5,17 @@ import {
     src,
     watch,
 } from 'gulp';
+import gulpTs from 'gulp-typescript';
 import babel from 'gulp-babel';
 import cleanCSS from 'gulp-clean-css';
 import sass from '@selfisekai/gulp-sass';
 import del from 'del';
 
+const tsProject = gulpTs.createProject('tsconfig.json');
+
 sass.compiler = require('sass');
+
+const destSrc = 'core';
 
 const paths = {
     images: {
@@ -22,54 +27,64 @@ const paths = {
             'src/**/*.js',
             'src/**/*.jsx',
             '!src/**/*.test.js',
+            '!src/**/*.test.jsx',
         ],
-        dest: 'core',
+        dest: destSrc,
+    },
+    ts: {
+        src: [
+            'src/**/*.ts',
+            'src/**/*.tsx',
+            '!node_modules',
+            '!src/**/*.d.ts',
+            '!src/**/*.test.ts',
+            '!src/**/*.test.tsx',
+        ],
+        dest: destSrc,
     },
     types: {
         src: [
             'src/**/*.d.ts',
         ],
-        dest: 'core',
+        dest: destSrc,
     },
     styles: {
         src: 'src/**/*.scss',
-        dest: 'core',
+        dest: destSrc,
     },
 };
 
-export const clean = () => del(['core']);
+const clean = () => del(['core']);
 
-export function images() {
+function images() {
     return src(paths.images.src)
         .pipe(dest(paths.images.dest));
 }
 
-export function scripts() {
+function scripts() {
     return src(paths.scripts.src)
         .pipe(babel())
         .pipe(dest(paths.scripts.dest));
 }
 
-export function styles() {
+function styles() {
     return src(paths.styles.src)
         .pipe(sass())
         .pipe(cleanCSS())
         .pipe(dest(paths.styles.dest));
 }
 
-export function types() {
+function ts() {
+    return src(paths.ts.src)
+        .pipe(tsProject())
+        .js
+        .pipe(dest(paths.ts.dest));
+}
+
+function types() {
     return src(paths.types.src)
         .pipe(dest(paths.types.dest));
 }
-
-function watchFiles() {
-    watch(paths.images.src, images);
-    watch(paths.scripts.src, scripts);
-    watch(paths.styles.src, styles);
-    watch(paths.types.src, types);
-}
-
-export { watchFiles as watch };
 
 export default series(
     clean,
@@ -77,6 +92,7 @@ export default series(
         images,
         scripts,
         styles,
+        ts,
         types,
     ),
 );
