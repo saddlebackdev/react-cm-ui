@@ -13,7 +13,7 @@ import withStyles from '../../styles/withStyles';
 import {
     AsType,
     ColorType,
-    Type,
+    ButtonType,
     VariantType,
 } from './models';
 
@@ -129,7 +129,7 @@ export const propTypes = {
     /**
      * Set transparent styles.
      */
-    type: PropTypes.oneOf(Object.values(Type)),
+    type: PropTypes.oneOf(Object.values(ButtonType)),
     /**
      * The variant to use.
      */

@@ -1,7 +1,7 @@
-enum Type {
+enum ButtonType {
     Button = 'button',
     Reset = 'reset',
     Submit = 'submit',
 }
 
-export default Type;
+export default ButtonType;
