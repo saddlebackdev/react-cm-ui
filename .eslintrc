@@ -124,7 +124,8 @@
                 "*constants.js",
                 "*constants.ts",
                 "*Constants.js",
-                "*Constants.ts"
+                "*Constants.ts",
+                "index.ts"
             ],
             "rules": {
                 "import/prefer-default-export": "off"

@@ -2,25 +2,173 @@ import {
     isFunction,
 } from 'lodash';
 import ClassNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
-import {
-    buttonDesignV2PropTypes,
-    buttonDesignV2DefaultProps,
-    VARIANTS,
-} from './buttonConstants';
 import {
     UI_CLASS_NAME,
     BEM_BUTTON,
 } from '../../global/constants';
 import Utils from '../../utils/utils';
 import withStyles from '../../styles/withStyles';
+import {
+    AsType,
+    ColorType,
+    ButtonType,
+    VariantType,
+} from './models';
 
-const propTypes = {
-    ...buttonDesignV2PropTypes,
+export const propTypes = {
+    as: PropTypes.oneOf(Object.values(AsType)),
+    /**
+     * Primary content.
+     */
+    children: PropTypes.node.isRequired,
+    /**
+     * Additional classes.
+     */
+    className: PropTypes.string,
+    /**
+     * Override or extend the styles applied to ButtonDropdown.
+     */
+    classes: PropTypes.shape({
+        colorActive: PropTypes.string,
+        colorDefault: PropTypes.string,
+        colorError: PropTypes.string,
+        colorLink: PropTypes.string,
+        colorPrimary: PropTypes.string,
+        colorSecondary: PropTypes.string,
+        colorSuccess: PropTypes.string,
+        colorWarning: PropTypes.string,
+        compact: PropTypes.string,
+        contained: PropTypes.string,
+        disabled: PropTypes.string,
+        fixedWidth: PropTypes.string,
+        fullWidth: PropTypes.string,
+        icon: PropTypes.string,
+        innerContainer: PropTypes.string,
+        inverse: PropTypes.string,
+        outlined: PropTypes.string,
+        pill: PropTypes.string,
+        relax: PropTypes.string,
+        root: PropTypes.string,
+        text: PropTypes.string,
+        transparent: PropTypes.string,
+    }),
+    /**
+     * Color of the button.
+     */
+    color: PropTypes.oneOf(Object.values(ColorType)),
+    /**
+     * A button can reduce its padding.
+     */
+    compact: PropTypes.bool,
+    /**
+     * A button can be disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * The Button will be resized to its parent container's width.
+     */
+    fullWidth: PropTypes.bool,
+    /**
+     * The URL that the hyperlink points to.
+     */
+    href: PropTypes.string,
+    /**
+     * If `true`, the button will be a square, housing the icon child.
+     */
+    icon: PropTypes.bool,
+    /**
+     * Assign the button an id attribute value.
+     */
+    id: PropTypes.string,
+    /**
+     * Allows for style overrides of the Button's inner container.
+     */
+    innerStyle: PropTypes.shape({}),
+    /**
+     * A button can be formatted to appear on dark backgrounds better.
+     */
+    inverse: PropTypes.bool,
+    /**
+     * The onClick event handler.
+     */
+    onClick: PropTypes.func,
+    /**
+     * A button can be outlined.
+     */
+    outline: PropTypes.bool,
+    /**
+     * Set a button with a pill like form.
+     */
+    pill: PropTypes.bool,
+    /**
+     * A button can relax its padding.
+     */
+    relax: PropTypes.bool,
+    /**
+     * A button can relax its padding.
+     */
+    style: PropTypes.shape({}),
+    /**
+     * Where to display the linked URL.
+     */
+    target: PropTypes.oneOf(['_blank']),
+    /**
+     * If `true`, only the button's text is shown.
+     */
+    text: PropTypes.bool,
+    /**
+     * The title attribute.
+     */
+    title: PropTypes.string,
+    /**
+     * Set transparent styles.
+     */
+    transparent: PropTypes.bool,
+    /**
+     * The default behavior of the button.
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type
+     */
+    type: PropTypes.oneOf(Object.values(ButtonType)),
+    /**
+     * The variant to use.
+     */
+    variant: PropTypes.oneOf(Object.values(VariantType)),
+    /**
+     * Set a fixed width.
+     */
+    width: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
 };
 
 const defaultProps = {
-    ...buttonDesignV2DefaultProps,
+    as: AsType.Button,
+    className: undefined,
+    classes: undefined,
+    color: ColorType.Default,
+    compact: false,
+    disabled: false,
+    fullWidth: false,
+    href: undefined,
+    icon: false,
+    id: undefined,
+    innerStyle: {},
+    inverse: false,
+    onClick: undefined,
+    outline: false,
+    pill: false,
+    relax: false,
+    style: {},
+    target: undefined,
+    text: false,
+    title: undefined,
+    transparent: false,
+    type: undefined,
+    variant: VariantType.Contained,
+    width: undefined,
 };
 
 const styles = (theme) => {
@@ -204,9 +352,9 @@ const styles = (theme) => {
                         fill: theme.palette.secondary.main,
                     },
                     '&$inverse': {
-                        boxShadow: `${outlinedWidth} ${theme.palette.secondary.constrastMain}`,
+                        boxShadow: `${outlinedWidth} ${theme.palette.common.white}`,
                         '& .icon .icon-use-path': {
-                            fill: theme.palette.secondary.constrastMain,
+                            fill: theme.palette.common.white,
                         },
                     },
                 },
@@ -326,9 +474,12 @@ class Button extends React.PureComponent {
     }
 
     onClick(event) {
-        const { onClick } = this.props;
+        const {
+            disabled,
+            onClick,
+        } = this.props;
 
-        if (isFunction(onClick)) {
+        if (!disabled && isFunction(onClick)) {
             onClick(event);
         }
     }
@@ -374,25 +525,25 @@ class Button extends React.PureComponent {
             classes.root,
             className,
             {
-                [classes.colorActive]: !disabled && color === 'active',
-                [classes.colorDefault]: !disabled && color === 'default',
-                [classes.colorError]: !disabled && color === 'error',
-                [classes.colorLink]: !disabled && color === 'link',
-                [classes.colorPrimary]: !disabled && color === 'primary',
-                [classes.colorSecondary]: !disabled && color === 'secondary',
-                [classes.colorSuccess]: !disabled && color === 'success',
-                [classes.colorWarning]: !disabled && color === 'warning',
+                [classes.colorActive]: !disabled && color === ColorType.Active,
+                [classes.colorDefault]: !disabled && color === ColorType.Default,
+                [classes.colorError]: !disabled && color === ColorType.Error,
+                [classes.colorLink]: !disabled && color === ColorType.Link,
+                [classes.colorPrimary]: !disabled && color === ColorType.Primary,
+                [classes.colorSecondary]: !disabled && color === ColorType.Secondary,
+                [classes.colorSuccess]: !disabled && color === ColorType.Success,
+                [classes.colorWarning]: !disabled && color === ColorType.Warning,
                 [classes.compact]: compact,
                 [classes.disabled]: disabled,
                 [classes.fixedWidth]: !!width,
                 [classes.fullWidth]: fullWidth,
                 [classes.icon]: icon,
                 [classes.inverse]: inverse,
-                [classes.contained]: variant === VARIANTS.contained,
-                [classes.outlined]: variant === VARIANTS.outlined,
+                [classes.contained]: variant === VariantType.Contained,
+                [classes.outlined]: variant === VariantType.Outlined,
                 [classes.pill]: pill,
                 [classes.relax]: relax,
-                [classes.text]: variant === VARIANTS.text,
+                [classes.text]: variant === VariantType.Text,
                 [classes.transparent]: transparent,
             },
         );
@@ -415,7 +566,7 @@ class Button extends React.PureComponent {
                 style={style}
                 target={target}
                 title={title}
-                type={as === 'button' ? type ?? 'button' : null}
+                type={as === AsType.Button ? type ?? AsType.Button : null}
             >
                 <span
                     className={innerContainerClasses}

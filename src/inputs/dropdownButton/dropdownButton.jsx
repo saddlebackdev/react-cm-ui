@@ -5,11 +5,11 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useRef, useState } from 'react';
 import {
-    ICON_PROP_TYPES,
-} from '../../dataDisplay/icon/iconConstants';
+    propTypes as iconPropTypes,
+} from '../../dataDisplay/icon/icon';
 import {
-    VARIANTS,
-} from '../button/buttonConstants';
+    VariantType,
+} from '../button/models';
 import Button from '../button';
 import DropdownMenu from '../dropdownMenu/dropdownMenu';
 import DropdownMenuDivider from '../dropdownMenu/dropdownMenuDivider';
@@ -80,7 +80,7 @@ const propTypes = {
      * Props to control the Icon in the Dropdown Button
      */
     iconProps: PropTypes.shape({
-        ...ICON_PROP_TYPES,
+        ...iconPropTypes,
     }),
     /**
      * Change the position of the icon.
@@ -167,7 +167,7 @@ const propTypes = {
     /**
      * The variant to use.
      */
-    variant: PropTypes.oneOf([VARIANTS.contained, VARIANTS.outlined, VARIANTS.text]),
+    variant: PropTypes.oneOf(Object.values(VariantType)),
     /**
      * Set a fixed width.
      */
@@ -206,7 +206,7 @@ const defaultProps = {
     text: false,
     title: undefined,
     transparent: false,
-    variant: VARIANTS.contained,
+    variant: VariantType.Contained,
     width: undefined,
 };
 
