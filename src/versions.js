@@ -18,7 +18,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.4.3',
+        package: '10.4.3-hotfix',
         components: {
             dataDisplay: {
                 chip: {
@@ -42,7 +42,7 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/p/7C27F9C5-9956-4AB1-9DA5-6B51DB4A67F2',
                 },
                 icon: {
-                    devLibraryVersion: '2.0.0',
+                    devLibraryVersion: '2.1.0',
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/p/E1DB6E1A-4679-47B6-AFBC-3A23CB13C6D1',
                 },

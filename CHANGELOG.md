@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.4.3-hotfix
+_June 17, 2022_
+
+### Core
+- Added The Ability Have A Custom Gradient On An Icon. [PR #379](https://github.com/saddlebackdev/react-cm-ui/pull/379)
+  - Added more TS configuration so we can now fully write in TS.
+  - Added Icon types.
+
+### Docs
+- Converted Icon's examples to use the new patterns [PR #379](https://github.com/saddlebackdev/react-cm-ui/pull/379)
+  - Exporting `propTypes` from the Button component fixes the API documentation page.
+
 ## 10.4.3
 _May 25, 2022_
 
