@@ -6,7 +6,14 @@ import { OPTION_CLASS_NAME, OPTION_INNER_CLASS_NAME } from './dropdownMenuConsta
 const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    /**
+     * Deprecated prop. Please use `disabled` instead.
+     */
     disable: PropTypes.bool,
+    /**
+     * A Dropdown Menu Option or Dropdown Button Option can be disabled.
+     */
+    disabled: PropTypes.bool,
     id: PropTypes.string,
     label: PropTypes.string,
     onClick: PropTypes.func,
@@ -19,6 +26,7 @@ const defaultProps = {
     children: undefined,
     className: undefined,
     disable: false,
+    disabled: false,
     id: undefined,
     label: undefined,
     onClick: () => {},
@@ -32,6 +40,7 @@ function DropdownMenuOption(props) {
         children,
         className,
         disable,
+        disabled,
         id,
         onClick,
         onKeyDown,
@@ -40,8 +49,10 @@ function DropdownMenuOption(props) {
         tabIndex,
     } = props;
 
+    const isDisabled = disabled || disable;
+
     const rootClasses = ClassNames(OPTION_CLASS_NAME, className, {
-        [`${OPTION_CLASS_NAME}-disable`]: disable,
+        [`${OPTION_CLASS_NAME}-disable`]: isDisabled,
     });
 
     function handleOnClick(event) {
