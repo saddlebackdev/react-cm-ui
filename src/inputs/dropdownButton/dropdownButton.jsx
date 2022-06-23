@@ -96,11 +96,14 @@ const propTypes = {
     /**
      * The type of the icon that sits to the left of the label.
      */
-    iconType: PropTypes.oneOf([
-        'caret-down',
-        'chevron-down',
-        'ellipsis-h',
-        'plus',
+    iconType: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf([
+            'caret-down',
+            'chevron-down',
+            'ellipsis-h',
+            'plus',
+        ]),
     ]),
     /**
      * Assign the Dropdown Button an id attribute value.
@@ -278,7 +281,7 @@ function DropdownButton(props) {
         { [`${bemClassName}-open`]: isMenuOpen },
     );
 
-    const dropdownIcon = (
+    const dropdownIcon = iconType ? (
         <Icon
             compact={icon && !label}
             size={iconSize}
@@ -288,10 +291,10 @@ function DropdownButton(props) {
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...iconProps}
         />
-    );
+    ) : null;
 
-    const iconOnLeft = (iconType && iconPosition === 'left') && dropdownIcon;
-    const iconOnRight = (iconType && iconPosition === 'right') && dropdownIcon;
+    const iconOnLeft = (iconType && iconPosition === 'left') ? dropdownIcon : null;
+    const iconOnRight = (iconType && iconPosition === 'right') ? dropdownIcon : null;
     const isDesignV2 = designVersion === 2;
 
     let buttonProps = {};
