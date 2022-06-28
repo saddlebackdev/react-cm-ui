@@ -18,7 +18,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.4.5',
+        package: '10.4.6',
         components: {
             dataDisplay: {
                 chip: {
@@ -57,7 +57,7 @@ const versions = {
                     designLibraryDoc: 'N/A',
                 },
                 table: {
-                    devLibraryVersion: '< 1.0.2',
+                    devLibraryVersion: '< 1.0.3',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/708f5e0d-872e-4522-adb8-f34ddaf82b48/p/7C27F9C5-9956-4AB1-9DA5-6B51DB4A67F2',
                 },
@@ -75,6 +75,11 @@ const versions = {
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/9578614A-F3CD-4BA2-940C-60367CCD887F',
                 },
+                buttonDeprecated: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
                 checkbox: {
                     devLibraryVersion: '< 1.0.2',
                     designLibraryVersion: '2.0.0',
@@ -90,8 +95,18 @@ const versions = {
                     designLibraryVersion: 'N/A',
                     designLibraryDoc: 'N/A',
                 },
+                dropdown: { // Deprecated
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: 'N/A',
+                    designLibraryDoc: 'N/A',
+                },
+                dropdownMenu: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'N/A',
+                },
                 dropdownButton: {
-                    devLibraryVersion: '2.0.1',
+                    devLibraryVersion: '2.0.2',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/a/VRRPro',
                 },
@@ -194,7 +209,7 @@ const versions = {
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/p/04BAC452-896D-4D93-8239-F70B41633674',
                 },
                 filtersDrawer: {
-                    devLibraryVersion: '< 1.0.0',
+                    devLibraryVersion: '< 1.0.1',
                     designLibraryVersion: '2.0.1',
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/R00Lqx',
                 },

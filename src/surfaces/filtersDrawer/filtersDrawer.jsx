@@ -90,13 +90,16 @@ const propTypes = {
                         PropTypes.string,
                     ]),
                 })),
-                value: PropTypes.shape({
-                    label: PropTypes.string,
-                    value: PropTypes.oneOfType([
-                        PropTypes.number,
-                        PropTypes.string,
-                    ]),
-                }),
+                value: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.shape({
+                        label: PropTypes.string,
+                        value: PropTypes.oneOfType([
+                            PropTypes.number,
+                            PropTypes.string,
+                        ]),
+                    }),
+                ]),
             }),
             jsx: PropTypes.node,
             multiSelect: PropTypes.shape({

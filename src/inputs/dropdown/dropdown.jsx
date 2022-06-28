@@ -146,10 +146,6 @@ class Dropdown extends React.Component {
             theme,
         } = this.props;
 
-        if (button) {
-            console.warn('Dropdown (react-cm-ui): The prop \'button\' is deprecated. Please use the DropdownButton component instead.');
-        }
-
         const { menuIsOpen, menuPositionStyle } = this.state;
 
         const containerClasses = ClassNames('ui', 'dropdown', className, {
@@ -456,6 +452,14 @@ class Dropdown extends React.Component {
     }
 
     componentDidMount() {
+        const {
+            button,
+        } = this.props;
+
+        if (button) {
+            console.warn('Dropdown (react-cm-ui): The prop \'button\' is deprecated. Please use the DropdownButton component instead.');
+        }
+
         document.addEventListener('click', this._onClickOutside);
         document.addEventListener('scroll', this._onDropdownMenuReposition);
         window.addEventListener('resize', this._onDropdownMenuResize);
