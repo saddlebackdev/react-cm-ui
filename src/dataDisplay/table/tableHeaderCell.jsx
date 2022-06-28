@@ -142,10 +142,14 @@ class TableHeaderCell extends React.PureComponent {
                 if (shouldUpdateExpandedWidth) {
                     const maxWidthPercentages = getMaxWidthPercentages(stickyTableContainerWidth);
                     setResizableCellsWordWrapping(false);
+
                     // This ensures the header will readjust according to the content
                     // after a browser resize event.
-                    this.header.current.style.width = '1%';
-                    this.header.current.style.minWidth = '';
+                    if (this.header?.current?.style) {
+                        this.header.current.style.width = '1%';
+                        this.header.current.style.minWidth = '';
+                    }
+
                     const updatedExpandedWidth = _.get(this, 'header.current.clientWidth', 0) + HEADER_CELL_WIDTH_OFFSET;
                     const adjustedAdjacentPercentage = (
                         adjacentStickyColumnsTotalWidth / stickyTableContainerWidth
@@ -177,8 +181,11 @@ class TableHeaderCell extends React.PureComponent {
                     );
                     widthPercentage = parseInt(Math.min(widthPercentage, adjustedMaxWIdth), 10);
                     const updatedMinWidth = ((stickyTableContainerWidth * widthPercentage) / 100);
-                    this.header.current.style.width = `${widthPercentage}%`;
-                    this.header.current.style.minWidth = updatedMinWidth;
+
+                    if (this.header?.current?.style) {
+                        this.header.current.style.width = `${widthPercentage}%`;
+                        this.header.current.style.minWidth = updatedMinWidth;
+                    }
 
                     this.setState({
                         haveExpandedMeasuresBeenSet: true,

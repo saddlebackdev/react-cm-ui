@@ -36,7 +36,10 @@ export const groupPropTypes = PropTypes.shape({ // eslint-disable-line import/pr
     ),
     id: PropTypes.string,
     isExpandable: PropTypes.bool,
-    header: PropTypes.string,
+    header: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+    ]),
     rows: PropTypes.arrayOf(rowPropTypes).isRequired,
     style: PropTypes.shape({}),
 });
