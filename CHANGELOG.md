@@ -1,6 +1,16 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.4.6
+_June 28, 2022_
+
+### Core
+- Misc. fixes [PR #382](https://github.com/saddlebackdev/react-cm-ui/pull/382)
+  - Calmed Button Deprecated Warnings Down
+  - FiltersDrawer Dropdown Value PropType Fix
+  - TableHeaderCell Style Issue
+- Fix `disabled` vs. `disable` in `<DropdownMenuOption />` [PR #383](https://github.com/saddlebackdev/react-cm-ui/pull/383)
+
 ## 10.4.3-hotfix
 _June 17, 2022_
 
