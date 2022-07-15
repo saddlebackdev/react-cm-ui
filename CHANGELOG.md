@@ -1,6 +1,15 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.4.7
+_July 15, 2022_
+
+### Core
+- Fix styling on multi Select chips [PR #385](https://github.com/saddlebackdev/react-cm-ui/pull/385)
+
+### Docs
+- Improve multi Select example [PR #385](https://github.com/saddlebackdev/react-cm-ui/pull/385)
+
 ## 10.4.6
 _June 28, 2022_
 

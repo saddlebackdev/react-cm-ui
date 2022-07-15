@@ -624,8 +624,8 @@ const useStyles = makeStyles((theme) => {
                 },
                 '& .Select-value': {
                     alignItems: 'flex-start',
-                    backgroundColor: 'color(backgroundColorLight)',
-                    border: '1px solid color(borderColor)',
+                    backgroundColor: theme.palette.grey[100],
+                    border: `1px solid ${theme.palette.border.primary}`,
                     borderRadius: selectItemBorderRadius,
                     color: 'p.text.primary',
                     display: 'inline-flex',
