@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.15.4 - 07/15/2022
+
+#### Feature
+- [PR #385](https://github.com/saddlebackdev/react-cm-ui/pull/385) / Merge Commit df9f205
+  - Improve multi Select example
+
 ## 0.15.3 - 10/19/2021
 
 #### Feature
