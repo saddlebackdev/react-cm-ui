@@ -46,6 +46,7 @@ const theme = {
         MuiCard: {
             root: {
                 borderRadius: 8,
+                overflow: 'visible',
             },
         },
         MuiCardContent: {
