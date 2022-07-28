@@ -1,6 +1,5 @@
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import createSpacing from '@material-ui/core/styles/createSpacing';
-import shadows from '@material-ui/core/styles/shadows';
 import transitions from '@material-ui/core/styles/transitions';
 import {
     keys as breakpointsKeys,
@@ -9,6 +8,7 @@ import {
 import createMixins from './createMixins';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
+import shadows from './shadows';
 import shape from './shape';
 
 const spacing = 11;
@@ -17,6 +17,8 @@ const breakpoints = createBreakpoints({
     keys: breakpointsKeys,
     values: breakpointsValues,
 });
+
+const palette = createPalette();
 
 const theme = {
     breakpoints,
@@ -40,7 +42,19 @@ const theme = {
         },
     },
     mixins: createMixins(breakpoints, spacing, {}),
-    palette: createPalette(),
+    overrides: {
+        MuiCard: {
+            root: {
+                borderRadius: 8,
+            },
+        },
+        MuiCardContent: {
+            root: {
+                padding: spacing * 2,
+            },
+        },
+    },
+    palette,
     shadows,
     shape,
     spacing: createSpacing(spacing),
