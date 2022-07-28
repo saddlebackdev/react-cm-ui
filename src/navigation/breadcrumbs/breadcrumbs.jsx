@@ -72,7 +72,7 @@ const defaultProps = {
 };
 
 const useStyles = makeStyles((theme) => {
-    const borderRadiusMain = get(theme, 'shape.borderRadius.main');
+    const borderRadiusMain = get(theme, 'shape.borderRadius');
     const colorGrey500 = get(theme, 'palette.grey[500]');
     const colorHighlight = get(theme, 'palette.cyan[500]');
     const fontWeightBold = get(theme, 'typography.fontWeightBold');

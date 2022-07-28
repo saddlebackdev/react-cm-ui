@@ -43,7 +43,7 @@ const useStyles = makeStyles(({
 }) => ({
     snackBarContentRoot: {
         backgroundColor: palette.hexToRGBA(palette.grey[600], 0.7),
-        borderRadius: shape.borderRadius.main,
+        borderRadius: shape.borderRadius,
         fontSize: typography.pxToRem(16),
         minWidth: 'auto',
         padding: [[spacing(1.185), spacing(1)]],
