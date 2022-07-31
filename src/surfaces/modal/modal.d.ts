@@ -100,6 +100,6 @@ export interface ModalComponent extends React.FC<ModalPropTypes> {
     Content: typeof ModalContent;
 }
 
-declare const Modal: ModalComponent
+declare const Modal: ModalComponent;
 
 export default Modal;
