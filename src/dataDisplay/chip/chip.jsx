@@ -24,6 +24,20 @@ const propTypes = {
         root: PropTypes.string,
     }).isRequired,
     /**
+     * Set the color of the Chip.
+     */
+    color: PropTypes.oneOf([
+        'cyan',
+        'green',
+        'orange',
+        'pink',
+        'purple',
+        'red',
+        'redOrange',
+        'sky',
+        'teal',
+    ]),
+    /**
      * Override the default delete icon element. Shown only if `onDelete` is set.
      */
     deleteIcon: PropTypes.element,
@@ -35,7 +49,9 @@ const propTypes = {
 
 const defaultProps = {
     className: '',
+    color: undefined,
     deleteIcon: undefined,
+    disabled: false,
 };
 
 const useStyles = makeStyles(({
@@ -172,7 +188,7 @@ const useStyles = makeStyles(({
                     backgroundColor: palette.grey[300],
                     boxShadow: `inset 1px 0 0 ${palette.grey[400]}`,
                 },
-            }
+            },
         },
     };
 });
@@ -204,7 +220,7 @@ function Chip(props) {
             [classes.colorRedOrange]: !disabled && color === 'redOrange',
             [classes.colorSky]: !disabled && color === 'sky',
             [classes.colorTeal]: !disabled && color === 'teal',
-        }
+        },
     );
 
     return (
