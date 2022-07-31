@@ -31,7 +31,7 @@ const propTypes = {
      * If `true`, the chip should be displayed in a disabled state.
      */
     disabled: PropTypes.bool,
-}
+};
 
 const defaultProps = {
     className: '',
