@@ -137,7 +137,7 @@ const useStyles = makeStyles((theme) => {
             opacity: ({ iconColor }) => iconColor && 0.25,
         },
         iconBaseClass101: {
-            borderRadius: `0 ${borderRadius.main}px 0 0`,
+            borderRadius: `0 ${borderRadius}px 0 0`,
             right: 0,
         },
         iconBaseColorClass101: {
@@ -181,7 +181,7 @@ const useStyles = makeStyles((theme) => {
             },
         },
         iconBaseClass201: {
-            borderRadius: `${borderRadius.main}px 0 0`,
+            borderRadius: `${borderRadius}px 0 0`,
             top: 0,
         },
         iconBaseColorClass201: {
@@ -225,7 +225,7 @@ const useStyles = makeStyles((theme) => {
             },
         },
         iconBaseClass301: {
-            borderRadius: `0 0 0 ${borderRadius.main}px`,
+            borderRadius: `0 0 0 ${borderRadius}px`,
             bottom: 0,
         },
         iconBaseColorClass301: {
@@ -269,7 +269,7 @@ const useStyles = makeStyles((theme) => {
             },
         },
         iconBaseClass401: {
-            borderRadius: `0 0 ${borderRadius.main}px`,
+            borderRadius: `0 0 ${borderRadius}px`,
             bottom: 0,
             right: 0,
         },
@@ -324,7 +324,7 @@ const useStyles = makeStyles((theme) => {
 
                 return `scale(${(props.isMobile || iconSize === 16) ? 16 / basesClassIconSize : 1})`;
             },
-            transformOrigin: `0 ${borderRadius.main}px`,
+            transformOrigin: `0 ${borderRadius}px`,
             width: basesClassIconSize,
         },
         iconClassInnerContainer: {

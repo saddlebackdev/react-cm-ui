@@ -1,6 +1,7 @@
 import { isEmpty } from 'lodash';
 import React, { useState } from 'react';
 import {
+    Box,
     Select,
 } from 'react-cm-ui';
 import { options } from '../constants';
@@ -8,21 +9,22 @@ import { options } from '../constants';
 function ExampleMultipleSelect() {
     const [selectedValue, setOption] = useState({});
 
-    function onSelect(selectedOption) {
+    const onSelect = (selectedOption) => {
         setOption(selectedOption);
-    }
+    };
 
     return (
-        <div>
+        <Box sx={{ width: '500px' }}>
             <Select
                 id="block--multiple_select_id"
+                fluid
                 multiple
                 options={options}
-                placeholder="Select Option"
+                placeholder="Select multiple options"
                 onChange={onSelect}
                 value={!isEmpty(selectedValue) ? selectedValue : null}
             />
-        </div>
+        </Box>
     );
 }
 

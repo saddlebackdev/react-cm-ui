@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => {
     const backgroundColorInverse = get(theme, 'palette.grey[500]');
     const backgroundColorPrimary = get(theme, 'palette.background.primary');
     const borderColorPrimary = get(theme, 'palette.border.primary');
-    const borderRadiusMain = get(theme, 'shape.borderRadius.main');
+    const borderRadiusMain = get(theme, 'shape.borderRadius');
     const colorHighlight = get(theme, 'palette.cyan[500]');
     const colorPrimary = get(theme, 'palette.grey[600]');
     const colorStatic = get(theme, 'palette.text.secondary');

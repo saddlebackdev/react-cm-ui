@@ -231,7 +231,7 @@ const styles = ({
         animation: '$modalSlideIn 200ms ease-out forwards',
         backfaceVisibility: 'hidden',
         backgroundColor: palette.background.primary,
-        borderRadius: shape.borderRadius.main,
+        borderRadius: shape.borderRadius,
         boxShadow: '0 15px 28px 0 rgba(0, 0, 0, 0.13)',
         position: 'relative',
     },

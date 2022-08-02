@@ -141,7 +141,7 @@ const useStyles = makeStyles(({
     },
     popoverRoot: {
         backgroundColor: get(palette, 'background.primary'),
-        borderRadius: get(shape, 'borderRadius.secondary'),
+        borderRadius: shape.borderRadiusSecondary,
         boxShadow: '0 7px 22px 0 rgba(0, 0, 0, 0.34)',
         color: get(palette, 'text.primary'),
         fontFamily: get(typography, 'fontFamily'),

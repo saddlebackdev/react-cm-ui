@@ -187,7 +187,7 @@ const styles = (theme) => {
         root: {
             backgroundColor: 'transparent',
             border: 0,
-            borderRadius: shape.borderRadius.main,
+            borderRadius: shape.borderRadius,
             color: palette.text.contrastText,
             cursor: 'pointer',
             display: 'inline-block',

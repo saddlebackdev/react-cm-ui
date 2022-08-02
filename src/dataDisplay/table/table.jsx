@@ -167,7 +167,7 @@ const styles = ({
         backgroundColor: palette.background.default,
         border: `1px solid ${palette.border.primary}`,
         borderCollapse: 'separate',
-        borderRadius: shape.borderRadius.main,
+        borderRadius: shape.borderRadius,
         borderSpacing: 0,
         color: palette.text.primary,
         margin: 'calc(2rem - .14285em) 0 1rem',

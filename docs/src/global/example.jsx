@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => {
             fontWeight: typography.fontWeightBold,
         },
         exampleColumn: {
-            borderRadius: shape.borderRadius.main,
+            borderRadius: shape.borderRadius,
             boxShadow: `0 0 0 1px ${palette.border.secondary}`,
             padding: 22,
             '&$inverse': {

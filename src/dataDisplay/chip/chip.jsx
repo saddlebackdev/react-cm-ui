@@ -24,6 +24,20 @@ const propTypes = {
         root: PropTypes.string,
     }).isRequired,
     /**
+     * Set the color of the Chip.
+     */
+    color: PropTypes.oneOf([
+        'cyan',
+        'green',
+        'orange',
+        'pink',
+        'purple',
+        'red',
+        'redOrange',
+        'sky',
+        'teal',
+    ]),
+    /**
      * Override the default delete icon element. Shown only if `onDelete` is set.
      */
     deleteIcon: PropTypes.element,
@@ -31,11 +45,13 @@ const propTypes = {
      * If `true`, the chip should be displayed in a disabled state.
      */
     disabled: PropTypes.bool,
-}
+};
 
 const defaultProps = {
     className: '',
+    color: undefined,
     deleteIcon: undefined,
+    disabled: false,
 };
 
 const useStyles = makeStyles(({
@@ -57,7 +73,7 @@ const useStyles = makeStyles(({
         colorTeal: {},
         deleteIcon: {
             alignItems: 'center',
-            borderRadius: [[0, shape.borderRadius.main, shape.borderRadius.main, 0]],
+            borderRadius: [[0, shape.borderRadius, shape.borderRadius, 0]],
             display: 'flex',
             height: chipHeight,
             justifyContent: 'center',
@@ -74,7 +90,7 @@ const useStyles = makeStyles(({
             fontWeight: typography.fontWeightMedium,
         },
         root: {
-            borderRadius: shape.borderRadius.main,
+            borderRadius: shape.borderRadius,
             height: chipHeight,
             '&$colorCyan': {
                 backgroundColor: palette.cyan[500],
@@ -172,7 +188,7 @@ const useStyles = makeStyles(({
                     backgroundColor: palette.grey[300],
                     boxShadow: `inset 1px 0 0 ${palette.grey[400]}`,
                 },
-            }
+            },
         },
     };
 });
@@ -204,7 +220,7 @@ function Chip(props) {
             [classes.colorRedOrange]: !disabled && color === 'redOrange',
             [classes.colorSky]: !disabled && color === 'sky',
             [classes.colorTeal]: !disabled && color === 'teal',
-        }
+        },
     );
 
     return (

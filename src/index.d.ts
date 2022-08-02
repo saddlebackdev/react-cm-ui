@@ -214,7 +214,6 @@ export * from './navigation/subNavigation';
 export { default as Tabs } from './navigation/tabs';
 export * from './navigation/tabs';
 
-
 // Surfaces
 export { default as Accordion } from './surfaces/accordion';
 export * from './surfaces/accordion';
@@ -227,6 +226,21 @@ export * from './surfaces/appBar';
 
 export { default as Card } from './surfaces/card';
 export * from './surfaces/card';
+
+export { default as CardActionArea } from './surfaces/card';
+export * from './surfaces/cardActionArea';
+
+export { default as CardActions } from './surfaces/cardActions';
+export * from './surfaces/cardActions';
+
+export { default as CardContent } from './surfaces/cardContent';
+export * from './surfaces/cardContent';
+
+export { default as CardHeader } from './surfaces/cardHeader';
+export * from './surfaces/cardHeader';
+
+export { default as CardMedia } from './surfaces/cardMedia';
+export * from './surfaces/cardMedia';
 
 export { default as DetailsWindow } from './surfaces/detailsWindow';
 export * from './surfaces/detailsWindow';
@@ -248,6 +262,9 @@ export * from './surfaces/infoBar';
 
 export { default as Modal } from './surfaces/modal';
 export * from './surfaces/modal';
+
+export { default as Paper } from './surfaces/paper';
+export * from './surfaces/paper';
 
 export { default as ModalDeprecated } from './surfaces/modalDeprecated';
 export * from './surfaces/modalDeprecated';

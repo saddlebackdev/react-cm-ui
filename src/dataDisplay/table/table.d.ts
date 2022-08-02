@@ -100,6 +100,6 @@ export interface TableComponent extends React.FC<TablePropTypes> {
     Row: typeof TableRow
 }
 
-declare const Table: TableComponent
+declare const Table: TableComponent;
 
 export default Table;
