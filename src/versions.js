@@ -18,7 +18,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.4.7',
+        package: '10.5.0',
         components: {
             dataDisplay: {
                 chip: {
@@ -197,6 +197,11 @@ const versions = {
                     devLibraryVersion: '< 1.0.8',
                     designLibraryVersion: '2.1.0',
                     designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b/a/0llKoO',
+                },
+                card: {
+                    devLibraryVersion: '2.0.0',
+                    designLibraryVersion: '2.0.0',
+                    designLibraryDoc: 'https://www.sketch.com/s/9e214a28-31c5-4353-a4a8-df8c3aa3604b',
                 },
                 detailsWindow: {
                     devLibraryVersion: '< 1.0.0',

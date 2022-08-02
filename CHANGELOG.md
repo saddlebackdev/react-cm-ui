@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.5.0
+_August 2, 2022_
+
+### Core
+- Added MUI Card and Paper Components [PR #390](https://github.com/saddlebackdev/react-cm-ui/pull/390)
+
 ## 10.4.7
 _July 15, 2022_
 
