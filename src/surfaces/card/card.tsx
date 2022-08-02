@@ -13,7 +13,7 @@ function Card(props: PropTypes) {
 
     return (
         <MUICard
-            elevation={raised && 22}
+            elevation={raised ? 22 : 1}
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...otherProps}
             raised={false}

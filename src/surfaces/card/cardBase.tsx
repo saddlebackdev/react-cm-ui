@@ -5,8 +5,8 @@ import CardDeprecated from './cardDeprecated';
 type PropTypes = {
     children: React.ReactNode;
     /**
-     * Dependent on the designVersion number, the component can either use our old Button component
-     * or the new Button component.
+     * Dependent on the designVersion number, the component can either use our old Card component
+     * or the new Card component.
      */
     designVersion?: number;
 };
