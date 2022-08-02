@@ -73,7 +73,7 @@ const useStyles = makeStyles(({
         colorTeal: {},
         deleteIcon: {
             alignItems: 'center',
-            borderRadius: [[0, shape.borderRadius.main, shape.borderRadius.main, 0]],
+            borderRadius: [[0, shape.borderRadius, shape.borderRadius, 0]],
             display: 'flex',
             height: chipHeight,
             justifyContent: 'center',
@@ -90,7 +90,7 @@ const useStyles = makeStyles(({
             fontWeight: typography.fontWeightMedium,
         },
         root: {
-            borderRadius: shape.borderRadius.main,
+            borderRadius: shape.borderRadius,
             height: chipHeight,
             '&$colorCyan': {
                 backgroundColor: palette.cyan[500],

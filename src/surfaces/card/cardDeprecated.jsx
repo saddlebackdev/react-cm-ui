@@ -10,7 +10,7 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CardHeader from './cardHeader';
+import CardDeprecatedHeader from './cardDeprecatedHeader';
 import domUtils from '../../utils/domUtils';
 import Icon from '../../dataDisplay/icon';
 import withStyles from '../../styles/withStyles';
@@ -52,7 +52,7 @@ const defaultProps = {
 const styles = (theme) => ({
     root: {
         backgroundColor: theme.palette.background.primary,
-        borderRadius: theme.shape.borderRadius.main,
+        borderRadius: theme.shape.borderRadius,
         boxShadow: `inset 0 0 0 1px ${theme.palette.border.secondary}`,
         margin: 'calc(2rem - .14285em) 0 1rem',
         padding: 22,
@@ -167,7 +167,7 @@ const styles = (theme) => ({
     },
 });
 
-class Card extends React.Component {
+class CardDeprecated extends React.Component {
     constructor(props) {
         super(props);
 
@@ -327,12 +327,12 @@ class Card extends React.Component {
         );
 
         const convertChildren = isArray(children) ? children : [children];
-        const customHeaderObj = find(convertChildren, (child) => child && isFunction(child.type) && child.type.name === 'CardHeader');
+        const customHeaderObj = find(convertChildren, (child) => child && isFunction(child.type) && child.type.name === 'CardDeprecatedHeader');
         let renderHeader;
 
         if (header && customHeaderObj) {
             renderHeader = (
-                <CardHeader
+                <CardDeprecatedHeader
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...customHeaderObj.props}
                     title={title}
@@ -342,15 +342,15 @@ class Card extends React.Component {
 
         if (title && !header) {
             renderHeader = (
-                <CardHeader title={title} />
+                <CardDeprecatedHeader title={title} />
             );
         }
 
         // eslint-disable-next-line consistent-return
         const renderContent = map(convertChildren, (child, index) => {
-            const isCardHeader = child && isFunction(child.type) && child.type.name === 'CardHeader';
+            const isCardDeprecatedHeader = child && isFunction(child.type) && child.type.name === 'CardDeprecatedHeader';
 
-            if (!isCardHeader) {
+            if (!isCardDeprecatedHeader) {
                 return (
                     <div key={index}>
                         {child}
@@ -391,9 +391,9 @@ class Card extends React.Component {
     }
 }
 
-Card.Header = CardHeader;
+CardDeprecated.Header = CardDeprecatedHeader;
 
-Card.propTypes = propTypes;
-Card.defaultProps = defaultProps;
+CardDeprecated.propTypes = propTypes;
+CardDeprecated.defaultProps = defaultProps;
 
-export default withStyles(styles)(Card);
+export default withStyles(styles)(CardDeprecated);
