@@ -87,6 +87,7 @@ export { default as Card } from './surfaces/card';
 export { default as CardActionArea } from './surfaces/cardActionArea';
 export { default as CardActions } from './surfaces/cardActions';
 export { default as CardContent } from './surfaces/cardContent';
+export { default as CardDeprecatedHeader } from './surfaces/card/cardDeprecatedHeader';
 export { default as CardHeader } from './surfaces/cardHeader';
 export { default as CardMedia } from './surfaces/cardMedia';
 export { default as DetailsWindow } from './surfaces/detailsWindow';

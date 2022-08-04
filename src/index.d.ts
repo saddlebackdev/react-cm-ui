@@ -236,6 +236,9 @@ export * from './surfaces/cardActions';
 export { default as CardContent } from './surfaces/cardContent';
 export * from './surfaces/cardContent';
 
+export { default as CardDeprecatedHeader } from './surfaces/cardDeprecatedHeader';
+export * from './surfaces/card/cardDeprecatedHeader';
+
 export { default as CardHeader } from './surfaces/cardHeader';
 export * from './surfaces/cardHeader';
 
