@@ -2,6 +2,12 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 10.5.0
+_August 4, 2022_
+
+### Core
+- Added CardDeprecatedHeader export [c84d312](https://github.com/saddlebackdev/react-cm-ui/commit/c84d3120052e35f79992ebb3d1fd957d301e1a52)
+
+## 10.5.0
 _August 2, 2022_
 
 ### Core
