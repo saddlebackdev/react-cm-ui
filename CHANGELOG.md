@@ -1,6 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.5.2
+_August 23, 2022_
+
+### Core
+- Bug fix in `<Icon />` component; CLASS 301 icon was incorrect (it was a duplicate of the CLASS 201 icon). [PR #391](https://github.com/saddlebackdev/react-cm-ui/pull/391)
+
+## 10.5.1
+_August 4, 2022_
+
+### Core
+- Changed to have `@saddlebackchurch` namespace [af738ee](https://github.com/saddlebackdev/react-cm-ui/commit/af738eed05ec2d3458b262db4e2fa3728f3a4482)
+
 ## 10.5.0
 _August 4, 2022_
 
