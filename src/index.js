@@ -39,6 +39,7 @@ export { default as Snackbar } from './feedback/snackbar';
 
 // Inputs
 export { default as Button } from './inputs/button';
+export { default as ButtonGroup } from './inputs/buttonGroup';
 export { default as Checkbox } from './inputs/checkbox';
 export { default as DatePicker } from './inputs/datePickerDeprecated';
 export { default as DatePickerCalendar } from './inputs/datePickerCalendar';

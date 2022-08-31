@@ -109,6 +109,9 @@ export * from './feedback/snackbar';
 export { default as Button } from './inputs/button';
 export * from './inputs/button';
 
+export { default as ButtonGroup } from './inputs/buttonGroup';
+export * from './inputs/buttonGroup';
+
 export { default as Checkbox } from './inputs/checkbox';
 export * from './inputs/checkbox';
 
