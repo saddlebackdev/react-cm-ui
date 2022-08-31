@@ -283,6 +283,11 @@ export const navigationItems = [
                         path: 'button',
                     },
                     {
+                        component: 'buttonGroup',
+                        label: 'Button Group',
+                        path: 'button-group',
+                    },
+                    {
                         component: 'checkbox',
                         label: 'Checkbox',
                         path: 'checkbox',
