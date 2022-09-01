@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import Button from '@material-ui/core/Button';
 import {
     ButtonGroup,
     Typography,
@@ -9,7 +7,6 @@ import {
 import {
     camelCase,
 } from 'lodash';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
 import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
@@ -26,28 +23,7 @@ const propTypes = {
     }).isRequired,
 };
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        '& > *': {
-            margin: theme.spacing(1),
-        },
-    },
-    groupOrientation: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        '& > *': {
-            margin: theme.spacing(1),
-        },
-    },
-}));
-
 export default function DocsButtonGroup(props) {
-    const classes = useStyles();
-
     const {
         location: {
             pathname,
@@ -73,37 +49,13 @@ export default function DocsButtonGroup(props) {
                     </Heading>
 
                     <Example>
-                        <div className={classes.root}>
-                            <ButtonGroup
-                                color="primary"
-                                size="large"
-                                variant="outlined"
-                            >
-                                <Button>One</Button>
-                                <Button>Two</Button>
-                                <Button>Three</Button>
-                            </ButtonGroup>
-
-                            <ButtonGroup
-                                color="primary"
-                                size="large"
-                                variant="contained"
-                            >
-                                <Button>One</Button>
-                                <Button>Two</Button>
-                                <Button>Three</Button>
-                            </ButtonGroup>
-
-                            <ButtonGroup
-                                color="primary"
-                                size="large"
-                                variant="text"
-                            >
-                                <Button>One</Button>
-                                <Button>Two</Button>
-                                <Button>Three</Button>
-                            </ButtonGroup>
-                        </div>
+                        <ButtonGroup
+                            buttons={[
+                                { value: '1', label: 'One' },
+                                { value: '2', label: 'Two' },
+                                { value: '3', label: 'Three' },
+                            ]}
+                        />
                     </Example>
                 </MarkdownContainer>
 
