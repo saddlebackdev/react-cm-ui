@@ -1,3 +1,6 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable prefer-template */
 /* eslint-disable linebreak-style */
 import React, {
     Component,
@@ -153,6 +156,42 @@ const styles = (theme) => {
     };
 };
 
+function getCSS(element) {
+    const css_data = {};
+    const css_obj = getComputedStyle(element);
+
+    for (let i = 0; i < css_obj.length; i++) {
+        css_data[css_obj[i]] = css_obj.getPropertyValue(css_obj[i]);
+    }
+
+    return css_data;
+}
+
+function getMargin(value) {
+    if (!value) {
+        return 0;
+    }
+
+    const numericValue = parseInt(value.replace('px', ''), 10);
+
+    if (Number.isNaN(numericValue)) {
+        return 0;
+    }
+
+    return numericValue;
+}
+
+function getMargins(element) {
+    const computedStyle = getCSS(element);
+    const marginLeft = getMargin(computedStyle['margin-left']);
+    const marginRight = getMargin(computedStyle['margin-right']);
+
+    return {
+        'margin-left': marginLeft,
+        'margin-right': marginRight,
+    };
+}
+
 /**
  * Component capable to hide/show its tabs under a drop down button according to the container size.
  * It swipes the hidden tabs on click making them visible.
@@ -300,7 +339,9 @@ class SectionalTabs extends Component {
 
             tabRefsKeys.forEach((key) => {
                 if (this.tabRefs[key]) {
-                    const width = this.tabRefs[key].tab.offsetWidth;
+                    const margins = getMargins(this.tabRefs[key].tab);
+                    const width = this.tabRefs[key].tab.offsetWidth + margins['margin-left'] + margins['margin-right'];
+
                     updatedTabDimensions[key.replace(PREFIX_TAB, '')] = { width, offset: updatedTabsTotalWidth };
                     updatedTabsTotalWidth += width;
                 }
