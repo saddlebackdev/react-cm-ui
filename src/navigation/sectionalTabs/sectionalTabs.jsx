@@ -636,16 +636,6 @@ class SectionalTabs extends Component {
 
         const selectedTabKey = this.getSelectedTabKey();
 
-        const rootClasses = ClassNames(
-            classes.root,
-            `${BEM_NAVIGATION_SECTIONAL_TABS}--container`,
-        );
-
-        const tabsClasses = ClassNames(
-            classes.sectionalTabsPanel,
-            `${BEM_NAVIGATION_SECTIONAL_TABS}--panel`,
-        );
-
         const hiddenTabsDropDown = tabsHidden.length > 0 && (
             <DropdownButton
                 iconType="ellipsis-h"
@@ -685,6 +675,18 @@ class SectionalTabs extends Component {
                 selectedTabDimensions.width :
                 0,
         };
+
+        const rootClasses = ClassNames(
+            classes.root,
+            `${BEM_NAVIGATION_SECTIONAL_TABS}--container`,
+        );
+
+        const tabsClasses = ClassNames(
+            classes.sectionalTabsPanel,
+            `${BEM_NAVIGATION_SECTIONAL_TABS}--panel`,
+            `${BEM_NAVIGATION_SECTIONAL_TABS}--${tabsVisible.length}`,
+            { [`${BEM_NAVIGATION_SECTIONAL_TABS}--with_hidden_tabs`]: tabsHidden.length > 0 },
+        );
 
         return (
             <div
