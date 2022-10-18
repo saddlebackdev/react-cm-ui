@@ -79,6 +79,7 @@ const propTypes = {
      * Renders the content set inside the item object under the tabs panel
      */
     withContent: PropTypes.bool,
+    noHiddenTabs: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -89,6 +90,7 @@ const defaultProps = {
     resizeThrottle: 100,
     selectedTabKey: undefined,
     withContent: false,
+    noHiddenTabs: false,
 };
 
 const styles = (theme) => {
@@ -372,6 +374,10 @@ class SectionalTabs extends Component {
 
     getTabs() {
         const {
+            noHiddenTabs,
+        } = this.props;
+
+        const {
             blockWidth,
             items,
             tabDimensions,
@@ -425,8 +431,8 @@ class SectionalTabs extends Component {
 
                 const tabWidth = tabDimensions[key] ? tabDimensions[key].width : 0;
                 tabIndex += 1;
-                const isTabVisible = // initial call
-                                    !blockWidth ||
+                const isTabVisible = noHiddenTabs ||
+                                    !blockWidth || // initial call
                                     tabsTotalWidth === 0 ||
                                     tabWidth === 0 || // posibily re render from a items.prop change
                                     // all tabs are fit into the block
