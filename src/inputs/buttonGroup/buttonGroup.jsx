@@ -1,8 +1,5 @@
 /* eslint-disable linebreak-style */
-import React, {
-    useState,
-    useEffect,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MUIButton from '@material-ui/core/Button';
 import MUIButtonGroup from '@material-ui/core/ButtonGroup';
@@ -12,17 +9,11 @@ import {
 
 function ButtonGroup(props) {
     const {
-        classes,
         buttons,
-        defaultSelectedButton,
+        classes,
         onChange: onChangeProp = noop,
+        value,
     } = props;
-
-    const [selectedButton, setSelectedButton] = useState(defaultSelectedButton || buttons[0].value);
-
-    useEffect(() => {
-        onChangeProp(selectedButton);
-    }, [selectedButton, onChangeProp]);
 
     return (
         <MUIButtonGroup
@@ -33,8 +24,8 @@ function ButtonGroup(props) {
             {buttons.map((button) => (
                 <MUIButton
                     key={button.value}
-                    onClick={() => { setSelectedButton(button.value); }}
-                    variant={button.value === selectedButton ? 'contained' : 'outlined'}
+                    onClick={() => { onChangeProp(button.value); }}
+                    variant={value === button.value ? 'contained' : 'outlined'}
                 >
                     {button.icon}
                     {button.label}
@@ -56,14 +47,14 @@ ButtonGroup.propTypes = {
         }),
     ).isRequired,
     classes: PropTypes.shape({}),
-    defaultSelectedButton: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     onChange: PropTypes.func,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 ButtonGroup.defaultProps = {
     classes: null,
-    defaultSelectedButton: null,
     onChange: noop,
+    value: null,
 };
 
 export default ButtonGroup;

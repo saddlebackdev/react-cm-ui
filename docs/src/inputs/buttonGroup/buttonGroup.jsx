@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+    useState,
+} from 'react';
 import PropTypes from 'prop-types';
 import {
     ButtonGroup,
@@ -30,6 +32,8 @@ export default function DocsButtonGroup(props) {
         },
     } = props;
 
+    const [value, setValue] = useState(1);
+
     return (
         <Main page={camelCase(displayName)}>
             <Main.Content>
@@ -51,10 +55,12 @@ export default function DocsButtonGroup(props) {
                     <Example>
                         <ButtonGroup
                             buttons={[
-                                { value: '1', label: 'One' },
-                                { value: '2', label: 'Two' },
-                                { value: '3', label: 'Three' },
+                                { value: 1, label: 'One' },
+                                { value: 2, label: 'Two' },
+                                { value: 3, label: 'Three' },
                             ]}
+                            onChange={setValue}
+                            value={value}
                         />
                     </Example>
                 </MarkdownContainer>
