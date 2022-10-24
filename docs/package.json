@@ -4,8 +4,8 @@
   "scripts": {
     "build": "webpack",
     "build:clean": "rimraf build",
-    "start": "webpack-dev-server --mode development --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
-    "start:prod": "npm run build && webpack-dev-server --mode production --content-base docs/build/ --hot --progress --colors --host 0.0.0.0",
+    "start": "webpack-dev-server --mode development --hot --progress --host 0.0.0.0",
+    "start:prod": "npm run build && webpack-dev-server --mode production --hot --progress --host 0.0.0.0",
     "start:stats": "webpack --display-modules --display-chunks --json > stats.json --progress"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@advclb/react-docgen-loader": "^0.1.0",
+    "@webpack-cli/serve": "^1.7.0",
     "autoprefixer": "^9.6.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
@@ -47,7 +48,7 @@
     "ts-loader": "^8.1.0",
     "typescript": "^4.7.3",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.4",
+    "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"
   }
 }
