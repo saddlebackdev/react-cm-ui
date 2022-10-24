@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.5.3
+_October 24, 2022_
+
+### Core
+- Big fix in the TypeScript declarations for `DrawerDataGroups`.  [PR #394](https://github.com/saddlebackdev/react-cm-ui/pull/394)
+- Various package upgrades from GitHub Dependabot.
+
 ## 10.5.2
 _August 23, 2022_
 

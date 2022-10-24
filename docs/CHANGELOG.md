@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.15.5 - 10/24/2022
+
+#### Feature
+- Various package upgrades from GitHub Dependabot.
+
 ## 0.15.4 - 07/15/2022
 
 #### Feature
