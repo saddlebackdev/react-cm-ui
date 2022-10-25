@@ -27,7 +27,7 @@ export interface DrawerDataGroupsPropTypes {
         id?: string;
         isExpandable?: boolean;
         header?: string;
-        rows?: {
+        rows: {
             accessor: React.ReactNode | string;
             className?: string;
             fieldName: string;
@@ -39,7 +39,7 @@ export interface DrawerDataGroupsPropTypes {
             style?: React.CSSProperties;
         }[];
         style?: React.CSSProperties;
-    };
+    }[];
     data: object;
     /**
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/

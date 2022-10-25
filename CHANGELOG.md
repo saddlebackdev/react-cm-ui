@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.5.5
+_October 25, 2022_
+
+### Core
+- Yet another bug fix in the TypeScript declarations for `DrawerDataGroups`.  Hopefully this does the trick!  [38c2994](https://github.com/saddlebackdev/react-cm-ui/commit/38c29944ceb7a111cfc121158999e7368bee56ca)
+
 ## 10.5.4
 _October 24, 2022_
 
