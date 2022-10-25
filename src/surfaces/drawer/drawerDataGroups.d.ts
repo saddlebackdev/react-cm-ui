@@ -27,7 +27,7 @@ export interface DrawerDataGroupsPropTypes {
         id?: string;
         isExpandable?: boolean;
         header?: string;
-        rows: {
+        rows?: {
             accessor: React.ReactNode | string;
             className?: string;
             fieldName: string;
