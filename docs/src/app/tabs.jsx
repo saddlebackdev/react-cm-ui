@@ -7,7 +7,7 @@ import {
     map,
     remove,
 } from 'lodash';
-import { SectionalTabs } from 'react-cm-ui';
+import { SectionalTabs } from '@saddleback/react-cm-ui';
 import PropTypes from 'prop-types';
 import React, {
     useCallback,

@@ -1,6 +1,6 @@
 import {
     DataGrid,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import {
     isEmpty,
     isEqual,

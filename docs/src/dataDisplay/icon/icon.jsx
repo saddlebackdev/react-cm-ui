@@ -3,7 +3,7 @@ import {
     Grid,
     Typography,
     Icon,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import {
     camelCase,
     flatten,

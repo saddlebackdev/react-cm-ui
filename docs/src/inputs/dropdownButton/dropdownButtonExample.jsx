@@ -1,4 +1,4 @@
-import { DropdownButton } from 'react-cm-ui';
+import { DropdownButton } from '@saddleback/react-cm-ui';
 import React from 'react';
 
 function DropdownDropdownExample() {

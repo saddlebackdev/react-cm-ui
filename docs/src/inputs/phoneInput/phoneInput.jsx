@@ -2,14 +2,14 @@ import {
     Card,
     Header,
     PhoneInput,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
 const basicSample = `import React from 'react';
-import { PhoneInput } from 'react-cm-ui';
+import { PhoneInput } from '@saddlebackchurch/react-cm-ui';
 
 export default class BasicSample extends React.Component {
     constructor() {

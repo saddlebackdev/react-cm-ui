@@ -3,7 +3,7 @@ import {
     Card,
     Header,
     Label,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 
 // Docs UI Components
 import Block from '../../global/block';
@@ -13,7 +13,7 @@ import TableProps from '../../global/tableProps';
 
 const labelSample = `import React from 'react';
 
-import Label from '../app/Elements/Label.react';
+import Label from '@saddlebackchurch/react-cm-ui';
 
 export default class InputSample extends React.Component {
 
@@ -27,7 +27,7 @@ export default class InputSample extends React.Component {
 
 const colorSample = `import React from 'react';
 
-import Label from '../app/Elements/Label.react';
+import Label from '@saddlebackchurch/react-cm-ui';
 
 export default class ColorSample extends React.Component {
 
@@ -48,7 +48,7 @@ export default class ColorSample extends React.Component {
 
 const fluidSample = `import React from 'react';
 
-import Label from '../app/Elements/Label.react';
+import Label from '@saddlebackchurch/react-cm-ui';
 
 export default class FluidSample extends React.Component {
 
@@ -62,7 +62,7 @@ export default class FluidSample extends React.Component {
 
 const inverseSample = `import React from 'react';
 
-import Label from '../app/Elements/Label.react';
+import Label from '@saddlebackchurch/react-cm-ui';
 
 export default class InverseSample extends React.Component {
 
@@ -83,7 +83,7 @@ export default class InverseSample extends React.Component {
 
 const onClickSample = `import React from 'react';
 
-import Label from '../app/Elements/Label.react';
+import Label from '@saddlebackchurch/react-cm-ui';
 
 export default class OnClickSample extends React.Component {
 
@@ -101,7 +101,7 @@ export default class OnClickSample extends React.Component {
 
 const onClearClickSample = `import React from 'react';
 
-import Label from '../app/Elements/Label.react';
+import Label from '@saddlebackchurch/react-cm-ui';
 
 export default class OnClearClickSample extends React.Component {
 

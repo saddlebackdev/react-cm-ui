@@ -8,7 +8,7 @@ import {
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { SubNavigation as SubNav } from 'react-cm-ui';
+import { SubNavigation as SubNav } from '@saddleback/react-cm-ui';
 import { navigationItems } from '../app/navigationConstants';
 
 const propTypes = {

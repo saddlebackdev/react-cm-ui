@@ -1,6 +1,6 @@
 import {
     TelephoneLink,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import React from 'react';
 
 function ExampleTelephoneLink() {

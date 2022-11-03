@@ -23,6 +23,9 @@ module.exports = (env, options) => {
         devServer: {
             historyApiFallback: true,
             port: 8082,
+            client: {
+                overlay: false,
+            },
         },
         output: {
             path: path.join(__dirname, './build'),
@@ -112,6 +115,7 @@ module.exports = (env, options) => {
                 'react-custom-scrollbars': path.resolve(__dirname, '../node_modules/react-custom-scrollbars'),
                 'react-dom': path.resolve(__dirname, '../node_modules/react-dom'),
                 'react-cm-ui': path.resolve(__dirname, '../src'),
+                '@saddleback/react-cm-ui': path.resolve(__dirname, '../src'),
                 'react-responsive': path.resolve(__dirname, '../node_modules/react-responsive'),
                 'css-cm-ui': path.resolve(__dirname, '../src/style.scss'),
             },

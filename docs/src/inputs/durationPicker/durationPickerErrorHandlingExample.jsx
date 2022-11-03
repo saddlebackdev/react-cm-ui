@@ -1,5 +1,5 @@
 import { isNil } from 'lodash';
-import { DurationPicker } from 'react-cm-ui';
+import { DurationPicker } from '@saddleback/react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
 

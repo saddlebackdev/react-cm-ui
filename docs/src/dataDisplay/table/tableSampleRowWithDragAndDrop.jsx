@@ -1,4 +1,4 @@
-import { Grid, Icon, Table } from 'react-cm-ui';
+import { Grid, Icon, Table } from '@saddleback/react-cm-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import withStyles from 'react-cm-ui/styles/withStyles';

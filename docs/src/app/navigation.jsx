@@ -2,7 +2,7 @@ import {
     Divider,
     Header,
     Icon,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import {
     backgroundColorInverse,
     borderColorQuaternary,

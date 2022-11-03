@@ -8,7 +8,7 @@ import {
     Table,
     Tooltip,
     Typography,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';

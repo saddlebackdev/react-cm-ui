@@ -1,6 +1,6 @@
 import {
     PersonCoreMilestones,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import React from 'react';
 import {
     DATA_ADULT_MALE,

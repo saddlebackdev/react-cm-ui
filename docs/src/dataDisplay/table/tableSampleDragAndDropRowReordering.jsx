@@ -1,5 +1,5 @@
 import { map } from 'lodash';
-import { Table } from 'react-cm-ui';
+import { Table } from '@saddleback/react-cm-ui';
 import React from 'react';
 import TableSampleRowWithDragAndDrop from './tableSampleRowWithDragAndDrop';
 

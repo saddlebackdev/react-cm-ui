@@ -1,6 +1,6 @@
 import {
     DataCards,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import React from 'react';
 
 const persons = [

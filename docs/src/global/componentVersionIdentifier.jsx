@@ -8,7 +8,7 @@ import {
 import {
     Typography,
     versions,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import MarkdownContainer from './markdownContainer';
