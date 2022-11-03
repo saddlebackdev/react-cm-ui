@@ -200,6 +200,9 @@ export * from './layout/content';
 export { default as Grid } from './layout/grid';
 export * from './layout/grid';
 
+export { default as MUIContainer } from './layout/muiContainer';
+export * from './layout/muiContainer';
+
 export { default as Page } from './layout/page';
 export * from './layout/page';
 

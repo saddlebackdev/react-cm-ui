@@ -72,6 +72,7 @@ export { default as Container } from './layout/container';
 export { default as ContainerDeprecated } from './layout/containerDeprecated';
 export { default as Content } from './layout/content';
 export { default as Grid } from './layout/grid';
+export { default as MUIContainer } from './layout/muiContainer';
 export { default as Page } from './layout/page';
 
 // Navigation
