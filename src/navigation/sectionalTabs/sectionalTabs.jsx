@@ -1,7 +1,3 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable prefer-template */
-/* eslint-disable linebreak-style */
 import React, {
     Component,
 } from 'react';
@@ -159,14 +155,14 @@ const styles = (theme) => {
 };
 
 function getCSS(element) {
-    const css_data = {};
-    const css_obj = getComputedStyle(element);
+    const cssData = {};
+    const cssObj = getComputedStyle(element);
 
-    for (let i = 0; i < css_obj.length; i++) {
-        css_data[css_obj[i]] = css_obj.getPropertyValue(css_obj[i]);
+    for (let i = 0; i < cssObj.length; i += 1) {
+        cssData[cssObj[i]] = cssObj.getPropertyValue(cssObj[i]);
     }
 
-    return css_data;
+    return cssData;
 }
 
 function getMargin(value) {
@@ -690,8 +686,8 @@ class SectionalTabs extends Component {
         const tabsClasses = ClassNames(
             classes.sectionalTabsPanel,
             `${BEM_NAVIGATION_SECTIONAL_TABS}--panel`,
-            `${BEM_NAVIGATION_SECTIONAL_TABS}--${tabsVisible.length}`,
-            { [`${BEM_NAVIGATION_SECTIONAL_TABS}--with_hidden_tabs`]: tabsHidden.length > 0 },
+            `${BEM_NAVIGATION_SECTIONAL_TABS}--visible_tabs_${tabsVisible.length}`,
+            `${BEM_NAVIGATION_SECTIONAL_TABS}--hidden_tabs_${tabsHidden.length}`,
         );
 
         return (

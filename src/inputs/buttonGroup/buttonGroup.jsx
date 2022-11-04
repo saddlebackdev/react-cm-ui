@@ -1,17 +1,17 @@
-/* eslint-disable linebreak-style */
-import React from 'react';
-import PropTypes from 'prop-types';
 import MUIButton from '@material-ui/core/Button';
 import MUIButtonGroup from '@material-ui/core/ButtonGroup';
-import {
-    noop,
-} from 'lodash';
+import { noop } from 'lodash';
+import PropTypes from 'prop-types';
+import React from 'react';
 
+/**
+ * The <ButtonGroup /> component can be used to group related buttons.
+ */
 function ButtonGroup(props) {
     const {
         buttons,
         classes,
-        onChange: onChangeProp = noop,
+        onChange: onChangeProp,
         value,
     } = props;
 

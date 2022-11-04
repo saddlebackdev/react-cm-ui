@@ -1,11 +1,8 @@
-import React, {
-    useState,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    ButtonGroup,
     Typography,
-} from 'react-cm-ui';// eslint-disable-line import/no-unresolved
+} from 'react-cm-ui';
 import {
     camelCase,
 } from 'lodash';
@@ -14,10 +11,10 @@ import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Example from '../../global/example';
-
-const displayName = 'button group';
-
-const description = 'The ButtonGroup component can be used to group related buttons.';
+import ButtonGroupSample from './buttonGroupSample';
+/* eslint-disable import/no-named-default, import/extensions */
+import { default as componentDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/buttonGroup/buttonGroup';
+/* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {
     location: PropTypes.shape({
@@ -32,17 +29,20 @@ export default function DocsButtonGroup(props) {
         },
     } = props;
 
-    const [value, setValue] = useState(1);
+    const {
+        description: componentDescription,
+        displayName: componentName,
+    } = componentDoc;
 
     return (
-        <Main page={camelCase(displayName)}>
+        <Main page={camelCase(componentName)}>
             <Main.Content>
                 <MarkdownContainer>
                     <Typography
                         className="description"
                         variant="body1"
                     >
-                        {description}
+                        {componentDescription}
                     </Typography>
 
                     <Heading
@@ -52,16 +52,8 @@ export default function DocsButtonGroup(props) {
                         Basic button group
                     </Heading>
 
-                    <Example>
-                        <ButtonGroup
-                            buttons={[
-                                { value: 1, label: 'One' },
-                                { value: 2, label: 'Two' },
-                                { value: 3, label: 'Three' },
-                            ]}
-                            onChange={setValue}
-                            value={value}
-                        />
+                    <Example rawCode={require('!!raw-loader!./examples/buttonGroupdefault').default}>
+                        <ButtonGroupSample />
                     </Example>
                 </MarkdownContainer>
 
