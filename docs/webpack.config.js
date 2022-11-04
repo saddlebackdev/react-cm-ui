@@ -22,7 +22,6 @@ module.exports = (env, options) => {
         },
         devServer: {
             historyApiFallback: true,
-            inline: true,
             port: 8082,
         },
         output: {
