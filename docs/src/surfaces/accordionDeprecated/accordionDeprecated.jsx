@@ -1,7 +1,7 @@
 
 import {
     Accordion, Card, Header,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
@@ -12,7 +12,7 @@ import TableProps from '../../global/tableProps';
 
 const accordionSample = `import React from 'react';
 
-import { Accordion } from 'react-cm-ui';
+import { Accordion } from '@saddleback/react-cm-ui';
 
 export default class AccordionSample extends React.Component {
 
@@ -46,7 +46,7 @@ export default class AccordionSample extends React.Component {
 
 const basicSample = `import React from 'react';
 
-import { Accordion } from 'react-cm-ui';
+import { Accordion } from '@saddleback/react-cm-ui';
 
 export default class BasicSample extends React.Component {
 
@@ -102,7 +102,7 @@ export default class BasicSample extends React.Component {
 
 const exclusiveSample = `import React from 'react';
 
-import { Accordion } from 'react-cm-ui';
+import { Accordion } from '@saddleback/react-cm-ui';
 
 export default class ExclusiveSample extends React.Component {
 
@@ -130,7 +130,7 @@ const inverseSample = `import ScrollBar from 'react-custom-scrollbars';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Accordion } from 'react-cm-ui';
+import { Accordion } from '@saddleback/react-cm-ui';
 
 export default class InverseSample extends React.Component {
     constructor() {
@@ -212,7 +212,7 @@ export default class InverseSample extends React.Component {
 
 const selectedSample = `import React from 'react';
 
-import { Accordion } from 'react-cm-ui';
+import { Accordion } from '@saddleback/react-cm-ui';
 
 export default class SelectedSample extends React.Component {
 
@@ -234,7 +234,7 @@ export default class SelectedSample extends React.Component {
 
 const controlledSample = `import React from 'react';
 
-import { Accordion, Header } from 'react-cm-ui';
+import { Accordion, Header } from '@saddleback/react-cm-ui';
 
 export default class ControlledSample extends React.Component {
 
@@ -278,7 +278,7 @@ export default class ControlledSample extends React.Component {
 
 const subAccordionSample = `import React from 'react';
 
-import { Accordion } from 'react-cm-ui';
+import { Accordion } from '@saddleback/react-cm-ui';
 
 export default class SubAccordionSample extends React.Component {
 
@@ -344,7 +344,7 @@ export default class SubAccordionSample extends React.Component {
 
 const customSummaryExample = `import React from 'react';
 
-import { Accordion } from 'react-cm-ui';
+import { Accordion } from '@saddleback/react-cm-ui';
 
 export default class CustomSummarySample extends React.Component {
 

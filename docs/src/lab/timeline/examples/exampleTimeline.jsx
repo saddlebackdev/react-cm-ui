@@ -5,7 +5,7 @@ import {
     TimelineDot,
     TimelineItem,
     TimelineSeparator,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import React from 'react';
 
 function ExampleTimeline() {

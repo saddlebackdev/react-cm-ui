@@ -2,7 +2,7 @@ import React from 'react';
 import {
     AppBar,
     Typography,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => {

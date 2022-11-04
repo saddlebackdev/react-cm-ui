@@ -6,7 +6,7 @@ import {
     Radio,
     Select,
     Typography,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import makeStyles from 'react-cm-ui/styles/makeStyles';

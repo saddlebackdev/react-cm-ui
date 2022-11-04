@@ -4,7 +4,7 @@ import {
     Input,
     Radio,
     Typography,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import {
     map,
     times,

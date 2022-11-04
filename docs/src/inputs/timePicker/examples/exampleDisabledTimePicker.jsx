@@ -1,4 +1,4 @@
-import { TimePicker } from 'react-cm-ui';
+import { TimePicker } from '@saddleback/react-cm-ui';
 import React, { useState } from 'react';
 
 function ExampleDisabledTimePicker() {

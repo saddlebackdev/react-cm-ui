@@ -1,10 +1,10 @@
-import { Button, Card, Header } from 'react-cm-ui';
+import { Button, Card, Header } from '@saddleback/react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
-const drawerSample = `import { Page } from 'react-cm-ui';
+const drawerSample = `import { Page } from '@saddleback/react-cm-ui';
 import React from 'react';
 
 class DrawerSample extends React.PureComponent {
@@ -19,7 +19,7 @@ class DrawerSample extends React.PureComponent {
 
 export default DrawerSample;`;
 
-const classNameSample = `import { Page } from 'react-cm-ui';
+const classNameSample = `import { Page } from '@saddleback/react-cm-ui';
 import React from 'react';
 
 class ClassNameSample extends React.PureComponent {
@@ -34,7 +34,7 @@ class ClassNameSample extends React.PureComponent {
 
 export default ClassNameSample;`;
 
-const idSample = `import { Page } from 'react-cm-ui';
+const idSample = `import { Page } from '@saddleback/react-cm-ui';
 import React from 'react';
 
 class IDSample extends React.PureComponent {
@@ -50,7 +50,7 @@ class IDSample extends React.PureComponent {
 export default IDSample;`;
 
 const isDataFetchingSample = `import { connect } from 'redux';
-import { Page } from 'react-cm-ui';
+import { Page } from '@saddleback/react-cm-ui';
 import React from 'react';
 
 class IsDataFetchingSample extends React.PureComponent {
@@ -77,7 +77,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps)(IsDataFetchingSample);`;
 
-const styleSample = `import { Page } from 'react-cm-ui';
+const styleSample = `import { Page } from '@saddleback/react-cm-ui';
 import React from 'react';
 
 class StyleSample extends React.PureComponent {

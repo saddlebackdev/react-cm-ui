@@ -9,7 +9,7 @@ import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
 const basicSample = `import React from 'react';
-import { PhoneInput } from '@saddlebackchurch/react-cm-ui';
+import { PhoneInput } from '@saddleback/react-cm-ui';
 
 export default class BasicSample extends React.Component {
     constructor() {

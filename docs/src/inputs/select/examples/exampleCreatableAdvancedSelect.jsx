@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import {
     Icon,
     Select,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import { options } from '../constants';
 
 function ExampleCreatableAdvancedSelect() {

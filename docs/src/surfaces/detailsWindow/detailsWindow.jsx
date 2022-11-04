@@ -1,6 +1,6 @@
 import {
     Typography,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import React from 'react';
 import ComponentApi from '../../global/componentApi';
 import Heading from '../../global/heading';

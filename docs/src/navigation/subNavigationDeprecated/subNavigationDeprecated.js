@@ -2,7 +2,7 @@ import MediaQuery from 'react-responsive';
 import React from 'react';
 import {
     Card, Header, SubNavigation,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 
 // Docs UI Components
 import Highlighter from '../../global/highlighter';

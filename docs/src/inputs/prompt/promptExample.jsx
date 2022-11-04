@@ -2,7 +2,7 @@ import {
     A,
     Button,
     Prompt,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import {
     noop,
 } from 'lodash';

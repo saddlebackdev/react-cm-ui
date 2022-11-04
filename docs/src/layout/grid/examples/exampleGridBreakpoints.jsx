@@ -1,4 +1,4 @@
-import { Card, Grid } from 'react-cm-ui';
+import { Card, Grid } from '@saddleback/react-cm-ui';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import React from 'react';
 

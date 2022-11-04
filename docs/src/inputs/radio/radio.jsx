@@ -2,7 +2,7 @@ import {
     Radio,
     Card,
     Header,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
@@ -11,7 +11,7 @@ import TableProps from '../../global/tableProps';
 
 const radioSample = `import React from 'react';
 
-import { Radio } from 'react-cm-ui';
+import { Radio } from '@saddleback/react-cm-ui';
 
 export default class RadioSample extends React.Component {
 
@@ -25,7 +25,7 @@ export default class RadioSample extends React.Component {
 
 const labelSample = `import React from 'react';
 
-import { Radio } from 'react-cm-ui';
+import { Radio } from '@saddleback/react-cm-ui';
 
 export default class LabelSample extends React.Component {
 
@@ -39,7 +39,7 @@ export default class LabelSample extends React.Component {
 
 const alignSample = `import React from 'react';
 
-import { Radio } from 'react-cm-ui';
+import { Radio } from '@saddleback/react-cm-ui';
 
 export default class AlignSample extends React.Component {
 
@@ -54,7 +54,7 @@ export default class AlignSample extends React.Component {
 
 const checkedSample = `import React from 'react';
 
-import { Radio } from 'react-cm-ui';
+import { Radio } from '@saddleback/react-cm-ui';
 
 export default class CheckedSample extends React.Component {
 
@@ -68,7 +68,7 @@ export default class CheckedSample extends React.Component {
 
 const disabledSample = `import React from 'react';
 
-import { Radio } from 'react-cm-ui';
+import { Radio } from '@saddleback/react-cm-ui';
 
 export default class DisabledSample extends React.Component {
 
@@ -82,7 +82,7 @@ export default class DisabledSample extends React.Component {
 
 const fluidSample = `import React from 'react';
 
-import { Radio } from 'react-cm-ui';
+import { Radio } from '@saddleback/react-cm-ui';
 
 export default class FluidSample extends React.Component {
 
@@ -97,7 +97,7 @@ export default class FluidSample extends React.Component {
 
 const labelClickSample = `import React from 'react';
 
-import { Radio } from 'react-cm-ui';
+import { Radio } from '@saddleback/react-cm-ui';
 
 export default class LabelClickSample extends React.Component {
 
@@ -111,7 +111,7 @@ export default class LabelClickSample extends React.Component {
 
 const onChangeSample = `import React from 'react';
 
-import { Radio } from 'react-cm-ui';
+import { Radio } from '@saddleback/react-cm-ui';
 
 export default class OnChangeSample extends React.Component {
 
@@ -139,7 +139,7 @@ export default class OnChangeSample extends React.Component {
 
 const radioGroupSample = `import React from 'react';
 
-import { Radio } from 'react-cm-ui';
+import { Radio } from '@saddleback/react-cm-ui';
 
 export default class RadioGroupSample extends React.Component {
 
@@ -154,7 +154,7 @@ export default class RadioGroupSample extends React.Component {
 
 const radioGroupPillSample = `import React from 'react';
 
-import { Radio } from 'react-cm-ui';
+import { Radio } from '@saddleback/react-cm-ui';
 
 export default class RadioGroupPillSample extends React.Component {
 

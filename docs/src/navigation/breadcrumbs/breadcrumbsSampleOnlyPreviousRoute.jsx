@@ -1,5 +1,5 @@
 import React from 'react';
-import { Breadcrumbs } from 'react-cm-ui';
+import { Breadcrumbs } from '@saddleback/react-cm-ui';
 
 const router = { // react-router core instance mockup
     location: {

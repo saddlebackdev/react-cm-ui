@@ -3,7 +3,7 @@ import {
     DropdownButton,
     Header,
     TitleBar,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import MediaQuery from 'react-responsive';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
@@ -11,7 +11,7 @@ import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
 const titleBarSample = `import React from 'react';
-import { TitleBar } from 'react-cm-ui';
+import { TitleBar } from '@saddleback/react-cm-ui';
 
 export default class TitleBarSample extends React.Component {
 
@@ -24,7 +24,7 @@ export default class TitleBarSample extends React.Component {
 }`;
 
 const subTitleSample = `import React from 'react';
-import { TitleBar } from 'react-cm-ui';
+import { TitleBar } from '@saddleback/react-cm-ui';
 
 export default class SubTitleSample extends React.Component {
 
@@ -37,7 +37,7 @@ export default class SubTitleSample extends React.Component {
 }`;
 
 const childrenSample = `import React from 'react';
-import { Dropdown, Image, TitleBar } from 'react-cm-ui';
+import { Dropdown, Image, TitleBar } from '@saddleback/react-cm-ui';
 
 export default class ChildrenSample extends React.Component {
 

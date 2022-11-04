@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {
     Box,
     Select,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import { options } from '../constants';
 
 function ExampleMultipleSelect() {

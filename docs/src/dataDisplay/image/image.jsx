@@ -11,7 +11,7 @@ import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
 const imageSample = `import React from 'react';
-import { Image } from '@saddlebackchurch/react-cm-ui';
+import { Image } from '@saddleback/react-cm-ui';
 
 export default class ImageSample extends React.Component {
 
@@ -24,7 +24,7 @@ export default class ImageSample extends React.Component {
 }`;
 
 const avatarSample = `import React from 'react';
-import { Image } from '@saddlebackchurch/react-cm-ui';
+import { Image } from '@saddleback/react-cm-ui';
 
 export default class AvatarSample extends React.Component {
 
@@ -51,7 +51,7 @@ export default class AvatarSample extends React.Component {
 }`;
 
 const sizeSample = `import React from 'react';
-import { Image } from '@saddlebackchurch/react-cm-ui';
+import { Image } from '@saddleback/react-cm-ui';
 
 export default class SizeSample extends React.Component {
 

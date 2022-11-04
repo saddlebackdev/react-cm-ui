@@ -4,7 +4,7 @@ import {
     Header,
     Icon,
     ModalDeprecated,
-} from 'react-cm-ui';
+} from '@saddleback/react-cm-ui';
 import { Link } from 'react-router';
 import React from 'react';
 
@@ -119,7 +119,7 @@ export default class CloseButtonsSample extends React.Component {
 }`;
 
 const autoHeightSample = `import React from 'react';
-import { Modal } from 'react-cm-ui';
+import { Modal } from '@saddleback/react-cm-ui';
 
 export default class AutoHeightSample extends React.Component {
 
