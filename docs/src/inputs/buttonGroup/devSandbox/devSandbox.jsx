@@ -14,7 +14,7 @@ import MarkdownContainer from '../../../global/markdownContainer';
 import { default as componentDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/buttonGroup/buttonGroup';
 /* eslint-enable import/no-named-default, import/extensions */
 
-function InputDevSandbox() {
+function ButtonGroupDevSandbox() {
     const {
         description: componentDescription,
         displayName: componentName,
@@ -55,4 +55,4 @@ function InputDevSandbox() {
     );
 }
 
-export default InputDevSandbox;
+export default ButtonGroupDevSandbox;

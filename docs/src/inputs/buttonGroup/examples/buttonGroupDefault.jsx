@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { ButtonGroup } from 'react-cm-ui';
 
-function ButtonGroupSample() {
+function ButtonGroupDefault() {
     const [value, setValue] = useState(1);
 
     return (
@@ -19,4 +19,4 @@ function ButtonGroupSample() {
     );
 }
 
-export default ButtonGroupSample;
+export default ButtonGroupDefault;
