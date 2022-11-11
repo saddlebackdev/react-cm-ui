@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import React, {
     Component,
 } from 'react';
@@ -76,6 +75,7 @@ const propTypes = {
      * Renders the content set inside the item object under the tabs panel
      */
     withContent: PropTypes.bool,
+    noHiddenTabs: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -86,6 +86,7 @@ const defaultProps = {
     resizeThrottle: 100,
     selectedTabKey: undefined,
     withContent: false,
+    noHiddenTabs: false,
 };
 
 const styles = (theme) => {
@@ -152,6 +153,42 @@ const styles = (theme) => {
         },
     };
 };
+
+function getCSS(element) {
+    const cssData = {};
+    const cssObj = getComputedStyle(element);
+
+    for (let i = 0; i < cssObj.length; i += 1) {
+        cssData[cssObj[i]] = cssObj.getPropertyValue(cssObj[i]);
+    }
+
+    return cssData;
+}
+
+function getMargin(value) {
+    if (!value) {
+        return 0;
+    }
+
+    const numericValue = parseInt(value.replace('px', ''), 10);
+
+    if (Number.isNaN(numericValue)) {
+        return 0;
+    }
+
+    return numericValue;
+}
+
+function getMargins(element) {
+    const computedStyle = getCSS(element);
+    const marginLeft = getMargin(computedStyle['margin-left']);
+    const marginRight = getMargin(computedStyle['margin-right']);
+
+    return {
+        'margin-left': marginLeft,
+        'margin-right': marginRight,
+    };
+}
 
 /**
  * Component capable to hide/show its tabs under a drop down button according to the container size.
@@ -300,7 +337,9 @@ class SectionalTabs extends Component {
 
             tabRefsKeys.forEach((key) => {
                 if (this.tabRefs[key]) {
-                    const width = this.tabRefs[key].tab.offsetWidth;
+                    const margins = getMargins(this.tabRefs[key].tab);
+                    const width = this.tabRefs[key].tab.offsetWidth + margins['margin-left'] + margins['margin-right'];
+
                     updatedTabDimensions[key.replace(PREFIX_TAB, '')] = { width, offset: updatedTabsTotalWidth };
                     updatedTabsTotalWidth += width;
                 }
@@ -330,6 +369,10 @@ class SectionalTabs extends Component {
     }
 
     getTabs() {
+        const {
+            noHiddenTabs,
+        } = this.props;
+
         const {
             blockWidth,
             items,
@@ -384,8 +427,8 @@ class SectionalTabs extends Component {
 
                 const tabWidth = tabDimensions[key] ? tabDimensions[key].width : 0;
                 tabIndex += 1;
-                const isTabVisible = // initial call
-                                    !blockWidth ||
+                const isTabVisible = noHiddenTabs ||
+                                    !blockWidth || // initial call
                                     tabsTotalWidth === 0 ||
                                     tabWidth === 0 || // posibily re render from a items.prop change
                                     // all tabs are fit into the block
@@ -595,16 +638,6 @@ class SectionalTabs extends Component {
 
         const selectedTabKey = this.getSelectedTabKey();
 
-        const rootClasses = ClassNames(
-            classes.root,
-            `${BEM_NAVIGATION_SECTIONAL_TABS}--container`,
-        );
-
-        const tabsClasses = ClassNames(
-            classes.sectionalTabsPanel,
-            `${BEM_NAVIGATION_SECTIONAL_TABS}--panel`,
-        );
-
         const hiddenTabsDropDown = tabsHidden.length > 0 && (
             <DropdownButton
                 iconType="ellipsis-h"
@@ -644,6 +677,18 @@ class SectionalTabs extends Component {
                 selectedTabDimensions.width :
                 0,
         };
+
+        const rootClasses = ClassNames(
+            classes.root,
+            `${BEM_NAVIGATION_SECTIONAL_TABS}--container`,
+        );
+
+        const tabsClasses = ClassNames(
+            classes.sectionalTabsPanel,
+            `${BEM_NAVIGATION_SECTIONAL_TABS}--panel`,
+            `${BEM_NAVIGATION_SECTIONAL_TABS}--visible_tabs_${tabsVisible.length}`,
+            `${BEM_NAVIGATION_SECTIONAL_TABS}--hidden_tabs_${tabsHidden.length}`,
+        );
 
         return (
             <div

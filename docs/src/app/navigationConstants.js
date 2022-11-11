@@ -283,6 +283,23 @@ export const navigationItems = [
                         path: 'button',
                     },
                     {
+                        component: 'buttonGroup',
+                        label: 'Button Group',
+                        levelFour: [
+                            {
+                                component: 'devSandbox/index.js',
+                                label: 'Dev Sandbox',
+                                path: 'dev-sandbox',
+                            },
+                            {
+                                component: 'api/index.js',
+                                label: 'API',
+                                path: 'api',
+                            },
+                        ],
+                        path: 'button-group',
+                    },
+                    {
                         component: 'checkbox',
                         label: 'Checkbox',
                         path: 'checkbox',
