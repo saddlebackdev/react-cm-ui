@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.0
+_November 11, 2022_
+
+### Core
+- Added `<ButtonGroup />` component and re-export Material UI `Container` component as `<MUIContainer />`.  [PR #404](https://github.com/saddlebackdev/react-cm-ui/pull/404)
+
 ## 10.5.5
 _October 25, 2022_
 
