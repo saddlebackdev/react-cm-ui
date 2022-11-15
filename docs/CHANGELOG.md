@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.16.0 - 11/11/2022
+
+#### Feature
+- [PR #404](https://github.com/saddlebackdev/react-cm-ui/pull/404) / Merge Commit 506e53a
+  - Add documentation for `<ButtonGroup />` component.
+
 ## 0.15.5 - 10/24/2022
 
 #### Feature
