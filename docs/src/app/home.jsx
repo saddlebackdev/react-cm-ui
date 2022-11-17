@@ -17,7 +17,7 @@ const propTypes = {
     }).isRequired,
 };
 
-const INSTALLATION_EXAMPLE = '$ npm install '@saddlebackchurch/react-cm-ui';/react-cm-ui';
+const INSTALLATION_EXAMPLE = '$ npm install @saddlebackchurch/react-cm-ui';
 const USAGE_EXAMPLE = `import { Button, Card } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
