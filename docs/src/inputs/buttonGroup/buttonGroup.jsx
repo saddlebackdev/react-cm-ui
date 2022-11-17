@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     camelCase,
 } from 'lodash';

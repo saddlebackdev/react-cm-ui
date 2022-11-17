@@ -1,6 +1,6 @@
 import {
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     camelCase,
 } from 'lodash';
