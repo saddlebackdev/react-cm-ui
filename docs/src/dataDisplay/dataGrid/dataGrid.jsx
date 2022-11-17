@@ -1,6 +1,6 @@
 import {
     Typography,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import { camelCase } from 'lodash';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';

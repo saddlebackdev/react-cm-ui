@@ -1,4 +1,4 @@
-import { DatePickerInput } from '@saddleback/react-cm-ui';
+import { DatePickerInput } from '@saddlebackchurch/react-cm-ui';
 import moment from 'moment-timezone';
 import React, {
     useCallback,

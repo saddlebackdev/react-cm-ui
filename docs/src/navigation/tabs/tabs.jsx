@@ -2,7 +2,7 @@ import {
     Card,
     Header,
     Tabs,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';

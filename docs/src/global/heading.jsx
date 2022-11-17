@@ -1,7 +1,7 @@
 import {
     Icon,
     Typography,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import ClassNames from 'classnames';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';

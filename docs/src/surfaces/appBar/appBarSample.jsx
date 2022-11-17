@@ -2,7 +2,7 @@ import React from 'react';
 import {
     AppBar,
     Typography,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 
 function AppBarSample() {
     return (

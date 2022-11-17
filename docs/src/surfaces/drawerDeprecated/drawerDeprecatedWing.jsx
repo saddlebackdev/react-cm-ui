@@ -1,6 +1,6 @@
 import {
     Button, Card, Container, DrawerDeprecated, Header, Icon, TitleBar,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -11,7 +11,7 @@ import DrawerDeprecatedSubNavigation from './drawerDeprecatedSubNavigation';
 
 const drawerSample = `import React from 'react';
 
-import { Button, Drawer } from '@saddleback/react-cm-ui';
+import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 
 export default class DrawerSample extends React.Component {
 
@@ -49,7 +49,7 @@ export default class DrawerSample extends React.Component {
 
 const leftDrawerSample = `import React from 'react';
 
-import { Button, Drawer } from '@saddleback/react-cm-ui';
+import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 
 export default class DrawerSample extends React.Component {
 
@@ -88,7 +88,7 @@ export default class DrawerSample extends React.Component {
 
 const closeButtonsSample = `import React from 'react';
 
-import { Button, Drawer } from '@saddleback/react-cm-ui';
+import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 
 export default class CloseButtonsSample extends React.Component {
 
@@ -149,7 +149,7 @@ export default class CloseButtonsSample extends React.Component {
 }`;
 
 const colorSample = `import React from 'react';
-import { Button, Drawer, Icon } from '@saddleback/react-cm-ui';
+import { Button, Drawer, Icon } from '@saddlebackchurch/react-cm-ui';
 
 export default class ColorSample extends React.Component {
     constructor(props) {
@@ -217,7 +217,7 @@ export default class ColorSample extends React.Component {
 
 const maxWidthSample = `import React from 'react';
 
-import { Button, Drawer } from '@saddleback/react-cm-ui';
+import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 
 export default class MaxWidthSample extends React.Component {
 
@@ -263,7 +263,7 @@ export default class MaxWidthSample extends React.Component {
 
 const onClickOutsideSample = `import React from 'react';
 
-import { Button, Drawer } from '@saddleback/react-cm-ui';
+import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 
 export default class OnClickOutsideSample extends React.Component {
 
@@ -302,7 +302,7 @@ export default class OnClickOutsideSample extends React.Component {
 
 const headerSample = `import React from 'react';
 
-import { Button, Drawer } from '@saddleback/react-cm-ui';
+import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 
 export default class HeaderSample extends React.Component {
 
@@ -360,7 +360,7 @@ export default class HeaderSample extends React.Component {
 
 const inverseSample = `import React from 'react';
 
-import { Button, Drawer } from '@saddleback/react-cm-ui';
+import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 
 export default class InverseSample extends React.Component {
 
@@ -411,7 +411,7 @@ export default class InverseSample extends React.Component {
 
 const onOpenAndCloseCompleteSample = `import React from 'react';
 
-import { Button, Drawer } from '@saddleback/react-cm-ui';
+import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 
 export default class OnOpenAndCloseCompleteSample extends React.Component {
 
@@ -474,7 +474,7 @@ export default class OnOpenAndCloseCompleteSample extends React.Component {
 
 const pathSample = `import React from 'react';
 
-import { Button, Drawer } from '@saddleback/react-cm-ui';
+import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 
 export default class PathSample extends React.Component {
 
@@ -520,7 +520,7 @@ export default class PathSample extends React.Component {
 const nestHeaderSample = `import _ from 'lodash';
 import React from 'react';
 
-import { Button, Drawer } from '@saddleback/react-cm-ui';
+import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 
 export default class NestHeaderSample extends React.Component {
 
@@ -771,7 +771,7 @@ NestHeader3DrawerComponent.propTypes = {
 };`;
 
 const wingSample = `import React from 'react';
-import { Button, Drawer } from '@saddleback/react-cm-ui';
+import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 
 export default class WingSample extends React.Component {
 

@@ -3,7 +3,7 @@
 import {
     Card,
     Header,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
 import Highlighter from '../../global/highlighter';

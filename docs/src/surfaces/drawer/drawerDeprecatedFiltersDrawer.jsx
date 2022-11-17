@@ -1,13 +1,13 @@
 import {
     Button, Card, Drawer, Header, Icon, Input,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import _ from 'lodash';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
-const drawerFiltersDrawerSample = `import { Button, Drawer } '@saddleback/react-cm-ui';
+const drawerFiltersDrawerSample = `import { Button, Drawer } '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 export default class DrawerFiltersDrawerSample extends React.Component {

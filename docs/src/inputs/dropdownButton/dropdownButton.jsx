@@ -5,7 +5,7 @@
 import {
     Card,
     Header,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 /* eslint-enable import/no-unresolved */
 import _ from 'lodash';
 import React from 'react';

@@ -2,7 +2,7 @@ import {
     Card,
     Header,
     TextArea,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
@@ -10,7 +10,7 @@ import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
 const textAreaSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class TextAreaSample extends React.Component {
 
@@ -23,7 +23,7 @@ export default class TextAreaSample extends React.Component {
 }`;
 
 const autoHeightSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class AutoHeightSample extends React.Component {
     constructor() {
@@ -44,7 +44,7 @@ export default class AutoHeightSample extends React.Component {
 }`;
 
 const autoFocusSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class AutoFocusSample extends React.Component {
 
@@ -57,7 +57,7 @@ export default class AutoFocusSample extends React.Component {
 }`;
 
 const disabledSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class DisabledSample extends React.Component {
 
@@ -70,7 +70,7 @@ export default class DisabledSample extends React.Component {
 }`;
 
 const errorSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class ErrorSample extends React.Component {
 
@@ -85,7 +85,7 @@ export default class ErrorSample extends React.Component {
 }`;
 
 const fluidSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class FluidSample extends React.Component {
 
@@ -98,7 +98,7 @@ export default class FluidSample extends React.Component {
 }`;
 
 const inverseSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class InverseSample extends React.Component {
 
@@ -111,7 +111,7 @@ export default class InverseSample extends React.Component {
 }`;
 
 const labelSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class LabelSample extends React.Component {
 
@@ -124,7 +124,7 @@ export default class LabelSample extends React.Component {
 }`;
 
 const maxHeightSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class MaxHeightSample extends React.Component {
 
@@ -137,7 +137,7 @@ export default class MaxHeightSample extends React.Component {
 }`;
 
 const maxLengthSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class MaxLengthSample extends React.Component {
 
@@ -150,7 +150,7 @@ export default class MaxLengthSample extends React.Component {
 }`;
 
 const minHeightSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class MinHeightSample extends React.Component {
 
@@ -163,7 +163,7 @@ export default class MinHeightSample extends React.Component {
 }`;
 
 const minLengthSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class MinLengthSample extends React.Component {
 
@@ -176,7 +176,7 @@ export default class MinLengthSample extends React.Component {
 }`;
 
 const onBlurSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class OnBlurSample extends React.Component {
 
@@ -193,7 +193,7 @@ export default class OnBlurSample extends React.Component {
 }`;
 
 const onChangeSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class OnChangeSample extends React.Component {
 
@@ -210,7 +210,7 @@ export default class OnChangeSample extends React.Component {
 }`;
 
 const onClickSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class OnClickSample extends React.Component {
 
@@ -227,7 +227,7 @@ export default class OnClickSample extends React.Component {
 }`;
 
 const onFocusSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class OnFocusSample extends React.Component {
 
@@ -244,7 +244,7 @@ export default class OnFocusSample extends React.Component {
 }`;
 
 const onKeyDownSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class OnKeyDownSample extends React.Component {
 
@@ -261,7 +261,7 @@ export default class OnKeyDownSample extends React.Component {
 }`;
 
 const placeholderSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class PlaceholderSample extends React.Component {
 
@@ -274,7 +274,7 @@ export default class PlaceholderSample extends React.Component {
 }`;
 
 const requiredSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class RequiredSample extends React.Component {
 
@@ -287,7 +287,7 @@ export default class RequiredSample extends React.Component {
 }`;
 
 const resizeSample = `import React from 'react';
-import { TextArea } from '@saddleback/react-cm-ui';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
 
 export default class ResizeSample extends React.Component {
 

@@ -3,7 +3,7 @@
 import './TableProps.scss';
 
 import _ from 'lodash';
-import { Table } from '@saddleback/react-cm-ui';
+import { Table } from '@saddlebackchurch/react-cm-ui';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';

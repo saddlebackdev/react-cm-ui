@@ -6,7 +6,7 @@ import {
     domUtils,
     Icon,
     Typography,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     Link,
     withRouter,

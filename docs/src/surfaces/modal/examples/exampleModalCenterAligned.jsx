@@ -3,7 +3,7 @@ import {
     Icon,
     Modal,
     Typography,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import React, { useState } from 'react';
 

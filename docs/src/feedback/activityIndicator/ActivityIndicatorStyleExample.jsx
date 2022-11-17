@@ -1,4 +1,4 @@
-import { ActivityIndicator } from '@saddleback/react-cm-ui';
+import { ActivityIndicator } from '@saddlebackchurch/react-cm-ui';
 import { borderColor } from 'react-cm-ui/styles/colorExports';
 import React from 'react';
 

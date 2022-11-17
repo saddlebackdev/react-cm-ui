@@ -2,7 +2,7 @@ import {
     Button,
     Grid,
     Icon,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 function ExamplePillOutlineInverseColors() {

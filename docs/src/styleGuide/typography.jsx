@@ -1,6 +1,6 @@
 import {
     Grid,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 import React from 'react';
 import Heading from '../global/heading';

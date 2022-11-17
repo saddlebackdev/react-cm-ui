@@ -1,6 +1,6 @@
 import {
     Typography,
-} from '@saddleback/react-cm-ui'; // eslint-disable-line import/no-unresolved
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import {
     camelCase,
 } from 'lodash';

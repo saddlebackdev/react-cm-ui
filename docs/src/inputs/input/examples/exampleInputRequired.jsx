@@ -1,4 +1,4 @@
-import { Input } from '@saddleback/react-cm-ui';
+import { Input } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 function ExampleInputRequired() {

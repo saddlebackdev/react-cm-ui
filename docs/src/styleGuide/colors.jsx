@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Grid, Header } from '@saddleback/react-cm-ui';
+import { Grid, Header } from '@saddlebackchurch/react-cm-ui';
 import Swatch from '../global/swatch';
 
 function StyleGuideColors() {

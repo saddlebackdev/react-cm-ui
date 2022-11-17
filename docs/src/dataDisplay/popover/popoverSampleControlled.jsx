@@ -4,7 +4,7 @@ import React, {
 import {
     Button,
     Popover,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 
 function PopoverSample() {
     const [isTooltipOpen, setIsTooltipOpen] = useState(false);

@@ -1,7 +1,7 @@
 import {
     Card,
     Header,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';

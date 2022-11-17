@@ -4,7 +4,7 @@ import {
     Modal,
     Select,
     Typography,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React, { useState } from 'react';
 import makeStyles from 'react-cm-ui/styles/makeStyles';
 

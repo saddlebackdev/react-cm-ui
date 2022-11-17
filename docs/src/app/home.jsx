@@ -5,7 +5,7 @@ import {
     Card,
     Grid,
     Header,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Highlighter from '../global/highlighter';
@@ -17,8 +17,8 @@ const propTypes = {
     }).isRequired,
 };
 
-const INSTALLATION_EXAMPLE = '$ npm install @saddleback/react-cm-ui';
-const USAGE_EXAMPLE = `import { Button, Card } from '@saddleback/react-cm-ui';
+const INSTALLATION_EXAMPLE = '$ npm install '@saddlebackchurch/react-cm-ui';/react-cm-ui';
+const USAGE_EXAMPLE = `import { Button, Card } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 function Example() {

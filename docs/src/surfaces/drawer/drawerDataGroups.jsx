@@ -1,12 +1,12 @@
 import {
     Button, Card, Drawer, Header, Icon, Input,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
-const drawerDataGroupsSample = `import { Button, Drawer, InfoBar } from '@saddleback/react-cm-ui';
+const drawerDataGroupsSample = `import { Button, Drawer, InfoBar } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 export default class DrawerDataGroupsSample extends React.Component {

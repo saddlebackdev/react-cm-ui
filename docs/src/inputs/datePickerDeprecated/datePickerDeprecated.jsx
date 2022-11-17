@@ -1,6 +1,6 @@
 import {
     Card, DatePicker, Header, TitleBar,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import { Link } from 'react-router';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';

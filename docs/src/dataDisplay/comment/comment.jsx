@@ -6,7 +6,7 @@ import {
     Card,
     Comment,
     Header,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 
 // Docs UI Components
 import Block from '../../global/block';
@@ -15,7 +15,7 @@ import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
 const commentSample = `import React from 'react';
-import { Comment } from '@saddleback/react-cm-ui';
+import { Comment } from '@saddlebackchurch/react-cm-ui';
 
 export default class CommentSample extends React.Component {
     render() {
@@ -28,7 +28,7 @@ export default class CommentSample extends React.Component {
 }`;
 
 const editableCommentSample = `import React from 'react';
-import { Banner, Comment } from '@saddleback/react-cm-ui';
+import { Banner, Comment } from '@saddlebackchurch/react-cm-ui';
 
 export default class CommentSample extends React.Component {
     constructor(props) {

@@ -3,7 +3,7 @@ import {
     Grid,
     Popover,
     Select,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     upperCase,
 } from 'lodash';

@@ -5,13 +5,13 @@ import {
     Header,
     Icon,
     Input,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
-const drawerDetailsSample = `import { Button, Drawer, InfoBar } '@saddleback/react-cm-ui';
+const drawerDetailsSample = `import { Button, Drawer, InfoBar } '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 export default class DrawerDetailsSample extends React.Component {

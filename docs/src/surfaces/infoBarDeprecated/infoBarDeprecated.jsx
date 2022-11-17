@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Card, Header, InfoBar,
-} from '@saddleback/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 
 // Docs UI Components
 import Highlighter from '../../global/highlighter';
@@ -9,7 +9,7 @@ import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
 const colorSample = `import React from 'react';
-import { InfoBar } from '@saddleback/react-cm-ui';
+import { InfoBar } from '@saddlebackchurch/react-cm-ui';
 
 export default class ColorSample extends React.Component {
     render() {

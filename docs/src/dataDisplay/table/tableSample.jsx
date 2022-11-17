@@ -1,4 +1,4 @@
-import { Table } from '@saddleback/react-cm-ui';
+import { Table } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 function TableSample() {

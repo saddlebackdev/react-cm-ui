@@ -115,7 +115,7 @@ module.exports = (env, options) => {
                 'react-custom-scrollbars': path.resolve(__dirname, '../node_modules/react-custom-scrollbars'),
                 'react-dom': path.resolve(__dirname, '../node_modules/react-dom'),
                 'react-cm-ui': path.resolve(__dirname, '../src'),
-                '@saddleback/react-cm-ui': path.resolve(__dirname, '../src'),
+                ''@saddlebackchurch/react-cm-ui';/react-cm-ui': path.resolve(__dirname, '../src'),
                 'react-responsive': path.resolve(__dirname, '../node_modules/react-responsive'),
                 'css-cm-ui': path.resolve(__dirname, '../src/style.scss'),
             },
