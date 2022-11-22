@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Card from '@material-ui/core/Card';
 import React from 'react';
 import CardDeprecated from './cardDeprecated';
@@ -10,7 +9,7 @@ type PropTypes = {
      * or the new Card component.
      */
     designVersion?: number;
-};
+};}
 
 // eslint-disable-next-line prefer-arrow-callback
 const CardBase = React.forwardRef(function CardBase({

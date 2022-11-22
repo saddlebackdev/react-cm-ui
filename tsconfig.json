@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "skipLibCheck": true,
     "allowJs": true,                        // Allow JavaScript files to be imported inside your project, instead of just .ts and .tsx files.
     "allowSyntheticDefaultImports": true,   // Allows you to write an import
     "baseUrl": "./src",                     // Base directory to resolve non-absolute module names.
