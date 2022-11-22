@@ -9,7 +9,7 @@ type PropTypes = {
      * or the new Card component.
      */
     designVersion?: number;
-};}
+};
 
 // eslint-disable-next-line prefer-arrow-callback
 const CardBase = React.forwardRef(function CardBase({
