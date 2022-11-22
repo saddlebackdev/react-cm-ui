@@ -4,7 +4,7 @@ import {
     Modal,
     Typography,
 } from '@saddlebackchurch/react-cm-ui';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 import React, { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,5 +1,5 @@
 import { ActivityIndicator } from '@saddlebackchurch/react-cm-ui';
-import { borderColor } from 'react-cm-ui/styles/colorExports';
+import { borderColor } from '@saddlebackchurch/react-cm-ui/styles/colorExports';
 import React from 'react';
 
 function ActivityIndicatorStyleExample() {

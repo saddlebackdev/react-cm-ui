@@ -3,7 +3,7 @@ import {
     AppBar,
     Typography,
 } from '@saddlebackchurch/react-cm-ui';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 
 const useStyles = makeStyles(() => ({
     root: {

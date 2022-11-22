@@ -7,7 +7,7 @@ import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as filtersDrawerDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/filtersDrawer/filtersDrawer';
+import { default as filtersDrawerDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/surfaces/filtersDrawer/filtersDrawer';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsFiltersDrawer() {

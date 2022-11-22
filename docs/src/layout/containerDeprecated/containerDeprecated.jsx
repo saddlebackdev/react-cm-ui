@@ -7,7 +7,7 @@ import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as containerDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/layout/container/container';
+import { default as containerDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/layout/container/container';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsContainer() {

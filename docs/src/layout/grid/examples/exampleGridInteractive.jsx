@@ -10,7 +10,7 @@ import {
     times,
     toString,
 } from 'lodash';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 import React, { useState } from 'react';
 
 const ALIGN_ITEMS_TYPES = [

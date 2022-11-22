@@ -7,7 +7,7 @@ import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as detailsWindowDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/detailsWindow/detailsWindow';
+import { default as detailsWindowDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/surfaces/detailsWindow/detailsWindow';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsDetailsWindow() {

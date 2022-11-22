@@ -16,7 +16,7 @@ import SectionalTabsSample from './sectionalTabsSample';
 import SectionalTabsSampleWithContent from './sectionalTabsSampleWithContent';
 import SectionalTabsSampleSelectedTabKey from './sectionalTabsSampleSelectedTabKey';
 // eslint-disable-next-line import/no-named-default, import/extensions
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/sectionalTabs/sectionalTabs';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/navigation/sectionalTabs/sectionalTabs';
 
 const propTypes = {
     location: PropTypes.shape({

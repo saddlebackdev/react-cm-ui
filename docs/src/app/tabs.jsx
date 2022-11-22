@@ -14,7 +14,7 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 
 const propTypes = {
     items: PropTypes.arrayOf(

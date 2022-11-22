@@ -17,7 +17,7 @@ import AppBarSamplePlacement from './appBarSamplePlacement';
 import AppBarSampleClasses from './appBarSampleClasses';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as appBarDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/appBar/appBar';
+import { default as appBarDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/surfaces/appBar/appBar';
 
 const propTypes = {
     location: PropTypes.shape({

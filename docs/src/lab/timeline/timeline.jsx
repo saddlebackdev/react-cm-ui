@@ -13,7 +13,7 @@ import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/lab/timeline/timeline';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/lab/timeline/timeline';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {

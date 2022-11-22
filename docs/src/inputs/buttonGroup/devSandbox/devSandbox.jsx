@@ -11,7 +11,7 @@ import Heading from '../../../global/heading';
 import Main from '../../../global/main';
 import MarkdownContainer from '../../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as componentDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/buttonGroup/buttonGroup';
+import { default as componentDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/inputs/buttonGroup/buttonGroup';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function ButtonGroupDevSandbox() {

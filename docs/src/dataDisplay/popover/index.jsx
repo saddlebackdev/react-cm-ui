@@ -17,7 +17,7 @@ import PopoverSamplePlacement from './popoverSamplePlacement';
 import PopoverSampleWithJsx from './popoverSampleWithJsx';
 import PopoverMouseEnterSample from './popoverMouseEnterSample';
 // eslint-disable-next-line import/extensions, import/no-named-default
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/popover/popover';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/dataDisplay/popover/popover';
 
 const propTypes = {
     location: PropTypes.shape({

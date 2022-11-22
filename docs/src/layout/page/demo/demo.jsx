@@ -8,12 +8,12 @@ import _ from 'lodash';
 import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
-import withStyles from 'react-cm-ui/styles/withStyles';
+import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles';
 import React from 'react';
 import {
     backgroundColorAlert,
     backgroundColorSuccess,
-} from 'react-cm-ui/styles/colorExports';
+} from '@saddlebackchurch/react-cm-ui/styles/colorExports';
 import DemoFiltersRail from './demoFiltersRail';
 
 const propTypes = {

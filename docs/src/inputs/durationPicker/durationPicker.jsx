@@ -21,7 +21,7 @@ import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as componentDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/durationPicker/durationPicker';
+import { default as componentDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/inputs/durationPicker/durationPicker';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {

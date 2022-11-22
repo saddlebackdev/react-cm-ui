@@ -6,7 +6,7 @@ import {
     upperFirst,
 } from 'lodash';
 // eslint-disable-next-line import/extensions
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Heading from './heading';

@@ -7,7 +7,7 @@ import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as dataGroupsDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/dataGroups/dataGroups';
+import { default as dataGroupsDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/dataDisplay/dataGroups/dataGroups';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsDataGroups() {

@@ -13,7 +13,7 @@ import ComponentVersionIdentifier from '../../global/componentVersionIdentifier'
 import Example from '../../global/example';
 import ButtonGroupSample from './buttonGroupSample';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as componentDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/buttonGroup/buttonGroup';
+import { default as componentDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/inputs/buttonGroup/buttonGroup';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {

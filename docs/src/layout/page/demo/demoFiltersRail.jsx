@@ -9,7 +9,7 @@ import {
 } from '@saddlebackchurch/react-cm-ui';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 
 const propTypes = {
     isOpen: PropTypes.bool,

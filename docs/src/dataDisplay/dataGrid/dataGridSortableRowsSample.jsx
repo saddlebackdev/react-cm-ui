@@ -6,7 +6,7 @@ import {
     isEqual,
     map,
 } from 'lodash';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 import moment from 'moment-timezone';
 import React, { useState } from 'react';
 
