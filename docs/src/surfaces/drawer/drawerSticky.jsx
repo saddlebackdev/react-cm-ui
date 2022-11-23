@@ -1,13 +1,13 @@
 import {
     Button, Card, Drawer, Header,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import { Link } from 'react-router';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
-const drawerStickySample = `import { Button, Drawer } from 'react-cm-ui';
+const drawerStickySample = `import { Button, Drawer } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 export default class DrawerStickySample extends React.Component {

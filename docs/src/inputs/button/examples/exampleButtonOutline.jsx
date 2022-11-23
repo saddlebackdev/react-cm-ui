@@ -3,7 +3,7 @@ import {
     Grid,
     Icon,
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 function ExampleOutline() {

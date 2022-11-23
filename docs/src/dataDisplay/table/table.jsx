@@ -1,6 +1,6 @@
 import {
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     camelCase,
 } from 'lodash';
@@ -29,7 +29,7 @@ import TableSampleStretch from './tableSampleStretch';
 import TableSampleTextAlign from './tableSampleTextAlign';
 import TableSampleVerticalAlign from './tableSampleVerticalAlign';
 // eslint-disable-next-line import/no-named-default, import/extensions
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/table/table';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/dataDisplay/table/table';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsTable(props) {

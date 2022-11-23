@@ -1,6 +1,6 @@
 import {
     Typography,
-} from 'react-cm-ui'; // eslint-disable-line import/no-unresolved
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import {
     camelCase,
 } from 'lodash';
@@ -18,7 +18,7 @@ import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions, import/no-unresolved */
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/inputs/button/button';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/inputs/button/button';
 /* eslint-enable import/no-named-default, import/extensions, import/no-unresolved */
 
 const propTypes = {

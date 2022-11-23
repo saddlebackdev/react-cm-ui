@@ -1,4 +1,3 @@
-import { string } from 'prop-types';
 import React from 'react';
 
 export interface DrawerDataGroupsPropTypes {
@@ -6,7 +5,7 @@ export interface DrawerDataGroupsPropTypes {
     className?: string;
     columns: {
         className?: string;
-        expandableSections: {
+        expandableSections?: {
             header?: string;
             iconType?: string;
             iconColor?: string;
@@ -20,7 +19,7 @@ export interface DrawerDataGroupsPropTypes {
                     header?: string;
                     iconType?: string;
                     iconColor?: string;
-                    iconSize: 'xxlarge' | 'xlarge' | 'large' | 'medium' | 'small' | 'xsmall' | 'xxsmall' | number;
+                    iconSize?: 'xxlarge' | 'xlarge' | 'large' | 'medium' | 'small' | 'xsmall' | 'xxsmall' | number;
                     style?: React.CSSProperties;
                 }[];
             }[];
@@ -36,11 +35,11 @@ export interface DrawerDataGroupsPropTypes {
             header?: string;
             iconType?: string;
             iconColor?: string;
-            iconSize: 'xxlarge' | 'xlarge' | 'large' | 'medium' | 'small' | 'xsmall' | 'xxsmall' | number;
+            iconSize?: 'xxlarge' | 'xlarge' | 'large' | 'medium' | 'small' | 'xsmall' | 'xxsmall' | number;
             style?: React.CSSProperties;
         }[];
         style?: React.CSSProperties;
-    };
+    }[];
     data: object;
     /**
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/

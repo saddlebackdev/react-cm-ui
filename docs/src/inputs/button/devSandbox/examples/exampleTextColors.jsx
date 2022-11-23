@@ -1,7 +1,7 @@
 import {
     Button,
     Grid,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 function ExampleTextColors() {

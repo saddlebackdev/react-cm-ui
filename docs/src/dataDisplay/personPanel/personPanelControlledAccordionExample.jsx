@@ -6,7 +6,7 @@ import {
     PersonPanel,
     PersonPanelDetails,
     PersonPanelSummary,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React, { useEffect, useState } from 'react';
 import {
     PAYLOAD_PERSON,

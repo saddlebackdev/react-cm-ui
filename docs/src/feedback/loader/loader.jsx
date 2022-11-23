@@ -3,7 +3,7 @@ import {
     Card,
     Header,
     Loader,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 
 // Docs UI Components
 import Block from '../../global/block';

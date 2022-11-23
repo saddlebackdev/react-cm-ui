@@ -18,7 +18,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.5.2',
+        package: '10.6.1',
         components: {
             dataDisplay: {
                 chip: {
@@ -74,6 +74,11 @@ const versions = {
                     devLibraryVersion: '2.0.3',
                     designLibraryVersion: '2.0.0',
                     designLibraryDoc: 'https://www.sketch.com/s/6c8808fa-bf58-42e5-a0be-7e9d5798fc5f/p/9578614A-F3CD-4BA2-940C-60367CCD887F',
+                },
+                buttonGroup: {
+                    devLibraryVersion: '1.0.0',
+                    designLibraryVersion: '1.0.0',
+                    designLibraryDoc: '',
                 },
                 buttonDeprecated: {
                     devLibraryVersion: '1.0.0',

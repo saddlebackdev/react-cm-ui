@@ -22,7 +22,6 @@ module.exports = (env, options) => {
         },
         devServer: {
             historyApiFallback: true,
-            inline: true,
             port: 8082,
         },
         output: {
@@ -112,7 +111,7 @@ module.exports = (env, options) => {
                 react: path.resolve(__dirname, '../node_modules/react'),
                 'react-custom-scrollbars': path.resolve(__dirname, '../node_modules/react-custom-scrollbars'),
                 'react-dom': path.resolve(__dirname, '../node_modules/react-dom'),
-                'react-cm-ui': path.resolve(__dirname, '../src'),
+                '@saddlebackchurch/react-cm-ui': path.resolve(__dirname, '../src'),
                 'react-responsive': path.resolve(__dirname, '../node_modules/react-responsive'),
                 'css-cm-ui': path.resolve(__dirname, '../src/style.scss'),
             },

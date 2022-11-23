@@ -1,8 +1,8 @@
 import {
     DataGrid,
     Icon,
-} from 'react-cm-ui';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+} from '@saddlebackchurch/react-cm-ui';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 import moment from 'moment-timezone';
 import React from 'react';
 

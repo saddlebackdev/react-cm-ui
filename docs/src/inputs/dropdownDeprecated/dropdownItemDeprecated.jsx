@@ -13,7 +13,7 @@ import 'images/avatar3.jpg';
 import 'images/avatar4.jpg';
 import 'images/avatar5.jpg';
 
-import { Card, Dropdown, Grid, Header } from 'react-cm-ui';
+import { Card, Dropdown, Grid, Header } from '@saddlebackchurch/react-cm-ui';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -27,7 +27,7 @@ const getImageUrl = (imageFileName) => `${imageFilePath}/${imageFileName}`;
 
 const dropdownSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class DropdownSample extends React.Component {
 
@@ -50,7 +50,7 @@ export default class DropdownSample extends React.Component {
 
 const buttonSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class ButtonSample extends React.Component {
 
@@ -69,7 +69,7 @@ export default class ButtonSample extends React.Component {
 
 const buttonControlledSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class ButtonControlledSample extends React.Component {
 
@@ -106,7 +106,7 @@ export default class ButtonControlledSample extends React.Component {
 
 const buttonMenuSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class ButtonMenuSample extends React.Component {
 
@@ -153,7 +153,7 @@ export default class ButtonMenuSample extends React.Component {
 }`;
 
 const buttonColorSample = `import React from 'react';
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class ButtonColorSample extends React.Component {
     render() {
@@ -225,7 +225,7 @@ export default class ButtonColorSample extends React.Component {
 
 const buttonCompactSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class ButtonCompactSample extends React.Component {
 
@@ -244,7 +244,7 @@ export default class ButtonCompactSample extends React.Component {
 
 const disableSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class DisableSample extends React.Component {
 
@@ -341,7 +341,7 @@ export default class DisableSample extends React.Component {
 
 const iconSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class IconSample extends React.Component {
 
@@ -379,7 +379,7 @@ export default class IconSample extends React.Component {
 
 const menuHeightSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class MenuHeightSample extends React.Component {
 
@@ -411,7 +411,7 @@ export default class MenuHeightSample extends React.Component {
 }`;
 
 const onChangeSample = `import React from 'react';
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class OnChangeSample extends React.Component {
 
@@ -441,7 +441,7 @@ export default class OnChangeSample extends React.Component {
 
 const selectionMatchPropSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class SelectionMatchPropSample extends React.Component {
 
@@ -474,7 +474,7 @@ export default class SelectionMatchPropSample extends React.Component {
 
 const selectionCreatableSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class SelectionCreatableSample extends React.Component {
 
@@ -508,7 +508,7 @@ export default class SelectionCreatableSample extends React.Component {
 
 const selectionMobileSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class SelectionMobileSample extends React.Component {
 
@@ -541,7 +541,7 @@ export default class SelectionMobileSample extends React.Component {
 
 const selectionMultipleSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class SelectionMultipleSample extends React.Component {
 
@@ -574,7 +574,7 @@ export default class SelectionMultipleSample extends React.Component {
 
 const selectionOptionComponentSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class SelectionOptionComponentSample extends React.Component {
 
@@ -641,7 +641,7 @@ export default class SelectionOptionComponentSample extends React.Component {
 
 const selectionUnderlineSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class SelectionUnderlineSample extends React.Component {
 
@@ -708,7 +708,7 @@ export default class SelectionUnderlineSample extends React.Component {
 
 const themeSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class ThemeSample extends React.Component {
 
@@ -727,7 +727,7 @@ export default class ThemeSample extends React.Component {
 
 const itemIconSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class ItemIconSample extends React.Component {
 
@@ -746,7 +746,7 @@ export default class ItemIconSample extends React.Component {
 
 const itemDisabledSample = `import React from 'react';
 
-import { Dropdown } from 'react-cm-ui';
+import { Dropdown } from '@saddlebackchurch/react-cm-ui';
 
 export default class ItemIconSample extends React.Component {
     constructor(props) {

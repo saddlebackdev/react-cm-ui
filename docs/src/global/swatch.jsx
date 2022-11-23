@@ -1,5 +1,5 @@
 import ClassNames from 'classnames';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 

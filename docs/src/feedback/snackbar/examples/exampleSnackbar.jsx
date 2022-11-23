@@ -2,7 +2,7 @@ import {
     Button,
     Icon,
     Snackbar,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 function ExampleSnackbar() {

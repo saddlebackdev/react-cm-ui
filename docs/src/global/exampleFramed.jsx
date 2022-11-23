@@ -1,5 +1,5 @@
 import { create } from 'jss';
-import jssPreset from 'react-cm-ui/styles/jssPreset';
+import jssPreset from '@saddlebackchurch/react-cm-ui/styles/jssPreset';
 import PropTypes from 'prop-types';
 import React, {
     useCallback,
@@ -7,8 +7,8 @@ import React, {
     useMemo,
 } from 'react';
 import rtl from 'jss-rtl';
-import StylesProvider from 'react-cm-ui/styles/stylesProvider';
-import useTheme from 'react-cm-ui/styles/useTheme';
+import StylesProvider from '@saddlebackchurch/react-cm-ui/styles/stylesProvider';
+import useTheme from '@saddlebackchurch/react-cm-ui/styles/useTheme';
 
 const propTypes = {
     children: PropTypes.node,

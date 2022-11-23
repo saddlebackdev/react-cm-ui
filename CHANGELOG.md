@@ -1,6 +1,38 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.1
+_November 23, 2022_
+
+### Core
+- Added `inputMode` prop to `<Input />` component.  [PR #407](https://github.com/saddlebackdev/react-cm-ui/pull/407)
+
+
+## 10.6.0
+_November 11, 2022_
+
+### Core
+- Added `<ButtonGroup />` component and re-export Material UI `Container` component as `<MUIContainer />`.  [PR #404](https://github.com/saddlebackdev/react-cm-ui/pull/404)
+
+## 10.5.5
+_October 25, 2022_
+
+### Core
+- Yet another bug fix in the TypeScript declarations for `DrawerDataGroups`.  Hopefully this does the trick!  [38c2994](https://github.com/saddlebackdev/react-cm-ui/commit/38c29944ceb7a111cfc121158999e7368bee56ca)
+
+## 10.5.4
+_October 24, 2022_
+
+### Core
+- Further bug fix in the TypeScript declarations for `DrawerDataGroups`.  [d59ebf9](https://github.com/saddlebackdev/react-cm-ui/commit/d59ebf92f2757f9f7559a95d802161d4b7570800)
+
+## 10.5.3
+_October 24, 2022_
+
+### Core
+- Bug fix in the TypeScript declarations for `DrawerDataGroups`.  [PR #394](https://github.com/saddlebackdev/react-cm-ui/pull/394)
+- Various package upgrades from GitHub Dependabot.
+
 ## 10.5.2
 _August 23, 2022_
 

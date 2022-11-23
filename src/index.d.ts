@@ -109,6 +109,9 @@ export * from './feedback/snackbar';
 export { default as Button } from './inputs/button';
 export * from './inputs/button';
 
+export { default as ButtonGroup } from './inputs/buttonGroup';
+export * from './inputs/buttonGroup';
+
 export { default as Checkbox } from './inputs/checkbox';
 export * from './inputs/checkbox';
 
@@ -196,6 +199,9 @@ export * from './layout/content';
 
 export { default as Grid } from './layout/grid';
 export * from './layout/grid';
+
+export { default as MUIContainer } from './layout/muiContainer';
+export * from './layout/muiContainer';
 
 export { default as Page } from './layout/page';
 export * from './layout/page';

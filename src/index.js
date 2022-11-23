@@ -39,6 +39,7 @@ export { default as Snackbar } from './feedback/snackbar';
 
 // Inputs
 export { default as Button } from './inputs/button';
+export { default as ButtonGroup } from './inputs/buttonGroup';
 export { default as Checkbox } from './inputs/checkbox';
 export { default as DatePicker } from './inputs/datePickerDeprecated';
 export { default as DatePickerCalendar } from './inputs/datePickerCalendar';
@@ -71,6 +72,7 @@ export { default as Container } from './layout/container';
 export { default as ContainerDeprecated } from './layout/containerDeprecated';
 export { default as Content } from './layout/content';
 export { default as Grid } from './layout/grid';
+export { default as MUIContainer } from './layout/muiContainer';
 export { default as Page } from './layout/page';
 
 // Navigation

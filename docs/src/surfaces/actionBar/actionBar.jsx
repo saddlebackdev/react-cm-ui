@@ -1,6 +1,6 @@
 import {
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     camelCase,
     startCase,
@@ -11,7 +11,7 @@ import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as actionBarDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/actionBar/actionBar';
+import { default as actionBarDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/surfaces/actionBar/actionBar';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsActionBar() {

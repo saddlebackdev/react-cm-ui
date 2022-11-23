@@ -2,7 +2,7 @@ import {
     Card,
     Checkbox,
     Header,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
@@ -11,7 +11,7 @@ import TableProps from '../../global/tableProps';
 
 const checkboxSample = `import React from 'react';
 
-import { Checkbox } from 'react-cm-ui';
+import { Checkbox } from '@saddlebackchurch/react-cm-ui';
 export default class CheckboxSample extends React.Component {
 
     render() {
@@ -23,7 +23,7 @@ export default class CheckboxSample extends React.Component {
 }`;
 
 const labelSample = `import React from 'react';
-import { Checkbox } from 'react-cm-ui';
+import { Checkbox } from '@saddlebackchurch/react-cm-ui';
 
 export default class LabelSample extends React.Component {
 
@@ -36,7 +36,7 @@ export default class LabelSample extends React.Component {
 }`;
 
 const alignSample = `import React from 'react';
-import { Checkbox } from 'react-cm-ui';
+import { Checkbox } from '@saddlebackchurch/react-cm-ui';
 
 export default class AlignSample extends React.Component {
 
@@ -50,7 +50,7 @@ export default class AlignSample extends React.Component {
 }`;
 
 const checkedSample = `import React from 'react';
-import { Checkbox } from 'react-cm-ui';
+import { Checkbox } from '@saddlebackchurch/react-cm-ui';
 
 export default class CheckedSample extends React.Component {
 
@@ -63,7 +63,7 @@ export default class CheckedSample extends React.Component {
 }`;
 
 const disabledSample = `import React from 'react';
-import { Checkbox } from 'react-cm-ui';
+import { Checkbox } from '@saddlebackchurch/react-cm-ui';
 
 export default class DisabledSample extends React.Component {
 
@@ -76,7 +76,7 @@ export default class DisabledSample extends React.Component {
 }`;
 
 const fluidSample = `import React from 'react';
-import { Checkbox } from 'react-cm-ui';
+import { Checkbox } from '@saddlebackchurch/react-cm-ui';
 
 export default class FluidSample extends React.Component {
 
@@ -90,7 +90,7 @@ export default class FluidSample extends React.Component {
 }`;
 
 const labelClickSample = `import React from 'react';
-import { Checkbox } from 'react-cm-ui';
+import { Checkbox } from '@saddlebackchurch/react-cm-ui';
 
 export default class LabelClickSample extends React.Component {
 
@@ -103,7 +103,7 @@ export default class LabelClickSample extends React.Component {
 }`;
 
 const onChangeSample = `import React from 'react';
-import { Checkbox } from 'react-cm-ui';
+import { Checkbox } from '@saddlebackchurch/react-cm-ui';
 
 export default class OnChangeSample extends React.Component {
 
@@ -130,7 +130,7 @@ export default class OnChangeSample extends React.Component {
 }`;
 
 const sizeSample = `import React from 'react';
-import { Checkbox } from 'react-cm-ui';
+import { Checkbox } from '@saddlebackchurch/react-cm-ui';
 
 export default class SizeSample extends React.Component {
     render() {
@@ -141,7 +141,7 @@ export default class SizeSample extends React.Component {
 }`;
 
 const toggleSample = `import React from 'react';
-import { Checkbox } from 'react-cm-ui';
+import { Checkbox } from '@saddlebackchurch/react-cm-ui';
 
 export default class ToggleSample extends React.Component {
 

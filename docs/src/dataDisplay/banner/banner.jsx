@@ -3,7 +3,7 @@ import {
     Button,
     Card,
     Header,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
