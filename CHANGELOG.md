@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.1
+_November 23, 2022_
+
+### Core
+- Added `inputMode` prop to `<Input />` component.  [PR #407](https://github.com/saddlebackdev/react-cm-ui/pull/407)
+
+
 ## 10.6.0
 _November 11, 2022_
 

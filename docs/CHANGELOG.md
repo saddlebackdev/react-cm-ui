@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.0 - 11/23/2022
+
+#### Feature
+- [PR #407](https://github.com/saddlebackdev/react-cm-ui/pull/407) / Merge Commit c02a055
+  - Changed all the imports to use `@saddlebackchurch/react-cm-ui`.
+
 ## 0.16.0 - 11/11/2022
 
 #### Feature
