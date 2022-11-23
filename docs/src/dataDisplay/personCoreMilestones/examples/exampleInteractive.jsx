@@ -7,7 +7,7 @@ import {
     Radio,
     Select,
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     map,
 } from 'lodash';

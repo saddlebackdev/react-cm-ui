@@ -4,9 +4,9 @@ import {
     Modal,
     Select,
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React, { useState } from 'react';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 
 const useStyles = makeStyles(() => ({
     cancelButton: {

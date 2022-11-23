@@ -3,7 +3,7 @@ import {
     Drawer,
     Icon,
     Input,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import moment from 'moment-timezone';
 import React, { useState } from 'react';
 

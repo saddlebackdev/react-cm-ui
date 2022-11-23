@@ -3,7 +3,7 @@ import {
     Checkbox,
     Header,
     Rail,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
 import Highlighter from '../../global/highlighter';
@@ -11,7 +11,7 @@ import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
 const positionSample = `import React from 'react';
-import { Rail } from 'react-cm-ui';
+import { Rail } from '@saddlebackchurch/react-cm-ui';
 
 export default class PositionSample extends React.Component {
     render() {

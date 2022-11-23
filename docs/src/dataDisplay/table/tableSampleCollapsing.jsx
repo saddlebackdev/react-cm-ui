@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'react-cm-ui';
+import { Table } from '@saddlebackchurch/react-cm-ui';
 
 function TableSampleCollapsing() {
     return (

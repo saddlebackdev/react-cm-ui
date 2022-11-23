@@ -2,7 +2,7 @@ import { isEmpty } from 'lodash';
 import React, { useState } from 'react';
 import {
     Select,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import { options } from '../constants';
 
 function ExampleSearchableSelect() {

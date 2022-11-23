@@ -1,6 +1,6 @@
 import {
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     camelCase,
 } from 'lodash';
@@ -11,7 +11,7 @@ import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/surfaces/filtersRail/filtersRail';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/surfaces/filtersRail/filtersRail';
 /* eslint-enable import/no-named-default, import/extensions */
 
 function DocsFiltersRail() {

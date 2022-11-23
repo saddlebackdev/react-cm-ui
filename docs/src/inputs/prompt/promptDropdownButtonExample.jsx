@@ -1,7 +1,7 @@
 import {
     DropdownButton,
     Prompt,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React, { useState } from 'react';
 
 function PromptDropdownButtonExample() {

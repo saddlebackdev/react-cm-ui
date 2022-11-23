@@ -84,6 +84,20 @@ const propTypes = {
      */
     id: PropTypes.string,
     /**
+     * It provides a hint to browsers as to the type of virtual keyboard configuration to use when editing this element or its contents.
+     * Values include none, text, tel, url, email, numeric, decimal, and search.
+     */
+    inputMode: PropTypes.oneOf([
+        'none',
+        'text',
+        'tel',
+        'url',
+        'email',
+        'numeric',
+        'decimal',
+        'search',
+    ]),
+    /**
      * Format to appear on dark backgrounds.
      */
     inverse: PropTypes.bool,
@@ -210,6 +224,7 @@ const defaultProps = {
     guide: false,
     icon: null,
     id: null,
+    inputMode: null,
     inverse: false,
     keepCharPositions: false,
     label: null,
@@ -537,6 +552,7 @@ class Input extends React.PureComponent {
             guide,
             icon,
             id,
+            inputMode,
             inverse,
             keepCharPositions,
             label,
@@ -642,6 +658,7 @@ class Input extends React.PureComponent {
                         data-testid={dataTestId}
                         disabled={isDisabled}
                         id={id}
+                        inputMode={inputMode}
                         name={name}
                         max={max}
                         maxLength={maxLength}

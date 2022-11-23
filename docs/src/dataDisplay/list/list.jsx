@@ -2,7 +2,7 @@ import {
     Card,
     Header,
     List,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 // Docs UI Components

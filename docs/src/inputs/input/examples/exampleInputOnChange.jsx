@@ -1,4 +1,4 @@
-import { Input } from 'react-cm-ui';
+import { Input } from '@saddlebackchurch/react-cm-ui';
 import React, { useState, useCallback } from 'react';
 
 function ExampleInputOnChange() {

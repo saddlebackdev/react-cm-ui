@@ -6,7 +6,7 @@ import {
     domUtils,
     Icon,
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     Link,
     withRouter,
@@ -19,7 +19,7 @@ import {
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import React from 'react';
-import withStyles from 'react-cm-ui/styles/withStyles';
+import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles';
 import { navigationItems } from './navigationConstants';
 import breakpointActions from '../global/breakpointActions';
 import Header from './header';

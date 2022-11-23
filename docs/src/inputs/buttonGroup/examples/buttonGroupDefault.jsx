@@ -1,7 +1,7 @@
 import React, {
     useState,
 } from 'react';
-import { ButtonGroup } from 'react-cm-ui';
+import { ButtonGroup } from '@saddlebackchurch/react-cm-ui';
 
 function ButtonGroupDefault() {
     const [value, setValue] = useState(1);

@@ -7,14 +7,14 @@ import {
     map,
     remove,
 } from 'lodash';
-import { SectionalTabs } from 'react-cm-ui';
+import { SectionalTabs } from '@saddlebackchurch/react-cm-ui';
 import PropTypes from 'prop-types';
 import React, {
     useCallback,
     useEffect,
     useState,
 } from 'react';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 
 const propTypes = {
     items: PropTypes.arrayOf(

@@ -3,7 +3,7 @@ import {
     Grid,
     Typography,
     Icon,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     camelCase,
     flatten,
@@ -13,14 +13,14 @@ import {
 } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import withStyles from 'react-cm-ui/styles/withStyles';
-import withWidth from 'react-cm-ui/utils/withWidth';
+import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles';
+import withWidth from '@saddlebackchurch/react-cm-ui/utils/withWidth';
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
 /* eslint-disable import/no-named-default, import/extensions */
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/dataDisplay/icon/icon';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/dataDisplay/icon/icon';
 /* eslint-enable import/no-named-default, import/extensions */
 
 const propTypes = {

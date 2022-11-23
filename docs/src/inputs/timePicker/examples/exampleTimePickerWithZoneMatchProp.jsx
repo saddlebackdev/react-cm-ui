@@ -1,7 +1,7 @@
 import {
     Grid,
     TimePicker,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React, { useState } from 'react';
 import { CUSTOM_TIME_ZONE_SELECT_OPTIONS } from '../constants';
 

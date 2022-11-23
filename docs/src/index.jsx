@@ -4,7 +4,7 @@ import 'regenerator-runtime/runtime';
 import 'css-cm-ui';
 
 import { browserHistory, Router } from 'react-router';
-import { theme, ThemeProvider } from 'react-cm-ui/styles';
+import { theme, ThemeProvider } from '@saddlebackchurch/react-cm-ui/styles';
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';

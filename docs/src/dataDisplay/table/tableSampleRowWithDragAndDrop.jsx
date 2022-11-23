@@ -1,7 +1,7 @@
-import { Grid, Icon, Table } from 'react-cm-ui';
+import { Grid, Icon, Table } from '@saddlebackchurch/react-cm-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
-import withStyles from 'react-cm-ui/styles/withStyles';
+import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles';
 
 const propTypes = {
     classes: PropTypes.shape({

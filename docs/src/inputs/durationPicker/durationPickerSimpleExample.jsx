@@ -1,4 +1,4 @@
-import { DurationPicker } from 'react-cm-ui';
+import { DurationPicker } from '@saddlebackchurch/react-cm-ui';
 import moment from 'moment-timezone';
 import React, { useState } from 'react';
 

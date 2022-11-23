@@ -8,8 +8,8 @@ import {
     PersonPanelDetails,
     PersonPanelSummary,
     Typography,
-} from 'react-cm-ui';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+} from '@saddlebackchurch/react-cm-ui';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { PAYLOAD_PERSON } from './personPanelConstants';
 

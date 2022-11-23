@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Card, Header,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 
 // Docs UI Components
 import Highlighter from '../../global/highlighter';
@@ -9,7 +9,7 @@ import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
 const headerSample = `import React from 'react';
-import { Card } from 'react-cm-ui';
+import { Card } from '@saddlebackchurch/react-cm-ui';
 
 export default class HeaderSample extends React.Component {
     render() {

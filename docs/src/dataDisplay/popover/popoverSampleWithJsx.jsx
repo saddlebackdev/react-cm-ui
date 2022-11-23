@@ -3,7 +3,7 @@ import {
     Button,
     Icon,
     Popover,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 
 function PopoverSample() {
     return (

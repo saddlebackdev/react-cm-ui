@@ -2,14 +2,14 @@ import {
     Card,
     DatePickerCalendar,
     Header,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
-const datePickerSample = `import { DatePickerCalendar } from 'react-cm-ui';
+const datePickerSample = `import { DatePickerCalendar } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 export default class DatePickerSample extends React.Component {
@@ -20,7 +20,7 @@ export default class DatePickerSample extends React.Component {
     }
 }`;
 
-const eventsSample = `import { DatePickerCalendar } from 'react-cm-ui';
+const eventsSample = `import { DatePickerCalendar } from '@saddlebackchurch/react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
 
@@ -39,7 +39,7 @@ export default class EventsSample extends React.Component {
     }
 }`;
 
-const filterDatesSample = `import { DatePickerCalendar } from 'react-cm-ui';
+const filterDatesSample = `import { DatePickerCalendar } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 export default class FilterDatesSample extends React.Component {
@@ -58,7 +58,7 @@ export default class FilterDatesSample extends React.Component {
     }
 }`;
 
-const localeSample = `import { DatePickerCalendar } from 'react-cm-ui';
+const localeSample = `import { DatePickerCalendar } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 export default class LocaleSample extends React.Component {
@@ -71,7 +71,7 @@ export default class LocaleSample extends React.Component {
     }
 }`;
 
-const maxDateSample = `import { DatePickerCalendar } from 'react-cm-ui';
+const maxDateSample = `import { DatePickerCalendar } from '@saddlebackchurch/react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
 
@@ -85,7 +85,7 @@ export default class MaxDateSample extends React.Component {
     }
 }`;
 
-const minDateSample = `import { DatePickerCalendar } from 'react-cm-ui';
+const minDateSample = `import { DatePickerCalendar } from '@saddlebackchurch/react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
 
@@ -99,7 +99,7 @@ export default class MinDateSample extends React.Component {
     }
 }`;
 
-const onChangeSample = `import { DatePickerCalendar } from 'react-cm-ui';
+const onChangeSample = `import { DatePickerCalendar } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 export default class OnChangeSample extends React.Component {
@@ -133,7 +133,7 @@ export default class OnChangeSample extends React.Component {
     }
 }`;
 
-const onMonthChangeSample = `import { DatePickerCalendar } from 'react-cm-ui';
+const onMonthChangeSample = `import { DatePickerCalendar } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 export default class OnMonthChangeSample extends React.Component {

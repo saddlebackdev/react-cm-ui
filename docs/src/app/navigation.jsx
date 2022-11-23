@@ -2,18 +2,18 @@ import {
     Divider,
     Header,
     Icon,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     backgroundColorInverse,
     borderColorQuaternary,
     color,
     colorInverse,
     colorStatic,
-} from 'react-cm-ui/styles/colorExports';
+} from '@saddlebackchurch/react-cm-ui/styles/colorExports';
 import _ from 'lodash';
-import { domUtils } from 'react-cm-ui/utils';
+import { domUtils } from '@saddlebackchurch/react-cm-ui/utils';
 import { Link } from 'react-router';
-import { withStyles } from 'react-cm-ui/styles';
+import { withStyles } from '@saddlebackchurch/react-cm-ui/styles';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';

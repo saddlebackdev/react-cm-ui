@@ -1,4 +1,4 @@
-import { DurationPicker } from 'react-cm-ui';
+import { DurationPicker } from '@saddlebackchurch/react-cm-ui';
 import React, { useState } from 'react';
 
 function DurationPickerLabelExample() {

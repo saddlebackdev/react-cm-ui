@@ -1,4 +1,4 @@
-import { DatePickerInput } from 'react-cm-ui';
+import { DatePickerInput } from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 function ExampleDatePickerInputLabel() {

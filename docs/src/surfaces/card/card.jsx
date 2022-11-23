@@ -2,7 +2,7 @@ import {
     Card,
     Grid,
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 import Block from '../../global/block';
 import Heading from '../../global/heading';
@@ -171,7 +171,7 @@ export default class CollapsableSample extends React.Component {
 }`;
 
 const headerSample = `import React from 'react';
-import { Card } from 'react-cm-ui';
+import { Card } from '@saddlebackchurch/react-cm-ui';
 
 export default class HeaderSample extends React.Component {
     render() {

@@ -1,12 +1,12 @@
 import {
     Grid,
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import ClassNames from 'classnames';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import useTheme from 'react-cm-ui/styles/useTheme';
+import useTheme from '@saddlebackchurch/react-cm-ui/styles/useTheme';
 
 const propTypes = {
     color: PropTypes.oneOf(['textContrastText', 'textPrimary', 'textSecondary']).isRequired,

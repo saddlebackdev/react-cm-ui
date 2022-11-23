@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Typography,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import {
     camelCase,
 } from 'lodash';
@@ -16,7 +16,7 @@ import BreadcrumbsSampleDividerString from './breadcrumbsSampleDividerString';
 import ComponentApi from '../../global/componentApi';
 import Example from '../../global/example';
 // eslint-disable-next-line import/no-named-default, import/extensions
-import { default as rootDoc } from '!!@advclb/react-docgen-loader!react-cm-ui/navigation/breadcrumbs/breadcrumbs';
+import { default as rootDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/navigation/breadcrumbs/breadcrumbs';
 
 const propTypes = {
     location: PropTypes.shape({

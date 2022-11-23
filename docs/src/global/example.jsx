@@ -1,10 +1,10 @@
 import {
     Button,
     Grid,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import ClassNames from 'classnames';
-import Collapse from 'react-cm-ui/utils/collapse';
-import makeStyles from 'react-cm-ui/styles/makeStyles';
+import Collapse from '@saddlebackchurch/react-cm-ui/utils/collapse';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import ExampleFrame from './exampleFrame';

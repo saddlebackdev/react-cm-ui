@@ -1,6 +1,6 @@
 import {
     TimeFromNow,
-} from 'react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui';
 import moment from 'moment-timezone';
 import React from 'react';
 
