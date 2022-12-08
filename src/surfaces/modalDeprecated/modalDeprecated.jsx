@@ -96,21 +96,24 @@ const defaultProps = {
     theme: null,
 };
 
-const styles = (theme) => ({
-    root: {
-        alignItems: 'center',
-        backfaceVisibility: 'hidden',
-        display: 'flex',
-        height: '100%',
-        justifyContent: 'center',
-        left: 0,
-        minWidth: 320,
-        position: 'fixed',
-        top: 0,
-        width: '100%',
-        zIndex: theme.zIndex.modal,
-    },
-});
+const styles = (theme) => {
+    console.log('modalDeprecated', theme);
+    return {
+        root: {
+            alignItems: 'center',
+            backfaceVisibility: 'hidden',
+            display: 'flex',
+            height: '100%',
+            justifyContent: 'center',
+            left: 0,
+            minWidth: 320,
+            position: 'fixed',
+            top: 0,
+            width: '100%',
+            zIndex: theme.zIndex.modal,
+        },
+    };
+};
 
 class ModalDeprecated extends React.Component {
     constructor(props) {
