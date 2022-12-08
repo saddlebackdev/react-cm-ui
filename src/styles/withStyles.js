@@ -1,3 +1,3 @@
-import withStyles from '@material-ui/core/styles/withStyles';
+import withStyles from '@material-ui/styles/withStyles';
 
 export default withStyles;
