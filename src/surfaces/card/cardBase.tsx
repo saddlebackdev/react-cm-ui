@@ -31,6 +31,7 @@ const CardBase = React.forwardRef(function CardBase({
 
     return (
         <CardDeprecated
+            // @ts-ignore
             ref={ref}
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...otherProps}

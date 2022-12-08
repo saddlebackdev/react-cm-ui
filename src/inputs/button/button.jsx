@@ -172,6 +172,7 @@ const defaultProps = {
 };
 
 const styles = (theme) => {
+    console.log('button', theme);
     const {
         palette,
         shape,
