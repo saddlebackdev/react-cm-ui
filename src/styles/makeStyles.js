@@ -1,3 +1,3 @@
-import makeStyles from '@material-ui/styles/makeStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 export default makeStyles;
