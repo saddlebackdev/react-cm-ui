@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Card from '@material-ui/core/Card';
 import React from 'react';
 import CardDeprecated from './cardDeprecated';

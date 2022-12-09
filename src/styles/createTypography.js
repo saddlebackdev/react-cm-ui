@@ -20,7 +20,7 @@ export default function createTypography() {
         body2: buildVariant(fontWeightRegular, 14, 1.43),
         button: buildVariant(fontWeightBold, 14, 0.875),
         caption: buildVariant(fontWeightRegular, 14, 1.66),
-        h1: buildVariant(fontWeightBold, 24, 1.5),
+        // h1: buildVariant(fontWeightBold, 24, 1.5),
         h2: buildVariant(fontWeightBold, 20, 1.5),
         h3: buildVariant(fontWeightBold, 18, 1.5),
         h4: buildVariant(fontWeightMedium, 16, 1.25),
@@ -28,6 +28,20 @@ export default function createTypography() {
         h6: buildVariant(fontWeightRegular, 12, 1.5),
         subtitle1: buildVariant(fontWeightRegular, 14, 1.66),
         subtitle2: buildVariant(fontWeightRegular, 14, 1.66),
+        // h1: {
+        //     color: 'red',
+        //     fontFamily,
+        //     fontWeight: fontWeightBold,
+        //     fontSize: pxToRem(10),
+        //     lineHeight: 1.5,
+        // },
+        h1: {
+            color: 'red',
+            fontFamily: 'some other font',
+            fontWeight: 200,
+            fontSize: 5,
+            lineHeight: 1,
+        },
     };
 
     return {
