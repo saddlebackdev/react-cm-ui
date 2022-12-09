@@ -1,3 +1,3 @@
-import withStyles from '@mui/styles/withStyles';
+import { withStyles } from '@mui/styles';
 
 export default withStyles;

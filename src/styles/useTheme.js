@@ -1,3 +1,3 @@
-import useTheme from '@mui/styles/useTheme';
+import { useTheme } from '@mui/styles';
 
 export default useTheme;

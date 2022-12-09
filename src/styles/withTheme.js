@@ -1,3 +1,3 @@
-import withTheme from '@mui/styles/withTheme';
+import { withTheme } from '@mui/styles';
 
 export default withTheme;
