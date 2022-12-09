@@ -56,7 +56,7 @@ function TypographyGridColumn(props) {
     const fontWeightMedium = `${theme.typography.fontWeightMedium} (Medium)`;
     const fontWeightRegular = `${theme.typography.fontWeightRegular} (Regular)`;
     const fontSize = (size) => `${size} (${theme.typography.htmlFontSize * (size.split('rem')[0] * 1)}px)`;
-    console.log('typography theme', theme);
+
     return (
         <Grid.Column
             className={classes.column}
