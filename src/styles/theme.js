@@ -55,15 +55,6 @@ const theme = createTheme({
                 padding: spacing * 2,
             },
         },
-        h1: {
-            color: 'red !important',
-        },
-        'MuiTypography-h1': {
-            color: 'red !important',
-        },
-        MuiTypography: {
-            color: 'red !important',
-        },
     },
     palette,
     shadows,
