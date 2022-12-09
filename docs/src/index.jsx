@@ -1,5 +1,3 @@
-/* eslint-disable import/order */
-/* eslint-disable import/first */
 import '@babel/register';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
