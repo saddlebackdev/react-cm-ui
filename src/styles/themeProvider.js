@@ -1,5 +1,3 @@
-// import ThemeProvider from '@material-ui/styles/ThemeProvider';
-// import ThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import ThemeProvider from '@mui/styles/ThemeProvider';
 
-export default MuiThemeProvider;
+export default ThemeProvider;

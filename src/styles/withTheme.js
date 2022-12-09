@@ -1,3 +1,3 @@
-import withTheme from '@material-ui/styles/withTheme';
+import withTheme from '@mui/styles/withTheme';
 
 export default withTheme;
