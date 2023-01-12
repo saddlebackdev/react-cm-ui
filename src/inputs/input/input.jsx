@@ -24,6 +24,11 @@ const propTypes = {
      */
     allowDecimals: PropTypes.bool,
     /**
+     * Forces the Input component to always show the required indicator
+     * next to the label.
+     */
+    alwaysShowRequiredIndicator: PropTypes.bool,
+    /**
      * Gives Input immediate focus.
      */
     autoFocus: PropTypes.bool,
@@ -213,6 +218,7 @@ const defaultProps = {
     autoComplete: null,
     allowDecimals: true,
     allowNegativeNumbers: true,
+    alwaysShowRequiredIndicator: false,
     autoFocus: null,
     className: null,
     dataTestId: undefined,
@@ -542,6 +548,7 @@ class Input extends React.PureComponent {
 
     render() {
         const {
+            alwaysShowRequiredIndicator,
             autoComplete,
             className,
             dataTestId,
@@ -608,7 +615,7 @@ class Input extends React.PureComponent {
                 return null;
             }
 
-            const shouldShowRequiredIndicator = required && !value;
+            const shouldShowRequiredIndicator = alwaysShowRequiredIndicator || (required && !value);
 
             return (
                 <label className={labelContainerClassNames} htmlFor={id} style={labelStyle}>

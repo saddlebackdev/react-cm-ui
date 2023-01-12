@@ -40,6 +40,7 @@ const propTypes = {
     labelWeight: PropTypes.oneOf(['bold', 'normal', 'semibold']),
     name: PropTypes.string,
     onChange: PropTypes.func,
+    required: PropTypes.bool,
     size: PropTypes.oneOf(['small', 'large']),
     style: PropTypes.shape({}),
     tabIndex: PropTypes.number,
@@ -67,6 +68,7 @@ const defaultProps = {
     labelWeight: null,
     name: null,
     onChange: null,
+    required: false,
     size: null,
     style: null,
     tabIndex: -1,
@@ -176,6 +178,7 @@ class Checkbox extends React.Component {
             labelStyle,
             labelWeight,
             name,
+            required,
             size,
             style,
             tabIndex,
@@ -243,6 +246,10 @@ class Checkbox extends React.Component {
                         >
                             {label}
                         </span>
+                    )}
+
+                    {label && required && (
+                        <span className="input-required-indicator">*</span>
                     )}
 
                     {toggle ? (
