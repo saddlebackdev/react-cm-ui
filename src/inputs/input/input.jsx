@@ -11,7 +11,7 @@ import InputMasked from 'react-text-mask';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../../dataDisplay/icon';
-import KeyCode from '../../global/keyCode.js';
+import KeyCode from '../../global/keyCode';
 
 const propTypes = {
     /**
@@ -615,7 +615,7 @@ class Input extends React.PureComponent {
                 return null;
             }
 
-            const shouldShowRequiredIndicator = alwaysShowRequiredIndicator || (required && !value);
+            const shouldShowRequiredIndicator = required && (alwaysShowRequiredIndicator || !value);
 
             return (
                 <label className={labelContainerClassNames} htmlFor={id} style={labelStyle}>

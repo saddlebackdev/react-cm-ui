@@ -283,7 +283,7 @@ class TextArea extends React.Component {
                     <label className="label" htmlFor={id} style={labelStyle}>
                         {label}
 
-                        {alwaysShowRequiredIndicator || (required && !value) ? (
+                        {required && (alwaysShowRequiredIndicator || !value) ? (
                             <span className="text-area-required-indicator">*</span>
                         ) : null}
                     </label>
