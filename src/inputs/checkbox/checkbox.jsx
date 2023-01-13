@@ -249,7 +249,7 @@ class Checkbox extends React.Component {
                     )}
 
                     {label && required && (
-                        <span className="input-required-indicator">*</span>
+                        <span className="checkbox-required-indicator">*</span>
                     )}
 
                     {toggle ? (
