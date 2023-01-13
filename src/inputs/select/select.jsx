@@ -22,6 +22,11 @@ import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**
+     * Forces the Input component to always show the required indicator
+     * next to the label.
+     */
+    alwaysShowRequiredIndicator: PropTypes.bool,
+    /**
      * Override or extend the styles applied to Select.
      */
     classes: PropTypes.shape({
@@ -152,6 +157,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    alwaysShowRequiredIndicator: false,
     classes: null,
     className: null,
     clearable: false,
@@ -769,6 +775,7 @@ const useStyles = makeStyles((theme) => {
 // eslint-disable-next-line prefer-arrow-callback
 const Select = React.forwardRef(function Select(props, ref) {
     const {
+        alwaysShowRequiredIndicator,
         className,
         clearable: isClearable,
         creatable: isCreatable,
@@ -972,7 +979,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         },
     );
 
-    const showRequiredIndicator = required && isEmpty(value);
+    const showRequiredIndicator = required && (alwaysShowRequiredIndicator || isEmpty(value));
     const ReactSelectComponent = isCreatable ? ReactSelect.Creatable : CustomReactSelect;
 
     return (

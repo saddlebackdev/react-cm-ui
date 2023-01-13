@@ -48,6 +48,7 @@ const propTypes = {
     onChange: PropTypes.func,
     onKeyDown: PropTypes.func,
     pill: PropTypes.bool,
+    required: PropTypes.bool,
     style: PropTypes.shape({}),
     tabIndex: PropTypes.number,
     value: PropTypes.string,
@@ -70,6 +71,7 @@ const defaultProps = {
     onChange: null,
     onKeyDown: null,
     pill: false,
+    required: false,
     style: null,
     tabIndex: -1,
     value: '',
@@ -419,6 +421,7 @@ class Radio extends React.Component {
             multi,
             name,
             pill,
+            required,
             style,
             tabIndex,
             value,
@@ -515,6 +518,10 @@ class Radio extends React.Component {
                         >
                             {label}
                         </span>
+                    )}
+
+                    {label && required && (
+                        <span className="radio-required-indicator">*</span>
                     )}
                 </label>
             </div>
