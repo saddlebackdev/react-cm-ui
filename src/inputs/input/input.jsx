@@ -25,7 +25,8 @@ const propTypes = {
     allowDecimals: PropTypes.bool,
     /**
      * Forces the Input component to always show the required indicator
-     * next to the label.
+     * next to the label. The default behavior (if this prop is omitted or false) is for
+     * the required field indicator to disappear once a value has been entered.
      */
     alwaysShowRequiredIndicator: PropTypes.bool,
     /**

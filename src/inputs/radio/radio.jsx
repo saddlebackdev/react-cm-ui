@@ -14,6 +14,12 @@ import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     align: PropTypes.oneOf(['left', 'right']),
+    /**
+     * Forces the Radio component to always show the required indicator
+     * next to the label. The default behavior (if this prop is omitted or false) is for
+     * the required field indicator to disappear once the Radio is checked.
+     */
+    alwaysShowRequiredIndicator: PropTypes.bool,
     checked: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.number,
@@ -56,6 +62,7 @@ const propTypes = {
 
 const defaultProps = {
     align: null,
+    alwaysShowRequiredIndicator: false,
     checked: null,
     children: null,
     classes: null,
@@ -157,6 +164,12 @@ const styles = (theme) => {
                     paddingLeft: 33,
                     paddingTop: 2,
                 },
+            },
+            '& .radio-required-indicator': {
+                color: theme.color(theme.palette.error.main),
+                display: 'inline-block',
+                fontSize: theme.typography.pxToRem('14px'),
+                marginLeft: '3px',
             },
             '&$isAlignedRight': {
                 marginLeft: 11,
@@ -409,6 +422,7 @@ class Radio extends React.Component {
     render() {
         const {
             align,
+            alwaysShowRequiredIndicator,
             children,
             classes,
             className,
@@ -429,6 +443,8 @@ class Radio extends React.Component {
 
         const { isChecked } = this.state;
         const isDisabled = disable || disabled;
+
+        const shouldShowRequiredIndicator = required && (alwaysShowRequiredIndicator || !isChecked);
 
         const rootClasses = ClassNames(
             'ui',
@@ -520,7 +536,7 @@ class Radio extends React.Component {
                         </span>
                     )}
 
-                    {label && required && (
+                    {shouldShowRequiredIndicator && (
                         <span className="radio-required-indicator">*</span>
                     )}
                 </label>

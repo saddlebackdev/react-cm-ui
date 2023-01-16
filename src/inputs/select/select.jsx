@@ -22,8 +22,9 @@ import makeStyles from '../../styles/makeStyles';
 
 const propTypes = {
     /**
-     * Forces the Input component to always show the required indicator
-     * next to the label.
+     * Forces the Select component to always show the required indicator
+     * next to the label. The default behavior (if this prop is omitted or false) is for
+     * the required field indicator to disappear once a value has been selected.
      */
     alwaysShowRequiredIndicator: PropTypes.bool,
     /**

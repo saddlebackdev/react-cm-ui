@@ -7,6 +7,12 @@ import PropTypes from 'prop-types';
 import Icon from '../../dataDisplay/icon';
 
 const propTypes = {
+    /**
+     * Forces the Checkbox component to always show the required indicator
+     * next to the label. The default behavior (if this prop is omitted or false) is for
+     * the required field indicator to disappear once the Checkbox is checked.
+     */
+    alwaysShowRequiredIndicator: PropTypes.bool,
     align: PropTypes.oneOf(['left', 'right']),
     checked: PropTypes.bool,
     className: PropTypes.string,
@@ -53,6 +59,7 @@ const propTypes = {
 
 const defaultProps = {
     align: null,
+    alwaysShowRequiredIndicator: false,
     checked: false,
     className: null,
     disable: false,
@@ -166,6 +173,7 @@ class Checkbox extends React.Component {
     render() {
         const {
             align,
+            alwaysShowRequiredIndicator,
             className,
             disable,
             disabled,
@@ -209,6 +217,8 @@ class Checkbox extends React.Component {
         const checkSize = size === 'small' ? 8 : 10;
         const inputId = id ? `${id}_hidden_input` : null;
 
+        const shouldShowRequiredIndicator = required && (alwaysShowRequiredIndicator || !isChecked);
+
         return (
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <div
@@ -248,7 +258,7 @@ class Checkbox extends React.Component {
                         </span>
                     )}
 
-                    {label && required && (
+                    {shouldShowRequiredIndicator && (
                         <span className="checkbox-required-indicator">*</span>
                     )}
 
