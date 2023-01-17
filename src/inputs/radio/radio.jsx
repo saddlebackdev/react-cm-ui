@@ -166,10 +166,10 @@ const styles = (theme) => {
                 },
             },
             '& .radio-required-indicator': {
-                color: theme.color(theme.palette.error.main),
+                color: theme.palette.error.main,
                 display: 'inline-block',
-                fontSize: theme.typography.pxToRem('14px'),
-                marginLeft: '3px',
+                fontSize: theme.typography.pxToRem(14),
+                marginLeft: 3,
             },
             '&$isAlignedRight': {
                 marginLeft: 11,
