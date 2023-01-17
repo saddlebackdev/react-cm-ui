@@ -10,6 +10,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const propTypes = {
+    /**
+     * Forces the TextArea component to always show the required indicator
+     * next to the label. The default behavior (if this prop is omitted or false) is for
+     * the required field indicator to disappear once a value has been entered.
+     */
+    alwaysShowRequiredIndicator: PropTypes.bool,
     autoFocus: PropTypes.bool,
     autoHeight: PropTypes.bool,
     className: PropTypes.string,
@@ -66,6 +72,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    alwaysShowRequiredIndicator: false,
     autoFocus: false,
     autoHeight: false,
     className: null,
@@ -230,6 +237,7 @@ class TextArea extends React.Component {
 
     render() {
         const {
+            alwaysShowRequiredIndicator,
             autoHeight,
             className,
             columns,
@@ -276,7 +284,7 @@ class TextArea extends React.Component {
                     <label className="label" htmlFor={id} style={labelStyle}>
                         {label}
 
-                        {required && !value ? (
+                        {required && (alwaysShowRequiredIndicator || !value) ? (
                             <span className="text-area-required-indicator">*</span>
                         ) : null}
                     </label>

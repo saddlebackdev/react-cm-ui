@@ -11,7 +11,7 @@ import InputMasked from 'react-text-mask';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../../dataDisplay/icon';
-import KeyCode from '../../global/keyCode.js';
+import KeyCode from '../../global/keyCode';
 
 const propTypes = {
     /**
@@ -23,6 +23,12 @@ const propTypes = {
      * for Input of type "number".
      */
     allowDecimals: PropTypes.bool,
+    /**
+     * Forces the Input component to always show the required indicator
+     * next to the label. The default behavior (if this prop is omitted or false) is for
+     * the required field indicator to disappear once a value has been entered.
+     */
+    alwaysShowRequiredIndicator: PropTypes.bool,
     /**
      * Gives Input immediate focus.
      */
@@ -213,6 +219,7 @@ const defaultProps = {
     autoComplete: null,
     allowDecimals: true,
     allowNegativeNumbers: true,
+    alwaysShowRequiredIndicator: false,
     autoFocus: null,
     className: null,
     dataTestId: undefined,
@@ -542,6 +549,7 @@ class Input extends React.PureComponent {
 
     render() {
         const {
+            alwaysShowRequiredIndicator,
             autoComplete,
             className,
             dataTestId,
@@ -608,7 +616,7 @@ class Input extends React.PureComponent {
                 return null;
             }
 
-            const shouldShowRequiredIndicator = required && !value;
+            const shouldShowRequiredIndicator = required && (alwaysShowRequiredIndicator || !value);
 
             return (
                 <label className={labelContainerClassNames} htmlFor={id} style={labelStyle}>
