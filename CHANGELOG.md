@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.3
+_January 17, 2023_
+- Revert dependabot update of `react-phone-number-input` ([PR #423](https://github.com/saddlebackdev/react-cm-ui/pull/423)) because it broke our customized phone number input. [24575bc](https://github.com/saddlebackdev/react-cm-ui/commit/24575bc7ec334f2b5fe93f6e132550f29f8b0f7a)
+
 ## 10.6.2
 _January 17, 2023_
 - [PR #418](https://github.com/saddlebackdev/react-cm-ui/pull/418)
