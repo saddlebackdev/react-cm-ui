@@ -1,6 +1,6 @@
 {
   "name": "@saddlebackchurch/react-cm-ui",
-  "version": "10.6.2",
+  "version": "10.6.3",
   "description": "React UI for Healthy Church",
   "jsnext:main": "src/",
   "main": "core/",
@@ -54,7 +54,7 @@
     "react-custom-scrollbars": "^4.2.1",
     "react-moment-proptypes": "^1.7.0",
     "react-onclickoutside": "^6.7.1",
-    "react-phone-number-input": "^3.2.16",
+    "react-phone-number-input": "^2.3.21",
     "react-portal": "^4.1.1",
     "react-resizable": "^1.10.1",
     "react-resize-detector": "^5.0.7",
