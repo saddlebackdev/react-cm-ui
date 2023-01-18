@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.2
+_January 17, 2023_
+- [PR #418](https://github.com/saddlebackdev/react-cm-ui/pull/418)
+  - Added `alwaysShowRequiredIndicator` prop to several input components to override default behavior of removing the required field indicator (usually a red asterisk near the input control's label) once a value is supplied.
+  - By setting `alwaysShowRequiredIndicator` to `true`, the required field indicator should always remain, regardless of whether the input is populated or not.
+- Various package upgrades from GitHub Dependabot.
+
 ## 10.6.1
 _November 23, 2022_
 
