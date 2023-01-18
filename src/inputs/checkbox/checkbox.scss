@@ -28,6 +28,12 @@ $padding-label-toggle: 63px;
             &-weight-normal { font-weight: $fontWeightRegular; }
             &-weight-semibold { font-weight: $fontWeightSemiBold; }
         }
+        .checkbox-required-indicator {
+            color: color(colorAlert);
+            display: inline-block;
+            font-size: rem(14px);
+            margin-left: 3px;
+        }
         &::before, .ui.icon-check {
             position: absolute;
             transition:

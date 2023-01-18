@@ -14,6 +14,12 @@ import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     align: PropTypes.oneOf(['left', 'right']),
+    /**
+     * Forces the Radio component to always show the required indicator
+     * next to the label. The default behavior (if this prop is omitted or false) is for
+     * the required field indicator to disappear once the Radio is checked.
+     */
+    alwaysShowRequiredIndicator: PropTypes.bool,
     checked: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.number,
@@ -48,6 +54,7 @@ const propTypes = {
     onChange: PropTypes.func,
     onKeyDown: PropTypes.func,
     pill: PropTypes.bool,
+    required: PropTypes.bool,
     style: PropTypes.shape({}),
     tabIndex: PropTypes.number,
     value: PropTypes.string,
@@ -55,6 +62,7 @@ const propTypes = {
 
 const defaultProps = {
     align: null,
+    alwaysShowRequiredIndicator: false,
     checked: null,
     children: null,
     classes: null,
@@ -70,6 +78,7 @@ const defaultProps = {
     onChange: null,
     onKeyDown: null,
     pill: false,
+    required: false,
     style: null,
     tabIndex: -1,
     value: '',
@@ -155,6 +164,12 @@ const styles = (theme) => {
                     paddingLeft: 33,
                     paddingTop: 2,
                 },
+            },
+            '& .radio-required-indicator': {
+                color: theme.palette.error.main,
+                display: 'inline-block',
+                fontSize: theme.typography.pxToRem(14),
+                marginLeft: 3,
             },
             '&$isAlignedRight': {
                 marginLeft: 11,
@@ -407,6 +422,7 @@ class Radio extends React.Component {
     render() {
         const {
             align,
+            alwaysShowRequiredIndicator,
             children,
             classes,
             className,
@@ -419,6 +435,7 @@ class Radio extends React.Component {
             multi,
             name,
             pill,
+            required,
             style,
             tabIndex,
             value,
@@ -426,6 +443,8 @@ class Radio extends React.Component {
 
         const { isChecked } = this.state;
         const isDisabled = disable || disabled;
+
+        const shouldShowRequiredIndicator = required && (alwaysShowRequiredIndicator || !isChecked);
 
         const rootClasses = ClassNames(
             'ui',
@@ -515,6 +534,10 @@ class Radio extends React.Component {
                         >
                             {label}
                         </span>
+                    )}
+
+                    {shouldShowRequiredIndicator && (
+                        <span className="radio-required-indicator">*</span>
                     )}
                 </label>
             </div>

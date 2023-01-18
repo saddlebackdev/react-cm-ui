@@ -20,6 +20,13 @@ import withStyles from '../../styles/withStyles';
 
 const propTypes = {
     /**
+     * Forces the DatePickerInput component to always show the required indicator
+     * next to the label. The default behavior (if this prop is omitted or false) is for
+     * the required field indicator to disappear once a value has been entered.
+     */
+    alwaysShowRequiredIndicator: PropTypes.bool,
+
+    /**
      * Override or extend the styles applied to DatePickerInput.
      */
     classes: PropTypes.shape({
@@ -177,6 +184,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    alwaysShowRequiredIndicator: false,
     classes: null,
     className: null,
     dataTestId: undefined,
@@ -478,6 +486,7 @@ class DatePickerInput extends React.PureComponent {
 
     render() {
         const {
+            alwaysShowRequiredIndicator,
             classes,
             className,
             errorMessage,
@@ -579,6 +588,7 @@ class DatePickerInput extends React.PureComponent {
                         <div ref={ref}>
                             <Input
                                 autoComplete="off"
+                                alwaysShowRequiredIndicator={alwaysShowRequiredIndicator}
                                 data-parsley-error-message={errorMessage}
                                 dataTestId={dataTestId}
                                 disable={isDisabled}

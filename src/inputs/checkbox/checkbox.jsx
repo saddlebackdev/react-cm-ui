@@ -7,6 +7,12 @@ import PropTypes from 'prop-types';
 import Icon from '../../dataDisplay/icon';
 
 const propTypes = {
+    /**
+     * Forces the Checkbox component to always show the required indicator
+     * next to the label. The default behavior (if this prop is omitted or false) is for
+     * the required field indicator to disappear once the Checkbox is checked.
+     */
+    alwaysShowRequiredIndicator: PropTypes.bool,
     align: PropTypes.oneOf(['left', 'right']),
     checked: PropTypes.bool,
     className: PropTypes.string,
@@ -40,6 +46,7 @@ const propTypes = {
     labelWeight: PropTypes.oneOf(['bold', 'normal', 'semibold']),
     name: PropTypes.string,
     onChange: PropTypes.func,
+    required: PropTypes.bool,
     size: PropTypes.oneOf(['small', 'large']),
     style: PropTypes.shape({}),
     tabIndex: PropTypes.number,
@@ -52,6 +59,7 @@ const propTypes = {
 
 const defaultProps = {
     align: null,
+    alwaysShowRequiredIndicator: false,
     checked: false,
     className: null,
     disable: false,
@@ -67,6 +75,7 @@ const defaultProps = {
     labelWeight: null,
     name: null,
     onChange: null,
+    required: false,
     size: null,
     style: null,
     tabIndex: -1,
@@ -164,6 +173,7 @@ class Checkbox extends React.Component {
     render() {
         const {
             align,
+            alwaysShowRequiredIndicator,
             className,
             disable,
             disabled,
@@ -176,6 +186,7 @@ class Checkbox extends React.Component {
             labelStyle,
             labelWeight,
             name,
+            required,
             size,
             style,
             tabIndex,
@@ -205,6 +216,8 @@ class Checkbox extends React.Component {
         });
         const checkSize = size === 'small' ? 8 : 10;
         const inputId = id ? `${id}_hidden_input` : null;
+
+        const shouldShowRequiredIndicator = required && (alwaysShowRequiredIndicator || !isChecked);
 
         return (
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions
@@ -243,6 +256,10 @@ class Checkbox extends React.Component {
                         >
                             {label}
                         </span>
+                    )}
+
+                    {shouldShowRequiredIndicator && (
+                        <span className="checkbox-required-indicator">*</span>
                     )}
 
                     {toggle ? (
