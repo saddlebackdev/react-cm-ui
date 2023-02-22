@@ -2,7 +2,7 @@
   "name": "react-cm-ui-docs",
   "version": "0.17.0",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --openssl-legacy-provider",
     "build:clean": "rimraf build",
     "start": "webpack-dev-server --mode development --hot --progress --host 0.0.0.0",
     "start:prod": "npm run build && webpack-dev-server --mode production --hot --progress --host 0.0.0.0",
