@@ -1,3 +1,3 @@
-import Slide from '@material-ui/core/slide';
+import Slide from '@material-ui/core/Slide';
 
 export default Slide;
