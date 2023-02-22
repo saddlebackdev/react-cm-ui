@@ -51,7 +51,7 @@ function DataGridSample() {
                     campus: 'Anaheim',
                     createdOn: 1152668810,
                     id: 3,
-                    name: 'Class 101 Invite',
+                    name: 'DYP 1 Invite',
                 },
             ]}
             id="data_grid_sample-id"
