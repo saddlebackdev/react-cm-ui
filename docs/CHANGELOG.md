@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.1 - 02/22/2023
+- [PR #428](https://github.com/saddlebackdev/react-cm-ui/pull/428) / Merge Commit ab185e4
+  - Change references to &quot;CLASS&quot; milestones to &quot;DYP&quot; (Discover Your Purpose).
+
 ## 0.17.0 - 11/23/2022
 
 #### Feature
