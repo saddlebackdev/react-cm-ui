@@ -32,7 +32,7 @@ function DataGridSortableRowsSample() {
             campus: 'Anaheim',
             createdOn: 1152668810,
             id: 3,
-            name: 'Class 101 Invite',
+            name: 'DYP 1 Invite',
         },
     ]);
 

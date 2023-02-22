@@ -472,13 +472,13 @@ function GridColumnClassBaseballDiamond(props) {
     );
 
     const milestonesClassesDates = [
-        ...(attendedClass101Date ? [{ label: '101', date: attendedClass101Date }] : []),
+        ...(attendedClass101Date ? [{ label: 'DYP 1', date: attendedClass101Date }] : []),
         ...(congregationDate ? [{ label: 'Became Member', date: congregationDate }] : []),
-        ...(attendedClass201Date ? [{ label: '201', date: attendedClass201Date }] : []),
-        ...(signedMaturityCovenantDate ? [{ label: 'Maturity Covenant Card', date: signedMaturityCovenantDate }] : []),
-        ...(attendedClass301Date ? [{ label: '301', date: attendedClass301Date }] : []),
+        ...(attendedClass201Date ? [{ label: 'DYP 2', date: attendedClass201Date }] : []),
+        ...(signedMaturityCovenantDate ? [{ label: 'Maturity Covenant', date: signedMaturityCovenantDate }] : []),
+        ...(attendedClass301Date ? [{ label: 'DYP 3', date: attendedClass301Date }] : []),
         ...(signedMinistryCovenantDate ? [{ label: 'Ministry Covenant', date: signedMinistryCovenantDate }] : []),
-        ...(attendedClass401Date ? [{ label: '401', date: attendedClass401Date }] : []),
+        ...(attendedClass401Date ? [{ label: 'DYP 4', date: attendedClass401Date }] : []),
         ...(signedMissionCovenantDate ? [{ label: 'Mission Commitment', date: signedMissionCovenantDate }] : []),
     ];
 
@@ -488,7 +488,7 @@ function GridColumnClassBaseballDiamond(props) {
     let class401Title;
 
     if (!hasTakenClass101) {
-        class101Title = 'Has not taken CLASS 101';
+        class101Title = 'Has not taken DYP 1';
     }
 
     if (!hasSignedMembershipAgreement) {
@@ -500,7 +500,7 @@ function GridColumnClassBaseballDiamond(props) {
     }
 
     if (!hasTakenClass201) {
-        class201Title = 'Has not taken CLASS 201';
+        class201Title = 'Has not taken DYP 2';
     }
 
     if (!hasSignedMaturityCovenant) {
@@ -512,7 +512,7 @@ function GridColumnClassBaseballDiamond(props) {
     }
 
     if (!hasTakenClass301) {
-        class301Title = 'Has not taken CLASS 301';
+        class301Title = 'Has not taken DYP 3';
     }
 
     if (!hasSignedMinistryCovenant) {
@@ -524,7 +524,7 @@ function GridColumnClassBaseballDiamond(props) {
     }
 
     if (!hasTakenClass401) {
-        class401Title = 'Has not taken CLASS 401';
+        class401Title = 'Has not taken DYP 4';
     }
 
     if (!hasSignedMissionCovenant) {
@@ -585,7 +585,7 @@ function GridColumnClassBaseballDiamond(props) {
         <Popover
             content={(
                 <MilestonePopoverContent
-                    title="C.L.A.S.S."
+                    title="Discover Your Purpose"
                     milestonesDates={milestonesClassesDates}
                 />
             )}
