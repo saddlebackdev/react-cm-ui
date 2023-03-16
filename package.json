@@ -35,7 +35,9 @@
     "compile": "gulp",
     "postpublish": "git checkout master && git push && git checkout dev",
     "prepare": "npm run compile",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "react": "^16.8.6 || ^18"
@@ -64,7 +66,8 @@
     "react-tether": "^2.0.2",
     "react-text-mask": "5.4.3",
     "react-transition-group": "^1.2.1",
-    "sortablejs": "^1.12.0"
+    "sortablejs": "^1.12.0",
+    "storybook-addon-sass-postcss": "^0.1.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
@@ -76,6 +79,15 @@
     "@jest/globals": "^26.0.1",
     "@mvnu/cpx": "^1.5.2",
     "@selfisekai/gulp-sass": "~4.2.0",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "0.0.13",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
@@ -88,6 +100,8 @@
     "@types/webpack": "^5.28.0",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.3.0",
+    "css-loader": "^5.2.6",
     "css-mediaquery": "^0.1.2",
     "del": "^5.1.0",
     "enzyme": "^3.11.0",
@@ -113,7 +127,9 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "rimraf": "^2.6.1",
-    "sass": "^1.32.6",
+    "sass": "^1.59.2",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.6",
     "typescript": "^4.4.4"
