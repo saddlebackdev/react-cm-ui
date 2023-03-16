@@ -49,7 +49,7 @@ Main.args = {
         </React.Fragment>
     ),
     color: 'default',
-    designVersion: 1,
+    designVersion: 2,
     variant: 'contained',
     // Pill and href bug in the padding bottom
     href: 'https://www.youtube.com/',
