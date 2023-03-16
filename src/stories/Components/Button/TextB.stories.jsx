@@ -46,11 +46,3 @@ TextButton.args = {
     designVersion: 2,
     variant: 'text',
 };
-
-// export const Link = Template.bind({});
-// Link.args = {
-//     children: 'Link',
-//     color: 'link',
-//     variant: 'text',
-//     designVersion: 2,
-// };

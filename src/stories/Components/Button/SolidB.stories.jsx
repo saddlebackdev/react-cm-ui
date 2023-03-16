@@ -56,29 +56,3 @@ SolidButton.args = {
     children: 'Label',
     designVersion: 2,
 };
-
-// export const IconButton = Template.bind({});
-// IconButton.args = {
-//     children: (
-//         <React.Fragment>
-//             <Icon
-//                 type="shape-heart"
-//             />
-//         </React.Fragment>
-//     ),
-//     designVersion: 2,
-//     icon: 'true',
-// };
-
-// export const LabelIcon = Template.bind({});
-// LabelIcon.args = {
-//     children: (
-//         <React.Fragment>
-//             <Icon
-//                 type="shape-heart"
-//             />
-//             <span>Label</span>
-//         </React.Fragment>
-//     ),
-//     designVersion: 2,
-// };

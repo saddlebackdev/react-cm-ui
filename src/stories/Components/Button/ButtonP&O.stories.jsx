@@ -1,7 +1,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-// import { ColorType, VariantType } from '../../../inputs/button/models';
 import Button from '../../../inputs/button/index';
 import Icon from '../../../dataDisplay/icon/index';
 

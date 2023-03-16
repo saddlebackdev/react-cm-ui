@@ -63,31 +63,3 @@ TransparentButton.args = {
     designVersion: 2,
     transparent: 'true',
 };
-
-// export const IconButton = Template.bind({});
-// IconButton.args = {
-//     children: (
-//         <React.Fragment>
-//             <Icon
-//                 type="shape-heart"
-//             />
-//         </React.Fragment>
-//     ),
-//     designVersion: 2,
-//     icon: 'true',
-//     transparent: 'true',
-// };
-
-// export const LabelIcon = Template.bind({});
-// LabelIcon.args = {
-//     children: (
-//         <React.Fragment>
-//             <Icon
-//                 type="shape-heart"
-//             />
-//             <span>Label</span>
-//         </React.Fragment>
-//     ),
-//     designVersion: 2,
-//     transparent: 'true',
-// };

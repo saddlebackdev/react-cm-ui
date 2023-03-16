@@ -18,7 +18,6 @@ export default {
         },
         color: {
             options: Object.values(ColorType),
-            // ['active', 'default', 'error', 'link', 'primary', 'secondary', 'success', 'warning'],
             control: { type: 'select' },
         },
         variant: {
@@ -60,31 +59,3 @@ OutlineButton.args = {
     designVersion: 2,
     variant: 'outlined',
 };
-
-// export const IconButton = Template.bind({});
-// IconButton.args = {
-//     children: (
-//         <React.Fragment>
-//             <Icon
-//                 type="shape-heart"
-//             />
-//         </React.Fragment>
-//     ),
-//     designVersion: 2,
-//     icon: 'true',
-//     variant: 'outlined',
-// };
-
-// export const LabelIcon = Template.bind({});
-// LabelIcon.args = {
-//     children: (
-//         <React.Fragment>
-//             <Icon
-//                 type="shape-heart"
-//             />
-//             <span>Label</span>
-//         </React.Fragment>
-//     ),
-//     variant: 'outlined',
-//     designVersion: 2,
-// };

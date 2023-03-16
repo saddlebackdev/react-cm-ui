@@ -18,7 +18,6 @@ export default {
         },
         color: {
             options: Object.values(ColorType),
-            // ['active', 'default', 'error', 'link', 'primary', 'secondary', 'success', 'warning'],
             control: { type: 'select' },
         },
         variant: {
@@ -52,18 +51,3 @@ PillOutlineButton.args = {
     variant: 'outlined',
     pill: 'true',
 };
-
-// export const LabelIcon = Template.bind({});
-// LabelIcon.args = {
-//     children: (
-//         <React.Fragment>
-//             <Icon
-//                 type="shape-heart"
-//             />
-//             <span>Label</span>
-//         </React.Fragment>
-//     ),
-//     variant: 'outlined',
-//     designVersion: 2,
-//     pill: 'true',
-// };

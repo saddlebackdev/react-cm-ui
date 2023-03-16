@@ -51,17 +51,3 @@ PillButton.args = {
     designVersion: 2,
     pill: 'true',
 };
-
-// export const LabelIcon = Template.bind({});
-// LabelIcon.args = {
-//     children: (
-//         <React.Fragment>
-//             <Icon
-//                 type="shape-heart"
-//             />
-//             <span>Label</span>
-//         </React.Fragment>
-//     ),
-//     designVersion: 2,
-//     pill: 'true',
-// };
