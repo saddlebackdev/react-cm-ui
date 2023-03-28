@@ -1,3 +1,4 @@
+import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { TITLE_PROP_TYPE } from './iconConstants';
@@ -16,6 +17,11 @@ const propTypes = {
         d: PropTypes.string.isRequired,
         transform: PropTypes.string,
     }),
+    paths: PropTypes.arrayOf(PropTypes.shape({
+        d: PropTypes.string,
+        className: PropTypes.string,
+        style: PropTypes.shape({}),
+    })),
     polygon: PropTypes.shape({
         id: PropTypes.string.isRequired,
         transform: PropTypes.string,
@@ -31,6 +37,7 @@ const propTypes = {
 const defaultProps = {
     circle: null,
     path: null,
+    paths: [],
     polygon: null,
     renderGradientColor: null,
     style: null,
@@ -45,6 +52,7 @@ function IconSVG(props) {
         gradientId,
         maskId,
         path,
+        paths,
         polygon,
         renderGradientColor,
         style,
@@ -73,6 +81,16 @@ function IconSVG(props) {
             viewBox={viewBox}
         >
             {title !== false && <title>{title || type}</title>}
+
+            {!isEmpty(paths) && (paths.map((p) => (
+                <path
+                    className={p.className}
+                    d={p.d}
+                    style={p.style}
+                    key={p.id}
+                    id={p.id}
+                />
+            )))}
 
             <defs>
                 {circle && (

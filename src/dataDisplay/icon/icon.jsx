@@ -279,6 +279,7 @@ class Icon extends React.PureComponent {
 
         let circle;
         let path;
+        let paths = [];
         let polygon;
         let viewBox = '0 0 24 24';
 
@@ -1822,6 +1823,29 @@ class Icon extends React.PureComponent {
                 };
 
                 break;
+
+            case 'quiz':
+                paths = [
+                    {
+                        className: 'fill_none',
+                        d: 'm11.72,14.74c-1.14,0-1.97.91-1.97,2.05s.83,2.05,1.97,2.05,1.97-.91,1.97-2.05-.83-2.05-1.97-2.05Z',
+                        id: 'quizz_question_sign_dot',
+                        style: { fill: 'none' },
+                    },
+                    {
+                        className: 'fill_none',
+                        d: 'm12,5.17c-1.57,0-2.93.75-3.9,1.85l1.85,1.69c.51-.47.95-.83,1.61-.83.59,0,1.1.28,1.1.98,0,1.26-2.8,2.36-2.4,4.92h2.95c-.2-2.17,2.68-2.8,2.68-5.16,0-2.48-1.73-3.46-3.9-3.46Z',
+                        id: 'quizz_question_sign_body',
+                        style: { fill: 'none' },
+                    },
+                    {
+                        className: 'filled',
+                        d: 'm22.4,17.95c1.39-2.42,1.99-5.36,1.33-8.48C22.73,4.69,18.8.93,13.97.16,5.8-1.14-1.15,5.81.16,13.98c.77,4.82,4.54,8.76,9.32,9.76,3.12.65,6.05.06,8.47-1.33l4.03,1.5c1.2.45,2.38-.73,1.93-1.93l-1.5-4.03Zm-10.61.88c-1.25.04-2.14-.99-2.03-2.25.08-.98.91-1.81,1.89-1.84,1.24-.04,2.13.99,2.03,2.25-.08.98-.91,1.81-1.89,1.84Zm1.43-5.04h-2.95c-.39-2.56,2.4-3.66,2.4-4.92,0-.71-.51-.98-1.1-.98-.67,0-1.1.35-1.61.83l-1.85-1.69c.96-1.1,2.32-1.85,3.9-1.85,2.17,0,3.9.98,3.9,3.46s-2.87,2.99-2.68,5.16Z',
+                        id: 'quizz_message_globe',
+                    },
+                ];
+
+                break;
             default:
                 console.warn(`Whoops, you have something wrong with the <Icon> type, '${type}', you passed in.`); // eslint-disable-line no-console
         }
@@ -1848,6 +1872,7 @@ class Icon extends React.PureComponent {
                     gradientId={gradientId}
                     maskId={maskId}
                     path={path}
+                    paths={paths}
                     polygon={polygon}
                     renderGradientColor={renderGradientColor}
                     style={svgStyle}
