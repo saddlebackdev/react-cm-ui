@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.5
+_March 30, 2023_
+Add new icon types `element-boolean` and `quiz`.  [PR #432](https://github.com/saddlebackdev/react-cm-ui/pull/432)
+
+
 ## 10.6.4
 _February 22, 2023_
 - Change references to &quot;CLASS&quot; milestones to &quot;DYP&quot; (Discover Your Purpose).  [PR #428](https://github.com/saddlebackdev/react-cm-ui/pull/428)
