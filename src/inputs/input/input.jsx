@@ -15,6 +15,10 @@ import KeyCode from '../../global/keyCode';
 
 const propTypes = {
     /**
+     * Indicates type of file input accepts.
+     */
+    accept: PropTypes.string,
+    /**
      * Indicates whether the value of the control can be automatically completed by the browser.
      */
     autoComplete: PropTypes.oneOf(['off', 'on']),
@@ -204,7 +208,7 @@ const propTypes = {
     /**
      * The HTML input type.
      */
-    type: PropTypes.oneOf(['email', 'number', 'password', 'tel', 'text']),
+    type: PropTypes.oneOf(['email', 'file', 'number', 'password', 'tel', 'text']),
     /**
      * The initial value of the control. This attribute is optional; however, you must use it
      * if using `onChange` prop and using the Input as a controlled component.
@@ -523,6 +527,9 @@ class Input extends React.PureComponent {
             case 'phone':
                 newType = 'tel';
                 break;
+            case 'file':
+                newType = 'file';
+                break;
             case 'text':
             default:
                 newType = 'text';
@@ -604,6 +611,7 @@ class Input extends React.PureComponent {
             'input-type-password': type === 'password',
             'input-type-tel': type === 'tel',
             'input-type-text': type === 'text',
+            'input-type-file': type === 'file',
         });
 
         const labelContainerClassNames = ClassNames('label', {
@@ -628,6 +636,15 @@ class Input extends React.PureComponent {
                 </label>
             );
         };
+
+        if (type === 'file') {
+            return (
+                <input
+                    {...this.props}
+                    ref={this.input}
+                />
+            )
+        }
 
         return (
             <div
