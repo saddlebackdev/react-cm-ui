@@ -640,7 +640,7 @@ class Input extends React.PureComponent {
         if (type === 'file') {
             return (
                 <input
-                    {...this.props}
+
                     ref={this.input}
                 />
             )
