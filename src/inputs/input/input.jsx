@@ -15,10 +15,6 @@ import KeyCode from '../../global/keyCode';
 
 const propTypes = {
     /**
-     * Indicates type of file input accepts.
-     */
-    accept: PropTypes.string,
-    /**
      * Indicates whether the value of the control can be automatically completed by the browser.
      */
     autoComplete: PropTypes.oneOf(['off', 'on']),
