@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.6
+_April 18, 2023_
+- Add support for large file uploads to `<Input />`.  [PR #435](https://github.com/saddlebackdev/react-cm-ui/pull/435)
+- Various package upgrades from GitHub Dependabot.
+
 ## 10.6.5
 _March 30, 2023_
 Add new icon types `element-boolean` and `quiz`.  [PR #432](https://github.com/saddlebackdev/react-cm-ui/pull/432)
