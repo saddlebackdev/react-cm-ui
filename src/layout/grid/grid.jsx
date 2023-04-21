@@ -338,18 +338,24 @@ const Grid = React.forwardRef(
             },
         );
 
-        const gridColumns = responsiveQueryType === 'media' ?
-            children :
+        if (responsiveQueryType === 'container') {
+            console.log('pre gridColumns', children);
+        }
+        const gridColumns = responsiveQueryType === 'container' ?
             children.map( // <GridColumn />'s with @container queries enabled
                 (child) => ({
                     ...child,
                     props: {
-                        ...(child.props ?? {}),
+                        ...child.props,
                         responsiveQueryType: 'container',
                     },
                 }),
-            );
-        console.log('gridColumns', gridColumns);
+            ) :
+            children;
+
+        if (responsiveQueryType === 'container') {
+            console.log('gridColumns', gridColumns);
+        }
         return (
             <div
                 className={rootClasses}
