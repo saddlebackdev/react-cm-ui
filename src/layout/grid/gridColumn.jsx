@@ -1,3 +1,4 @@
+import './gridColumn.scss';
 import {
     reduce,
 } from 'lodash';
@@ -128,6 +129,8 @@ const propTypes = {
      * Deprecated prop. Please use `classes` to override styles.
      */
     width: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+
+    responsiveQueryType: PropTypes.oneOf(['media', 'container']),
 };
 
 const defaultProps = {
@@ -157,6 +160,7 @@ const defaultProps = {
     textAlign: undefined,
     verticalAlign: undefined,
     width: false,
+    responsiveQueryType: 'media',
 };
 
 const generateGrid = (globalStyles, theme, breakpoint) => {
@@ -332,11 +336,14 @@ const GridColumn = React.forwardRef(
             sm,
             style,
             xl,
+            responsiveQueryType,
             ...otherProps
         } = props;
 
         const classes = useStyles(props);
 
+        const hasContainerQueriesEnabled = responsiveQueryType === 'container';
+        console.log('hasContainerQueriesEnabled', hasContainerQueriesEnabled);
         const rootClasses = ClassNames(
             UI_CLASS_NAME,
             BEM_GRID_COLUMN,
@@ -344,15 +351,23 @@ const GridColumn = React.forwardRef(
             className,
             {
                 [classes[`${BEM_GRID_COLUMN}-sm-${String(sm || otherProps.width)}`]]:
-                    sm !== false || otherProps.width !== false,
+                    (sm !== false || otherProps.width !== false) && !hasContainerQueriesEnabled,
                 /**
                  * `otherProps.tablet` is a deprecated prop. It is using the same breakpoint (768)
                  * as `md`, so we're combining in order to have less JSS.
                  */
                 [classes[`${BEM_GRID_COLUMN}-md-${String(md || otherProps.tablet)}`]]:
-                    md !== false || otherProps.tablet !== false,
-                [classes[`${BEM_GRID_COLUMN}-lg-${String(lg)}`]]: lg !== false,
-                [classes[`${BEM_GRID_COLUMN}-xl-${String(xl)}`]]: xl !== false,
+                    (md !== false || otherProps.tablet !== false) && !hasContainerQueriesEnabled,
+                [classes[`${BEM_GRID_COLUMN}-lg-${String(lg)}`]]: lg !== false && !hasContainerQueriesEnabled,
+                [classes[`${BEM_GRID_COLUMN}-xl-${String(xl)}`]]: xl !== false && !hasContainerQueriesEnabled,
+                // ------------------------------------------------------------------------------------
+                [`${BEM_GRID_COLUMN}-sm-${String(sm || otherProps.width)}`]:
+                    (sm !== false || otherProps.width !== false) && hasContainerQueriesEnabled,
+                [`${BEM_GRID_COLUMN}-md-${String(md || otherProps.tablet)}`]:
+                    (md !== false || otherProps.tablet !== false) && hasContainerQueriesEnabled,
+                [`${BEM_GRID_COLUMN}-lg-${String(lg)}`]: lg !== false && hasContainerQueriesEnabled,
+                [`${BEM_GRID_COLUMN}-xl-${String(xl)}`]: xl !== false && hasContainerQueriesEnabled,
+                // ------------------------------------------------------------------------------------
                 /**
                  * Deprecated classes below
                  */

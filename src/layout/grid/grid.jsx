@@ -118,6 +118,8 @@ const propTypes = {
      * Deprecated prop. Please use `classes` to override styles.
      */
     verticalAlign: PropTypes.oneOf(['bottom', 'middle', 'top']),
+
+    responsiveQueryType: PropTypes.oneOf(['media', 'container']),
 };
 
 const defaultProps = {
@@ -139,6 +141,7 @@ const defaultProps = {
     columns: undefined,
     textAlign: undefined,
     verticalAlign: undefined,
+    responsiveQueryType: 'media',
 };
 
 const useStyles = makeStyles(({ spacing }) => {
@@ -178,6 +181,10 @@ const useStyles = makeStyles(({ spacing }) => {
             display: 'flex',
             flexWrap: 'wrap',
             width: '100%',
+            containerType: ({ responsiveQueryType }) => (responsiveQueryType === 'container' ?
+                'inline-size' :
+                'unset'
+            ),
             /**
              * Deprecated classses
              */
@@ -300,6 +307,7 @@ const Grid = React.forwardRef(
             spacing,
             style,
             wrap,
+            responsiveQueryType,
             ...otherProps
         } = props;
 
@@ -330,6 +338,18 @@ const Grid = React.forwardRef(
             },
         );
 
+        const gridColumns = responsiveQueryType === 'media' ?
+            children :
+            children.map( // <GridColumn />'s with @container queries enabled
+                (child) => ({
+                    ...child,
+                    props: {
+                        ...(child.props ?? {}),
+                        responsiveQueryType: 'container',
+                    },
+                }),
+            );
+        console.log('gridColumns', gridColumns);
         return (
             <div
                 className={rootClasses}
@@ -338,7 +358,7 @@ const Grid = React.forwardRef(
                 ref={ref}
                 style={style}
             >
-                {children}
+                {gridColumns}
             </div>
         );
     },
