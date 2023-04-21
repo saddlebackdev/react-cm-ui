@@ -1,4 +1,3 @@
-import './gridColumn.scss';
 import {
     reduce,
 } from 'lodash';
