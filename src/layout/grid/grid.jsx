@@ -339,20 +339,20 @@ const Grid = React.forwardRef(
                 [classes.deprecatedVerticalAlignTop]: otherProps.verticalAlign === 'top',
             },
         );
-
+        console.log('children', children);
         const gridColumns = responsiveQueryType === 'container' ?
             React.Children.map(
                 children, // <GridColumn />'s with @container queries enabled
                 (child) => ({
                     ...child,
                     props: {
-                        ...child.props,
+                        ...child?.props,
                         responsiveQueryType: 'container',
                     },
                 }),
             ) :
             children;
-
+        console.log('gridColumns', gridColumns);
         return (
             <div
                 className={rootClasses}
