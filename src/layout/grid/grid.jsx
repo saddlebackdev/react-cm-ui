@@ -339,7 +339,6 @@ const Grid = React.forwardRef(
                 [classes.deprecatedVerticalAlignTop]: otherProps.verticalAlign === 'top',
             },
         );
-        console.log('children', children);
 
         const parsedGridColumns = React.Children.map(children, (child) => {
             if (React.isValidElement(child)) {
@@ -353,7 +352,6 @@ const Grid = React.forwardRef(
             parsedGridColumns :
             children;
 
-        console.log('gridColumns', gridColumns);
         return (
             <div
                 className={rootClasses}
