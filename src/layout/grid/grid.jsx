@@ -341,7 +341,8 @@ const Grid = React.forwardRef(
         );
 
         const gridColumns = responsiveQueryType === 'container' ?
-            React.Children.map( // <GridColumn />'s with @container queries enabled
+            React.Children.map(
+                children, // <GridColumn />'s with @container queries enabled
                 (child) => ({
                     ...child,
                     props: {
