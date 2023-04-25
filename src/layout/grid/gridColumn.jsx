@@ -109,6 +109,10 @@ const propTypes = {
      */
     mobileMedium: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     /**
+     * Makes the grid column responsiveness interact with either broweser or parent container width.
+     */
+    responsiveQueryType: PropTypes.oneOf(['media', 'container']),
+    /**
      * Deprecated prop. Please use `classes` to override styles.
      */
     style: PropTypes.shape({}),
@@ -128,8 +132,6 @@ const propTypes = {
      * Deprecated prop. Please use `classes` to override styles.
      */
     width: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-
-    responsiveQueryType: PropTypes.oneOf(['media', 'container']),
 };
 
 const defaultProps = {
@@ -154,12 +156,12 @@ const defaultProps = {
     mobile: false,
     mobileLarge: false,
     mobileMedium: false,
+    responsiveQueryType: 'media',
     style: null,
     tablet: false,
     textAlign: undefined,
     verticalAlign: undefined,
     width: false,
-    responsiveQueryType: 'media',
 };
 
 const generateGrid = (globalStyles, theme, breakpoint) => {
@@ -342,7 +344,7 @@ const GridColumn = React.forwardRef(
         const classes = useStyles(props);
 
         const hasContainerQueriesEnabled = responsiveQueryType === 'container';
-        console.log('hasContainerQueriesEnabled', hasContainerQueriesEnabled);
+
         const rootClasses = ClassNames(
             UI_CLASS_NAME,
             BEM_GRID_COLUMN,

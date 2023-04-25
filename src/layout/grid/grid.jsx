@@ -86,6 +86,10 @@ const propTypes = {
         'space-evenly',
     ]),
     /**
+     * Makes the grid responsiveness interact with either broweser or parent container width.
+     */
+    responsiveQueryType: PropTypes.oneOf(['media', 'container']),
+    /**
      * Defines the space between the type `item` component.
      * It can only be used on a type `container` component.
      */
@@ -118,8 +122,6 @@ const propTypes = {
      * Deprecated prop. Please use `classes` to override styles.
      */
     verticalAlign: PropTypes.oneOf(['bottom', 'middle', 'top']),
-
-    responsiveQueryType: PropTypes.oneOf(['media', 'container']),
 };
 
 const defaultProps = {
@@ -132,6 +134,7 @@ const defaultProps = {
     direction: 'row',
     id: null,
     justifyContent: 'flex-start',
+    responsiveQueryType: 'media',
     spacing: 0,
     style: null,
     wrap: 'wrap',
@@ -141,7 +144,6 @@ const defaultProps = {
     columns: undefined,
     textAlign: undefined,
     verticalAlign: undefined,
-    responsiveQueryType: 'media',
 };
 
 const useStyles = makeStyles(({ spacing }) => {
@@ -178,13 +180,13 @@ const useStyles = makeStyles(({ spacing }) => {
 
     return {
         root: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            width: '100%',
             containerType: ({ responsiveQueryType }) => (responsiveQueryType === 'container' ?
                 'inline-size' :
                 'unset'
             ),
+            display: 'flex',
+            flexWrap: 'wrap',
+            width: '100%',
             /**
              * Deprecated classses
              */
@@ -304,10 +306,10 @@ const Grid = React.forwardRef(
             id,
             direction,
             justifyContent,
+            responsiveQueryType,
             spacing,
             style,
             wrap,
-            responsiveQueryType,
             ...otherProps
         } = props;
 
@@ -338,11 +340,8 @@ const Grid = React.forwardRef(
             },
         );
 
-        if (responsiveQueryType === 'container') {
-            console.log('pre gridColumns', children);
-        }
         const gridColumns = responsiveQueryType === 'container' ?
-            children.map( // <GridColumn />'s with @container queries enabled
+            React.Children.map( // <GridColumn />'s with @container queries enabled
                 (child) => ({
                     ...child,
                     props: {
@@ -353,9 +352,6 @@ const Grid = React.forwardRef(
             ) :
             children;
 
-        if (responsiveQueryType === 'container') {
-            console.log('gridColumns', gridColumns);
-        }
         return (
             <div
                 className={rootClasses}

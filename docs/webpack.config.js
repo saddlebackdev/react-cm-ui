@@ -23,9 +23,6 @@ module.exports = (env, options) => {
         devServer: {
             historyApiFallback: true,
             port: 8082,
-            client: {
-                overlay: false,
-            },
         },
         output: {
             path: path.join(__dirname, './build'),
