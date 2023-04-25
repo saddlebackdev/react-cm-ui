@@ -340,18 +340,19 @@ const Grid = React.forwardRef(
             },
         );
         console.log('children', children);
+
+        const parsedGridColumns = React.Children.map(children, (child) => {
+            if (React.isValidElement(child)) {
+                return React.cloneElement(child, { responsiveQueryType: 'container' });
+            }
+
+            return child;
+        });
+
         const gridColumns = responsiveQueryType === 'container' ?
-            React.Children.map(
-                children, // <GridColumn />'s with @container queries enabled
-                (child) => ({
-                    ...child,
-                    props: {
-                        ...child?.props,
-                        responsiveQueryType: 'container',
-                    },
-                }),
-            ) :
+            parsedGridColumns :
             children;
+
         console.log('gridColumns', gridColumns);
         return (
             <div
