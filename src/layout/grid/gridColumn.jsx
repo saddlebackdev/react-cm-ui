@@ -109,7 +109,8 @@ const propTypes = {
      */
     mobileMedium: PropTypes.oneOf(['auto', true, false, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     /**
-     * Makes the grid column responsiveness interact with either broweser or parent container width.
+     * Determines whether the grid column responsiveness is based on the entire viewport width ("media")
+     * or the parent container width ("container").  Optional; defaults to "media" (entire viewport width).
      */
     responsiveQueryType: PropTypes.oneOf(['media', 'container']),
     /**
