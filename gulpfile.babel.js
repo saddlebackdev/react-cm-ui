@@ -10,6 +10,11 @@ import babel from 'gulp-babel';
 import cleanCSS from 'gulp-clean-css';
 import sass from '@selfisekai/gulp-sass';
 import del from 'del';
+import concat from 'gulp-concat';
+import csso from 'gulp-csso';
+import rename from 'gulp-rename';
+import replace from 'gulp-replace';
+import stripCode from 'gulp-strip-code';
 
 const tsProject = gulpTs.createProject('tsconfig.json');
 
@@ -69,6 +74,10 @@ function scripts() {
 
 function styles() {
     return src(paths.styles.src)
+        .pipe(stripCode({
+            start_comment: 'disable-gulp-start',
+            end_comment: 'disable-gulp-end'
+        }))
         .pipe(sass())
         .pipe(cleanCSS())
         .pipe(dest(paths.styles.dest));
@@ -86,6 +95,31 @@ function types() {
         .pipe(dest(paths.types.dest));
 }
 
+function containerQueries() {
+    return src('./src/layout/grid/gridColumn.scss')
+        .pipe(replace(/@container/g, '@media'))
+        .pipe(rename('styleGridColumn.scss'))
+        .pipe(sass())
+        .pipe(csso())
+        .pipe(dest(destSrc));
+}
+
+function containerQueriesPostProcess() {
+    return src('./core/styleGridColumn.css')
+        .pipe(replace(/@media/g, '@container'))
+        .pipe(dest(destSrc));
+}
+
+function concatCss() {
+    return src('core/**.css')
+        .pipe(concat('style.css'))
+        .pipe(dest(destSrc));
+}
+
+function removeUnusedFiles() {
+    return del(['core/styleGridColumn.css']);
+}
+
 export default series(
     clean,
     parallel(
@@ -94,5 +128,9 @@ export default series(
         styles,
         ts,
         types,
+        containerQueries,
     ),
+    containerQueriesPostProcess,
+    concatCss,
+    removeUnusedFiles,
 );
