@@ -97,7 +97,7 @@ function types() {
 
 function containerQueries() {
     return src('./src/layout/grid/gridColumn.scss')
-        .pipe(replace(/@container/g, '@media'))
+        .pipe(replace(/@container/g, '@media')) // temporarily replace `@container` with `@media` because Clean CSS Gulp plugin does not support `@container` queries
         .pipe(rename('styleGridColumn.scss'))
         .pipe(sass())
         .pipe(csso())
@@ -106,7 +106,7 @@ function containerQueries() {
 
 function containerQueriesPostProcess() {
     return src('./core/styleGridColumn.css')
-        .pipe(replace(/@media/g, '@container'))
+        .pipe(replace(/@media/g, '@container')) // restore `@container` for queries in this file that had temporarily been switched to `@media`
         .pipe(dest(destSrc));
 }
 

@@ -43,6 +43,8 @@
 @import './inputs/timePicker/timePicker';
 
 // Layout
+/* NOTE: `./layout/grid/gridColumn` requires special handling due to its use of newer `@container` queries. */
+/* That's why it is being exluded from Gulp using the special marker comments below.                        */
 /* disable-gulp-start */
 @import './layout/grid/gridColumn';
 /* disable-gulp-end */
