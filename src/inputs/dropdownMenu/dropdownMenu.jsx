@@ -2,6 +2,7 @@ import {
     debounce,
     get,
     isFunction,
+    isNil,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -15,9 +16,10 @@ import {
 } from './dropdownMenuConstants';
 import makeStyles from '../../styles/makeStyles';
 
-const propTypes = {
+export const propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
+    horizontalAlign: PropTypes.string,
     id: PropTypes.string,
     isOpen: PropTypes.bool.isRequired,
     getParentContainer: PropTypes.func,
@@ -39,6 +41,7 @@ const propTypes = {
 const defaultProps = {
     optionsTheme: 'dark',
     className: undefined,
+    horizontalAlign: undefined,
     id: undefined,
     style: undefined,
     getParentContainer: undefined,
@@ -142,6 +145,7 @@ function DropdownMenu(props) {
         children,
         className,
         getParentContainer,
+        horizontalAlign,
         id,
         isOpen,
         optionsTheme,
@@ -182,8 +186,19 @@ function DropdownMenu(props) {
             bottomBias,
         } = dropdownMenuObj;
 
-        const menuXPosition = isInRight ? 'left' : 'right';
+        let menuXPosition = isInRight ? 'left' : 'right';
         let menuYPosition = topBias < bottomBias ? 'top' : 'bottom';
+
+        /**
+         * allow horizontal alignment to be overridden by the prop
+         */
+        if (!isNil(horizontalAlign)) {
+            if (horizontalAlign === 'left' && isInRight) {
+                menuXPosition = 'left';
+            } else if (horizontalAlign === 'right' || !isInRight) {
+                menuXPosition = 'right';
+            }
+        }
 
         if (isInBottom || bottomBias < 0) {
             menuYPosition = 'top';
@@ -230,7 +245,7 @@ function DropdownMenu(props) {
         onDropdownMenuReposition();
 
         return () => {
-            if (isOpen) {
+            if (!isOpen) {
                 window.removeEventListener('resize', debounceDropdownMenuReposition);
                 window.removeEventListener('scroll', debounceDropdownMenuReposition);
                 document.removeEventListener('click', onClickOutside);
