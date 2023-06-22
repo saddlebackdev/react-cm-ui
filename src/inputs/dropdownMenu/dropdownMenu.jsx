@@ -224,7 +224,7 @@ function DropdownMenu(props) {
     useEffect(() => {
         function onClickOutside(event) {
             const parentContainer = dropdownMenuRef.current;
-            const containsTarget = parentContainer?.contains(event.target) ?? false;
+            const containsTarget = !isNil(parentContainer) && parentContainer.contains(event.target);
 
             if (
                 !containsTarget ||
