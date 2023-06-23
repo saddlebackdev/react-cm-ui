@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.8
+_June 23, 2023_
+- Added defensive check in `<DropdownMenu />` on `parentContainer` before de-referencing it to call `contains()` method in `onClickOutside()` function. [PR #440](https://github.com/saddlebackdev/react-cm-ui/pull/440)
+- Added new icon type `scan-id`.  [PR #432](https://github.com/saddlebackdev/react-cm-ui/pull/441)
+
 ## 10.6.7
 _May 18, 2023_
 - Added ability to set the `<DropdownMenu />` props from the `<DropdownButton />` component.  [PR #438](https://github.com/saddlebackdev/react-cm-ui/pull/438)
