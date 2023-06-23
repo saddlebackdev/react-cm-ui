@@ -1,11 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.8
+_June 22, 2023_
+- Add new icon type `scan-id`.  [PR #432](https://github.com/saddlebackdev/react-cm-ui/pull/441)
+
 ## 10.6.7
 _May 18, 2023_
 - Added ability to set the `<DropdownMenu />` props from the `<DropdownButton />` component.  [PR #438](https://github.com/saddlebackdev/react-cm-ui/pull/438)
 
-## 10.6.6
 _April 18, 2023_
 - Add support for large file uploads to `<Input />`.  [PR #435](https://github.com/saddlebackdev/react-cm-ui/pull/435)
 - Various package upgrades from GitHub Dependabot.
