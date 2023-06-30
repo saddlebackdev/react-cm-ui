@@ -4,14 +4,14 @@ import {
     isEmpty,
     isFunction,
     isString,
-    map,
-    noop,
     size,
 } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
-import ReactSelect from 'react-select-old';
+import Select, {
+    components,
+} from 'react-select';
 import ScrollBar from 'react-custom-scrollbars';
 import {
     BEM_SELECT,
@@ -19,7 +19,6 @@ import {
 } from '../../global/constants';
 import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
-import SelectNext from '../selectNext/selectNext';
 
 const propTypes = {
     /**
@@ -35,9 +34,13 @@ const propTypes = {
         root: PropTypes.string,
     }),
     /**
-    * Assign additional class names to Select.
+    * Assign a class name to the outer component.
     */
     className: PropTypes.string,
+    /**
+     * Assign a prefix to inner components for CSS classes styling.
+     */
+    classNamePrefix: PropTypes.string,
     /**
     * A Select can clear its value using close icon
     */
@@ -47,17 +50,9 @@ const propTypes = {
     */
     creatable: PropTypes.bool,
     /**
-    * Deprecated prop. Please use `disabled` instead.
-    */
-    disable: PropTypes.bool,
-    /**
     * A Select can be disabled
     */
     disabled: PropTypes.bool,
-    /**
-    * Supply style to dropdown menu container
-    */
-    dropdownMenuContainerStyle: PropTypes.shape({}),
     /**
     * Supply dropdown menu maximum height
     */
@@ -66,10 +61,6 @@ const propTypes = {
     * Supply dropdown menu minimum height
     */
     dropdownMenuMinHeight: PropTypes.number,
-    /**
-    * Supply dropdown menu style
-    */
-    dropdownMenuStyle: PropTypes.shape({}),
     /**
      * Indicates that the Select has an error.
      */
@@ -94,6 +85,20 @@ const propTypes = {
      * enums:any, label, value
      */
     matchProp: PropTypes.oneOf(['any', 'label', 'value']),
+    /**
+     * Overrides default menu placement in relation to the control.
+     * Auto flips when not enough space below.
+     */
+    menuPlacement: PropTypes.oneOf(['bottom', 'auto', 'top']),
+    /**
+     * Overrides CSS positioning of the menu within parent container.
+     */
+    menuPosition: PropTypes.oneOf(['absolute', 'fixed']),
+    /**
+     * Controls whether the dropdown menu should use a portal and
+     * which element should be utilized.
+     */
+    menuPortalTarget: PropTypes.node,
     /**
      * A Select can have multiple values
      */
@@ -162,19 +167,20 @@ const defaultProps = {
     alwaysShowRequiredIndicator: false,
     classes: null,
     className: null,
+    classNamePrefix: null,
     clearable: false,
     creatable: false,
     error: null,
-    disable: false,
     disabled: false,
-    dropdownMenuContainerStyle: null,
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
-    dropdownMenuStyle: null,
     fluid: false,
     id: null,
     label: null,
     matchProp: 'any',
+    menuPlacement: 'auto',
+    menuPosition: 'absolute',
+    menuPortalTarget: null,
     multiple: false,
     noResultsText: 'No results found',
     onChange: null,
@@ -192,7 +198,7 @@ const defaultProps = {
     valueComponent: undefined,
 };
 
-class CustomReactSelect extends ReactSelect {
+class CustomReactSelect extends Select {
     renderHiddenField(valueArray) {
         const {
             menuContainerStyle,
@@ -772,19 +778,145 @@ const useStyles = makeStyles((theme) => {
 });
 
 /**
+ * Define custom Arrow Component
+ */
+const CustomArrow = (componentProps) => {
+    const { selectProps } = componentProps;
+    return (
+        <components.DropdownIndicator
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...componentProps}
+        >
+            { selectProps.isCreatable ? (
+                <div>
+                    <Icon
+                        compact
+                        size={16}
+                        title="Select"
+                        type="plus"
+                    />
+                </div>
+            ) : null}
+            { selectProps.isUnderlined ? (
+                <Icon
+                    compact
+                    size={10}
+                    title="Select"
+                    type="caret-down"
+                />
+            ) : null}
+            { !selectProps.isCreatable && !selectProps.isUnderlined ? (
+                <div>
+                    <Icon
+                        compact
+                        size={16}
+                        title="Select"
+                        type="chevron-down"
+                    />
+                </div>
+            ) : null}
+        </components.DropdownIndicator>
+    );
+};
+
+/**
+ * Define custom MenuList Component
+ */
+const CustomMenuList = (componentProps) => {
+    const {
+        children,
+        innerRef,
+        selectProps,
+    } = componentProps;
+
+    return (
+        <components.MenuList
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...componentProps}
+            ref={innerRef}
+        >
+            <ScrollBar
+                autoHeight
+                autoHeightMax={selectProps.dropdownMenuMaxHeight || 180}
+                autoHeightMin={selectProps.dropdownMenuMinHeight}
+                autoHide
+                className="select-menu-scrollbar"
+                ref={selectProps.menuScrollBarRef}
+            >
+                {children}
+            </ScrollBar>
+        </components.MenuList>
+    );
+};
+
+const CustomOption = (componentProps) => {
+    const {
+        children,
+        className,
+        innerRef,
+        isDisabled,
+        isFocused,
+        isSelected,
+        onFocus,
+        selectOption,
+        selectProps,
+    } = componentProps;
+
+    const optionClass = ClassNames(
+        'Select-option',
+        className,
+        {
+            'is-disabled': isDisabled,
+            'is-focused': isFocused,
+            'is-selected': isSelected,
+        },
+    );
+
+    if (selectProps.optionComponent) {
+        const OptionComponent = selectProps.optionComponent;
+
+        return (
+            <OptionComponent
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...componentProps}
+                className={optionClass}
+                isDisabled={isDisabled}
+                isFocused={isFocused}
+                isSelected={isSelected}
+                onFocus={onFocus}
+                onSelect={selectOption}
+                option={children}
+                ref={isFocused ? selectProps.focusedOptionRef : undefined}
+            />
+        );
+    }
+
+    return (
+        <components.Option
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...componentProps}
+            aria-selected={isSelected}
+            className={optionClass}
+            selectOption={selectOption}
+            ref={innerRef}
+            tabIndex={0}
+        >
+            {children}
+        </components.Option>
+    );
+};
+
+/**
  * The Select component represents a control that provides a menu of options.
  */
 // eslint-disable-next-line prefer-arrow-callback
-const Select = React.forwardRef(function Select(props, ref) {
+const SelectNext = React.forwardRef(function SelectNext(props, ref) {
     const {
         alwaysShowRequiredIndicator,
         className,
         clearable: isClearable,
         creatable: isCreatable,
-        disable: disableProp,
         disabled: disabledProp,
-        dropdownMenuContainerStyle,
-        dropdownMenuStyle,
         dropdownMenuMaxHeight,
         dropdownMenuMinHeight,
         error,
@@ -792,6 +924,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         id,
         label,
         matchProp,
+        menuPortalTarget,
         multiple,
         noResultsText,
         onChange: onChangeProp,
@@ -844,78 +977,6 @@ const Select = React.forwardRef(function Select(props, ref) {
         if (isFunction(onChangeProp)) {
             onChangeProp(selectedOption);
         }
-    };
-
-    const menuRenderer = (params) => {
-        const items = map(params.options, (o, i) => {
-            const isFocused = o === params.focusedOption;
-            const isSelected = params.valueArray && params.valueArray.some((x) => (
-                x[params.valueKey] === o[params.valueKey]
-            ));
-
-            const optionClass = ClassNames(
-                'Select-option',
-                params.optionClassName,
-                {
-                    'is-disabled': o.disabled,
-                    'is-focused': isFocused,
-                    'is-selected': isSelected,
-                },
-            );
-
-            if (optionComponent) {
-                const OptionComponent = optionComponent;
-
-                return (
-                    <OptionComponent
-                        className={optionClass}
-                        focusOption={params.focusOption}
-                        isDisabled={o.disabled}
-                        isFocused={isFocused}
-                        isSelected={isSelected}
-                        key={`select-option-key-${i}`}
-                        onFocus={params.onFocus}
-                        onSelect={params.selectValue}
-                        option={o}
-                        ref={isFocused ? focusedOptionRef : undefined}
-                    />
-                );
-            }
-
-            return (
-                <div
-                    aria-selected={isSelected}
-                    className={optionClass}
-                    key={`select-option-key-${i}`}
-                    onClick={() => params.selectValue(o)}
-                    onFocus={noop}
-                    onKeyDown={noop}
-                    onMouseOver={() => params.focusOption(o)}
-                    ref={isFocused ? focusedOptionRef : undefined}
-                    role="option"
-                    tabIndex={0}
-                >
-                    {o.label}
-                </div>
-            );
-        });
-
-        return (
-            <div
-                ref={innerMenuRef}
-            >
-                <ScrollBar
-                    autoHeight
-                    autoHeightMax={dropdownMenuMaxHeight || 180}
-                    autoHeightMin={dropdownMenuMinHeight}
-                    autoHide
-                    className="select-menu-scrollbar"
-                    ref={menuScrollBarRef}
-                >
-                    {items}
-                </ScrollBar>
-            </div>
-        );
     };
 
     const onInputKeyDown = (event) => {
@@ -982,7 +1043,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     );
 
     const showRequiredIndicator = required && (alwaysShowRequiredIndicator || isEmpty(value));
-    const ReactSelectComponent = isCreatable ? ReactSelect.Creatable : CustomReactSelect;
+    const ReactSelectComponent = isCreatable ? Select.Creatable : CustomReactSelect;
 
     return (
         <div
@@ -1009,42 +1070,6 @@ const Select = React.forwardRef(function Select(props, ref) {
             )}
 
             <ReactSelectComponent
-                arrowRenderer={() => {
-                    if (isCreatable) {
-                        return (
-                            <div>
-                                <Icon
-                                    compact
-                                    size={16}
-                                    title="Select"
-                                    type="plus"
-                                />
-                            </div>
-                        );
-                    }
-
-                    if (isUnderlined) {
-                        return (
-                            <Icon
-                                compact
-                                size={10}
-                                title="Select"
-                                type="caret-down"
-                            />
-                        );
-                    }
-
-                    return (
-                        <div>
-                            <Icon
-                                compact
-                                size={16}
-                                title="Select"
-                                type="chevron-down"
-                            />
-                        </div>
-                    );
-                }}
                 clearRenderer={() => (
                     <div>
                         <Icon
@@ -1055,24 +1080,32 @@ const Select = React.forwardRef(function Select(props, ref) {
                         />
                     </div>
                 )}
-                clearable={isClearable}
-                disabled={disabledProp || disableProp}
-                matchProp={!isCreatable ? matchProp : null}
-                menuContainerStyle={dropdownMenuContainerStyle}
-                menuRenderer={menuRenderer}
-                menuStyle={dropdownMenuStyle}
-                multi={multiple}
-                noResultsText={noResultsText}
-                onClose={onClose}
-                onInputKeyDown={onInputKeyDown}
-                onOpen={onOpen}
+                components={{
+                    DropdownIndicator: CustomArrow,
+                    MenuList: CustomMenuList,
+                    Option: CustomOption,
+                }}
+                dropdownMenuMaxHeight={dropdownMenuMaxHeight}
+                dropdownMenuMinHeight={dropdownMenuMinHeight}
+                focusedOptionRef={focusedOptionRef}
+                isClearable={isClearable}
+                isCreatable={isCreatable}
+                isDisabled={disabledProp}
+                isMulti={multiple}
+                isSearchable={isSearchable}
+                isUnderlined={isUnderlined}
+                menuPortalTarget={menuPortalTarget}
+                menuScrollBarRef={menuScrollBarRef}
                 name="firstSelect"
+                noOptionsMessage={noResultsText}
                 onChange={onChange}
+                onClose={onClose}
+                onKeyDown={onInputKeyDown}
+                onMenuOpen={onOpen}
                 optionComponent={optionComponent}
                 options={options}
-                promptTextCreator={isCreatable && promptTextCreator}
                 placeholder={placeholder}
-                searchable={isSearchable}
+                promptTextCreator={isCreatable && promptTextCreator}
                 tabIndex={tabIndex}
                 value={value}
                 valueComponent={valueComponent}
@@ -1088,8 +1121,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     );
 });
 
-Select.propTypes = propTypes;
-Select.defaultProps = defaultProps;
-Select.Next = SelectNext;
+SelectNext.propTypes = propTypes;
+SelectNext.defaultProps = defaultProps;
 
-export default Select;
+export default SelectNext;
