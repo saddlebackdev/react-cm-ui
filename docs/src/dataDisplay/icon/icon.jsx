@@ -3,28 +3,31 @@ import {
     Grid,
     Typography,
     Icon,
-} from '@saddlebackchurch/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import {
     camelCase,
     flatten,
+    isNil,
     kebabCase,
     map,
     sortBy,
 } from 'lodash';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles';
-import withWidth from '@saddlebackchurch/react-cm-ui/utils/withWidth';
+import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles'; // eslint-disable-line import/no-unresolved
+import withWidth from '@saddlebackchurch/react-cm-ui/utils/withWidth'; // eslint-disable-line import/no-unresolved
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
-/* eslint-disable import/no-named-default, import/extensions */
+/* eslint-disable import/no-named-default, import/extensions, import/no-unresolved */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/dataDisplay/icon/icon';
-/* eslint-enable import/no-named-default, import/extensions */
+/* eslint-enable import/no-named-default, import/extensions, import/no-unresolved */
 
 const propTypes = {
     classes: PropTypes.shape({
+        alphabeticalIconGrid: PropTypes.string,
         dropdownButton: PropTypes.string,
         iconGridColumn: PropTypes.string,
     }).isRequired,
@@ -51,6 +54,7 @@ const categorizedIconSet = [
             'refresh',
             'save',
             'scan',
+            'scan-id',
             'start-or-run',
             'target',
             'transfer',
@@ -175,7 +179,7 @@ const categorizedIconSet = [
             'fingerprinted',
             'gender',
             'giving',
-            // 'giving-saddleback', // TODO/FIXME: Not working
+            'giving-saddleback',
             'leadership',
             'membership',
             'milestone',
@@ -297,7 +301,6 @@ const categorizedIconSet = [
             'file',
             'award',
             'marital-status',
-            'user',
         ],
     },
 ];
@@ -312,7 +315,10 @@ const sortByOptions = [
     },
 ];
 
-const styles = () => ({
+const styles = ({ spacing }) => ({
+    alphabeticalIconGrid: {
+        marginTop: spacing(2),
+    },
     iconGridColumn: {
         textAlign: 'center',
     },
@@ -367,10 +373,11 @@ class DocsIcon extends React.PureComponent {
         const { sortSelectedOption } = this.state;
         const iconCompact = true;
         const iconSize = 'xlarge';
+        const isAlphabeticalSort = sortSelectedOption.id === 'alphabetical_asc';
 
-        let renderCategories;
+        let iconSetmarkup;
 
-        if (sortSelectedOption.id === 'alphabetical_asc') {
+        if (isAlphabeticalSort) {
             const sortedFlatMapOfIconTypes = sortBy(
                 flatten(
                     map(
@@ -380,8 +387,7 @@ class DocsIcon extends React.PureComponent {
                 ),
             );
 
-            /* eslint-disable react/no-array-index-key */
-            renderCategories = map(sortedFlatMapOfIconTypes, (iconType, index) => (
+            iconSetmarkup = map(sortedFlatMapOfIconTypes, (iconType, index) => (
                 <React.Fragment
                     key={index}
                 >
@@ -405,9 +411,8 @@ class DocsIcon extends React.PureComponent {
                     </Grid.Column>
                 </React.Fragment>
             ));
-            /* eslint-enable react/no-array-index-key */
         } else {
-            renderCategories = map(categorizedIconSet, (iconSet, parentIndex) => (
+            iconSetmarkup = map(categorizedIconSet, (iconSet, parentIndex) => (
                 <React.Fragment key={parentIndex}>
                     <Grid.Column
                         sm={12}
@@ -449,6 +454,10 @@ class DocsIcon extends React.PureComponent {
             ));
         }
 
+        const iconGridClassNames = ClassNames({
+            [classes.alphabeticalIconGrid]: isAlphabeticalSort,
+        });
+
         return (
             <Main page={camelCase(displayName)}>
                 <Main.Content>
@@ -485,10 +494,11 @@ class DocsIcon extends React.PureComponent {
 
                         <Grid
                             alignItems="flex-start"
+                            className={iconGridClassNames}
                             justify="center"
                             spacing={2}
                         >
-                            {renderCategories}
+                            {iconSetmarkup}
 
                             <Grid.Column
                                 sm={12}
