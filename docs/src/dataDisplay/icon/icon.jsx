@@ -63,6 +63,8 @@ const categorizedIconSet = [
         category: 'App Features',
         types: [
             'connection-cards',
+            'insights',
+            'journey',
             'ministry',
             'person-record',
             'serving-opportunity',
@@ -173,6 +175,7 @@ const categorizedIconSet = [
             'fingerprinted',
             'gender',
             'giving',
+            // 'giving-saddleback', // TODO/FIXME: Not working
             'leadership',
             'membership',
             'milestone',
