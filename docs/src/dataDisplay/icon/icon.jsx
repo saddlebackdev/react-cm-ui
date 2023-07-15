@@ -7,7 +7,6 @@ import {
 import {
     camelCase,
     flatten,
-    isNil,
     kebabCase,
     map,
     sortBy,
