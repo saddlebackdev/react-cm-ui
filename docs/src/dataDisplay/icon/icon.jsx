@@ -1,6 +1,6 @@
 import {
-    DropdownButton,
     Grid,
+    Radio,
     Typography,
     Icon,
 } from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
@@ -307,10 +307,10 @@ const categorizedIconSet = [
 const sortByOptions = [
     {
         id: 'category',
-        label: 'Category',
+        label: 'By Category',
     }, {
         id: 'alphabetical_asc',
-        label: 'Alphabetical (asc)',
+        label: 'Alphabetical',
     },
 ];
 
@@ -346,12 +346,9 @@ class DocsIcon extends React.PureComponent {
         this.onSortAscendingClick = this.onSortAscendingClick.bind(this);
     }
 
-    onSortAscendingClick(event, id, label) {
+    onSortAscendingClick(id) {
         this.setState({
-            sortSelectedOption: {
-                id,
-                label,
-            },
+            sortSelectedOption: sortByOptions.find((opt) => opt.id === id),
         });
     }
 
@@ -474,20 +471,20 @@ class DocsIcon extends React.PureComponent {
                             <Grid.Column
                                 sm="auto"
                             >
-                                <DropdownButton
-                                    className={classes.dropdownButton}
-                                    style={{ margin: 0 }}
-                                    label={`Sort by: ${sortSelectedOption.label}`}
+                                <Radio
+                                    checked={sortSelectedOption.id}
+                                    onChange={this.onSortAscendingClick}
+                                    pill
                                 >
-                                    {map(sortByOptions, (option) => (
-                                        <DropdownButton.Option
-                                            key={option.id}
+                                    {sortByOptions.map((option) => ((
+                                        <Radio.Item
                                             id={option.id}
+                                            key={option.id}
                                             label={option.label}
-                                            onClick={this.onSortAscendingClick}
+                                            tabIndex={0}
                                         />
-                                    ))}
-                                </DropdownButton>
+                                    )))}
+                                </Radio>
                             </Grid.Column>
                         </Grid>
 
