@@ -2,7 +2,7 @@ import {
     Icon,
     Grid,
     Table,
-} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
+} from '@saddlebackchurch/react-cm-ui';
 import React from 'react';
 
 function ExampleHealthyChurchFeatures() {
@@ -109,8 +109,6 @@ function ExampleHealthyChurchFeatures() {
 
                         <Table.Row>
                             <Table.Cell width={1}>
-                                {/* TODO/FIXME: `giving-saddleback` icon is not working */}
-                                {/* <Icon size={32} title="Giving" type="giving-saddleback" /> */}
                                 <Icon size={32} title="Giving" type="giving" />
                             </Table.Cell>
                             <Table.Cell>
