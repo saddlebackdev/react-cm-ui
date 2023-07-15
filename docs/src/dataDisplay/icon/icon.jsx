@@ -371,7 +371,7 @@ class DocsIcon extends React.PureComponent {
         const iconSize = 'xlarge';
         const isAlphabeticalSort = sortSelectedOption.id === 'alphabetical_asc';
 
-        let iconSetmarkup;
+        let iconSetMarkup;
 
         if (isAlphabeticalSort) {
             const sortedFlatMapOfIconTypes = sortBy(
@@ -383,7 +383,7 @@ class DocsIcon extends React.PureComponent {
                 ),
             );
 
-            iconSetmarkup = map(sortedFlatMapOfIconTypes, (iconType, index) => (
+            iconSetMarkup = map(sortedFlatMapOfIconTypes, (iconType, index) => (
                 <React.Fragment
                     key={index}
                 >
@@ -408,7 +408,7 @@ class DocsIcon extends React.PureComponent {
                 </React.Fragment>
             ));
         } else {
-            iconSetmarkup = map(categorizedIconSet, (iconSet, parentIndex) => (
+            iconSetMarkup = map(categorizedIconSet, (iconSet, parentIndex) => (
                 <React.Fragment key={parentIndex}>
                     <Grid.Column
                         sm={12}
@@ -494,7 +494,7 @@ class DocsIcon extends React.PureComponent {
                             justify="center"
                             spacing={2}
                         >
-                            {iconSetmarkup}
+                            {iconSetMarkup}
 
                             <Grid.Column
                                 sm={12}
