@@ -1,8 +1,8 @@
 import {
     Grid,
+    Icon,
     Radio,
     Typography,
-    Icon,
 } from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import {
     camelCase,
