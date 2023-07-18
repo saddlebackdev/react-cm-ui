@@ -2,7 +2,7 @@ trigger:
   branches:
     include:
     - dev
-    # upper environs
+    # upper environments
     - master
   batch: True
 
@@ -44,7 +44,6 @@ steps:
     verbose: false
 
 ########## /INIT PHASE ##########
-
 
 ########## PUBLISHING PHASE ##########
 - script: 'npm run azure-devops-test -- --coverageDirectory $(Agent.TempDirectory)/coverage'
