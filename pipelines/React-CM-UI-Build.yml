@@ -1,0 +1,117 @@
+trigger:
+  branches:
+    include:
+    - dev
+    # upper environments
+    - master
+  batch: True
+
+pr:
+  branches:
+    include:
+    - dev
+    - feature/cumulative--10.0.0
+
+pool:
+  name: Azure Pipelines
+  vmImage: windows-latest
+
+variables:
+  BuildConfiguration: release
+  IsForUpperEnvironments: $[or(startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'), startsWith(variables['Build.SourceBranch'], 'refs/heads/master'))]
+
+steps:
+########## INIT PHASE ##########
+- powershell: |
+   $UIDocsVersion= "$(git describe --tags --abbrev=0)"
+   Write-Host "Setting CM_UI_DOCS_VERSION to $UIDocsVersion"
+   Write-Host "##vso[task.setvariable variable=CM_UI_DOCS_VERSION;]$UIDocsVersion"
+  displayName: 'Set CM_UI_DOCS_VERSION'
+  condition: and(succeeded(), eq(variables.IsForUpperEnvironments, 'true'))
+
+- task: NodeTool@0
+  displayName: 'Use Node 14.x'
+  inputs:
+    versionSpec: 14.x
+
+- script: |
+   npm install -g npm@latest-6
+  displayName: 'Downgrade to NPM 6'
+
+- task: Npm@1
+  displayName: 'npm install (root)'
+  inputs:
+    verbose: false
+
+########## /INIT PHASE ##########
+
+########## PUBLISHING PHASE ##########
+- script: 'npm run azure-devops-test -- --coverageDirectory $(Agent.TempDirectory)/coverage'
+  displayName: 'Run Unit Tests'
+  env:
+    JEST_JUNIT_OUTPUT_DIR: $(Agent.TempDirectory)
+
+- task: PublishTestResults@2
+  displayName: 'Publish Unit Test Results'
+  inputs:
+    testResultsFiles: junit.xml
+    searchFolder: '$(Agent.TempDirectory)'
+    failTaskOnFailedTests: true
+    testRunTitle: 'UI Client Tests'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish Unit Test Code Coverage'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(Agent.TempDirectory)/coverage/cobertura-coverage.xml'
+    reportDirectory: '$(Agent.TempDirectory)/coverage'
+
+- task: Npm@1
+  displayName: 'npm install (docs)'
+  inputs:
+    workingDir: docs
+    verbose: true
+
+- script: |
+   @echo CM_UI_DOCS_VERSION is %CM_UI_DOCS_VERSION%
+   npm run build
+  workingDirectory: docs
+  displayName: 'npm run build (docs)'
+  
+########## /PUBLISHING PHASE ##########
+
+########## FINISH PHASE ##########
+- task: CopyFiles@2
+  displayName: 'Copy Webpack Build Files to Artifacts'
+  condition: and(succeeded(), eq(variables.IsForUpperEnvironments, 'true'))
+  inputs:
+    SourceFolder: docs/build
+    Contents: |
+     index.html
+     images/**
+     js/*.js
+     css/*.css
+     files/*
+     assets/*
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: CopyFiles@2
+  displayName: 'Copy Font Files to Artifacts'
+  condition: and(succeeded(), eq(variables.IsForUpperEnvironments, 'true'))
+  inputs:
+    SourceFolder: src
+    Contents: 'fonts/**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: CopyFiles@2
+  displayName: 'Copy Docs Source Image Files to Artifacts'
+  condition: and(succeeded(), eq(variables.IsForUpperEnvironments, 'true'))
+  inputs:
+    SourceFolder: docs/src/images
+    Contents: '*'
+    TargetFolder: '$(build.artifactstagingdirectory)\images'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  condition: and(succeeded(), eq(variables.IsForUpperEnvironments, 'true'))
+########## /FINISH PHASE ##########
