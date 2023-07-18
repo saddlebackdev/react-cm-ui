@@ -1,9 +1,9 @@
 import {
-    DropdownButton,
     Grid,
-    Typography,
     Icon,
-} from '@saddlebackchurch/react-cm-ui';
+    Radio,
+    Typography,
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import {
     camelCase,
     flatten,
@@ -11,20 +11,22 @@ import {
     map,
     sortBy,
 } from 'lodash';
+import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles';
-import withWidth from '@saddlebackchurch/react-cm-ui/utils/withWidth';
+import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles'; // eslint-disable-line import/no-unresolved
+import withWidth from '@saddlebackchurch/react-cm-ui/utils/withWidth'; // eslint-disable-line import/no-unresolved
 import ComponentVersionIdentifier from '../../global/componentVersionIdentifier';
 import Heading from '../../global/heading';
 import Main from '../../global/main';
 import MarkdownContainer from '../../global/markdownContainer';
-/* eslint-disable import/no-named-default, import/extensions */
+/* eslint-disable import/no-named-default, import/extensions, import/no-unresolved */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/dataDisplay/icon/icon';
-/* eslint-enable import/no-named-default, import/extensions */
+/* eslint-enable import/no-named-default, import/extensions, import/no-unresolved */
 
 const propTypes = {
     classes: PropTypes.shape({
+        alphabeticalIconGrid: PropTypes.string,
         dropdownButton: PropTypes.string,
         iconGridColumn: PropTypes.string,
     }).isRequired,
@@ -51,6 +53,7 @@ const categorizedIconSet = [
             'refresh',
             'save',
             'scan',
+            'scan-id',
             'start-or-run',
             'target',
             'transfer',
@@ -63,6 +66,8 @@ const categorizedIconSet = [
         category: 'App Features',
         types: [
             'connection-cards',
+            'insights',
+            'journey',
             'ministry',
             'person-record',
             'serving-opportunity',
@@ -173,6 +178,7 @@ const categorizedIconSet = [
             'fingerprinted',
             'gender',
             'giving',
+            'giving-saddleback',
             'leadership',
             'membership',
             'milestone',
@@ -294,7 +300,6 @@ const categorizedIconSet = [
             'file',
             'award',
             'marital-status',
-            'user',
         ],
     },
 ];
@@ -302,14 +307,17 @@ const categorizedIconSet = [
 const sortByOptions = [
     {
         id: 'category',
-        label: 'Category',
+        label: 'By Category',
     }, {
         id: 'alphabetical_asc',
-        label: 'Alphabetical (asc)',
+        label: 'Alphabetical',
     },
 ];
 
-const styles = () => ({
+const styles = ({ spacing }) => ({
+    alphabeticalIconGrid: {
+        marginTop: spacing(2),
+    },
     iconGridColumn: {
         textAlign: 'center',
     },
@@ -338,12 +346,9 @@ class DocsIcon extends React.PureComponent {
         this.onSortAscendingClick = this.onSortAscendingClick.bind(this);
     }
 
-    onSortAscendingClick(event, id, label) {
+    onSortAscendingClick(id) {
         this.setState({
-            sortSelectedOption: {
-                id,
-                label,
-            },
+            sortSelectedOption: sortByOptions.find((opt) => opt.id === id),
         });
     }
 
@@ -364,10 +369,11 @@ class DocsIcon extends React.PureComponent {
         const { sortSelectedOption } = this.state;
         const iconCompact = true;
         const iconSize = 'xlarge';
+        const isAlphabeticalSort = sortSelectedOption.id === 'alphabetical_asc';
 
-        let renderCategories;
+        let iconSetMarkup;
 
-        if (sortSelectedOption.id === 'alphabetical_asc') {
+        if (isAlphabeticalSort) {
             const sortedFlatMapOfIconTypes = sortBy(
                 flatten(
                     map(
@@ -377,8 +383,7 @@ class DocsIcon extends React.PureComponent {
                 ),
             );
 
-            /* eslint-disable react/no-array-index-key */
-            renderCategories = map(sortedFlatMapOfIconTypes, (iconType, index) => (
+            iconSetMarkup = map(sortedFlatMapOfIconTypes, (iconType, index) => (
                 <React.Fragment
                     key={index}
                 >
@@ -402,9 +407,8 @@ class DocsIcon extends React.PureComponent {
                     </Grid.Column>
                 </React.Fragment>
             ));
-            /* eslint-enable react/no-array-index-key */
         } else {
-            renderCategories = map(categorizedIconSet, (iconSet, parentIndex) => (
+            iconSetMarkup = map(categorizedIconSet, (iconSet, parentIndex) => (
                 <React.Fragment key={parentIndex}>
                     <Grid.Column
                         sm={12}
@@ -446,6 +450,10 @@ class DocsIcon extends React.PureComponent {
             ));
         }
 
+        const iconGridClassNames = ClassNames({
+            [classes.alphabeticalIconGrid]: isAlphabeticalSort,
+        });
+
         return (
             <Main page={camelCase(displayName)}>
                 <Main.Content>
@@ -463,29 +471,30 @@ class DocsIcon extends React.PureComponent {
                             <Grid.Column
                                 sm="auto"
                             >
-                                <DropdownButton
-                                    className={classes.dropdownButton}
-                                    style={{ margin: 0 }}
-                                    label={`Sort by: ${sortSelectedOption.label}`}
+                                <Radio
+                                    checked={sortSelectedOption.id}
+                                    onChange={this.onSortAscendingClick}
+                                    pill
                                 >
-                                    {map(sortByOptions, (option) => (
-                                        <DropdownButton.Option
-                                            key={option.id}
+                                    {sortByOptions.map((option) => ((
+                                        <Radio.Item
                                             id={option.id}
+                                            key={option.id}
                                             label={option.label}
-                                            onClick={this.onSortAscendingClick}
+                                            tabIndex={0}
                                         />
-                                    ))}
-                                </DropdownButton>
+                                    )))}
+                                </Radio>
                             </Grid.Column>
                         </Grid>
 
                         <Grid
                             alignItems="flex-start"
+                            className={iconGridClassNames}
                             justify="center"
                             spacing={2}
                         >
-                            {renderCategories}
+                            {iconSetMarkup}
 
                             <Grid.Column
                                 sm={12}

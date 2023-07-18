@@ -1,15 +1,16 @@
 /* eslint-disable global-require */
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-webpack-loader-syntax */
 import {
     Card,
     Header,
 } from '@saddlebackchurch/react-cm-ui';
-import moment from 'moment-timezone';
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
-import DrawerDataGrid from './DrawerDataGridSample';
+import DrawerDataGrid from './drawerDataGridSample';
 
 function ModulesDrawerDataGrid() {
     const tableProps = [
