@@ -29,7 +29,7 @@
     "core",
     "src"
   ],
-  "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
+  "homepage": "https://cm-ui-docs.saddleback.com",
   "scripts": {
     "azure-devops-test": "jest --ci --reporters=jest-junit --reporters=default --coverage --coverageReporters=cobertura",
     "compile": "gulp",
