@@ -6,10 +6,10 @@ UI Assets for **Healthy Church** and related projects
 [![npm version](https://badge.fury.io/js/@saddlebackchurch%2Freact-cm-ui.svg)](https://badge.fury.io/js/@saddlebackchurch%2Freact-cm-ui)
 
 ## Powered By
-[![React JS](/readme-assets/react.svg)](https://react.dev/)
+[![React JS](/readme-assets/react.svg "React JS")](https://react.dev/)
 &nbsp;
 &nbsp;
-[![Material UI](/readme-assets/mui.svg)](https://mui.com/material-ui/)
+[![Material UI](/readme-assets/mui.svg "Material UI")](https://mui.com/material-ui/)
 
 ## Installation
 
