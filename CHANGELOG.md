@@ -1,6 +1,20 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.9
+_July 19, 2023_
+- `[Dependabot]` Upgrade `tough-cookie` and `jsdom` packages. [PR #443](https://github.com/saddlebackdev/react-cm-ui/pull/443)
+- Various code fixes and small enhancements.  [PR #447](https://github.com/saddlebackdev/react-cm-ui/pull/447)
+  - `<ActionBar>` ( [`src/surfaces/actionBar/actionBar.jsx`](/src/surfaces/actionBar/actionBar.jsx) ) - Fix some eslint issues
+  - `<Container>` ( [`src/layout/container/container.jsx`](/src/layout/container/container.jsx) ) - Fix a compilation issue
+  - `<Icon>` ( [`src/dataDisplay/icon/icon.jsx`](/src/dataDisplay/icon/icon.jsx) ) - Add new types `giving-saddleback`, `insights` and `journey`
+  - `<Input>` ( [`src/inputs/input/input.jsx`](/src/inputs/input/input.jsx) )
+    - Add some additional keys to be allowed for inputs of type number
+    - Refactor number input allowed key check to use a `switch` statement instead of a long compound Boolean expression
+    - Some ESLINT fixes and small code tweaks
+- Add YAML Build Pipeline Definition.  [PR #449](https://github.com/saddlebackdev/react-cm-ui/pull/449)
+- `[Dependabot]` Upgrade `word-wrap` package.  [PR #450](https://github.com/saddlebackdev/react-cm-ui/pull/450)
+
 ## 10.6.8
 _June 23, 2023_
 - Added defensive check in `<DropdownMenu />` on `parentContainer` before de-referencing it to call `contains()` method in `onClickOutside()` function. [PR #440](https://github.com/saddlebackdev/react-cm-ui/pull/440)
