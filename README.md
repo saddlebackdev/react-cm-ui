@@ -36,7 +36,7 @@ If you are using Webpack to build your App you can use `resolve.alias` and impor
 
 In your Webpack config file.
 
-```JSON
+```JavaScript
 resolve: {
     alias: {
         'css-cm-ui': path.join(__dirname, '/node_modules/react-cm-ui/core/style.css')
