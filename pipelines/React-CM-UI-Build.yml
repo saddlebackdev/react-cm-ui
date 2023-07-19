@@ -21,7 +21,7 @@ variables:
 steps:
 ########## INIT PHASE ##########
 - powershell: |
-   $UIDocsVersion= "$(git describe --tags --abbrev=0)"
+   $UIDocsVersion= "$(git describe --always --tags --abbrev=0)"
    Write-Host "Setting CM_UI_DOCS_VERSION to $UIDocsVersion"
    Write-Host "##vso[task.setvariable variable=CM_UI_DOCS_VERSION;]$UIDocsVersion"
   displayName: 'Set CM_UI_DOCS_VERSION'
