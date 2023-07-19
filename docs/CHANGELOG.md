@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.3 - 07/19/2023
+- [PR #451](https://github.com/saddlebackdev/react-cm-ui/pull/451) / Merge Commit 55e23c2
+  - Further tweaks to the new YAML build pipeline
+
 ## 0.17.2 - 07/19/2023
 - [PR #446](https://github.com/saddlebackdev/react-cm-ui/pull/446) / Merge Commit 604c299
   - `[Dependabot]` Upgrade `semver` package
