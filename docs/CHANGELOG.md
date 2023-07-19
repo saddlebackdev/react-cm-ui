@@ -1,6 +1,26 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.2 - 07/19/2023
+- [PR #446](https://github.com/saddlebackdev/react-cm-ui/pull/446) / Merge Commit 604c299
+  - `[Dependabot]` Upgrade `semver` package
+- [PR #447](https://github.com/saddlebackdev/react-cm-ui/pull/447) / Merge Commit 6ff30b7
+  - Fix some build issues and select ESLINT issues
+  - `<Icon>` documentation pages
+    - Main page
+      - Replace malfunctioning `<DropdownButton>` with `<Radio pill>` for toggling between categorized and alphabetized displays
+      - Fixed a small styling bug for the alphabetized display
+      - Added new icon types
+    - "Dev Sandbox"
+      - Add Healthy Church epic features iconography example
+  - `<Input>` "Dev Sandbox" documentation page - fix the `<Input>` Types examples (in particular the number input examples)
+- [PR #448](https://github.com/saddlebackdev/react-cm-ui/pull/448) / Merge Commit 8ac9472
+  - Upgrade `favicons-webpack-plugin` => `4.2.0`, the latest for Webpack 4
+  - Add `sharp` (latest, `0.32.3`) as a direct dev dependency (to avoid issue where doing `npm install` would cause it to get downgraded)
+  - Ran `npx browserslist@latest --update-db` to update `caniuse-lite`
+- [PR #449](https://github.com/saddlebackdev/react-cm-ui/pull/449) / Merge Commit edf7011
+  - Add YAML Build Pipeline Definition
+
 ## 0.17.1 - 02/22/2023
 - [PR #428](https://github.com/saddlebackdev/react-cm-ui/pull/428) / Merge Commit ab185e4
   - Change references to &quot;CLASS&quot; milestones to &quot;DYP&quot; (Discover Your Purpose).
