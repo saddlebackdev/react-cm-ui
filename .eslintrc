@@ -111,6 +111,12 @@
             }
         },
         {
+            "files": ["docs/**/examples/*.jsx"],
+            "rules": {
+                "import/no-unresolved": "off"
+            }
+        },
+        {
             "files": [
                 "*.test.js",
                 "*.test.tsx"

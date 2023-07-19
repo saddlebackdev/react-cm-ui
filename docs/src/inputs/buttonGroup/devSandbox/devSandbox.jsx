@@ -1,6 +1,6 @@
 import {
     Typography,
-} from '@saddlebackchurch/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import {
     camelCase,
 } from 'lodash';
@@ -10,9 +10,9 @@ import ButtonGroupDefault from '../examples/buttonGroupDefault';
 import Heading from '../../../global/heading';
 import Main from '../../../global/main';
 import MarkdownContainer from '../../../global/markdownContainer';
-/* eslint-disable import/no-named-default, import/extensions */
+/* eslint-disable import/no-named-default, import/extensions, import/no-unresolved */
 import { default as componentDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/inputs/buttonGroup/buttonGroup';
-/* eslint-enable import/no-named-default, import/extensions */
+/* eslint-enable import/no-named-default, import/extensions, import/no-unresolved */
 
 function ButtonGroupDevSandbox() {
     const {
@@ -46,7 +46,7 @@ function ButtonGroupDevSandbox() {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!../examples/buttonGroupDefault').default}
+                    rawCode={require('!!raw-loader!../examples/buttonGroupDefault').default} // eslint-disable-line import/extensions, import/no-unresolved
                 >
                     <ButtonGroupDefault />
                 </Example>
