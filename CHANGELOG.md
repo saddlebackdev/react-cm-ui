@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.10
+- Further tweaks to the new YAML build pipeline.  [PR #451](https://github.com/saddlebackdev/react-cm-ui/pull/451)
+
 ## 10.6.9
 _July 19, 2023_
 - `[Dependabot]` Upgrade `tough-cookie` and `jsdom` packages. [PR #443](https://github.com/saddlebackdev/react-cm-ui/pull/443)
