@@ -39,7 +39,7 @@ In your Webpack config file.
 ```JavaScript
 resolve: {
     alias: {
-        'css-cm-ui': path.join(__dirname, '/node_modules/react-cm-ui/core/style.css')
+        'css-cm-ui': path.join(__dirname, '/node_modules/@saddlebackchurch/react-cm-ui/core/style.css')
     }
 }
 ```
