@@ -1,7 +1,6 @@
 trigger:
   branches:
     include:
-    - dev
     # upper environments
     - master
   batch: True
@@ -18,16 +17,15 @@ pool:
 
 variables:
   BuildConfiguration: release
-  IsForUpperEnvironments: $[or(startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'), startsWith(variables['Build.SourceBranch'], 'refs/heads/master'))]
 
 steps:
 ########## INIT PHASE ##########
 - powershell: |
-   $UIDocsVersion= "$(git describe --tags --abbrev=0)"
+   $UIDocsVersion= "$(git describe --always --tags --abbrev=0)"
    Write-Host "Setting CM_UI_DOCS_VERSION to $UIDocsVersion"
    Write-Host "##vso[task.setvariable variable=CM_UI_DOCS_VERSION;]$UIDocsVersion"
   displayName: 'Set CM_UI_DOCS_VERSION'
-  condition: and(succeeded(), eq(variables.IsForUpperEnvironments, 'true'))
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
 
 - task: NodeTool@0
   displayName: 'Use Node 14.x'
@@ -83,7 +81,6 @@ steps:
 ########## FINISH PHASE ##########
 - task: CopyFiles@2
   displayName: 'Copy Webpack Build Files to Artifacts'
-  condition: and(succeeded(), eq(variables.IsForUpperEnvironments, 'true'))
   inputs:
     SourceFolder: docs/build
     Contents: |
@@ -97,7 +94,6 @@ steps:
 
 - task: CopyFiles@2
   displayName: 'Copy Font Files to Artifacts'
-  condition: and(succeeded(), eq(variables.IsForUpperEnvironments, 'true'))
   inputs:
     SourceFolder: src
     Contents: 'fonts/**'
@@ -105,7 +101,6 @@ steps:
 
 - task: CopyFiles@2
   displayName: 'Copy Docs Source Image Files to Artifacts'
-  condition: and(succeeded(), eq(variables.IsForUpperEnvironments, 'true'))
   inputs:
     SourceFolder: docs/src/images
     Contents: '*'
@@ -113,5 +108,4 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
-  condition: and(succeeded(), eq(variables.IsForUpperEnvironments, 'true'))
 ########## /FINISH PHASE ##########
