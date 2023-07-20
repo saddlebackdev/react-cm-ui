@@ -1,31 +1,27 @@
 import {
-    AppBar,
+    Drawer,
     Icon,
-    Page,
     Typography,
-} from '@saddlebackchurch/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import _ from 'lodash';
 import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
-import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles';
+import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles'; // eslint-disable-line import/no-unresolved
 import React from 'react';
 import {
     backgroundColorAlert,
     backgroundColorSuccess,
-} from '@saddlebackchurch/react-cm-ui/styles/colorExports';
-import DemoFiltersRail from './demoFiltersRail';
+} from '@saddlebackchurch/react-cm-ui/styles/colorExports'; // eslint-disable-line import/no-unresolved
 
 const propTypes = {
-    classes: PropTypes.shape({
-        appBar: PropTypes.string,
-        dataGroupsContainer: PropTypes.string,
-    }),
-    isMobile: PropTypes.bool.isRequired,
+    isMobile: PropTypes.bool,
+    isOpen: PropTypes.bool.isRequired,
+    onToggleDrawer: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
-    classes: null,
+    isMobile: false,
 };
 
 const nop = () => {};
@@ -46,7 +42,7 @@ const styles = (theme) => ({
     },
 });
 
-class PageDemo extends React.PureComponent {
+class DrawerDemo extends React.PureComponent {
     constructor() {
         super();
 
@@ -65,7 +61,6 @@ class PageDemo extends React.PureComponent {
             appliedFilters: _.cloneDeep(this.defaultFilters),
             dirtyFilters: _.cloneDeep(this.defaultFilters),
             isFiltersDrawerOpen: false,
-            isFetching: true,
             viewType: 'table',
         };
 
@@ -82,14 +77,6 @@ class PageDemo extends React.PureComponent {
         this.onSortDropdownChange = this.onSortDropdownChange.bind(this);
         this.onViewGridClick = this.onViewGridClick.bind(this);
         this.onViewTableClick = this.onViewTableClick.bind(this);
-    }
-
-    componentDidMount() {
-        setTimeout(() => {
-            this.setState((prevState) => ({
-                isFetching: !prevState.isFetching,
-            }));
-        }, 3500);
     }
 
     onApplyFiltersDrawerClick() {
@@ -156,7 +143,7 @@ class PageDemo extends React.PureComponent {
     }
 
     onSearchKeyDown(event) { // eslint-disable-line no-unused-vars
-        // console.log('Search onKeyDown.  event:', event); // eslint-disable-line no-console
+        console.log('Search onKeyDown.  event:', event); // eslint-disable-line no-console
     }
 
     onSortDropdownChange(selectedOption) {
@@ -182,15 +169,15 @@ class PageDemo extends React.PureComponent {
 
     render() {
         const {
-            classes,
             isMobile,
+            isOpen,
+            onToggleDrawer,
         } = this.props;
 
         const {
             appliedFilters,
             dirtyFilters,
             isFiltersDrawerOpen,
-            isFetching,
             searchValue,
             viewType,
         } = this.state;
@@ -887,291 +874,203 @@ class PageDemo extends React.PureComponent {
         }
 
         return (
-            <React.Fragment>
-                <div>
-                    <div className="hidden-spacer" />
+            <Drawer
+                isOpen={isOpen}
+                onClose={onToggleDrawer}
+                className="drawer_class_name"
+            >
+                <Drawer.TitleBar
+                    closeButton={<Icon compact onClick={onToggleDrawer} type="times" />}
+                    title="Demo Drawer"
+                />
 
-                    <AppBar
-                        classes={{
-                            root: classes.appBar,
-                        }}
-                    >
-                        <Typography
-                            variant="h3"
-                        >
-                            Page Components Demo
-                        </Typography>
-                    </AppBar>
-                </div>
+                <Drawer.Navigation
+                    columns={[
+                        {
+                            label: 'Button 1',
+                        }, {
+                            label: 'Button 2',
+                        }, {
+                            label: 'Button 3',
+                        }, {
+                            label: 'Button 4',
+                            onClick: () => { console.log('Clicked Button 4'); },
+                        },
+                    ]}
+                />
 
-                <Page
-                    backgroundColor="primary"
-                    className="page_class_name"
-                    isDataFetching={isFetching}
+                <Drawer.ActionBar
+                    columns={actionsBarColumns}
+                />
+
+                <Drawer.DetailsWindow
+                    color={11}
+                    columns={statsColumns}
+                    data={{
+                        notContacted: 4,
+                        contacted: 5,
+                        firstContact: 4,
+                        secondContact: 1,
+                        pending: 3,
+                    }}
+                    expandableColumns={statsExpandableColumns}
+                />
+
+                <Drawer.Content
+                    className="drawer_content_class_name"
                 >
-                    <Page.ActionBar
-                        columns={actionsBarColumns}
+                    <Drawer.FiltersDrawer
+                        isDirty={isDirty}
+                        isFiltering={isFiltering}
+                        isOpen={isFiltersDrawerOpen}
+                        onApply={this.onApplyFiltersDrawerClick}
+                        onClear={this.onClearFiltersDrawerClick}
+                        onClose={this.onFiltersToggle}
+                        rows={[
+                            {
+                                header: 'Keywords',
+                                items: [
+                                    {
+                                        multiSelect: {
+                                            placeholder: 'Add Keyword',
+                                            onChange: this.onKeywordsMultiSelectChange,
+                                            options: [
+                                                {
+                                                    label: 'Foo',
+                                                    value: 1,
+                                                }, {
+                                                    label: 'Bar',
+                                                    value: 2,
+                                                }, {
+                                                    label: 'Baz',
+                                                    value: 3,
+                                                }, {
+                                                    label: 'Qux',
+                                                    value: 4,
+                                                },
+                                            ],
+                                            value: dirtyFilters.multiSelectValue,
+                                        },
+                                    },
+                                ],
+                            }, {
+                                header: 'Type',
+                                items: [
+                                    {
+                                        checkbox: {
+                                            checked: true,
+                                            label: 'Sensitive',
+                                            // eslint-disable-next-line no-console
+                                            onChange: () => console.log('Sensitive Toggled'),
+                                        },
+                                    }, {
+                                        toggle: {
+                                            checked: true,
+                                            label: 'Pinned',
+                                            labelIconColor: 'highlight',
+                                            labelIconType: 'pin',
+                                            // eslint-disable-next-line no-console
+                                            onChange: () => console.log('Pinned Toggled'),
+                                        },
+                                    },
+                                ],
+                            }, {
+                                header: 'Sort',
+                                items: [
+                                    {
+                                        dropdown: {
+                                            onChange: this.onSortDropdownChange,
+                                            options: [
+                                                {
+                                                    label: 'Name (Ascending)',
+                                                    value: 'Name (Ascending)',
+                                                }, {
+                                                    label: 'Name (Descending)',
+                                                    value: 'Name (Descending)',
+                                                }, {
+                                                    label: 'Create Date (Ascending)',
+                                                    value: 'Create Date (Ascending)',
+                                                }, {
+                                                    label: 'Create Date (Descending)',
+                                                    value: 'Create Date (Descending)',
+                                                },
+                                            ],
+                                            value: dirtyFilters.sort,
+                                        },
+                                    },
+                                ],
+                            }, {
+                                header: 'Filters',
+                                items: [
+                                    {
+                                        nestedToggles: {
+                                            label: 'Foo Filters',
+                                            onChange: this.onNestedTogglesFooChange,
+                                            options: [
+                                                {
+                                                    label: 'Foo',
+                                                    value: 1,
+                                                }, {
+                                                    label: 'Bar',
+                                                    value: 2,
+                                                }, {
+                                                    label: 'Baz',
+                                                    value: 3,
+                                                }, {
+                                                    label: 'Qux',
+                                                    value: 4,
+                                                },
+                                            ],
+                                            value: dirtyFilters.nestedTogglesFooValue,
+                                        },
+                                    }, {
+                                        nestedToggles: {
+                                            clearable: false,
+                                            label: 'Bar Filters',
+                                            onChange: this.onNestedTogglesBarChange,
+                                            options: [
+                                                {
+                                                    label: 'Bar',
+                                                    value: 1,
+                                                }, {
+                                                    label: 'Baz',
+                                                    value: 2,
+                                                }, {
+                                                    label: 'Qux',
+                                                    value: 3,
+                                                },
+                                            ],
+                                            singleSelection: true,
+                                            value: dirtyFilters.nestedTogglesBarValue,
+                                        },
+                                    },
+                                ],
+                            },
+                        ]}
                     />
 
-                    <Page.Container>
-                        <Page.FiltersDrawer
-                            isDirty={isDirty}
-                            isFiltering={isFiltering}
-                            isOpen={isFiltersDrawerOpen}
-                            onApply={this.onApplyFiltersDrawerClick}
-                            onClear={this.onClearFiltersDrawerClick}
-                            onClose={this.onFiltersToggle}
-                            rows={[
-                                {
-                                    header: 'Keywords',
-                                    items: [
-                                        {
-                                            multiSelect: {
-                                                placeholder: 'Add Keyword',
-                                                onChange: this.onKeywordsMultiSelectChange,
-                                                options: [
-                                                    {
-                                                        label: 'Foo',
-                                                        value: 1,
-                                                    }, {
-                                                        label: 'Bar',
-                                                        value: 2,
-                                                    }, {
-                                                        label: 'Baz',
-                                                        value: 3,
-                                                    }, {
-                                                        label: 'Qux',
-                                                        value: 4,
-                                                    },
-                                                ],
-                                                value: dirtyFilters.multiSelectValue,
-                                            },
-                                        },
-                                    ],
-                                }, {
-                                    header: 'Type',
-                                    items: [
-                                        {
-                                            checkbox: {
-                                                checked: true,
-                                                label: 'Sensitive',
-                                                // eslint-disable-next-line no-console
-                                                onChange: () => console.log('Sensitive Toggled'),
-                                            },
-                                        }, {
-                                            toggle: {
-                                                checked: true,
-                                                label: 'Pinned',
-                                                labelIconColor: 'highlight',
-                                                labelIconType: 'pin',
-                                                // eslint-disable-next-line no-console
-                                                onChange: () => console.log('Pinned Toggled'),
-                                            },
-                                        },
-                                    ],
-                                }, {
-                                    header: 'Sort',
-                                    items: [
-                                        {
-                                            dropdown: {
-                                                onChange: this.onSortDropdownChange,
-                                                options: [
-                                                    {
-                                                        label: 'Name (Ascending)',
-                                                        value: 'Name (Ascending)',
-                                                    }, {
-                                                        label: 'Name (Descending)',
-                                                        value: 'Name (Descending)',
-                                                    }, {
-                                                        label: 'Create Date (Ascending)',
-                                                        value: 'Create Date (Ascending)',
-                                                    }, {
-                                                        label: 'Create Date (Descending)',
-                                                        value: 'Create Date (Descending)',
-                                                    },
-                                                ],
-                                                value: dirtyFilters.sort,
-                                            },
-                                        },
-                                    ],
-                                }, {
-                                    header: 'Filters',
-                                    items: [
-                                        {
-                                            nestedToggles: {
-                                                label: 'Foo Filters',
-                                                onChange: this.onNestedTogglesFooChange,
-                                                options: [
-                                                    {
-                                                        label: 'Foo',
-                                                        value: 1,
-                                                    }, {
-                                                        label: 'Bar',
-                                                        value: 2,
-                                                    }, {
-                                                        label: 'Baz',
-                                                        value: 3,
-                                                    }, {
-                                                        label: 'Qux',
-                                                        value: 4,
-                                                    },
-                                                ],
-                                                value: dirtyFilters.nestedTogglesFooValue,
-                                            },
-                                        }, {
-                                            nestedToggles: {
-                                                clearable: false,
-                                                label: 'Bar Filters',
-                                                onChange: this.onNestedTogglesBarChange,
-                                                options: [
-                                                    {
-                                                        label: 'Bar',
-                                                        value: 1,
-                                                    }, {
-                                                        label: 'Baz',
-                                                        value: 2,
-                                                    }, {
-                                                        label: 'Qux',
-                                                        value: 3,
-                                                    },
-                                                ],
-                                                singleSelection: true,
-                                                value: dirtyFilters.nestedTogglesBarValue,
-                                            },
-                                        },
-                                    ],
-                                },
-                            ]}
-                        />
-
-                        <DemoFiltersRail
-                            isOpen={isFiltersDrawerOpen}
-                        />
-
-                        <Page.Content
-                            className="page-content-class-name"
-                            isFiltersRailOpen={isFiltersDrawerOpen}
-                        >
-                            <Page.DetailsWindow
-                                color={11}
-                                columns={statsColumns}
-                                data={{
-                                    notContacted: 4,
-                                    contacted: 5,
-                                    firstContact: 4,
-                                    secondContact: 1,
-                                    pending: 3,
-                                }}
-                                expandableColumns={statsExpandableColumns}
-                            />
-
-                            {!isMobile && viewType === 'table' ? (
-                                <Page.DataGrid
-                                    columns={[
-                                        {
-                                            accessor: 'name',
-                                            header: 'Names',
-                                        }, {
-                                            accessor: 'campus',
-                                            header: 'Campus',
-                                        }, {
-                                            accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
-                                            header: 'Created On',
-                                        }, {
-                                            accessor: () => <Icon compact size="xxsmall" type="chevron-right" />,
-                                            header: null,
-                                            textAlign: 'right',
-                                        },
-                                    ]}
-                                    data={[
-                                        {
-                                            campus: 'Lake Forest',
-                                            createdOn: 1259668810,
-                                            id: 1,
-                                            name: 'First Time Visitor',
-                                        }, {
-                                            campus: 'Lake Forest',
-                                            createdOn: 1159668810,
-                                            id: 2,
-                                            name: 'Second Time Visitor',
-                                        }, {
-                                            campus: 'Anaheim',
-                                            createdOn: 1152668810,
-                                            id: 3,
-                                            name: 'DYP 1 Invite',
-                                        },
-                                    ]}
-                                    rowProps={() => ({
-                                        onClick: this.onTableRowClick,
-                                    })}
-                                    stickyColumnWidth={50}
-                                    stickyColumns={2}
-                                />
-                            ) : (
-                                <Page.DataCards
-                                    cardProps={() => ({
-                                        onClick: this.onCardClick,
-                                    })}
-                                    columns={[
-                                        {
-                                            accessor: 'name',
-                                            fontSize: 'medium',
-                                            fontWeight: 'semibold',
-                                            header: false,
-                                            width: '100%',
-                                        }, {
-                                            accessor: 'campus',
-                                            fontWeight: 'bold',
-                                            header: 'Campus',
-                                        }, {
-                                            accessor: (d) => moment.unix(d.createdOn).utc().format('L'),
-                                            fontWeight: 'bold',
-                                            header: 'Created On',
-                                        },
-                                    ]}
-                                    data={[
-                                        {
-                                            campus: 'Lake Forest',
-                                            createdOn: 1259668810,
-                                            id: 1,
-                                            name: 'First Time Visitor',
-                                        }, {
-                                            campus: 'Lake Forest',
-                                            createdOn: 1159668810,
-                                            id: 2,
-                                            name: 'Second Time Visitor',
-                                        }, {
-                                            campus: 'Anaheim',
-                                            createdOn: 1152668810,
-                                            id: 3,
-                                            name: 'DYP 1 Invite',
-                                        },
-                                    ]}
-                                />
-                            )}
-
-                            {/**
-                             * TODO: Move this to a Drawer or something.
-                             * For now, commenting it out to clean up Demo Page
-                             */}
-                            {/* <div
-                                className={classes.dataGroupsContainer}
-                            >
-                                <Page.DataGroups
-                                    columns={mainColumns}
-                                    data={mainData}
-                                />
-                            </div> */}
-                        </Page.Content>
-                    </Page.Container>
-                </Page>
-            </React.Fragment>
+                    <Typography
+                        variant="body2"
+                    >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Morbi eu ornare sapien. Praesent ac dui
+                        maximus, cursus eros eu, malesuada tortor.
+                        Praesent vulputate molestie leo, eu sollicitudin nisl
+                        efficitur sed. Etiam vitae tortor neque.
+                        Nullam blandit vestibulum mauris, in tristique velit
+                        pretium eu. Nullam ut malesuada ligula. Sed sit amet eros ligula.
+                        Cras purus elit, dictum sit amet
+                        orci ut, dapibus pulvinar ligula. Vivamus ac sollicitudin orci.
+                        Class aptent taciti sociosqu ad.
+                    </Typography>
+                </Drawer.Content>
+            </Drawer>
         );
     }
 }
 
-PageDemo.propTypes = propTypes;
-PageDemo.defaultProps = defaultProps;
+DrawerDemo.propTypes = propTypes;
+DrawerDemo.defaultProps = defaultProps;
 
 const mapStateToProps = (state) => {
     const { breakpoint: { isMobile } } = state;
@@ -1187,5 +1086,5 @@ export default connect(mapStateToProps)(
         {
             withTheme: true,
         },
-    )(PageDemo),
+    )(DrawerDemo),
 );

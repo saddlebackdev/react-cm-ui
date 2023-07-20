@@ -105,6 +105,7 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
         return (
             <div
                 className={containerClasses}
+                data-testid="actions_button_drawer--option"
             >
                 <div
                     className={parentOptionClasses}

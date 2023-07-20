@@ -2,8 +2,12 @@ import _ from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+    UI_CLASS_NAME,
+} from '../../global/constants';
 import Icon from '../../dataDisplay/icon';
 import Input from '../../inputs/input';
+import ActionBarSearchSelect from './actionBarSearchSelect';
 
 const propTypes = {
     autoFocus: PropTypes.bool,
@@ -15,6 +19,17 @@ const propTypes = {
     onFocus: PropTypes.func,
     onKeyDown: PropTypes.func,
     placeholder: PropTypes.string,
+    searchWithSelect: PropTypes.shape({
+        dropdownArrowIconType: PropTypes.string,
+        onChange: PropTypes.func,
+        options: PropTypes.arrayOf(PropTypes.shape({})),
+        placeholder: PropTypes.string,
+        value: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+            PropTypes.shape({}),
+        ]),
+    }),
     style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
     value: PropTypes.string,
 };
@@ -28,6 +43,7 @@ const defaultProps = {
     onFocus: undefined,
     onKeyDown: undefined,
     placeholder: 'Search',
+    searchWithSelect: undefined,
     style: {},
     value: '',
 };
@@ -80,12 +96,26 @@ class ActionBarSearch extends React.PureComponent {
             isMobileSearchVisible,
             onFocus,
             placeholder,
+            searchWithSelect,
             style,
             value,
         } = this.props;
+
+        const hasCorrectDataForSearchWithSelect = !_.isNil(searchWithSelect) &&
+        _.isArray(searchWithSelect.options) &&
+        _.isFunction(searchWithSelect.onChange) &&
+        (!_.isEmpty(searchWithSelect.value) || !_.isNil(searchWithSelect.value));
+
+        if (!hasCorrectDataForSearchWithSelect) {
+            console.warn( // eslint-disable-line no-console
+                'Please provide correct props to integrate Select with action bar search. See documentation of react-cm-ui for more details.',
+            );
+        }
+
         const inputContainerClasses = ClassNames('action_bar--search', {
             'action_bar--search-mobile': isMobileSearch,
             'action_bar--search-mobile-show': isMobileSearch && isMobileSearchVisible,
+            'action_bar--search-with-select': hasCorrectDataForSearchWithSelect,
         });
         let magnificationIcon = null;
 
@@ -107,9 +137,19 @@ class ActionBarSearch extends React.PureComponent {
             <div
                 className={inputContainerClasses}
             >
+                {hasCorrectDataForSearchWithSelect && (
+                    <ActionBarSearchSelect
+                        dropdownArrowIconType={searchWithSelect.dropdownArrowIconType}
+                        options={searchWithSelect.options}
+                        onChange={searchWithSelect.onChange}
+                        placeholder={searchWithSelect.placeholder}
+                        value={searchWithSelect.value}
+                    />
+                )}
                 <Input
                     autoFocus={autoFocus}
                     className="action_bar--search_input"
+                    dataTestId={`${UI_CLASS_NAME}--search_input`}
                     fluid
                     icon={value ? (
                         <div
@@ -121,7 +161,6 @@ class ActionBarSearch extends React.PureComponent {
                         >
                             <Icon
                                 compact
-
                                 title="Clear Search"
                                 type="times-circle"
                             />
