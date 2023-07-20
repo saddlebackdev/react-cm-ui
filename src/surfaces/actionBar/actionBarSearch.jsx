@@ -104,7 +104,7 @@ class ActionBarSearch extends React.PureComponent {
         const hasCorrectDataForSearchWithSelect = !_.isNil(searchWithSelect) &&
         _.isArray(searchWithSelect.options) &&
         _.isFunction(searchWithSelect.onChange) &&
-        (!_.isEmpty(searchWithSelect.value) || !_.isNil(searchWithSelect.value));
+        ('value' in searchWithSelect);
 
         if (!hasCorrectDataForSearchWithSelect) {
             console.warn( // eslint-disable-line no-console

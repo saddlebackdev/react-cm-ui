@@ -224,8 +224,8 @@ class PageDemo extends React.PureComponent {
                         value: 3,
                     },
                 ],
-                placeholder: 'People',
-                value: 1,
+                placeholder: 'Select',
+                value: null,
             },
             value: searchValue,
         };
