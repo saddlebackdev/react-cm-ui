@@ -58,7 +58,7 @@ const propTypes = {
     */
     dropdownMenuContainerStyle: PropTypes.shape({}),
     /**
-    * Supply dropdown menu maximum height
+    * Supply dropdown menu dropdown arrow icon
     */
     dropdownArrowIconType: PropTypes.string,
     /**
