@@ -205,7 +205,6 @@ class PageDemo extends React.PureComponent {
         };
 
         const actionBarSearch = {
-            autoFocus: false,
             onClearClick: this.onSearchClear,
             onChange: this.onSearchChange,
             onKeyDown: this.onSearchKeyDown,
