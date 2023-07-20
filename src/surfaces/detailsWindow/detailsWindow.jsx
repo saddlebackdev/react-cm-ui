@@ -29,7 +29,7 @@ const propTypes = {
     forwardedRef: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.shape({
-            current: PropTypes.instanceOf(Element),
+            current: PropTypes.any, // eslint-disable-line react/forbid-prop-types
         }),
     ]),
     moduleType: PropTypes.string,
