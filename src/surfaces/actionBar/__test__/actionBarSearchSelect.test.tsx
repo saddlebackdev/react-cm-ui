@@ -25,6 +25,10 @@ const OPTIONS = [
 ];
 
 describe('<ActionBarSearchSelect />', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
     const onChangeMock = jest.fn();
 
     const props = {
@@ -86,7 +90,7 @@ describe('<ActionBarSearchSelect />', () => {
             <ActionBarSearchSelect
                 {...props}
                 dropdownArrowIconType={customIcon}
-                value={2}
+                value={1}
             />,
         );
 
