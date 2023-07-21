@@ -37,8 +37,6 @@ describe('<ActionBarActionsButtonDrawerSubOption />', () => {
             />,
         );
 
-        expect(screen.queryByTestId('actions_button_drawer--sub_option')).toBeInTheDocument();
-
         // Should render icon type for sub option
         expect(screen.queryByTestId(`${UI_CLASS_NAME}-icon-chevron-down`)).toBeInTheDocument();
 
@@ -70,7 +68,6 @@ describe('<ActionBarActionsButtonDrawerSubOption />', () => {
             />,
         );
 
-        expect(screen.queryByTestId('actions_button_drawer--sub_option')).toBeInTheDocument();
         expect(screen.getByText(newSubOption.label)).toBeInTheDocument();
 
         // Should render icon type for sub option

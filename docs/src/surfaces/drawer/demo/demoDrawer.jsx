@@ -1,30 +1,37 @@
 import {
+    cloneDeep,
+    isEqual,
+    noop,
+} from 'lodash';
+import {
     Drawer,
     Icon,
     Typography,
 } from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
-import _ from 'lodash';
-import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
-import moment from 'moment-timezone';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles'; // eslint-disable-line import/no-unresolved
 import React from 'react';
-import {
-    backgroundColorAlert,
-    backgroundColorSuccess,
-} from '@saddlebackchurch/react-cm-ui/styles/colorExports'; // eslint-disable-line import/no-unresolved
 
 const propTypes = {
     isMobile: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
     onToggleDrawer: PropTypes.func.isRequired,
+    theme: PropTypes.shape({
+        palette: PropTypes.shape({
+            error: PropTypes.shape({
+                main: PropTypes.string,
+            }),
+            success: PropTypes.shape({
+                main: PropTypes.string,
+            }),
+        }),
+    }).isRequired,
 };
 
 const defaultProps = {
     isMobile: false,
 };
-
-const nop = () => {};
 
 const styles = (theme) => ({
     appBar: {
@@ -58,8 +65,8 @@ class DrawerDemo extends React.PureComponent {
         };
 
         this.state = {
-            appliedFilters: _.cloneDeep(this.defaultFilters),
-            dirtyFilters: _.cloneDeep(this.defaultFilters),
+            appliedFilters: cloneDeep(this.defaultFilters),
+            dirtyFilters: cloneDeep(this.defaultFilters),
             isFiltersDrawerOpen: false,
             viewType: 'table',
         };
@@ -172,6 +179,7 @@ class DrawerDemo extends React.PureComponent {
             isMobile,
             isOpen,
             onToggleDrawer,
+            theme,
         } = this.props;
 
         const {
@@ -182,8 +190,8 @@ class DrawerDemo extends React.PureComponent {
             viewType,
         } = this.state;
 
-        const isDirty = !_.isEqual(appliedFilters, dirtyFilters);
-        const isFiltering = !_.isEqual(this.defaultFilters, appliedFilters);
+        const isDirty = !isEqual(appliedFilters, dirtyFilters);
+        const isFiltering = !isEqual(this.defaultFilters, appliedFilters);
 
         const actionBarIconFilter = {
             selected: isFiltersDrawerOpen,
@@ -197,7 +205,7 @@ class DrawerDemo extends React.PureComponent {
             onChange: this.onSearchChange,
             onKeyDown: this.onSearchKeyDown,
             searchWithSelect: {
-                onChange: _.noop,
+                onChange: noop,
                 options: [
                     {
                         label: 'People',
@@ -243,7 +251,7 @@ class DrawerDemo extends React.PureComponent {
                     color: 'success',
                     iconType: 'plus',
                     label: 'New Template',
-                    onClick: nop,
+                    onClick: noop,
                 },
             },
         ];
@@ -268,7 +276,7 @@ class DrawerDemo extends React.PureComponent {
                                 header: 'Foo Title',
                                 options: [
                                     {
-                                        iconBackgroundColor: backgroundColorSuccess,
+                                        iconBackgroundColor: theme.palette.success.main,
                                         iconType: actionsBarColumns[2].button.iconType,
                                         label: actionsBarColumns[2].button.label,
                                         options: [
@@ -310,7 +318,7 @@ class DrawerDemo extends React.PureComponent {
                                     }, {
                                         iconType: 'times',
                                         label: 'Delete Stuff',
-                                        iconBackgroundColor: backgroundColorAlert,
+                                        iconBackgroundColor: theme.palette.error.main,
                                         onClick: () => { console.log('Deleting all the things!'); /* eslint-disable-line no-console */ },
                                         promptColor: 'alert',
                                         promptMessage: 'Really delete all the things?  No joke?',

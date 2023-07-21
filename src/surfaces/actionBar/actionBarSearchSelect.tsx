@@ -4,11 +4,9 @@ import Divider from '../../dataDisplay/divider';
 import {
     UI_CLASS_NAME,
 } from '../../global/constants';
-
-type SelectOption<TValue = number, TLabel = string> = {
-    label: TLabel;
-    value: TValue;
-};
+import {
+    SelectOption,
+} from '../../global/models';
 
 type PropTypes = {
     dropdownArrowIconType?: string;
@@ -35,6 +33,7 @@ function ActionBarSearchSelect(props: PropTypes) {
     return (
         <React.Fragment>
             <Select
+                // Supressing ts error: Property 'className' does not exist on type 'IntrinsicAttributes & RefAttributes<any>'
                 // @ts-ignore
                 className="action_bar--search_select"
                 data-testid={`${UI_CLASS_NAME}--search_select`}

@@ -39,7 +39,6 @@ describe('<ActionBarActionsButtonDrawerOption />', () => {
             />,
         );
 
-        expect(screen.queryByTestId('actions_button_drawer--option')).toBeInTheDocument();
         expect(screen.getByText('Option 1')).toBeInTheDocument();
 
         // Should render icon type for option

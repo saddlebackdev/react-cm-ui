@@ -1,4 +1,8 @@
-import _ from 'lodash';
+import {
+    isArray,
+    isFunction,
+    isNil,
+} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -67,7 +71,7 @@ class ActionBarSearch extends React.PureComponent {
     onClearClick() {
         const { onChange, onClearClick } = this.props;
 
-        if (_.isFunction(onClearClick)) {
+        if (isFunction(onClearClick)) {
             onClearClick();
         } else {
             onChange('');
@@ -83,7 +87,7 @@ class ActionBarSearch extends React.PureComponent {
     onKeyDown(event) {
         const { onKeyDown } = this.props;
 
-        if (_.isFunction(onKeyDown)) {
+        if (isFunction(onKeyDown)) {
             onKeyDown(event);
         }
     }
@@ -101,9 +105,9 @@ class ActionBarSearch extends React.PureComponent {
             value,
         } = this.props;
 
-        const hasCorrectDataForSearchWithSelect = !_.isNil(searchWithSelect) &&
-        _.isArray(searchWithSelect.options) &&
-        _.isFunction(searchWithSelect.onChange) &&
+        const hasCorrectDataForSearchWithSelect = !isNil(searchWithSelect) &&
+        isArray(searchWithSelect.options) &&
+        isFunction(searchWithSelect.onChange) &&
         ('value' in searchWithSelect);
 
         if (!hasCorrectDataForSearchWithSelect) {

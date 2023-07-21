@@ -99,7 +99,6 @@ class ActionBarActionsButtonDrawerSubOption extends React.PureComponent {
         return (
             <div
                 className={subOptionClasses}
-                data-testid="actions_button_drawer--sub_option"
                 onClick={this.onClick}
                 role="menuitem"
             >
