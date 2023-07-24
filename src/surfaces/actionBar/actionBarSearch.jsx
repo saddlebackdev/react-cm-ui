@@ -31,10 +31,16 @@ const propTypes = {
         value: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number,
-            PropTypes.shape({}),
+            PropTypes.shape({
+                label: PropTypes.string,
+                value: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number,
+                ]),
+            }),
         ]),
     }),
-    style: PropTypes.shape({}), // eslint-disable-line react/forbid-prop-types
+    style: PropTypes.shape({}),
     value: PropTypes.string,
 };
 

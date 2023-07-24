@@ -395,7 +395,7 @@ class DrawerDemo extends React.PureComponent {
                 ...statsColumns,
                 {
                     expandedButton: isMobile,
-                    expandedButtonId: 'page_demo--details_expanded_button_unique_id',
+                    expandedButtonId: 'drawer_demo--details_expanded_button_unique_id',
                     header: null,
                 },
             ];
