@@ -51,6 +51,7 @@ const propTypes = {
             iconGrid: PropTypes.shape({}),
             iconSearch: searchPropTypes,
             iconTable: PropTypes.shape({}),
+            searchWithSelect: PropTypes.shape({}),
         })),
         md: PropTypes.oneOf(GRID_SIZES),
         search: searchPropTypes,
@@ -529,6 +530,7 @@ class ActionBar extends React.PureComponent {
                                                     onFocus={search.onFocus}
                                                     onKeyDown={search.onKeyDown}
                                                     placeholder={search.placeholder}
+                                                    searchWithSelect={search.searchWithSelect}
                                                     value={search.value}
                                                 />
                                             )}

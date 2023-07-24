@@ -1,6 +1,6 @@
 import {
     Button, Card, Drawer, Header, Icon, Input,
-} from '@saddlebackchurch/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import React from 'react';
 import Highlighter from '../../global/highlighter';
 import Main from '../../global/main';
