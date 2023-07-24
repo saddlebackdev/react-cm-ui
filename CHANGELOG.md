@@ -1,7 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.11
+_July 24, 2023_
+- Add the ability to have a `<Select>` next to the Action Bar Search (to designate the context/target for the search term).  [PR #452](https://github.com/saddlebackdev/react-cm-ui/pull/452)
+- Fix some misconfigured Prop Type declarations, leading to console errors in consuming projects.  [PR #453](https://github.com/saddlebackdev/react-cm-ui/pull/453)
+
 ## 10.6.10
+_July 19, 2023_
 - Further tweaks to the new YAML build pipeline.  [PR #451](https://github.com/saddlebackdev/react-cm-ui/pull/451)
 
 ## 10.6.9
