@@ -358,7 +358,7 @@ $backwards-step4-duration: $standard-fifth-timing;
     .action_bar--search-with-select {
         display: flex;
 
-        &.action_bar--search-mobile-show {
+        &-menu-open-mobile {
             overflow: unset;
         }
 

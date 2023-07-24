@@ -11,6 +11,8 @@ import {
 type PropTypes = {
     dropdownArrowIconType?: string;
     onChange: (value: SelectOption | number | string | null) => void;
+    onCloseSelectMenu: () => void;
+    onOpenSelectMenu: () => void;
     options: SelectOption[];
     placeholder?: string;
     value: number | string | SelectOption | null;
@@ -25,6 +27,8 @@ function ActionBarSearchSelect(props: PropTypes) {
     const {
         dropdownArrowIconType,
         onChange,
+        onCloseSelectMenu,
+        onOpenSelectMenu,
         options,
         placeholder,
         value,
@@ -40,6 +44,8 @@ function ActionBarSearchSelect(props: PropTypes) {
                 dropdownArrowIconType={dropdownArrowIconType}
                 options={options}
                 onChange={onChange}
+                onClose={onCloseSelectMenu}
+                onOpen={onOpenSelectMenu}
                 placeholder={placeholder}
                 value={value}
             />

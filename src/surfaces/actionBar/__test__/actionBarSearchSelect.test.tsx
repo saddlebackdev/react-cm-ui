@@ -30,9 +30,13 @@ describe('<ActionBarSearchSelect />', () => {
     });
 
     const onChangeMock = jest.fn();
+    const onCloseSelectMenuMock = jest.fn();
+    const onOpenSelectMenuMock = jest.fn();
 
     const props = {
         onChange: onChangeMock,
+        onCloseSelectMenu: onCloseSelectMenuMock,
+        onOpenSelectMenu: onOpenSelectMenuMock,
         options: OPTIONS,
         value: null,
     };

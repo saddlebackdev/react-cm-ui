@@ -56,10 +56,16 @@ class ActionBarSearch extends React.PureComponent {
     constructor() {
         super();
 
+        this.state = {
+            isSearchWithSelectMenuOpen: false,
+        };
+
         this.onChange = this.onChange.bind(this);
         this.onClearClick = this.onClearClick.bind(this);
         this.onClearKeyDown = this.onClearKeyDown.bind(this);
         this.onKeyDown = this.onKeyDown.bind(this);
+        this.onCloseSelectMenu = this.onCloseSelectMenu.bind(this);
+        this.onOpenSelectMenu = this.onOpenSelectMenu.bind(this);
     }
 
     onChange(value) {
@@ -92,7 +98,23 @@ class ActionBarSearch extends React.PureComponent {
         }
     }
 
+    onCloseSelectMenu() {
+        this.setState({
+            isSearchWithSelectMenuOpen: false,
+        });
+    }
+
+    onOpenSelectMenu() {
+        this.setState({
+            isSearchWithSelectMenuOpen: true,
+        });
+    }
+
     render() {
+        const {
+            isSearchWithSelectMenuOpen,
+        } = this.state;
+
         const {
             autoFocus,
             id,
@@ -120,6 +142,7 @@ class ActionBarSearch extends React.PureComponent {
             'action_bar--search-mobile': isMobileSearch,
             'action_bar--search-mobile-show': isMobileSearch && isMobileSearchVisible,
             'action_bar--search-with-select': hasCorrectDataForSearchWithSelect,
+            'action_bar--search-with-select-menu-open-mobile': isMobileSearch && isMobileSearchVisible && hasCorrectDataForSearchWithSelect && isSearchWithSelectMenuOpen,
         });
         let magnificationIcon = null;
 
@@ -146,6 +169,8 @@ class ActionBarSearch extends React.PureComponent {
                         dropdownArrowIconType={searchWithSelect.dropdownArrowIconType}
                         options={searchWithSelect.options}
                         onChange={searchWithSelect.onChange}
+                        onCloseSelectMenu={this.onCloseSelectMenu}
+                        onOpenSelectMenu={this.onOpenSelectMenu}
                         placeholder={searchWithSelect.placeholder}
                         value={searchWithSelect.value}
                     />
