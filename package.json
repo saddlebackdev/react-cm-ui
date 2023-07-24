@@ -1,6 +1,6 @@
 {
   "name": "@saddlebackchurch/react-cm-ui",
-  "version": "10.6.10",
+  "version": "10.6.11",
   "description": "React UI for Healthy Church",
   "jsnext:main": "src/",
   "main": "core/",
@@ -29,7 +29,7 @@
     "core",
     "src"
   ],
-  "homepage": "https://github.com/saddlebackdev/react-cm-ui#readme",
+  "homepage": "https://cm-ui-docs.saddleback.com",
   "scripts": {
     "azure-devops-test": "jest --ci --reporters=jest-junit --reporters=default --coverage --coverageReporters=cobertura",
     "compile": "gulp",

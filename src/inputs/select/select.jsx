@@ -58,6 +58,10 @@ const propTypes = {
     */
     dropdownMenuContainerStyle: PropTypes.shape({}),
     /**
+    * Supply dropdown menu dropdown arrow icon
+    */
+    dropdownArrowIconType: PropTypes.string,
+    /**
     * Supply dropdown menu maximum height
     */
     dropdownMenuMaxHeight: PropTypes.number,
@@ -166,6 +170,7 @@ const defaultProps = {
     error: null,
     disable: false,
     disabled: false,
+    dropdownArrowIconType: 'chevron-down',
     dropdownMenuContainerStyle: null,
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
@@ -782,6 +787,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         creatable: isCreatable,
         disable: disableProp,
         disabled: disabledProp,
+        dropdownArrowIconType,
         dropdownMenuContainerStyle,
         dropdownMenuStyle,
         dropdownMenuMaxHeight,
@@ -1039,7 +1045,7 @@ const Select = React.forwardRef(function Select(props, ref) {
                                 compact
                                 size={16}
                                 title="Select"
-                                type="chevron-down"
+                                type={dropdownArrowIconType}
                             />
                         </div>
                     );

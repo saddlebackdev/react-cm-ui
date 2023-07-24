@@ -69,10 +69,8 @@ const propTypes = {
      * Forwarded Ref
      */
     forwardedRef: PropTypes.oneOfType([
-        // Either a function
         PropTypes.func,
-        // Or the instance of a DOM native element (see the note about SSR)
-        PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+        PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
     ]),
     /**
      * Indicates whether or not the Input should be in guide mode.

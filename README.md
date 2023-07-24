@@ -3,7 +3,11 @@ UI Assets for **Healthy Church** and related projects
 
 [![Build Status](https://dev.azure.com/saddlebackchurch/Church%20Management/_apis/build/status%2FHealthyChurch%2F(yaml)%20HC-UI-Docs?branchName=dev)](https://dev.azure.com/saddlebackchurch/Church%20Management/_build/latest?definitionId=258&branchName=dev)
 &nbsp;
-[![npm version](https://badge.fury.io/js/@saddlebackchurch%2Freact-cm-ui.svg)](https://badge.fury.io/js/@saddlebackchurch%2Freact-cm-ui)
+[![npm version](https://img.shields.io/npm/v/@saddlebackchurch/react-cm-ui.svg?style=flat)](https://www.npmjs.com/package/@saddlebackchurch/react-cm-ui)
+
+## UI Documentation Site
+
+https://cm-ui-docs.saddleback.com
 
 ## Powered By
 [![React JS](/readme-assets/react.svg "React JS")](https://react.dev/)

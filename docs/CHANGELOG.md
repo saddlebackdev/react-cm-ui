@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.4 - 07/24/2023
+- [PR #452](https://github.com/saddlebackdev/react-cm-ui/pull/452) / Merge Commit 9eab586
+  - Update Demo Page sample code to show the new capability of having a `<Select>` next to Action Bar Search and clean up the code
+  - Add Demo Drawer sample code and add ability to open Demo Drawer to `<Drawer>` documentation page
+
 ## 0.17.3 - 07/19/2023
 - [PR #451](https://github.com/saddlebackdev/react-cm-ui/pull/451) / Merge Commit 55e23c2
   - Further tweaks to the new YAML build pipeline
