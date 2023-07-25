@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.8-hotfix-1
+_July 25, 2023_
+- Fix a bug in `<PhoneInput>` component where the country flag icons were not being rendered in Safari browsers.  [PR #456](https://github.com/saddlebackdev/react-cm-ui/pull/456)
+
 ## 10.6.12
 _July 25, 2023_
 - Add ability suppress CSS background image on `<Image>` component.  [PR #454](https://github.com/saddlebackdev/react-cm-ui/pull/454)
