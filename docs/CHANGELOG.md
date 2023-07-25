@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.5 - 07/24/2023
+- [PR #454](https://github.com/saddlebackdev/react-cm-ui/pull/454) / Merge Commit 2409e7b
+  - Update the documentation page for the `<Image>` component
+
 ## 0.17.4 - 07/24/2023
 - [PR #452](https://github.com/saddlebackdev/react-cm-ui/pull/452) / Merge Commit 9eab586
   - Update Demo Page sample code to show the new capability of having a `<Select>` next to Action Bar Search and clean up the code
