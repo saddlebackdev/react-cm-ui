@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.13
+_July 25, 2023_
+- Fix regression with CSS import/export in `<Image>` component.  [PR #457](https://github.com/saddlebackdev/react-cm-ui/pull/457)
+
 ## 10.6.8-hotfix-1
 _July 25, 2023_
 - Fix a bug in `<PhoneInput>` component where the country flag icons were not being rendered in Safari browsers.  [PR #456](https://github.com/saddlebackdev/react-cm-ui/pull/456)
