@@ -4,7 +4,7 @@ import React from 'react';
 import {
     UI_CLASS_NAME,
 } from '../../global/constants';
-import colorStyles from '../../styles/colorExports.scss';
+import colorStyles from '../../styles/colorExports'; // eslint-disable-line import/extensions, import/no-unresolved
 import Icon from '../icon';
 import Utils from '../../utils/utils';
 
