@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.12
+_July 25, 2023_
+- Add ability suppress CSS background image on `<Image>` component.  [PR #454](https://github.com/saddlebackdev/react-cm-ui/pull/454)
+- Fix a bug in `<PhoneInput>` component where the country flag icons were not being rendered in Safari browsers.  [PR #455](https://github.com/saddlebackdev/react-cm-ui/pull/455)
+
 ## 10.6.11
 _July 24, 2023_
 - Add the ability to have a `<Select>` next to the Action Bar Search (to designate the context/target for the search term).  [PR #452](https://github.com/saddlebackdev/react-cm-ui/pull/452)

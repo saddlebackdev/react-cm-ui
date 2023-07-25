@@ -56,6 +56,10 @@ $width: 65px;
         .react-phone-number-input__icon-image {
             height: 16px;
         }
+        > svg {
+            height: 100%;
+            width: 100%;
+        }
     }
     .react-phone-number-input__input {
         background-color: color(backgroundColor);
