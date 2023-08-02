@@ -108,6 +108,11 @@ const propTypes = {
     ]),
 
     /**
+     * Hides the calendar picker when introducing the date manually
+     */
+    hideCalendarPickerOnKeyDown: PropTypes.bool,
+
+    /**
      * Specify an element ID this DatePickerInput control.
      */
     id: PropTypes.oneOfType([
@@ -198,6 +203,7 @@ const defaultProps = {
     filterDates: null,
     fluid: false,
     forwardedRef: undefined,
+    hideCalendarPickerOnKeyDown: false,
     id: null,
     includeDates: null,
     label: null,
@@ -368,6 +374,7 @@ class DatePickerInput extends React.PureComponent {
         const isNotDisabled = !disable && !disabled;
 
         if (isNotDisabled) {
+            this.setOpen(true);
             this.datePickerInput.current.inputElement.focus();
         }
     }
@@ -431,7 +438,14 @@ class DatePickerInput extends React.PureComponent {
     }
 
     onInputKeyDown(event) {
-        if (event.keyCode === 9 || event.keyCode === 13) {
+        const {
+            hideCalendarPickerOnKeyDown,
+        } = this.props;
+
+        const shouldHideCalendarPicker = hideCalendarPickerOnKeyDown ||
+            (event.keyCode === 9 || event.keyCode === 13);
+
+        if (shouldHideCalendarPicker) {
             this.setOpen(false);
         }
     }
