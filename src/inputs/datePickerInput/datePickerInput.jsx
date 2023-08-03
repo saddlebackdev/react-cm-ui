@@ -18,6 +18,8 @@ import Input from '../input';
 import DatePickerCalendarOnClickOutside from '../datePickerCalendar/datePickerCalendarOnClickOutside';
 import withStyles from '../../styles/withStyles';
 
+const BEM_BLOCK_NAME = 'date_picker_input';
+
 const propTypes = {
     /**
      * Forces the DatePickerInput component to always show the required indicator
@@ -574,7 +576,10 @@ class DatePickerInput extends React.PureComponent {
                         attachment: 'together',
                     }]}
                     renderElement={(ref) => isCalendarOpen && (
-                        <div ref={ref}>
+                        <div
+                            ref={ref}
+                            data-testid={`${BEM_BLOCK_NAME}--calendar_picker`}
+                        >
                             <DatePickerCalendarOnClickOutside
                                 controls="dropdowns"
                                 date={date}
