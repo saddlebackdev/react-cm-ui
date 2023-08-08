@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.14
+_August 8, 2023_
+- `<DatePickerInput>` - add the ability to hide the date picker calendar control if user manually enters a value.  [PR #458](https://github.com/saddlebackdev/react-cm-ui/pull/458)
+
 ## 10.6.13
 _July 25, 2023_
 - Fix regression with CSS import/export in `<Image>` component.  [PR #457](https://github.com/saddlebackdev/react-cm-ui/pull/457)

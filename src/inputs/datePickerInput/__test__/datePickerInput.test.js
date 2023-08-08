@@ -8,6 +8,7 @@ import {
     fireEvent,
     render,
     screen,
+    waitFor,
 } from '../../../testUtils';
 import DatePickerInput from '../datePickerInput';
 
@@ -142,6 +143,38 @@ describe('<DatePickerInput />', () => {
             const onChangeDateToArg = onChangeArgObj.dateTo;
             expect(moment.isMoment(onChangeDateToArg)).toBe(true);
             expect(onChangeDateToArg.format('MM/DD/YYYY')).toEqual(newDateValue);
+        });
+    });
+
+    describe('Calendar Picker', () => {
+        it('hides when manually entering a date', async () => {
+            const {
+                getByTestId,
+                queryByTestId,
+            } = render(
+                <DatePickerInput dataTestId="date_picker_input" />,
+            );
+
+            expect(queryByTestId('date_picker_input--calendar_picker')).not.toBeInTheDocument();
+
+            const icon = getByTestId('cmui-icon-calendar');
+
+            fireEvent.click(icon);
+
+            expect(queryByTestId('date_picker_input--calendar_picker')).toBeInTheDocument();
+
+            await waitFor(() => {
+                fireEvent.change(
+                    queryByTestId('date_picker_input'),
+                    {
+                        target: {
+                            value: '01/10/2022',
+                        },
+                    },
+                );
+            });
+
+            expect(queryByTestId('date_picker_input--calendar_picker')).not.toBeInTheDocument();
         });
     });
 });

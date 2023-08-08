@@ -15,8 +15,11 @@ import DatePickerUtils from '../../utils/datePickerUtils';
 import DateUtils from '../../utils/dateUtils';
 import Icon from '../../dataDisplay/icon';
 import Input from '../input';
+import KeyCode from '../../global/keyCode';
 import DatePickerCalendarOnClickOutside from '../datePickerCalendar/datePickerCalendarOnClickOutside';
 import withStyles from '../../styles/withStyles';
+
+const BEM_BLOCK_NAME = 'date_picker_input';
 
 const propTypes = {
     /**
@@ -106,6 +109,11 @@ const propTypes = {
         PropTypes.func,
         PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
     ]),
+
+    /**
+     * Hides the calendar picker when entering the date manually
+     */
+    hideCalendarPickerOnKeyDown: PropTypes.bool,
 
     /**
      * Specify an element ID this DatePickerInput control.
@@ -198,6 +206,7 @@ const defaultProps = {
     filterDates: null,
     fluid: false,
     forwardedRef: undefined,
+    hideCalendarPickerOnKeyDown: false,
     id: null,
     includeDates: null,
     label: null,
@@ -368,6 +377,7 @@ class DatePickerInput extends React.PureComponent {
         const isNotDisabled = !disable && !disabled;
 
         if (isNotDisabled) {
+            this.setOpen(true);
             this.datePickerInput.current.inputElement.focus();
         }
     }
@@ -431,7 +441,14 @@ class DatePickerInput extends React.PureComponent {
     }
 
     onInputKeyDown(event) {
-        if (event.keyCode === 9 || event.keyCode === 13) {
+        const {
+            hideCalendarPickerOnKeyDown,
+        } = this.props;
+
+        const shouldHideCalendarPicker = hideCalendarPickerOnKeyDown ||
+            (event.keyCode === KeyCode.Tab || event.keyCode === KeyCode.Enter);
+
+        if (shouldHideCalendarPicker) {
             this.setOpen(false);
         }
     }
@@ -560,7 +577,10 @@ class DatePickerInput extends React.PureComponent {
                         attachment: 'together',
                     }]}
                     renderElement={(ref) => isCalendarOpen && (
-                        <div ref={ref}>
+                        <div
+                            ref={ref}
+                            data-testid={`${BEM_BLOCK_NAME}--calendar_picker`}
+                        >
                             <DatePickerCalendarOnClickOutside
                                 controls="dropdowns"
                                 date={date}

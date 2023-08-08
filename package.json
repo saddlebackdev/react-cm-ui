@@ -1,6 +1,6 @@
 {
   "name": "@saddlebackchurch/react-cm-ui",
-  "version": "10.6.13",
+  "version": "10.6.14",
   "description": "React UI for Healthy Church",
   "jsnext:main": "src/",
   "main": "core/",
