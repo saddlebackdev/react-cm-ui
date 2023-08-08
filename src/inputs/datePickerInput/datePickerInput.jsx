@@ -15,6 +15,7 @@ import DatePickerUtils from '../../utils/datePickerUtils';
 import DateUtils from '../../utils/dateUtils';
 import Icon from '../../dataDisplay/icon';
 import Input from '../input';
+import KeyCode from '../../global/keyCode';
 import DatePickerCalendarOnClickOutside from '../datePickerCalendar/datePickerCalendarOnClickOutside';
 import withStyles from '../../styles/withStyles';
 
@@ -110,7 +111,7 @@ const propTypes = {
     ]),
 
     /**
-     * Hides the calendar picker when introducing the date manually
+     * Hides the calendar picker when entering the date manually
      */
     hideCalendarPickerOnKeyDown: PropTypes.bool,
 
@@ -445,7 +446,7 @@ class DatePickerInput extends React.PureComponent {
         } = this.props;
 
         const shouldHideCalendarPicker = hideCalendarPickerOnKeyDown ||
-            (event.keyCode === 9 || event.keyCode === 13);
+            (event.keyCode === KeyCode.Tab || event.keyCode === KeyCode.Enter);
 
         if (shouldHideCalendarPicker) {
             this.setOpen(false);
