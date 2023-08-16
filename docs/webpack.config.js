@@ -9,10 +9,10 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = (env, options) => {
     const isDevMode = options.mode === 'development';
 
-    let favIconSrc = 'images/favicon.svg';
+    let favIconSrc = 'images/favIcon.svg';
 
     if (isDevMode) {
-        favIconSrc = 'src/images/favicon.svg';
+        favIconSrc = 'src/images/favIcon.svg';
     }
 
     return {
