@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
 import { create } from 'jss';
 import jssPreset from '@saddlebackchurch/react-cm-ui/styles/jssPreset';
 import PropTypes from 'prop-types';
@@ -7,8 +8,9 @@ import React, {
     useMemo,
 } from 'react';
 import rtl from 'jss-rtl';
-import StylesProvider from '@saddlebackchurch/react-cm-ui/styles/StylesProvider';
+import StylesProvider from '@saddlebackchurch/react-cm-ui/styles/stylesProvider';
 import useTheme from '@saddlebackchurch/react-cm-ui/styles/useTheme';
+/* eslint-enable import/no-extraneous-dependencies, import/no-unresolved */
 
 const propTypes = {
     children: PropTypes.node,
