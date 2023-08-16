@@ -7,7 +7,7 @@ import React, {
     useMemo,
 } from 'react';
 import rtl from 'jss-rtl';
-import StylesProvider from '@saddlebackchurch/react-cm-ui/styles/stylesProvider';
+import StylesProvider from '@saddlebackchurch/react-cm-ui/styles/StylesProvider';
 import useTheme from '@saddlebackchurch/react-cm-ui/styles/useTheme';
 
 const propTypes = {
