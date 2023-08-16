@@ -7,7 +7,7 @@ import SectionalTabs from '../sectionalTabs';
 import {
     items,
     tabsState,
-} from './sectionalTabsMockups';
+} from './sectionalTabsMockUps';
 import mountWithTheme from '../../../testUtils/enzymeHelpers';
 
 let wrapper;
