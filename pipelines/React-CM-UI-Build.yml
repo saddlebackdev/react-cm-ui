@@ -31,7 +31,7 @@ steps:
 - task: Cache@2
   displayName: Cache npm packages
   inputs:
-    key: 'npm | "$(Agent.OS)" | client/package-lock.json'
+    key: 'npm | "$(Agent.OS)" | package-lock.json'
     path: $(npm_config_cache)
     cacheHitVar: CACHE_RESTORED
 
