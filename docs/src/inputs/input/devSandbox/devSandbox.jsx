@@ -216,7 +216,7 @@ function InputDevSandbox() {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!../examples/ExampleInputIconCustom').default}
+                    rawCode={require('!!raw-loader!../examples/exampleInputIconCustom').default}
                 >
                     <ExampleInputIconCustom />
                 </Example>

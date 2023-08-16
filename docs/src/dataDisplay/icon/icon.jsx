@@ -42,6 +42,7 @@ const categorizedIconSet = [
         types: [
             'action',
             'add',
+            'back10',
             'delete',
             'download-1',
             'download-2',
@@ -49,7 +50,9 @@ const categorizedIconSet = [
             'edit-1',
             'edit-2',
             'edit-text',
+            'forward10',
             'input',
+            'pause',
             'refresh',
             'save',
             'scan',
