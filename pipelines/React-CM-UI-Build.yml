@@ -12,14 +12,29 @@ pr:
     - feature/cumulative--10.0.0
 
 pool:
+  demands: npm
   name: Azure Pipelines
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 variables:
   BuildConfiguration: release
 
 steps:
 ########## INIT PHASE ##########
+- powershell: |
+    echo "##vso[task.setvariable variable=npm_config_cache]$(Agent.ToolsDirectory)/npm-global-cache"
+  displayName: Set npm_config_cache variable
+
+- script: mkdir -p $(npm_config_cache)
+  displayName: Create npm cache directory
+
+- task: Cache@2
+  displayName: Cache npm packages
+  inputs:
+    key: 'npm | "$(Agent.OS)" | package-lock.json'
+    path: $(npm_config_cache)
+    cacheHitVar: CACHE_RESTORED
+
 - powershell: |
    $UIDocsVersion= "$(git describe --always --tags --abbrev=0)"
    Write-Host "Setting CM_UI_DOCS_VERSION to $UIDocsVersion"
