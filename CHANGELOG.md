@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.15
+_August 16, 2023_
+- `<Icon>` - add `back10`, `forward10` and `pause` icons.  [PR #459](https://github.com/saddlebackdev/react-cm-ui/pull/459)
+- Build pipeline updated to use Ubuntu agent and add NPM package caching.  [PR #460](https://github.com/saddlebackdev/react-cm-ui/pull/460).
+
 ## 10.6.14
 _August 8, 2023_
 - `<DatePickerInput>` - add the ability to hide the date picker calendar control if user manually enters a value.  [PR #458](https://github.com/saddlebackdev/react-cm-ui/pull/458)

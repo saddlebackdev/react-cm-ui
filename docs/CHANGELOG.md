@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.6 - 08/16/2023
+- [PR #459](https://github.com/saddlebackdev/react-cm-ui/pull/459) / Merge Commit 5f35110
+  - `<Icon>` documentation page - add `back10`, `forward10` and `pause` icons
+
 ## 0.17.5 - 07/24/2023
 - [PR #454](https://github.com/saddlebackdev/react-cm-ui/pull/454) / Merge Commit 2409e7b
   - Update the documentation page for the `<Image>` component
