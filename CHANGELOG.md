@@ -1,6 +1,51 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.6.15
+_August 16, 2023_
+- `<Icon>` - add `back10`, `forward10` and `pause` icons.  [PR #459](https://github.com/saddlebackdev/react-cm-ui/pull/459)
+- Build pipeline updated to use Ubuntu agent and add NPM package caching.  [PR #460](https://github.com/saddlebackdev/react-cm-ui/pull/460).
+
+## 10.6.14
+_August 8, 2023_
+- `<DatePickerInput>` - add the ability to hide the date picker calendar control if user manually enters a value.  [PR #458](https://github.com/saddlebackdev/react-cm-ui/pull/458)
+
+## 10.6.13
+_July 25, 2023_
+- Fix regression with CSS import/export in `<Image>` component.  [PR #457](https://github.com/saddlebackdev/react-cm-ui/pull/457)
+
+## 10.6.8-hotfix-1
+_July 25, 2023_
+- Fix a bug in `<PhoneInput>` component where the country flag icons were not being rendered in Safari browsers.  [PR #456](https://github.com/saddlebackdev/react-cm-ui/pull/456)
+
+## 10.6.12
+_July 25, 2023_
+- Add ability suppress CSS background image on `<Image>` component.  [PR #454](https://github.com/saddlebackdev/react-cm-ui/pull/454)
+- Fix a bug in `<PhoneInput>` component where the country flag icons were not being rendered in Safari browsers.  [PR #455](https://github.com/saddlebackdev/react-cm-ui/pull/455)
+
+## 10.6.11
+_July 24, 2023_
+- Add the ability to have a `<Select>` next to the Action Bar Search (to designate the context/target for the search term).  [PR #452](https://github.com/saddlebackdev/react-cm-ui/pull/452)
+- Fix some misconfigured Prop Type declarations, leading to console errors in consuming projects.  [PR #453](https://github.com/saddlebackdev/react-cm-ui/pull/453)
+
+## 10.6.10
+_July 19, 2023_
+- Further tweaks to the new YAML build pipeline.  [PR #451](https://github.com/saddlebackdev/react-cm-ui/pull/451)
+
+## 10.6.9
+_July 19, 2023_
+- `[Dependabot]` Upgrade `tough-cookie` and `jsdom` packages. [PR #443](https://github.com/saddlebackdev/react-cm-ui/pull/443)
+- Various code fixes and small enhancements.  [PR #447](https://github.com/saddlebackdev/react-cm-ui/pull/447)
+  - `<ActionBar>` ( [`src/surfaces/actionBar/actionBar.jsx`](/src/surfaces/actionBar/actionBar.jsx) ) - Fix some eslint issues
+  - `<Container>` ( [`src/layout/container/container.jsx`](/src/layout/container/container.jsx) ) - Fix a compilation issue
+  - `<Icon>` ( [`src/dataDisplay/icon/icon.jsx`](/src/dataDisplay/icon/icon.jsx) ) - Add new types `giving-saddleback`, `insights` and `journey`
+  - `<Input>` ( [`src/inputs/input/input.jsx`](/src/inputs/input/input.jsx) )
+    - Add some additional keys to be allowed for inputs of type number
+    - Refactor number input allowed key check to use a `switch` statement instead of a long compound Boolean expression
+    - Some ESLINT fixes and small code tweaks
+- Add YAML Build Pipeline Definition.  [PR #449](https://github.com/saddlebackdev/react-cm-ui/pull/449)
+- `[Dependabot]` Upgrade `word-wrap` package.  [PR #450](https://github.com/saddlebackdev/react-cm-ui/pull/450)
+
 ## 10.6.8
 _June 23, 2023_
 - Added defensive check in `<DropdownMenu />` on `parentContainer` before de-referencing it to call `contains()` method in `onClickOutside()` function. [PR #440](https://github.com/saddlebackdev/react-cm-ui/pull/440)

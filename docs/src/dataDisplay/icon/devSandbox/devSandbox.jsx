@@ -1,6 +1,6 @@
 import {
     Typography,
-} from '@saddlebackchurch/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import {
     camelCase,
 } from 'lodash';
@@ -10,6 +10,7 @@ import ExampleAlign from './examples/exampleAlign';
 import ExampleColor from './examples/exampleColor';
 import ExampleCompact from './examples/exampleCompact';
 import ExampleGradient from './examples/exampleGradient';
+import ExampleHealthyChurchFeatures from './examples/exampleHealthyChurchFeatures';
 import ExampleInverseColor from './examples/exampleInverseColor';
 import ExampleOnClick from './examples/exampleOnClick';
 import ExampleRotate from './examples/exampleRotate';
@@ -20,9 +21,9 @@ import ExampleTitle from './examples/exampleTitle';
 import Heading from '../../../global/heading';
 import Main from '../../../global/main';
 import MarkdownContainer from '../../../global/markdownContainer';
-/* eslint-disable import/no-named-default, import/extensions */
+/* eslint-disable import/no-named-default, import/extensions, import/no-unresolved */
 import { default as rootDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/dataDisplay/icon/icon';
-/* eslint-enable import/no-named-default, import/extensions */
+/* eslint-enable import/no-named-default, import/extensions, import/no-unresolved */
 
 function DocsIconSandbox() {
     const {
@@ -49,7 +50,7 @@ function DocsIconSandbox() {
                     </Heading>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleStandard').default}
+                        rawCode={require('!!raw-loader!./examples/exampleStandard').default} // eslint-disable-line import/extensions, import/no-unresolved
                     >
                         <ExampleStandard />
                     </Example>
@@ -66,7 +67,7 @@ function DocsIconSandbox() {
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleAlign').default}
+                        rawCode={require('!!raw-loader!./examples/exampleAlign').default} // eslint-disable-line import/extensions, import/no-unresolved
                     >
                         <ExampleAlign />
                     </Example>
@@ -79,7 +80,7 @@ function DocsIconSandbox() {
                     </Heading>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleColor').default}
+                        rawCode={require('!!raw-loader!./examples/exampleColor').default} // eslint-disable-line import/extensions, import/no-unresolved
                     >
                         <ExampleColor />
                     </Example>
@@ -93,7 +94,7 @@ function DocsIconSandbox() {
 
                     <Example
                         inverse
-                        rawCode={require('!!raw-loader!./examples/exampleInverseColor').default}
+                        rawCode={require('!!raw-loader!./examples/exampleInverseColor').default} // eslint-disable-line import/extensions, import/no-unresolved
                     >
                         <ExampleInverseColor />
                     </Example>
@@ -106,7 +107,7 @@ function DocsIconSandbox() {
                     </Heading>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleCompact').default}
+                        rawCode={require('!!raw-loader!./examples/exampleCompact').default} // eslint-disable-line import/extensions, import/no-unresolved
                     >
                         <ExampleCompact />
                     </Example>
@@ -119,11 +120,14 @@ function DocsIconSandbox() {
                     </Heading>
 
                     <Typography variant="body1" style={{ marginBottom: 16 }}>
-                        <code>id</code> is required on the <code>linearGradient</code> element.
+                        <code>id</code>
+                        is required on the
+                        <code>linearGradient</code>
+                        element.
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleGradient').default}
+                        rawCode={require('!!raw-loader!./examples/exampleGradient').default} // eslint-disable-line import/extensions, import/no-unresolved
                     >
                         <ExampleGradient />
                     </Example>
@@ -136,7 +140,7 @@ function DocsIconSandbox() {
                     </Heading>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleOnClick').default}
+                        rawCode={require('!!raw-loader!./examples/exampleOnClick').default} // eslint-disable-line import/extensions, import/no-unresolved
                     >
                         <ExampleOnClick />
                     </Example>
@@ -149,7 +153,7 @@ function DocsIconSandbox() {
                     </Heading>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleRotate').default}
+                        rawCode={require('!!raw-loader!./examples/exampleRotate').default} // eslint-disable-line import/extensions, import/no-unresolved
                     >
                         <ExampleRotate />
                     </Example>
@@ -162,7 +166,7 @@ function DocsIconSandbox() {
                     </Heading>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleSize').default}
+                        rawCode={require('!!raw-loader!./examples/exampleSize').default} // eslint-disable-line import/extensions, import/no-unresolved
                     >
                         <ExampleSize />
                     </Example>
@@ -175,7 +179,7 @@ function DocsIconSandbox() {
                     </Heading>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleSpin').default}
+                        rawCode={require('!!raw-loader!./examples/exampleSpin').default} // eslint-disable-line import/extensions, import/no-unresolved
                     >
                         <ExampleSpin />
                     </Example>
@@ -196,9 +200,22 @@ function DocsIconSandbox() {
                     </Typography>
 
                     <Example
-                        rawCode={require('!!raw-loader!./examples/exampleTitle').default}
+                        rawCode={require('!!raw-loader!./examples/exampleTitle').default} // eslint-disable-line import/extensions, import/no-unresolved
                     >
                         <ExampleTitle />
+                    </Example>
+
+                    <Heading
+                        anchorLink="hc-features"
+                        variant="h2"
+                    >
+                        Healthy Church Features
+                    </Heading>
+
+                    <Example
+                        rawCode={require('!!raw-loader!./examples/exampleHealthyChurchFeatures').default} // eslint-disable-line import/extensions, import/no-unresolved
+                    >
+                        <ExampleHealthyChurchFeatures />
                     </Example>
                 </MarkdownContainer>
             </Main.Content>

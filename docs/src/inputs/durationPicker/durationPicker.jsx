@@ -1,6 +1,6 @@
 import {
     Typography,
-} from '@saddlebackchurch/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import {
     camelCase,
 } from 'lodash';
@@ -13,16 +13,16 @@ import DurationPickerDaysHoursMinutesSecondsExample from './durationPickerDaysHo
 import DurationPickerDisabledExample from './durationPickerDisabledExample';
 import DurationPickerErrorHandlingExample from './durationPickerErrorHandlingExample';
 import DurationPickerLabelExample from './durationPickerLabelExample';
-import DurationPickerRequiredExample from './DurationPickerRequiredExample';
+import DurationPickerRequiredExample from './durationPickerRequiredExample';
 import DurationPickerSimpleExample from './durationPickerSimpleExample';
 import DurationPickerYearsMonthsDaysExample from './durationPickerYearsMonthsDaysExample';
 import Example from '../../global/example';
 import Heading from '../../global/heading';
 import MarkdownContainer from '../../global/markdownContainer';
 import Main from '../../global/main';
-/* eslint-disable import/no-named-default, import/extensions */
+/* eslint-disable import/no-named-default, import/extensions, import/no-unresolved */
 import { default as componentDoc } from '!!@advclb/react-docgen-loader!@saddlebackchurch/react-cm-ui/inputs/durationPicker/durationPicker';
-/* eslint-enable import/no-named-default, import/extensions */
+/* eslint-enable import/no-named-default, import/extensions, import/no-unresolved */
 
 const propTypes = {
     location: PropTypes.shape({
@@ -70,7 +70,7 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerSimpleExample').default}
+                    rawCode={require('!!raw-loader!./durationPickerSimpleExample').default} // eslint-disable-line import/extensions, import/no-unresolved
                 >
                     <DurationPickerSimpleExample />
                 </Example>
@@ -89,7 +89,7 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerDaysHoursMinutesSecondsExample').default}
+                    rawCode={require('!!raw-loader!./durationPickerDaysHoursMinutesSecondsExample').default} // eslint-disable-line import/extensions, import/no-unresolved
                 >
                     <DurationPickerDaysHoursMinutesSecondsExample />
                 </Example>
@@ -107,7 +107,7 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerYearsMonthsDaysExample').default}
+                    rawCode={require('!!raw-loader!./durationPickerYearsMonthsDaysExample').default} // eslint-disable-line import/extensions, import/no-unresolved
                 >
                     <DurationPickerYearsMonthsDaysExample />
                 </Example>
@@ -130,7 +130,7 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerLabelExample').default}
+                    rawCode={require('!!raw-loader!./durationPickerLabelExample').default} // eslint-disable-line import/extensions, import/no-unresolved
                 >
                     <DurationPickerLabelExample />
                 </Example>
@@ -153,7 +153,7 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerRequiredExample').default}
+                    rawCode={require('!!raw-loader!./durationPickerRequiredExample').default} // eslint-disable-line import/extensions, import/no-unresolved
                 >
                     <DurationPickerRequiredExample />
                 </Example>
@@ -176,7 +176,7 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerErrorHandlingExample').default}
+                    rawCode={require('!!raw-loader!./durationPickerErrorHandlingExample').default} // eslint-disable-line import/extensions, import/no-unresolved
                 >
                     <DurationPickerErrorHandlingExample />
                 </Example>
@@ -199,7 +199,7 @@ function DocsDurationPicker(props) {
                 </MarkdownContainer>
 
                 <Example
-                    rawCode={require('!!raw-loader!./durationPickerDisabledExample').default}
+                    rawCode={require('!!raw-loader!./durationPickerDisabledExample').default} // eslint-disable-line import/extensions, import/no-unresolved
                 >
                     <DurationPickerDisabledExample />
                 </Example>

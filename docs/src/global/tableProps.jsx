@@ -1,9 +1,9 @@
 /* eslint-disable react/no-danger */
 
-import './TableProps.scss';
+import './tableProps.scss';
 
 import _ from 'lodash';
-import { Table } from '@saddlebackchurch/react-cm-ui';
+import { Table } from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import makeStyles from '../../styles/makeStyles';
 import {
-    BEM_ACTION_BAR_SEARCH_VISIBLE,
     BEM_CONTAINER,
     UI_CLASS_NAME,
 } from '../../global/constants';
@@ -39,7 +38,7 @@ const useStyles = makeStyles((theme) => {
                 marginTop: 50,
                 [breakpoints.down('md')]: {
                     transition: 'margin-top 333ms ease-in-out',
-                    [`&.${BEM_ACTION_BAR_SEARCH_VISIBLE}`]: {
+                    '&.page--container-has_action_bar_mobile_search_visible': {
                         marginTop: 105,
                     },
                 },

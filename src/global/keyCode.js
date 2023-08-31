@@ -28,7 +28,9 @@ const KeyCode = Object.freeze({
     Backspace: 8,
     Ctrl: 7,
     Dot: 190,
+    End: 35,
     Enter: 13,
+    Home: 36,
     LeftArrow: 37,
     Letter_A: 65,
     Letter_C: 67,
@@ -41,6 +43,8 @@ const KeyCode = Object.freeze({
     NormalNumber_9: 57,
     NumberPad_0: 96,
     NumberPad_9: 105,
+    NumberPad_Dot: 110,
+    NumberPad_Minus: 109,
     RightArrow: 39,
     Tab: 9,
 });

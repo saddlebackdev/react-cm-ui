@@ -58,7 +58,10 @@ const propTypes = {
                 PropTypes.string,
                 PropTypes.number,
             ]).isRequired,
-            title: PropTypes.string.isRequired,
+            title: PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.node,
+            ]).isRequired,
             getContent: PropTypes.func,
             onClick: PropTypes.func,
         }),
@@ -720,7 +723,7 @@ class SectionalTabs extends Component {
 
                 {withContent && this.getExpandedTabs(panels, selectedTabKey)}
 
-                {<ResizeDetector handleWidth onResize={this.onResizeThrottled} />}
+                <ResizeDetector handleWidth onResize={this.onResizeThrottled} />
             </div>
         );
     }
