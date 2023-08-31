@@ -19,7 +19,6 @@ import {
 } from '../../global/constants';
 import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
-import SelectNext from '../selectNext/selectNext';
 
 const propTypes = {
     /**
@@ -1096,6 +1095,6 @@ const Select = React.forwardRef(function Select(props, ref) {
 
 Select.propTypes = propTypes;
 Select.defaultProps = defaultProps;
-Select.Next = SelectNext;
+// Select.Next = SelectNext;
 
 export default Select;
