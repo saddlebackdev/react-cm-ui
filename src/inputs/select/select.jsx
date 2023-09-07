@@ -1098,6 +1098,5 @@ const Select = React.forwardRef(function Select(props, ref) {
 
 Select.propTypes = propTypes;
 Select.defaultProps = defaultProps;
-// Select.Next = SelectNext;
 
 export default Select;
