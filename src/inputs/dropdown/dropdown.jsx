@@ -14,7 +14,7 @@ import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ScrollBar from 'react-custom-scrollbars';
-import Select from 'react-select';
+import Select from 'react-select-old';
 import Button from '../button';
 import domUtils from '../../utils/domUtils';
 import DropdownItem from './dropdownItem';

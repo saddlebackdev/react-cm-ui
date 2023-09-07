@@ -11,7 +11,7 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
-import ReactSelect from 'react-select';
+import ReactSelect from 'react-select-old';
 import ScrollBar from 'react-custom-scrollbars';
 import {
     BEM_SELECT,
@@ -777,6 +777,9 @@ const useStyles = makeStyles((theme) => {
 
 /**
  * The Select component represents a control that provides a menu of options.
+ * The Select in the right side implements the V5 package version because it
+ * exposes a 'menuPortalTarget' prop, that lets you portal the select menu to a dom node of your choosing
+ * (Useful when working with Modals).
  */
 // eslint-disable-next-line prefer-arrow-callback
 const Select = React.forwardRef(function Select(props, ref) {

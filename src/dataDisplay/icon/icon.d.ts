@@ -30,7 +30,7 @@ export interface IconPropTypes {
      * If defined, `color` will be overriden and the `gradient.linearGradient` will be used.
      * Note: `id` needs to be defined on the `<linearGradient>` element.
      */
-    gradient: React.ReactNode;
+    gradient?: React.ReactNode;
     /**
      * The `id` of the icon.
      */

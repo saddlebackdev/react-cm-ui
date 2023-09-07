@@ -154,6 +154,9 @@ export * from './inputs/segmentedControls';
 export { default as Select } from './inputs/select';
 export * from './inputs/select';
 
+export { default as SelectNext } from './inputs/selectNext';
+export * from './inputs/selectNext';
+
 export { default as TextArea } from './inputs/textArea';
 export * from './inputs/textArea';
 
