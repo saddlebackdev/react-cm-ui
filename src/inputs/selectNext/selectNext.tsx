@@ -2,9 +2,9 @@ import ClassNames from 'classnames';
 import {
     isFunction,
 } from 'lodash';
-import PropTypes from 'prop-types';
 import React, {
     LegacyRef,
+    ReactNode,
 } from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 import Select, {
@@ -49,13 +49,17 @@ type PropTypes = {
      */
     menuPortalTarget?: HTMLElement | null;
     /**
+     * Name of the HTML Input (without this, no input will be rendered)
+     */
+    name: string;
+    /**
      * Text to display when there are no options
      */
-    noOptionsMessage?: () => string | null;
+    noOptionsMessage?: (selectValue: { inputValue: string }) => ReactNode;
     /**
      * Handle change events on the select
      */
-    onChange: (nextValue: { value: string; label: string}) => void;
+    onChange: (nextValue: Option) => void;
     /**
      * Supply a list of options that the user can select from.
      */
@@ -352,7 +356,8 @@ type Option = {
  */
 // eslint-disable-next-line prefer-arrow-callback
 const SelectNext = React.forwardRef(function SelectNext(
-    props: PropTypes, ref: LegacyRef<HTMLDivElement>,
+    props: PropTypes,
+    ref: LegacyRef<HTMLDivElement>,
 ) {
     const {
         className,
@@ -362,6 +367,7 @@ const SelectNext = React.forwardRef(function SelectNext(
         isSearchable,
         label,
         menuPortalTarget,
+        name,
         noOptionsMessage,
         onChange: onChangeProp,
         options,
@@ -417,7 +423,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                 dropdownMenuMinHeight={dropdownMenuMinHeight}
                 isSearchable={isSearchable}
                 menuPortalTarget={menuPortalTarget}
-                name="cm_ui_select_next"
+                name={name}
                 noOptionsMessage={noOptionsMessage}
                 onChange={onChange}
                 options={options}

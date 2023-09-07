@@ -777,6 +777,9 @@ const useStyles = makeStyles((theme) => {
 
 /**
  * The Select component represents a control that provides a menu of options.
+ * The Select in the right side implements the V5 package version because it
+ * exposes a 'menuPortalTarget' prop, that lets you portal the select menu to a dom node of your choosing
+ * (Useful when working with Modals).
  */
 // eslint-disable-next-line prefer-arrow-callback
 const Select = React.forwardRef(function Select(props, ref) {
