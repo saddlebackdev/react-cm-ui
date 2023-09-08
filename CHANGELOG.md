@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.7.0
+_September 7, 2023_
+- Add `<SelectNext>` component, powered by React Select v5.  [PR #461](https://github.com/saddlebackdev/react-cm-ui/pull/461)
+
 ## 10.6.15
 _August 16, 2023_
 - `<Icon>` - add `back10`, `forward10` and `pause` icons.  [PR #459](https://github.com/saddlebackdev/react-cm-ui/pull/459)
