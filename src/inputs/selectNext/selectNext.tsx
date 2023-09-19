@@ -25,7 +25,7 @@ type PropTypes = {
     * next to the label. The default behavior (if this prop is omitted or false) is for
     * the required field indicator to disappear once a value has been selected.
     */
-    alwaysShowRequiredIndicator: boolean;
+    alwaysShowRequiredIndicator?: boolean;
     /**
     * Assign a class name to the outer component.
     */
@@ -435,7 +435,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                 >
                     {label}
 
-                    {required && showRequiredIndicator ? (
+                    {showRequiredIndicator ? (
                         <span className={classes.requiredIndicator}>*</span>
                     ) : null}
                 </label>
