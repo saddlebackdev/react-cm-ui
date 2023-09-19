@@ -117,7 +117,6 @@ const useStyles = makeStyles((theme) => {
     const {
         // @ts-ignore
         palette: p,
-        typography,
     } = theme;
 
     const darkThemeBoxShadow = '0 4px 4px 0 rgba(0, 0, 0, 0.43)';
@@ -283,7 +282,7 @@ const useStyles = makeStyles((theme) => {
         requiredIndicator: {
             color: p.error.main,
             display: 'inline-block',
-            fontSize: typography.pxToRem(14),
+            fontSize: '14px',
             marginLeft: 3,
         },
     };
