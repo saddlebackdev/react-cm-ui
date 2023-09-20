@@ -1,6 +1,7 @@
 import ClassNames from 'classnames';
 import {
     isFunction,
+    isEmpty,
 } from 'lodash';
 import React, {
     LegacyRef,
@@ -19,6 +20,12 @@ import {
 import makeStyles from '../../styles/makeStyles';
 
 type PropTypes = {
+    /**
+    * Forces the Select component to always show the required indicator
+    * next to the label. The default behavior (if this prop is omitted or false) is for
+    * the required field indicator to disappear once a value has been selected.
+    */
+    alwaysShowRequiredIndicator?: boolean;
     /**
     * Assign a class name to the outer component.
     */
@@ -69,6 +76,10 @@ type PropTypes = {
      */
     placeholder?: string;
     /**
+     * A Select can be required
+     */
+    required?: boolean;
+    /**
      * Style modifier methods
      * A basic example can be found at the bottom of the Replacing builtins documentation.
      * https://react-select.com/advanced#replacing-builtins
@@ -86,6 +97,7 @@ type PropTypes = {
 };
 
 const defaultProps = {
+    alwaysShowRequiredIndicator: false,
     className: null,
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
@@ -96,6 +108,7 @@ const defaultProps = {
     onChange: null,
     options: [],
     placeholder: null,
+    required: false,
     tabIndex: -1,
     value: null,
 };
@@ -104,6 +117,8 @@ const useStyles = makeStyles((theme) => {
     const {
         // @ts-ignore
         palette: p,
+        // @ts-ignore
+        typography,
     } = theme;
 
     const darkThemeBoxShadow = '0 4px 4px 0 rgba(0, 0, 0, 0.43)';
@@ -266,6 +281,12 @@ const useStyles = makeStyles((theme) => {
         label: {
             marginBottom: 8,
         },
+        requiredIndicator: {
+            color: p.error.main,
+            display: 'inline-block',
+            fontSize: typography.pxToRem(14),
+            marginLeft: 3,
+        },
     };
 });
 
@@ -360,6 +381,7 @@ const SelectNext = React.forwardRef(function SelectNext(
     ref: LegacyRef<HTMLDivElement>,
 ) {
     const {
+        alwaysShowRequiredIndicator,
         className,
         dropdownMenuMaxHeight,
         dropdownMenuMinHeight,
@@ -372,6 +394,7 @@ const SelectNext = React.forwardRef(function SelectNext(
         onChange: onChangeProp,
         options,
         placeholder,
+        required,
         styles,
         tabIndex,
         value,
@@ -393,6 +416,8 @@ const SelectNext = React.forwardRef(function SelectNext(
         className,
     );
 
+    const showRequiredIndicator = required && (alwaysShowRequiredIndicator || isEmpty(value));
+
     return (
         <div
             // eslint-disable-next-line react/jsx-props-no-spreading
@@ -409,6 +434,10 @@ const SelectNext = React.forwardRef(function SelectNext(
                     )}
                 >
                     {label}
+
+                    {showRequiredIndicator ? (
+                        <span className={classes.requiredIndicator}>*</span>
+                    ) : null}
                 </label>
             )}
 
