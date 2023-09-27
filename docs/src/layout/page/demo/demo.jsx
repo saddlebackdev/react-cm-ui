@@ -4,7 +4,14 @@ import {
     Page,
     Typography,
 } from '@saddlebackchurch/react-cm-ui';
-import _ from 'lodash';
+import {
+    cloneDeep,
+    find,
+    isEqual,
+    isEmpty,
+    map,
+    noop,
+} from 'lodash';
 import { connect } from 'react-redux'; // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
@@ -62,8 +69,8 @@ class PageDemo extends React.PureComponent {
         };
 
         this.state = {
-            appliedFilters: _.cloneDeep(this.defaultFilters),
-            dirtyFilters: _.cloneDeep(this.defaultFilters),
+            appliedFilters: cloneDeep(this.defaultFilters),
+            dirtyFilters: cloneDeep(this.defaultFilters),
             isFiltersDrawerOpen: false,
             isFetching: true,
             viewType: 'table',
@@ -195,8 +202,8 @@ class PageDemo extends React.PureComponent {
             viewType,
         } = this.state;
 
-        const isDirty = !_.isEqual(appliedFilters, dirtyFilters);
-        const isFiltering = !_.isEqual(this.defaultFilters, appliedFilters);
+        const isDirty = !isEqual(appliedFilters, dirtyFilters);
+        const isFiltering = !isEqual(this.defaultFilters, appliedFilters);
 
         const actionBarIconFilter = {
             selected: isFiltersDrawerOpen,
@@ -208,6 +215,25 @@ class PageDemo extends React.PureComponent {
             onClearClick: this.onSearchClear,
             onChange: this.onSearchChange,
             onKeyDown: this.onSearchKeyDown,
+            searchWithSelect: {
+                onChange: noop,
+                options: [
+                    {
+                        label: 'People',
+                        value: 1,
+                    },
+                    {
+                        label: 'Designations',
+                        value: 2,
+                    },
+                    {
+                        label: 'Transaction ID',
+                        value: 3,
+                    },
+                ],
+                placeholder: 'Select',
+                value: null,
+            },
             value: searchValue,
         };
 
@@ -316,6 +342,7 @@ class PageDemo extends React.PureComponent {
                 },
             ];
         }
+
         let statsColumns = [
             {
                 accessor: () => 'Super Cool Info Bar - Color: 11',
@@ -483,10 +510,10 @@ class PageDemo extends React.PureComponent {
 
         let genderText;
         let personPreferredContactMethodText;
-        const personContactInfo = _.find(phones, 'isPrimary');
-        const personEmailInfo = _.find(emails, 'isPrimary');
-        const personAddressInfo = _.find(addresses, 'isPrimary');
-        const personOccupationInfo = _.find(occupations, 'isPrimary');
+        const personContactInfo = find(phones, 'isPrimary');
+        const personEmailInfo = find(emails, 'isPrimary');
+        const personAddressInfo = find(addresses, 'isPrimary');
+        const personOccupationInfo = find(occupations, 'isPrimary');
 
         switch (contactPreferences.preferredMethod) {
             case 'email':
@@ -633,8 +660,8 @@ class PageDemo extends React.PureComponent {
         mainColumns.push(personalColumnInfo);
 
         let personPhonesExpandableRows;
-        if (!_.isEmpty(phones)) {
-            personPhonesExpandableRows = _.map(phones, (item) => (
+        if (!isEmpty(phones)) {
+            personPhonesExpandableRows = map(phones, (item) => (
                 {
                     accessor: `phone-${item.id}`,
                     fieldName: item.phoneType,
@@ -644,7 +671,7 @@ class PageDemo extends React.PureComponent {
                 }
             ));
 
-            _.map(phones, (item) => {
+            map(phones, (item) => {
                 const personPhoneExpandableData = {
                     [`phone-${item.id}`]: item && item.displayPhoneNumber ? item.displayPhoneNumber : 'N/A',
                 };
@@ -656,8 +683,8 @@ class PageDemo extends React.PureComponent {
         }
 
         let personEmailsExpandableRows;
-        if (!_.isEmpty(emails)) {
-            personEmailsExpandableRows = _.map(emails, (item) => (
+        if (!isEmpty(emails)) {
+            personEmailsExpandableRows = map(emails, (item) => (
                 {
                     accessor: `email-${item.id}`,
                     fieldName: item.isPrimary ? 'Primary' : 'Additional',
@@ -666,7 +693,7 @@ class PageDemo extends React.PureComponent {
                 }
             ));
 
-            _.map(emails, (item) => {
+            map(emails, (item) => {
                 const personEmailExpandableData = {
                     [`email-${item.id}`]: item && item.email ? item.email : 'N/A',
                 };
@@ -678,8 +705,8 @@ class PageDemo extends React.PureComponent {
         }
 
         let personAddressesExpandableRows;
-        if (!_.isEmpty(addresses)) {
-            personAddressesExpandableRows = _.map(addresses, (item) => (
+        if (!isEmpty(addresses)) {
+            personAddressesExpandableRows = map(addresses, (item) => (
                 {
                     accessor: (d) => {
                         const addressInfo = d[`address-${item.id}`];
@@ -702,7 +729,7 @@ class PageDemo extends React.PureComponent {
                 }
             ));
 
-            _.map(addresses, (item) => {
+            map(addresses, (item) => {
                 const personAddressExpandableData = {
                     [`address-${item.id}`]: item,
                 };
@@ -761,11 +788,11 @@ class PageDemo extends React.PureComponent {
         };
         mainColumns.push(contactColumnInfo);
 
-        if (!_.isEmpty(personOccupationInfo)) {
+        if (!isEmpty(personOccupationInfo)) {
             let occupationsExpandableSection;
 
-            if (!_.isEmpty(occupations)) {
-                occupationsExpandableSection = _.map(occupations, (item) => (
+            if (!isEmpty(occupations)) {
+                occupationsExpandableSection = map(occupations, (item) => (
                     {
                         header: item.type,
                         rows: [
@@ -794,7 +821,7 @@ class PageDemo extends React.PureComponent {
                     }
                 ));
 
-                _.map(occupations, (item) => {
+                map(occupations, (item) => {
                     const occupationExpandableData = {
                         [`placeOfEmployment-${item.id}`]: item && item.company ? item.company : 'N/A',
                         [`occupationCategory-${item.id}`]: item && item.category ? item.category : 'N/A',

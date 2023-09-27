@@ -51,6 +51,7 @@ const propTypes = {
             iconGrid: PropTypes.shape({}),
             iconSearch: searchPropTypes,
             iconTable: PropTypes.shape({}),
+            searchWithSelect: PropTypes.shape({}),
         })),
         md: PropTypes.oneOf(GRID_SIZES),
         search: searchPropTypes,
@@ -256,7 +257,7 @@ class ActionBar extends React.PureComponent {
                                     const {
                                         button,
                                         dropdownButton,
-                                        columns, // eslint-disable-line no-shadow
+                                        columns: innerColumns,
                                         jsx,
                                         search,
                                     } = column;
@@ -265,10 +266,10 @@ class ActionBar extends React.PureComponent {
                                     const gridColumnClasses = ClassNames('action_bar--grid_column', column.className);
                                     const gridColumnKey = `action_bar--grid_column-${gridColumnKeyNum++}`; // eslint-disable-line no-plusplus
 
-                                    if (columns) {
+                                    if (innerColumns) {
                                         console.warn('ActionsBar\'s columns.columns is deprecated. Please use columns.list instead.'); // eslint-disable-line no-console
 
-                                        list = [...columns];
+                                        list = [...innerColumns];
                                     }
 
                                     if (!button && !dropdownButton && !jsx && !list && !search) {
@@ -337,6 +338,7 @@ class ActionBar extends React.PureComponent {
                                                     {map(dropdownButton.options, (option) => {
                                                         dropdownButtonOptionKeyNum += 1;
 
+                                                        /* eslint-disable max-len */
                                                         return (
                                                             <DropdownButton.Option
                                                                 className={option.className}
@@ -350,6 +352,7 @@ class ActionBar extends React.PureComponent {
                                                                 tabIndex={option.tabIndex}
                                                             />
                                                         );
+                                                        /* eslint-enable max-len */
                                                     })}
                                                 </DropdownButton>
                                             )}
@@ -527,6 +530,7 @@ class ActionBar extends React.PureComponent {
                                                     onFocus={search.onFocus}
                                                     onKeyDown={search.onKeyDown}
                                                     placeholder={search.placeholder}
+                                                    searchWithSelect={search.searchWithSelect}
                                                     value={search.value}
                                                 />
                                             )}

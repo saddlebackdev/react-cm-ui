@@ -69,10 +69,8 @@ const propTypes = {
      * Forwarded Ref
      */
     forwardedRef: PropTypes.oneOfType([
-        // Either a function
         PropTypes.func,
-        // Or the instance of a DOM native element (see the note about SSR)
-        PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+        PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
     ]),
     /**
      * Indicates whether or not the Input should be in guide mode.
@@ -361,14 +359,14 @@ class Input extends React.PureComponent {
                             }
                         }
                     } else {
-                        newValue = +newValue;
+                        const newValueAsNumber = +newValue;
 
                         if (isNumber(max)) {
-                            newValue = Math.min(max, newValue);
+                            newValue = Math.min(max, newValueAsNumber);
                         }
 
                         if (isNumber(min)) {
-                            newValue = Math.max(min, newValue);
+                            newValue = Math.max(min, newValueAsNumber);
                         }
                     }
 
@@ -418,28 +416,55 @@ class Input extends React.PureComponent {
         }
 
         if (type === 'number') {
-            const isCtrlKey = event.metaKey || // detects Apple Command key - https://stackoverflow.com/a/3922353/7415670 | https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/metaKey
-                event.ctrlKey || // CTRL key modifier flag
-                event.keyCode === KeyCode.Ctrl; // key code signifies the CTRL key
+            let shouldAllowCharacter = false;
 
-            const shouldAllowCharacter =
-                event.keyCode === KeyCode.Backspace || // allow the backspace key
-                event.keyCode === KeyCode.LeftArrow || // allow left arraw
-                event.keyCode === KeyCode.RightArrow || // allow right arrow
-                event.keyCode === KeyCode.Tab || // allow tab key
-                /* eslint-disable max-len */
-                (event.keyCode >= KeyCode.NormalNumber_0 && event.keyCode <= KeyCode.NormalNumber_9) || // allow digits 0-9 from the "normal" number keys at the top of the keybaord
-                (event.keyCode >= KeyCode.NumberPad_0 && event.keyCode <= KeyCode.NumberPad_9) || // allow digits 0-9 from the numeric keypad to the left of the keyboard - https://stackoverflow.com/a/13196983/7415670
-                /* eslint-enable max-len */
-                (allowDecimals && event.keyCode === KeyCode.Dot) || // allow dot as the decimal separator if `allowDecimals` is `true` / TODO/FIXME: some locales use comma instead of dot!
-                (allowNegativeNumbers && event.keyCode === KeyCode.Minus) || // allow minus sign if `allowNegativeNumbers` is true
-                (isCtrlKey && event.keyCode === KeyCode.Letter_A) || // allow CTRL+A for Select All
-                (isCtrlKey && event.keyCode === KeyCode.Letter_C) || // allow CTRL+C for Copy
-                (isCtrlKey && event.keyCode === KeyCode.Letter_V) || // allow CTRL+V for Paste
-                (isCtrlKey && event.keyCode === KeyCode.Letter_X) || // allow CTRL+X for Cut
-                (isCtrlKey && event.keyCode === KeyCode.Letter_Y) || // allow CTRL+Y for Redo
-                (isCtrlKey && event.keyCode === KeyCode.Letter_Z); // allow CTRL+Z for Undo
+            switch (event.keyCode) {
+                // allow backspace, arrow keys and positioning keys
+                case KeyCode.Backspace:
+                case KeyCode.LeftArrow:
+                case KeyCode.RightArrow:
+                case KeyCode.Tab:
+                case KeyCode.Home:
+                case KeyCode.End:
+                    shouldAllowCharacter = true;
+                    break;
 
+                // allow dot as the decimal separator if `allowDecimals` is `true` / TODO/FIXME: some locales use comma instead of dot!
+                case KeyCode.Dot:
+                case KeyCode.NumberPad_Dot:
+                    shouldAllowCharacter = allowDecimals;
+                    break;
+
+                // allow minus sign if `allowNegativeNumbers` is true
+                case KeyCode.Minus:
+                case KeyCode.NumberPad_Minus:
+                    shouldAllowCharacter = allowNegativeNumbers;
+                    break;
+
+                // allow CTRL keyboard gestures for select all, copy and paste, undo and redo
+                case KeyCode.Letter_A:
+                case KeyCode.Letter_C:
+                case KeyCode.Letter_V:
+                case KeyCode.Letter_X:
+                case KeyCode.Letter_Y:
+                case KeyCode.Letter_Z: {
+                    const isCtrlKey = event.metaKey || // detects Apple Command key - https://stackoverflow.com/a/3922353/7415670 | https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/metaKey
+                        event.ctrlKey || // CTRL key modifier flag
+                        event.keyCode === KeyCode.Ctrl; // key code signifies the CTRL key
+
+                    shouldAllowCharacter = isCtrlKey;
+                    break;
+                }
+
+                // allow digits
+                default:
+                    /* eslint-disable max-len */
+                    shouldAllowCharacter = (event.keyCode >= KeyCode.NormalNumber_0 && event.keyCode <= KeyCode.NormalNumber_9) ||
+                        (event.keyCode >= KeyCode.NumberPad_0 && event.keyCode <= KeyCode.NumberPad_9);
+                    /* eslint-enable max-len */
+            }
+
+            // prevent the keystroke if it's a character we don't want to allow for numbers
             if (!shouldAllowCharacter) {
                 event.preventDefault();
             }
@@ -636,10 +661,11 @@ class Input extends React.PureComponent {
         if (type === 'file') {
             return (
                 <input
+                    // eslint-disable-next-line react/jsx-props-no-spreading
                     {...this.props}
                     ref={this.input}
                 />
-            )
+            );
         }
 
         return (

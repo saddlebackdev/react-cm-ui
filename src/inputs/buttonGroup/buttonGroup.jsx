@@ -41,8 +41,8 @@ ButtonGroup.propTypes = {
             value: PropTypes.oneOfType([
                 PropTypes.number,
                 PropTypes.string,
-            ]).required,
-            label: PropTypes.string.required,
+            ]).isRequired,
+            label: PropTypes.string.isRequired,
             icon: PropTypes.node,
         }),
     ).isRequired,

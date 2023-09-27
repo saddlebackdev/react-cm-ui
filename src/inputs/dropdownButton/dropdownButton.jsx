@@ -11,7 +11,9 @@ import {
     VariantType,
 } from '../button/models';
 import Button from '../button';
-import DropdownMenu from '../dropdownMenu/dropdownMenu';
+import DropdownMenu, {
+    propTypes as dropdownMenuPropTypes,
+} from '../dropdownMenu/dropdownMenu';
 import DropdownMenuDivider from '../dropdownMenu/dropdownMenuDivider';
 import DropdownMenuHeading from '../dropdownMenu/dropdownMenuHeading';
 import DropdownMenuOption from '../dropdownMenu/dropdownMenuOption';
@@ -64,6 +66,12 @@ const propTypes = {
      * A Dropdown Button can be disabled.
      */
     disabled: PropTypes.bool,
+    /**
+     * Props to control the DropdownMenu used by the DropdownButton.
+     */
+    dropdownMenuProps: PropTypes.shape({
+        ...dropdownMenuPropTypes,
+    }),
     /**
      * The Dropown Button will be resized to its parent container's width. (Using v1 Button)
      */
@@ -188,6 +196,7 @@ const defaultProps = {
     designVersion: 1,
     disable: false,
     disabled: false,
+    dropdownMenuProps: undefined,
     fluid: false,
     fullWidth: false,
     icon: false,
@@ -234,6 +243,7 @@ function DropdownButton(props) {
         designVersion,
         disable,
         disabled,
+        dropdownMenuProps,
         fluid,
         fullWidth,
         id,
@@ -372,6 +382,8 @@ function DropdownButton(props) {
                 onToggleOpen={onMenuToggle}
                 getParentContainer={getParentContainer}
                 optionsTheme={optionsTheme}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...dropdownMenuProps}
             >
                 {children}
             </DropdownMenu>

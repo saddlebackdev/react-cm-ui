@@ -1,4 +1,4 @@
-## Church Management Dev Documentation
+# Healthy Church React CM UI Documentation Site
 
 ## Installation
 
@@ -7,4 +7,5 @@
 
 ## Run
 
-- `npm run start`
+- `npm start`
+- Runs on port 8082 (i.e. http://localhost:8082)

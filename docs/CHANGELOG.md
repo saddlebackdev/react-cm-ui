@@ -1,6 +1,47 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.7 - 09/07/2023
+- [PR #461](https://github.com/saddlebackdev/react-cm-ui/pull/461) / Merge Commit 6aa16fb
+  - Add example of `<SelectNext>` (powered by React Select v5) to the `<Select>` documentation page.
+
+## 0.17.6 - 08/16/2023
+- [PR #459](https://github.com/saddlebackdev/react-cm-ui/pull/459) / Merge Commit 5f35110
+  - `<Icon>` documentation page - add `back10`, `forward10` and `pause` icons
+
+## 0.17.5 - 07/24/2023
+- [PR #454](https://github.com/saddlebackdev/react-cm-ui/pull/454) / Merge Commit 2409e7b
+  - Update the documentation page for the `<Image>` component
+
+## 0.17.4 - 07/24/2023
+- [PR #452](https://github.com/saddlebackdev/react-cm-ui/pull/452) / Merge Commit 9eab586
+  - Update Demo Page sample code to show the new capability of having a `<Select>` next to Action Bar Search and clean up the code
+  - Add Demo Drawer sample code and add ability to open Demo Drawer to `<Drawer>` documentation page
+
+## 0.17.3 - 07/19/2023
+- [PR #451](https://github.com/saddlebackdev/react-cm-ui/pull/451) / Merge Commit 55e23c2
+  - Further tweaks to the new YAML build pipeline
+
+## 0.17.2 - 07/19/2023
+- [PR #446](https://github.com/saddlebackdev/react-cm-ui/pull/446) / Merge Commit 604c299
+  - `[Dependabot]` Upgrade `semver` package
+- [PR #447](https://github.com/saddlebackdev/react-cm-ui/pull/447) / Merge Commit 6ff30b7
+  - Fix some build issues and select ESLINT issues
+  - `<Icon>` documentation pages
+    - Main page
+      - Replace malfunctioning `<DropdownButton>` with `<Radio pill>` for toggling between categorized and alphabetized displays
+      - Fixed a small styling bug for the alphabetized display
+      - Added new icon types
+    - "Dev Sandbox"
+      - Add Healthy Church epic features iconography example
+  - `<Input>` "Dev Sandbox" documentation page - fix the `<Input>` Types examples (in particular the number input examples)
+- [PR #448](https://github.com/saddlebackdev/react-cm-ui/pull/448) / Merge Commit 8ac9472
+  - Upgrade `favicons-webpack-plugin` => `4.2.0`, the latest for Webpack 4
+  - Add `sharp` (latest, `0.32.3`) as a direct dev dependency (to avoid issue where doing `npm install` would cause it to get downgraded)
+  - Ran `npx browserslist@latest --update-db` to update `caniuse-lite`
+- [PR #449](https://github.com/saddlebackdev/react-cm-ui/pull/449) / Merge Commit edf7011
+  - Add YAML Build Pipeline Definition
+
 ## 0.17.1 - 02/22/2023
 - [PR #428](https://github.com/saddlebackdev/react-cm-ui/pull/428) / Merge Commit ab185e4
   - Change references to &quot;CLASS&quot; milestones to &quot;DYP&quot; (Discover Your Purpose).
