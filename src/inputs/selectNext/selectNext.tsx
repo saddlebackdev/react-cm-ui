@@ -311,14 +311,12 @@ const CustomArrow = (componentProps) => (
         {...componentProps}
     >
         <div>
-            {// @ts-ignore
-                <Icon
-                    compact
-                    size={16}
-                    title="Select"
-                    type="chevron-down"
-                />
-            }
+            <Icon
+                compact
+                size={16}
+                title="Select"
+                type="chevron-down"
+            />
         </div>
     </components.DropdownIndicator>
 );
