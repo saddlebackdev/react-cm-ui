@@ -133,12 +133,14 @@ class ActionBarSearch extends React.PureComponent {
             value,
         } = this.props;
 
-        const hasCorrectDataForSearchWithSelect = !isNil(searchWithSelect) &&
-        isArray(searchWithSelect.options) &&
-        isFunction(searchWithSelect.onChange) &&
-        ('value' in searchWithSelect);
+        const isUsingSearchWithSelect = !isNil(searchWithSelect);
 
-        if (!hasCorrectDataForSearchWithSelect) {
+        const hasCorrectDataForSearchWithSelect = isUsingSearchWithSelect &&
+            isArray(searchWithSelect.options) &&
+            isFunction(searchWithSelect.onChange) &&
+            ('value' in searchWithSelect);
+
+        if (isUsingSearchWithSelect && !hasCorrectDataForSearchWithSelect) {
             console.warn( // eslint-disable-line no-console
                 'Please provide correct props to integrate Select with action bar search. See documentation of react-cm-ui for more details.',
             );

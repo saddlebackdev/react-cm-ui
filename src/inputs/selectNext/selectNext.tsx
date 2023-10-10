@@ -31,6 +31,10 @@ type PropTypes = {
     */
     className?: string;
     /**
+    * A Select can be disabled
+    */
+    disabled?: boolean,
+    /**
     * Supply dropdown menu maximum height
     */
     dropdownMenuMaxHeight?: number;
@@ -99,6 +103,7 @@ type PropTypes = {
 const defaultProps = {
     alwaysShowRequiredIndicator: false,
     className: null,
+    disabled: false,
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
     id: null,
@@ -125,6 +130,7 @@ const useStyles = makeStyles((theme) => {
 
     // Control Options
     const selectInputBg = p.background.primary;
+    const selectInputBgDisabled = p.background.secondary;
     const selectInputBgFocus = p.background.contrastPrimary;
     const selectInputBorderColor = p.border.primary;
     const selectInputBorderRadius = '3px';
@@ -192,6 +198,12 @@ const useStyles = makeStyles((theme) => {
                         color: selectTextColorFocus,
                         '& .icon-use-path': {
                             fill: `${selectInputArrowColorFocus} !important`,
+                        },
+                    },
+                    '&--is-disabled': {
+                        backgroundColor: selectInputBgDisabled,
+                        '&:hover': {
+                            boxShadow: 'none',
                         },
                     },
                     '&--is-focused:not(.react_select__control--menu-is-open)': {
@@ -343,6 +355,7 @@ const CustomOption = (componentProps) => {
     const {
         children,
         className,
+        disabled,
         innerRef,
         isSelected,
         selectOption,
@@ -358,6 +371,7 @@ const CustomOption = (componentProps) => {
             {...componentProps}
             aria-selected={isSelected}
             className={optionClass}
+            isDisabled={disabled}
             selectOption={selectOption}
             ref={innerRef}
             tabIndex={0}
@@ -383,6 +397,7 @@ const SelectNext = React.forwardRef(function SelectNext(
     const {
         alwaysShowRequiredIndicator,
         className,
+        disabled,
         dropdownMenuMaxHeight,
         dropdownMenuMinHeight,
         id,
@@ -450,6 +465,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                 // @ts-ignore
                 dropdownMenuMaxHeight={dropdownMenuMaxHeight}
                 dropdownMenuMinHeight={dropdownMenuMinHeight}
+                isDisabled={disabled}
                 isSearchable={isSearchable}
                 menuPortalTarget={menuPortalTarget}
                 name={name}
