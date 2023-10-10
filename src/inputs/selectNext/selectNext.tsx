@@ -33,7 +33,7 @@ type PropTypes = {
     /**
     * A Select can be disabled
     */
-    isDisabled?: boolean,
+    disabled?: boolean,
     /**
     * Supply dropdown menu maximum height
     */
@@ -103,7 +103,7 @@ type PropTypes = {
 const defaultProps = {
     alwaysShowRequiredIndicator: false,
     className: null,
-    isDisabled: false,
+    disabled: false,
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
     id: null,
@@ -357,7 +357,7 @@ const CustomOption = (componentProps) => {
     const {
         children,
         className,
-        isDisabled,
+        disabled,
         innerRef,
         isSelected,
         selectOption,
@@ -373,7 +373,7 @@ const CustomOption = (componentProps) => {
             {...componentProps}
             aria-selected={isSelected}
             className={optionClass}
-            isDisabled={isDisabled}
+            isDisabled={disabled}
             selectOption={selectOption}
             ref={innerRef}
             tabIndex={0}
@@ -399,7 +399,7 @@ const SelectNext = React.forwardRef(function SelectNext(
     const {
         alwaysShowRequiredIndicator,
         className,
-        isDisabled,
+        disabled,
         dropdownMenuMaxHeight,
         dropdownMenuMinHeight,
         id,
@@ -467,7 +467,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                 // @ts-ignore
                 dropdownMenuMaxHeight={dropdownMenuMaxHeight}
                 dropdownMenuMinHeight={dropdownMenuMinHeight}
-                isDisabled={isDisabled}
+                isDisabled={disabled}
                 isSearchable={isSearchable}
                 menuPortalTarget={menuPortalTarget}
                 name={name}
