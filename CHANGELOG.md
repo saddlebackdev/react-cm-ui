@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.7.2
+_October 10, 2023_
+- Fix a bug in `<ActionBarSearch>` where an improper console warning was being logged.  [PR #463](https://github.com/saddlebackdev/react-cm-ui/pull/463)
+- Add ability to disable `<SelectNext>` with the standard `disabled` prop.  [PR #465](https://github.com/saddlebackdev/react-cm-ui/pull/465)
+
 ## 10.7.1
 _September 20, 2023_
 - Add `alwaysShowRequiredIndicator` and `required` props to `<SelectNext>`.  [PR #462](https://github.com/saddlebackdev/react-cm-ui/pull/462)
