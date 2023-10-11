@@ -31,6 +31,10 @@ type PropTypes = {
     */
     className?: string;
     /**
+    * A Select can clear its value using close icon
+    */
+    clearable?: boolean,
+    /**
     * A Select can be disabled
     */
     disabled?: boolean,
@@ -103,6 +107,7 @@ type PropTypes = {
 const defaultProps = {
     alwaysShowRequiredIndicator: false,
     className: null,
+    clearable: false,
     disabled: false,
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
@@ -355,6 +360,7 @@ const CustomOption = (componentProps) => {
     const {
         children,
         className,
+        clearable,
         disabled,
         innerRef,
         isSelected,
@@ -371,6 +377,7 @@ const CustomOption = (componentProps) => {
             {...componentProps}
             aria-selected={isSelected}
             className={optionClass}
+            isClearable={clearable}
             isDisabled={disabled}
             selectOption={selectOption}
             ref={innerRef}
@@ -397,6 +404,7 @@ const SelectNext = React.forwardRef(function SelectNext(
     const {
         alwaysShowRequiredIndicator,
         className,
+        clearable,
         disabled,
         dropdownMenuMaxHeight,
         dropdownMenuMinHeight,
@@ -465,6 +473,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                 // @ts-ignore
                 dropdownMenuMaxHeight={dropdownMenuMaxHeight}
                 dropdownMenuMinHeight={dropdownMenuMinHeight}
+                isClearable={clearable}
                 isDisabled={disabled}
                 isSearchable={isSearchable}
                 menuPortalTarget={menuPortalTarget}
