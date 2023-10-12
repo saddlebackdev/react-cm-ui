@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.7.3
+_October 12, 2023_
+- Add `clearable` prop to the `<SelectNext>` component.  [PR #466](https://github.com/saddlebackdev/react-cm-ui/pull/466)
+
 ## 10.7.2
 _October 10, 2023_
 - Fix a bug in `<ActionBarSearch>` where an improper console warning was being logged.  [PR #463](https://github.com/saddlebackdev/react-cm-ui/pull/463)

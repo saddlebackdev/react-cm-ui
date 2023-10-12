@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import {
-    isFunction,
     isEmpty,
+    isFunction,
 } from 'lodash';
 import React, {
     LegacyRef,
@@ -12,12 +12,15 @@ import Select, {
     components,
     StylesConfig,
 } from 'react-select';
+import { ClearIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
 import Icon from '../../dataDisplay/icon';
 import {
     BEM_SELECT,
     UI_CLASS_NAME,
 } from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
+
+const BEM_BLOCK_NAME = 'react_select';
 
 type PropTypes = {
     /**
@@ -30,6 +33,10 @@ type PropTypes = {
     * Assign a class name to the outer component.
     */
     className?: string;
+    /**
+    * A Select can clear its value using close icon
+    */
+    clearable?: boolean,
     /**
     * A Select can be disabled
     */
@@ -103,6 +110,7 @@ type PropTypes = {
 const defaultProps = {
     alwaysShowRequiredIndicator: false,
     className: null,
+    clearable: false,
     disabled: false,
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
@@ -124,6 +132,8 @@ const useStyles = makeStyles((theme) => {
         palette: p,
         // @ts-ignore
         typography,
+        // @ts-ignore
+        spacing,
     } = theme;
 
     const darkThemeBoxShadow = '0 4px 4px 0 rgba(0, 0, 0, 0.43)';
@@ -283,6 +293,13 @@ const useStyles = makeStyles((theme) => {
                         color: `${p.text.primary} !important`,
                     },
                 },
+                '&--clear_icon_container': {
+                    marginRight: spacing(1),
+                    alignItems: 'center',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                },
             },
         },
         root: {
@@ -351,10 +368,26 @@ const CustomMenuList = (componentProps) => {
     );
 };
 
+const CustomClear = ({ innerProps }: ClearIndicatorProps) => (
+    <div
+        className={`${BEM_BLOCK_NAME}--clear_icon_container`}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...innerProps}
+    >
+        <Icon
+            compact
+            size={16}
+            title="Clear Selection"
+            type="times"
+        />
+    </div>
+);
+
 const CustomOption = (componentProps) => {
     const {
         children,
         className,
+        clearable,
         disabled,
         innerRef,
         isSelected,
@@ -371,6 +404,7 @@ const CustomOption = (componentProps) => {
             {...componentProps}
             aria-selected={isSelected}
             className={optionClass}
+            isClearable={clearable}
             isDisabled={disabled}
             selectOption={selectOption}
             ref={innerRef}
@@ -397,6 +431,7 @@ const SelectNext = React.forwardRef(function SelectNext(
     const {
         alwaysShowRequiredIndicator,
         className,
+        clearable,
         disabled,
         dropdownMenuMaxHeight,
         dropdownMenuMinHeight,
@@ -447,6 +482,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                         'label',
                         classes.label,
                     )}
+                    htmlFor={id}
                 >
                     {label}
 
@@ -461,10 +497,12 @@ const SelectNext = React.forwardRef(function SelectNext(
                     DropdownIndicator: CustomArrow,
                     MenuList: CustomMenuList,
                     Option: CustomOption,
+                    ClearIndicator: CustomClear,
                 }}
                 // @ts-ignore
                 dropdownMenuMaxHeight={dropdownMenuMaxHeight}
                 dropdownMenuMinHeight={dropdownMenuMinHeight}
+                isClearable={clearable}
                 isDisabled={disabled}
                 isSearchable={isSearchable}
                 menuPortalTarget={menuPortalTarget}
