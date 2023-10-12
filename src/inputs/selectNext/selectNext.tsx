@@ -1,7 +1,7 @@
 import ClassNames from 'classnames';
 import {
-    isFunction,
     isEmpty,
+    isFunction,
 } from 'lodash';
 import React, {
     LegacyRef,
@@ -12,6 +12,7 @@ import Select, {
     components,
     StylesConfig,
 } from 'react-select';
+import { ClearIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
 import Icon from '../../dataDisplay/icon';
 import {
     BEM_SELECT,
@@ -131,6 +132,8 @@ const useStyles = makeStyles((theme) => {
         palette: p,
         // @ts-ignore
         typography,
+        // @ts-ignore
+        spacing,
     } = theme;
 
     const darkThemeBoxShadow = '0 4px 4px 0 rgba(0, 0, 0, 0.43)';
@@ -291,10 +294,11 @@ const useStyles = makeStyles((theme) => {
                     },
                 },
                 '&--clear_icon_container': {
-                    marginRight: 11,
+                    marginRight: spacing(1),
                     alignItems: 'center',
                     display: 'flex',
                     justifyContent: 'center',
+                    cursor: 'pointer',
                 },
             },
         },
@@ -364,8 +368,12 @@ const CustomMenuList = (componentProps) => {
     );
 };
 
-const CustomClear = () => (
-    <div className={`${BEM_BLOCK_NAME}--clear_icon_container`}>
+const CustomClear = ({ innerProps }: ClearIndicatorProps) => (
+    <div
+        className={`${BEM_BLOCK_NAME}--clear_icon_container`}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...innerProps}
+    >
         <Icon
             compact
             size={16}
@@ -469,12 +477,12 @@ const SelectNext = React.forwardRef(function SelectNext(
             ref={ref}
         >
             {label && (
-                // eslint-disable-next-line jsx-a11y/label-has-associated-control
                 <label
                     className={ClassNames(
                         'label',
                         classes.label,
                     )}
+                    htmlFor={id}
                 >
                     {label}
 
