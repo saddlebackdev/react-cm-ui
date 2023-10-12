@@ -19,6 +19,8 @@ import {
 } from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
 
+const BEM_BLOCK_NAME = 'react_select';
+
 type PropTypes = {
     /**
     * Forces the Select component to always show the required indicator
@@ -288,6 +290,12 @@ const useStyles = makeStyles((theme) => {
                         color: `${p.text.primary} !important`,
                     },
                 },
+                '&--clear_icon_container': {
+                    marginRight: 11,
+                    alignItems: 'center',
+                    display: 'flex',
+                    justifyContent: 'center',
+                },
             },
         },
         root: {
@@ -355,6 +363,17 @@ const CustomMenuList = (componentProps) => {
         </components.MenuList>
     );
 };
+
+const CustomClear = () => (
+    <div className={`${BEM_BLOCK_NAME}--clear_icon_container`}>
+        <Icon
+            compact
+            size={16}
+            title="Clear Selection"
+            type="times"
+        />
+    </div>
+);
 
 const CustomOption = (componentProps) => {
     const {
@@ -450,6 +469,7 @@ const SelectNext = React.forwardRef(function SelectNext(
             ref={ref}
         >
             {label && (
+                // eslint-disable-next-line jsx-a11y/label-has-associated-control
                 <label
                     className={ClassNames(
                         'label',
@@ -469,6 +489,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                     DropdownIndicator: CustomArrow,
                     MenuList: CustomMenuList,
                     Option: CustomOption,
+                    ClearIndicator: CustomClear,
                 }}
                 // @ts-ignore
                 dropdownMenuMaxHeight={dropdownMenuMaxHeight}
