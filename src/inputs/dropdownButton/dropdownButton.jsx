@@ -1,6 +1,3 @@
-import {
-    isEmpty,
-} from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useRef, useState } from 'react';
@@ -273,10 +270,11 @@ function DropdownButton(props) {
         dropdownButtonRef,
     ]);
 
-    const onMenuToggle = useCallback((event) => {
-        if (!isEmpty(event)) {
-            event.stopPropagation();
-        }
+    const onMenuToggle = useCallback(() => {
+        // TODO: Investigate the reason why stopPropagation used
+        // if (!isEmpty(event)) {
+        //     event.stopPropagation();
+        // }
 
         setIsOpen(!isMenuOpen);
     }, [
