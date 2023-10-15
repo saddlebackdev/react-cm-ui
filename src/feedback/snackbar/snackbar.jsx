@@ -40,7 +40,11 @@ const useStyles = makeStyles(({
     shape,
     spacing,
     typography,
+    zIndex,
 }) => ({
+    root: {
+        zIndex: zIndex.banner,
+    },
     snackBarContentRoot: {
         backgroundColor: palette.hexToRGBA(palette.grey[600], 0.7),
         borderRadius: shape.borderRadius,
@@ -69,12 +73,14 @@ function Snackbar(props) {
         ...otherProps
     } = props;
 
+    const mainWrapperClasses = useStyles();
     const contentPropsClasses = useStyles(ContentProps);
 
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
         BEM_SNACKBAR,
         className,
+        mainWrapperClasses.root,
     );
 
     return (
