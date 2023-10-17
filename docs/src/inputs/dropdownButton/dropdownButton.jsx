@@ -5,13 +5,17 @@
 import {
     Card,
     Header,
+    Typography,
 } from '@saddlebackchurch/react-cm-ui';
 /* eslint-enable import/no-unresolved */
 import _ from 'lodash';
 import React from 'react';
 import { buttonDocProps } from '../button/buttonConstants';
-import DropdownButtonExample from './dropdownButtonExample';
+import DropdownButtonExample from './examples/dropdownButtonExample';
+import DropdownButtonStopPropagationExample from './examples/dropdownButtonStopPropagationExample';
+import Heading from '../../global/heading';
 import Highlighter from '../../global/highlighter';
+import Example from '../../global/example';
 import Main from '../../global/main';
 import TableProps from '../../global/tableProps';
 
@@ -44,6 +48,11 @@ function DocsDropdownButton() {
             type: 'string',
             default: 'dark',
             description: 'Options list theme',
+        }, {
+            name: 'stopPropagation',
+            type: 'bool',
+            default: 'false',
+            description: 'Calls stopPropagation',
         },
 
     ];
@@ -58,11 +67,41 @@ function DocsDropdownButton() {
                     <TableProps props={tableProps} />
                 </Card>
 
+                <Heading
+                    anchorLink="basic-dropdown"
+                    variant="h2"
+                >
+                    Simple Dropdown Button
+                </Heading>
+                <p />
+
                 <DropdownButtonExample />
 
-                <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }} language="jsx">
-                    {require('!!raw-loader!./dropdownButtonExample').default}
+                <Highlighter language="jsx">
+                    {require('!!raw-loader!./examples/dropdownButtonExample').default}
                 </Highlighter>
+
+                <Heading
+                    anchorLink="basic-dropdown"
+                    variant="h2"
+                >
+                    Stop Propagation
+                </Heading>
+                <p />
+
+                <Typography
+                    variant="body1"
+                >
+                    {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+                    Calls <code>stopPropagation</code>.
+                </Typography>
+                <p />
+
+                <Example
+                    rawCode={require('!!raw-loader!./examples/dropdownButtonStopPropagationExample').default}
+                >
+                    <DropdownButtonStopPropagationExample />
+                </Example>
             </Main.Content>
         </Main>
     );

@@ -183,6 +183,10 @@ const propTypes = {
         PropTypes.number,
         PropTypes.string,
     ]),
+    /**
+     * Stop propagation on menu toggle, default is `false`
+     */
+    stopPropagation: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -217,6 +221,7 @@ const defaultProps = {
     transparent: false,
     variant: VariantType.Contained,
     width: undefined,
+    stopPropagation: false,
 };
 
 const useStyles = makeStyles({
@@ -264,23 +269,20 @@ function DropdownButton(props) {
         transparent,
         variant,
         width,
+        stopPropagation,
     } = props;
 
     const getParentContainer = useCallback(() => (dropdownButtonRef.current), [
         dropdownButtonRef,
     ]);
 
-    const onMenuToggle = useCallback(() => {
-        // TODO: Investigate the reason why stopPropagation used
-        // if (!isEmpty(event)) {
-        //     event.stopPropagation();
-        // }
+    const onMenuToggle = useCallback((event) => {
+        if (stopPropagation && event?.stopPropagation) {
+            event.stopPropagation();
+        }
 
         setIsOpen(!isMenuOpen);
-    }, [
-        isMenuOpen,
-        setIsOpen,
-    ]);
+    }, [isMenuOpen, stopPropagation]);
 
     const bemClassName = 'button_dropdown';
     const rootClasses = ClassNames(
