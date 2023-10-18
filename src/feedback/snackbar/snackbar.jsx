@@ -73,14 +73,13 @@ function Snackbar(props) {
         ...otherProps
     } = props;
 
-    const mainWrapperClasses = useStyles();
     const contentPropsClasses = useStyles(ContentProps);
 
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
         BEM_SNACKBAR,
         className,
-        mainWrapperClasses.root,
+        contentPropsClasses.root,
     );
 
     return (
