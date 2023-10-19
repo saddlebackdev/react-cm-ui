@@ -31,7 +31,7 @@ function DocsDropdownButton() {
         {
             name: 'iconSize',
             type: 'number',
-            default: 16,
+            default: '16',
             description: 'The icon that sits to the left of the label.',
         }, {
             name: 'iconType',
@@ -78,6 +78,7 @@ function DocsDropdownButton() {
                 <DropdownButtonExample />
 
                 <Highlighter language="jsx">
+                    {/* eslint-disable-next-line import/extensions, import/no-unresolved */}
                     {require('!!raw-loader!./examples/dropdownButtonExample').default}
                 </Highlighter>
 
@@ -93,11 +94,24 @@ function DocsDropdownButton() {
                     variant="body1"
                 >
                     {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-                    Calls <code>stopPropagation</code>.
+                    By specifying the <code>stopPropagation</code> prop, you can instruct the
+                    <code>DropdownButton</code>
+                    to call
+                    <code>stopPropagation()</code>
+                    when the menu is toggled.  Usually, you don&rsquo;t want to do this as it might
+                    have undesirable effects, but occasionally it&rsquo;s necessary,
+                    such as when the
+                    <code>DropdownButton</code>
+                    &nbsp;
+                    is placed on top of another element that is clickable (e.g. a
+                    <code>Card</code>
+                    &nbsp;
+                    or other interactive element).
                 </Typography>
                 <p />
 
                 <Example
+                    // eslint-disable-next-line import/extensions, import/no-unresolved
                     rawCode={require('!!raw-loader!./examples/dropdownButtonStopPropagationExample').default}
                 >
                     <DropdownButtonStopPropagationExample />

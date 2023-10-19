@@ -15,14 +15,19 @@ function DropdownButtonStopPropagationExample() {
     return (
         <Card onClick={updateColor}>
             <div style={{ userSelect: 'none', marginBottom: '15px' }}>
-                <span>Click on the card! Clicked:</span>
-                <span>{counter}</span>
+                <div>
+                    Click on the card!
+                    <br />
+                    # of clicks registered:
+                    &nbsp;
+                    {counter}
+                </div>
             </div>
             <DropdownButton stopPropagation color="success" label="Stop Propagation" designVersion={2}>
                 <DropdownButton.Option>Option 01</DropdownButton.Option>
                 <DropdownButton.Option>Option 02</DropdownButton.Option>
             </DropdownButton>
-            <p />
+            <br />
             <DropdownButton color="success" label="Regular Dropdown" designVersion={2}>
                 <DropdownButton.Option>Option 01</DropdownButton.Option>
                 <DropdownButton.Option>Option 02</DropdownButton.Option>
