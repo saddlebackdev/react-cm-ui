@@ -1,6 +1,15 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.8 - 10/19/2023
+- [PR #467](https://github.com/saddlebackdev/react-cm-ui/pull/467) / Merge Commit 77d8219
+  - Add an example of `<DropdownMenu>` using the new `stopPropagation` prop.  The example shows two `<DropdownMenu>` components placed
+  within a clickable `<Card>` element that shows a visible counter that gets incremented when it is clicked.  The default `<DropdownMenu>`
+  is observed to increment this counter, meaning the click event has propagated to the `<Card>`, whereas the `<DropdownMenu>` setting the
+  new `stopPropagation` prop is observed not increment the counter.
+- [PR #469](https://github.com/saddlebackdev/react-cm-ui/pull/469) / Merge Commit cf03b5b
+ - `[Dependabot]` Upgrade `@babel/traverse` package.
+
 ## 0.17.7 - 09/07/2023
 - [PR #461](https://github.com/saddlebackdev/react-cm-ui/pull/461) / Merge Commit 6aa16fb
   - Add example of `<SelectNext>` (powered by React Select v5) to the `<Select>` documentation page.

@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui-docs",
-  "version": "0.17.7",
+  "version": "0.17.8",
   "scripts": {
     "build": "webpack",
     "build:clean": "rimraf build",
