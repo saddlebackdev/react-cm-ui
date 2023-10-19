@@ -1,6 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.7.4
+_October 19, 2023_
+- Fix some issues with `<DropdownButton>` regarding behavior when toggling the menu open and selecting options.  [PR #467](https://github.com/saddlebackdev/react-cm-ui/pull/467)
+  - There is a new prop `stopPropagation` to control whether to call `stopPropagation()` on the click event when the menu is toggled open.  It turns out that, while this is needed in some special circumstances, such as when the menu is placed within another clickable element, it is not a good thing to do generally and can cause other issues.
+- Address z-index conflict between `<Snackbar>` and the overlay for the `<Drawer>` to ensure `<Snackbar>` is on top.  [PR #468](https://github.com/saddlebackdev/react-cm-ui/pull/468)
+- `[Dependabot]` Upgrade `@babel/traverse` package.  [PR #470](https://github.com/saddlebackdev/react-cm-ui/pull/470)
+
 ## 10.7.3
 _October 12, 2023_
 - Add `clearable` prop to the `<SelectNext>` component.  [PR #466](https://github.com/saddlebackdev/react-cm-ui/pull/466)

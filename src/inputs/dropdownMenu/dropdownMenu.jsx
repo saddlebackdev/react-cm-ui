@@ -223,8 +223,10 @@ function DropdownMenu(props) {
 
     useEffect(() => {
         function onClickOutside(event) {
-            const parentContainer = dropdownMenuRef.current;
-            const containsTarget = !isNil(parentContainer) && parentContainer.contains(event.target);
+            const parentContainer = get(dropdownMenuRef, 'current.parentElement');
+
+            const containsTarget =
+                !isNil(parentContainer) && parentContainer.contains(event.target);
 
             if (
                 !containsTarget ||
@@ -245,7 +247,7 @@ function DropdownMenu(props) {
         onDropdownMenuReposition();
 
         return () => {
-            if (!isOpen) {
+            if (isOpen) {
                 window.removeEventListener('resize', debounceDropdownMenuReposition);
                 window.removeEventListener('scroll', debounceDropdownMenuReposition);
                 document.removeEventListener('click', onClickOutside);
