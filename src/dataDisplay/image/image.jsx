@@ -4,7 +4,7 @@ import React from 'react';
 import {
     UI_CLASS_NAME,
 } from '../../global/constants';
-import colorStyles from '../../styles/colorExports'; // eslint-disable-line import/extensions, import/no-unresolved
+import useTheme from '../../styles/useTheme';
 import Icon from '../icon';
 import Utils from '../../utils/utils';
 
@@ -123,6 +123,8 @@ function Image(props) {
         ...otherProps
     } = props;
 
+    const theme = useTheme();
+
     let newStyle = style;
 
     const ElementType = Utils.getElementType(!type ? as : 'div', props);
@@ -169,12 +171,12 @@ function Image(props) {
         if (src) {
             boxShadowStyle = 'none';
         } else {
-            boxShadowStyle = !border ? `inset 0 0 0 1px ${colorStyles.borderColor}` : null;
+            boxShadowStyle = !border ? `inset 0 0 0 1px ${theme.palette.border.primary}` : null;
         }
 
         const borderColorStyle = borderInverse ?
-            colorStyles.borderColorInverse :
-            colorStyles.borderColor;
+            theme.palette.border.contrastPrimary :
+            theme.palette.border.primary;
 
         const borderWidth = border === true ? '1' : border;
 
