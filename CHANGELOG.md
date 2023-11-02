@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.7.6
+_November 2, 2023_
+- Bug fix in `<DropdownButton>` to also allow better control of whether clicks on its Options will stop proagation of the click events or not.  [PR #473](https://github.com/saddlebackdev/react-cm-ui/pull/473).
+
 ## 10.7.5
 _October 24, 2023_
 - Fix an issue with the `<Drawer>` Title Bar Close Button potentially overlapping with other elements.  [PR #471](https://github.com/saddlebackdev/react-cm-ui/pull/471).
