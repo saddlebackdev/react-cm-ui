@@ -6,7 +6,7 @@ function DropdownDropdownExample() {
         <DropdownButton color="success" label="Simple Dropdown Button" designVersion={2}>
             <DropdownButton.Option>Option 01</DropdownButton.Option>
             <DropdownButton.Option>Option 02</DropdownButton.Option>
-            <DropdownButton.Option>Option 01</DropdownButton.Option>
+            <DropdownButton.Option>Option 03</DropdownButton.Option>
         </DropdownButton>
     );
 }
