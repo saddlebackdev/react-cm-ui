@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.9 - 11/02/2023
+- [PR #472](https://github.com/saddlebackdev/react-cm-ui/pull/472) / Merge Commit 2368d2b
+ - `[Dependabot]` Upgrade `browserify-sign` package.
+- [PR #473](https://github.com/saddlebackdev/react-cm-ui/pull/473) / Merge Commit aa20d13
+ - Small fix on the `<DrowpdownButton>` example page.
+
 ## 0.17.8 - 10/19/2023
 - [PR #467](https://github.com/saddlebackdev/react-cm-ui/pull/467) / Merge Commit 77d8219
   - Add an example of `<DropdownMenu>` using the new `stopPropagation` prop.  The example shows two `<DropdownMenu>` components placed
