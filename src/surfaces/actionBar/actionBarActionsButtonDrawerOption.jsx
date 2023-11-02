@@ -3,11 +3,11 @@ import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 // eslint-disable-next-line import/extensions, import/no-unresolved
-import colorStyles from '../../styles/colorExports';
 import ActionBarActionsButtonDrawerSubOption, {
     singleOptionPropTypeShape,
 } from './actionBarActionsButtonDrawerSubOption';
 import Icon from '../../dataDisplay/icon';
+import withStyles from '../../styles/withStyles';
 
 const rootOptionPropTypeShape = {
     ...singleOptionPropTypeShape,
@@ -22,6 +22,9 @@ const propTypes = {
     onRequestPrompt: PropTypes.func,
     onDrawerToggle: PropTypes.func,
     option: PropTypes.shape(rootOptionPropTypeShape).isRequired,
+    theme: PropTypes.shape({
+        palette: PropTypes.shape({}),
+    }),
 };
 
 const defaultProps = {
@@ -30,7 +33,10 @@ const defaultProps = {
     isSelected: false,
     onRequestPrompt: undefined,
     onDrawerToggle: undefined,
+    theme: null,
 };
+
+const styles = () => ({});
 
 class ActionBarActionsButtonDrawerOption extends React.PureComponent {
     constructor() {
@@ -76,6 +82,7 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
             onRequestPrompt,
             onDrawerToggle,
             option,
+            theme,
         } = this.props;
 
         const containerClasses = ClassNames(
@@ -118,7 +125,8 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
                             id={option.id}
                             style={{
                                 backgroundColor: option.disabled ?
-                                    colorStyles.backgroundColorStatic :
+                                    // eslint-disable-next-line react/prop-types
+                                    theme.palette.grey['400'] :
                                     option.iconBackgroundColor,
                             }}
                         >
@@ -167,4 +175,4 @@ class ActionBarActionsButtonDrawerOption extends React.PureComponent {
 ActionBarActionsButtonDrawerOption.propTypes = propTypes;
 ActionBarActionsButtonDrawerOption.defaultProps = defaultProps;
 
-export default ActionBarActionsButtonDrawerOption;
+export default withStyles(styles, { withTheme: true })(ActionBarActionsButtonDrawerOption);

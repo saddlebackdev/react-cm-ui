@@ -18,6 +18,10 @@ const propTypes = {
     label: PropTypes.string,
     onClick: PropTypes.func,
     onKeyDown: PropTypes.func,
+    /**
+     * Stop propagation on menu option click, default is `false`
+     */
+    stopPropagation: PropTypes.bool,
     style: PropTypes.shape({}),
     tabIndex: PropTypes.number,
 };
@@ -31,6 +35,7 @@ const defaultProps = {
     label: undefined,
     onClick: () => {},
     onKeyDown: () => {},
+    stopPropagation: false,
     style: undefined,
     tabIndex: -1,
 };
@@ -45,6 +50,7 @@ function DropdownMenuOption(props) {
         onClick,
         onKeyDown,
         label,
+        stopPropagation,
         style,
         tabIndex,
     } = props;
@@ -56,13 +62,17 @@ function DropdownMenuOption(props) {
     });
 
     function handleOnClick(event) {
-        event.stopPropagation();
+        if (stopPropagation) {
+            event.stopPropagation();
+        }
 
         onClick(event, id, label);
     }
 
     function handleOnKeyDown(event) {
-        event.stopPropagation();
+        if (stopPropagation) {
+            event.stopPropagation();
+        }
 
         onKeyDown(event, id, label);
     }
