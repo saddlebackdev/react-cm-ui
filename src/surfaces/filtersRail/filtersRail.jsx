@@ -1,6 +1,7 @@
+import { isEmpty } from 'lodash';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 import {
     UI_CLASS_NAME,
@@ -8,6 +9,7 @@ import {
     BEM_FILTERS_RAIL,
 } from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
+import Button from '../../inputs/button';
 import Rail from '../rail';
 import Slide from '../../utils/slide';
 import useMediaQuery from '../../utils/useMediaQuery';
@@ -32,6 +34,23 @@ const propTypes = {
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
      */
     dataTestId: PropTypes.string,
+    /**
+     * Used for enabling Clear All & Apply Filters action buttons
+     */
+    filterOptions: PropTypes.shape({
+        /**
+         * If `true`, filters are applied
+         */
+        isDirty: PropTypes.bool.isRequired,
+        /**
+         * Apply filters Button onClick event handler
+         */
+        onApply: PropTypes.func.isRequired,
+        /**
+         * Clear All Link onClick event handler
+         */
+        onClear: PropTypes.func.isRequired,
+    }),
     /**
      * The `id` of the FiltersRail.
      */
@@ -65,8 +84,8 @@ const defaultProps = {
     classes: undefined,
     className: undefined,
     dataTestId: `${UI_CLASS_NAME}-fitlers_rail`,
+    filterOptions: undefined,
     id: undefined,
-    isOpen: undefined,
     isScrollable: false,
     moduleType: 'page',
 };
@@ -75,6 +94,24 @@ const useStyles = makeStyles((theme) => {
     const railWidth = 250;
 
     return {
+        actionButtons: {
+            borderTop: `1px solid ${theme.palette.divider}`,
+            display: 'flex',
+            justifyContent: 'space-between',
+            margin: [[0, theme.spacing(2)]],
+            padding: [[19, 0]],
+        },
+        actionButtonsContainer: {
+            backgroundColor: theme.palette.background.paper,
+            bottom: 0,
+            marginLeft: -theme.spacing(2),
+            position: 'fixed',
+            width: railWidth - 1,
+        },
+        clearAllLink: {
+            display: 'flex',
+            alignItems: 'center',
+        },
         innerContainer: {
             minHeight: '100%',
             overflow: 'hidden',
@@ -93,6 +130,9 @@ const useStyles = makeStyles((theme) => {
             '&$isNotScrollable': {
                 height: 'auto',
             },
+        },
+        isFilterActionButtonsEnabled: {
+            paddingBottom: `${theme.spacing(6.5)}px !important`,
         },
         isInDrawer: {},
         isNotOpen: {},
@@ -140,6 +180,7 @@ function FiltersRail(props) {
         children,
         className,
         dataTestId,
+        filterOptions,
         id,
         isOpen,
         isScrollable,
@@ -147,9 +188,13 @@ function FiltersRail(props) {
         theme,
     } = props;
 
+    const bemBlockClassName = 'filters_rail';
     const filtersRailRef = useRef();
     const classes = useStyles(props);
     const isMobile = useMediaQuery(theme.breakpoints.only('sm'));
+    const actionButtonsContainerClasses = ClassNames(`${bemBlockClassName}--action-buttons-container`, classes.actionButtonsContainer);
+    const actionButtonsClasses = ClassNames(`${bemBlockClassName}--action-buttons`, classes.actionButtons);
+    const clearFiltersClasses = ClassNames('clear-filters', classes.clearAllLink, 'font-size-xsmall');
 
     useEffect(() => {
         if (!isMobile && filtersRailRef && filtersRailRef.current) {
@@ -162,6 +207,18 @@ function FiltersRail(props) {
         }
     }, [
         isMobile,
+    ]);
+
+    const onClearClick = useCallback(() => {
+        filterOptions.onClear();
+    }, [
+        filterOptions,
+    ]);
+
+    const onApplyFiltersClick = useCallback(() => {
+        filterOptions.onApply();
+    }, [
+        filterOptions,
     ]);
 
     if (isMobile) {
@@ -181,6 +238,16 @@ function FiltersRail(props) {
         },
     );
 
+    let filterOptionsRequiredKeysMissing = false;
+
+    if (!isEmpty(filterOptions) &&
+        (!('isDirty' in filterOptions) ||
+        !('onClear' in filterOptions) ||
+        !('onApply' in filterOptions))) {
+        console.warn('Filter Options are missing required keys(isDirty, onClear, onApply)');
+        filterOptionsRequiredKeysMissing = true;
+    }
+
     return (
         <div
             className={rootClasses}
@@ -199,6 +266,8 @@ function FiltersRail(props) {
                             [classes.isOpen]: isOpen,
                             [classes.isScrollable]: isScrollable,
                             [classes.isNotScrollable]: !isScrollable,
+                            [classes.isFilterActionButtonsEnabled]: !isEmpty(filterOptions) &&
+                                !filterOptionsRequiredKeysMissing,
                         },
                     )}
                 >
@@ -210,6 +279,31 @@ function FiltersRail(props) {
                         </ScrollBar>
                     ) :
                         children}
+                    {!isEmpty(filterOptions) && !filterOptionsRequiredKeysMissing && (
+                        <div className={actionButtonsContainerClasses}>
+                            <div className={actionButtonsClasses}>
+                                {/* eslint-disable max-len */}
+                                {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid */}
+                                <a
+                                    className={clearFiltersClasses}
+                                    onClick={onClearClick}
+                                >
+                                    Clear All
+                                </a>
+                                <Button
+                                    className="apply-filters-btn"
+                                    color="success"
+                                    disabled={!filterOptions.isDirty}
+                                    designVersion={2}
+                                    onClick={onApplyFiltersClick}
+                                >
+                                    Apply Filters
+                                </Button>
+                                {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid */}
+                                {/* eslint-enable max-len */}
+                            </div>
+                        </div>
+                    )}
                 </Rail>
             </Slide>
         </div>
