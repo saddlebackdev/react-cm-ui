@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18.0 - 11/06/2023
+- [PR #476](https://github.com/saddlebackdev/react-cm-ui/pull/476) / Merge Commit 646bbdd
+  - Add new `<Icon>` types `journey-candle`, `journey-crib`, `journey-crown`, `journey-manger`, and `journey-star`.
+
 ## 0.17.7-Hotfix1 - 11/06/2023
 - [PR #476](https://github.com/saddlebackdev/react-cm-ui/pull/476) / Merge Commit 646bbdd
   - Add new `<Icon>` types `journey-candle`, `journey-crib`, `journey-crown`, `journey-manger`, and `journey-star`.
