@@ -6,10 +6,10 @@ import {
     Radio,
     Select,
     Typography,
-} from '@saddlebackchurch/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
-import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles'; // eslint-disable-line import/no-unresolved
 
 const propTypes = {
     isOpen: PropTypes.bool,
@@ -77,6 +77,11 @@ function DemoFiltersRail(props) {
         <Page.FiltersRail
             isOpen={isOpen}
             isScrollable
+            filterOptions={{
+                isDirty: false,
+                onClear: () => {},
+                onApply: () => {},
+            }}
         >
             <Grid
                 className={classes.grid}
