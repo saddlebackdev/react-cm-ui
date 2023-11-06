@@ -9,6 +9,7 @@ import {
     BEM_FILTERS_RAIL,
 } from '../../global/constants';
 import makeStyles from '../../styles/makeStyles';
+import A from '../../navigation/a';
 import Button from '../../inputs/button';
 import Rail from '../rail';
 import Slide from '../../utils/slide';
@@ -86,6 +87,7 @@ const defaultProps = {
     dataTestId: `${UI_CLASS_NAME}-fitlers_rail`,
     filterOptions: undefined,
     id: undefined,
+    isOpen: undefined,
     isScrollable: false,
     moduleType: 'page',
 };
@@ -188,12 +190,11 @@ function FiltersRail(props) {
         theme,
     } = props;
 
-    const bemBlockClassName = 'filters_rail';
     const filtersRailRef = useRef();
     const classes = useStyles(props);
     const isMobile = useMediaQuery(theme.breakpoints.only('sm'));
-    const actionButtonsContainerClasses = ClassNames(`${bemBlockClassName}--action-buttons-container`, classes.actionButtonsContainer);
-    const actionButtonsClasses = ClassNames(`${bemBlockClassName}--action-buttons`, classes.actionButtons);
+    const actionButtonsContainerClasses = ClassNames(`${BEM_FILTERS_RAIL}--action-buttons-container`, classes.actionButtonsContainer);
+    const actionButtonsClasses = ClassNames(`${BEM_FILTERS_RAIL}--action-buttons`, classes.actionButtons);
     const clearFiltersClasses = ClassNames('clear-filters', classes.clearAllLink, 'font-size-xsmall');
 
     useEffect(() => {
@@ -284,12 +285,13 @@ function FiltersRail(props) {
                             <div className={actionButtonsClasses}>
                                 {/* eslint-disable max-len */}
                                 {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid */}
-                                <a
+                                <A
                                     className={clearFiltersClasses}
+                                    disable={!filterOptions.isDirty}
                                     onClick={onClearClick}
                                 >
                                     Clear All
-                                </a>
+                                </A>
                                 <Button
                                     className="apply-filters-btn"
                                     color="success"
