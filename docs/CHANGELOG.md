@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.7-Hotfix1 - 11/06/2023
+- [PR #476](https://github.com/saddlebackdev/react-cm-ui/pull/476) / Merge Commit 646bbdd
+  - Add new `<Icon>` types `journey-candle`, `journey-crib`, `journey-crown`, `journey-manger`, and `journey-star`.
+
 ## 0.17.7 - 09/07/2023
 - [PR #461](https://github.com/saddlebackdev/react-cm-ui/pull/461) / Merge Commit 6aa16fb
   - Add example of `<SelectNext>` (powered by React Select v5) to the `<Select>` documentation page.

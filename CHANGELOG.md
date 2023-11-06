@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.7.3-Hotfix1
+_November 6, 2023_
+- Add new `<Icon>` types `journey-candle`, `journey-crib`, `journey-crown`, `journey-manger`, and `journey-star`.  [PR #476](https://github.com/saddlebackdev/react-cm-ui/pull/476)
+
 ## 10.7.3
 _October 12, 2023_
 - Add `clearable` prop to the `<SelectNext>` component.  [PR #466](https://github.com/saddlebackdev/react-cm-ui/pull/466)
