@@ -52,19 +52,6 @@ const styles = (theme) => ({
             height: 'calc(100% - 195px)',
         },
     },
-    appBar: {
-        left: 0,
-        position: 'fixed',
-        right: 0,
-        top: 0,
-        zIndex: 4,
-        [theme.breakpoints.up('md')]: {
-            left: theme.width.navigation.md.expanded,
-        },
-    },
-    dataGroupsContainer: {
-        margin: '0 -11px',
-    },
 });
 
 class DrawerDemo extends React.PureComponent {
