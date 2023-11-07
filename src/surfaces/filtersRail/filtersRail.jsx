@@ -283,8 +283,6 @@ function FiltersRail(props) {
                     {!isEmpty(filterOptions) && !filterOptionsRequiredKeysMissing && (
                         <div className={actionButtonsContainerClasses}>
                             <div className={actionButtonsClasses}>
-                                {/* eslint-disable max-len */}
-                                {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid */}
                                 <A
                                     className={clearFiltersClasses}
                                     disable={!filterOptions.isDirty}
@@ -301,8 +299,6 @@ function FiltersRail(props) {
                                 >
                                     Apply Filters
                                 </Button>
-                                {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid */}
-                                {/* eslint-enable max-len */}
                             </div>
                         </div>
                     )}

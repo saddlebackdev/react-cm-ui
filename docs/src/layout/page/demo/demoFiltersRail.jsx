@@ -55,6 +55,20 @@ function DemoFiltersRail(props) {
 
     const classes = useStyles();
 
+    const onApplyFiltersClick = useCallback(() => {
+        console.log('You just clicked the Apply Filters button!'); // eslint-disable-line no-console
+    }, []);
+
+    const onClearAllClick = useCallback(() => {
+        console.log('You just clicked the Clear All link!'); // eslint-disable-line no-console
+    }, []);
+
+    const onColorSelectChange = useCallback((colorOption) => {
+        setSelectedColorOption(colorOption);
+    }, [
+        setSelectedColorOption,
+    ]);
+
     const onRadioPillChange = useCallback((id, value) => {
         setRadioPillValue(value);
     }, [
@@ -67,20 +81,14 @@ function DemoFiltersRail(props) {
         setSelectedSortOption,
     ]);
 
-    const onColorSelectChange = useCallback((colorOption) => {
-        setSelectedColorOption(colorOption);
-    }, [
-        setSelectedColorOption,
-    ]);
-
     return (
         <Page.FiltersRail
             isOpen={isOpen}
             isScrollable
             filterOptions={{
                 isDirty: false,
-                onClear: () => {},
-                onApply: () => {},
+                onClear: onClearAllClick,
+                onApply: onApplyFiltersClick,
             }}
         >
             <Grid
