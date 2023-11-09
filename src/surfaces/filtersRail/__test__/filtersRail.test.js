@@ -114,5 +114,55 @@ describe('<FiltersRail />', () => {
         expect(wrapper.prop('id')).toEqual(props.id);
     });
 
+    it('Should render filter action buttons(Clear All & Apply Filters) when filterOptions is set', () => {
+        const newProps = {
+            ...props,
+            filterOptions: {
+                isDirty: false,
+                onApply: jest.fn(),
+                onClear: jest.fn(),
+            },
+        };
+
+        const wrapper = mountWithTheme(
+            <FiltersRail
+                {...newProps}
+            />,
+        );
+
+        const rootNode = wrapper.find('div').first();
+        expect(rootNode.hasClass('cmui')).toEqual(true);
+
+        expect(rootNode.find('.filters_rail--action-buttons-container').exists()).toEqual(true);
+        expect(rootNode.find('.filters_rail--action-buttons').exists()).toEqual(true);
+        expect(rootNode.find('.clear-filters').exists()).toEqual(true);
+        expect(rootNode.find('.apply-filters-btn').exists()).toEqual(true);
+    });
+
+    it('Should not render filter action buttons(Clear All & Apply Filters) when filterOptions is are not properly set', () => {
+        // For eg: filterOptions onClear property is missing.
+        const newProps = {
+            ...props,
+            filterOptions: {
+                isDirty: false,
+                onApply: jest.fn(),
+            },
+        };
+
+        const wrapper = mountWithTheme(
+            <FiltersRail
+                {...newProps}
+            />,
+        );
+
+        const rootNode = wrapper.find('div').first();
+        expect(rootNode.hasClass('cmui')).toEqual(true);
+
+        expect(rootNode.find('.filters_rail--action-buttons-container').exists()).toEqual(false);
+        expect(rootNode.find('.filters_rail--action-buttons').exists()).toEqual(false);
+        expect(rootNode.find('.clear-filters').exists()).toEqual(false);
+        expect(rootNode.find('.apply-filters-btn').exists()).toEqual(false);
+    });
+
     test.todo('Add should set height of filters rail');
 });

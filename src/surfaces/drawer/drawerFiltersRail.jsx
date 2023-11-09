@@ -16,6 +16,23 @@ const propTypes = {
      * Used for DOM testing. https://testing-library.com/docs/queries/bytestid/
      */
     dataTestId: PropTypes.string,
+    /**
+     * Used for enabling Clear All & Apply Filters action buttons
+     */
+    filterOptions: PropTypes.shape({
+        /**
+         * If `true`, filters are applied
+         */
+        isDirty: PropTypes.bool.isRequired,
+        /**
+         * Apply filters Button onClick event handler
+         */
+        onApply: PropTypes.func.isRequired,
+        /**
+         * Clear All Link onClick event handler
+         */
+        onClear: PropTypes.func.isRequired,
+    }),
     id: PropTypes.string,
     isOpen: PropTypes.bool,
     isScrollable: PropTypes.bool,
@@ -27,6 +44,7 @@ const defaultProps = {
     children: undefined,
     className: undefined,
     dataTestId: `${UI_CLASS_NAME}-drawer_filters_rail`,
+    filterOptions: undefined,
     id: undefined,
     isOpen: undefined,
     isScrollable: false,
@@ -39,6 +57,7 @@ function DrawerFiltersRail(props) {
         children,
         className,
         dataTestId,
+        filterOptions,
         id,
         isOpen,
         isScrollable,
@@ -50,6 +69,7 @@ function DrawerFiltersRail(props) {
             breakpointUp={breakpointUp}
             className={className}
             data-testid={dataTestId}
+            filterOptions={filterOptions}
             id={id}
             isOpen={isOpen}
             isScrollable={isScrollable}
