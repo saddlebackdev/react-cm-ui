@@ -5,15 +5,22 @@ import {
 } from 'lodash';
 import {
     Drawer,
+    Grid,
     Icon,
+    Select,
     Typography,
 } from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
+import ClassNames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import withStyles from '@saddlebackchurch/react-cm-ui/styles/withStyles'; // eslint-disable-line import/no-unresolved
 import React from 'react';
 
 const propTypes = {
+    classes: {
+        detailsWindow: PropTypes.string,
+        root: PropTypes.string,
+    },
     isMobile: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
     onToggleDrawer: PropTypes.func.isRequired,
@@ -30,22 +37,20 @@ const propTypes = {
 };
 
 const defaultProps = {
+    classes: undefined,
     isMobile: false,
 };
 
 const styles = (theme) => ({
-    appBar: {
-        left: 0,
-        position: 'fixed',
-        right: 0,
-        top: 0,
-        zIndex: 4,
-        [theme.breakpoints.up('md')]: {
-            left: theme.width.navigation.md.expanded,
+    detailsWindow: {
+        [theme.breakpoints.up('sm')]: {
+            margin: '0 !important',
         },
     },
-    dataGroupsContainer: {
-        margin: '0 -11px',
+    root: {
+        '& .drawer-container-inner': {
+            height: 'calc(100% - 195px)',
+        },
     },
 });
 
@@ -64,16 +69,26 @@ class DrawerDemo extends React.PureComponent {
             },
         };
 
+        this.defaultFiltersForRails = {
+            selectedColor: 'Green',
+        };
+
         this.state = {
             appliedFilters: cloneDeep(this.defaultFilters),
+            appliedFiltersForRails: cloneDeep(this.defaultFiltersForRails),
             dirtyFilters: cloneDeep(this.defaultFilters),
+            dirtyFiltersForRails: cloneDeep(this.defaultFiltersForRails),
             isFiltersDrawerOpen: false,
+            isFiltersRailOpen: false,
             viewType: 'table',
         };
 
         this.onApplyFiltersDrawerClick = this.onApplyFiltersDrawerClick.bind(this);
+        this.onApplyFiltersRailClick = this.onApplyFiltersRailClick.bind(this);
         this.onBackClick = this.onBackClick.bind(this);
         this.onClearFiltersDrawerClick = this.onClearFiltersDrawerClick.bind(this);
+        this.onClearFiltersRailClick = this.onClearFiltersRailClick.bind(this);
+        this.onColorSelectChange = this.onColorSelectChange.bind(this);
         this.onFiltersToggle = this.onFiltersToggle.bind(this);
         this.onKeywordsMultiSelectChange = this.onKeywordsMultiSelectChange.bind(this);
         this.onNestedTogglesBarChange = this.onNestedTogglesBarChange.bind(this);
@@ -93,6 +108,12 @@ class DrawerDemo extends React.PureComponent {
         }));
     }
 
+    onApplyFiltersRailClick() {
+        this.setState((prevState) => ({
+            appliedFiltersForRails: { ...prevState.dirtyFiltersForRails },
+        }));
+    }
+
     onBackClick() {
         console.log('Mobile Back button clicked!'); // eslint-disable-line no-console
     }
@@ -103,9 +124,30 @@ class DrawerDemo extends React.PureComponent {
         });
     }
 
+    onClearFiltersRailClick() {
+        this.setState({
+            dirtyFiltersForRails: { ...this.defaultFiltersForRails },
+        });
+    }
+
+    onColorSelectChange(selectedOption) {
+        this.setState((prevState) => ({
+            dirtyFiltersForRails: {
+                ...prevState.dirtyFilters,
+                selectedColor: selectedOption.value,
+            },
+        }));
+    }
+
     onFiltersToggle() {
         this.setState((prevState) => ({
             isFiltersDrawerOpen: !prevState.isFiltersDrawerOpen,
+        }));
+    }
+
+    onFiltersRailToggle() {
+        this.setState((prevState) => ({
+            isFiltersRailOpen: !prevState.isFiltersRailOpen,
         }));
     }
 
@@ -176,6 +218,7 @@ class DrawerDemo extends React.PureComponent {
 
     render() {
         const {
+            classes,
             isMobile,
             isOpen,
             onToggleDrawer,
@@ -184,13 +227,16 @@ class DrawerDemo extends React.PureComponent {
 
         const {
             appliedFilters,
+            appliedFiltersForRails,
             dirtyFilters,
+            dirtyFiltersForRails,
             isFiltersDrawerOpen,
             searchValue,
             viewType,
         } = this.state;
 
         const isDirty = !isEqual(appliedFilters, dirtyFilters);
+        const isDirtyRailsFilter = !isEqual(appliedFiltersForRails, dirtyFiltersForRails);
         const isFiltering = !isEqual(this.defaultFilters, appliedFilters);
 
         const actionBarIconFilter = {
@@ -409,11 +455,16 @@ class DrawerDemo extends React.PureComponent {
             ];
         }
 
+        const drawerClasses = ClassNames(
+            classes.root,
+            'drawer--class_name',
+        );
+
         return (
             <Drawer
                 isOpen={isOpen}
                 onClose={onToggleDrawer}
-                className="drawer_class_name"
+                className={drawerClasses}
             >
                 <Drawer.TitleBar
                     closeButton={<Icon compact onClick={onToggleDrawer} type="times" />}
@@ -440,6 +491,7 @@ class DrawerDemo extends React.PureComponent {
                 />
 
                 <Drawer.DetailsWindow
+                    className={classes.detailsWindow}
                     color={11}
                     columns={statsColumns}
                     data={{
@@ -451,10 +503,7 @@ class DrawerDemo extends React.PureComponent {
                     }}
                     expandableColumns={statsExpandableColumns}
                 />
-
-                <Drawer.Content
-                    className="drawer_content_class_name"
-                >
+                <Drawer.Container>
                     <Drawer.FiltersDrawer
                         isDirty={isDirty}
                         isFiltering={isFiltering}
@@ -584,22 +633,83 @@ class DrawerDemo extends React.PureComponent {
                             },
                         ]}
                     />
-
-                    <Typography
-                        variant="body2"
+                    <Drawer.FiltersRail
+                        isOpen={isFiltersDrawerOpen}
+                        filterOptions={{
+                            isDirty: isDirtyRailsFilter,
+                            onClear: this.onClearFiltersRailClick,
+                            onApply: this.onApplyFiltersRailClick,
+                        }}
                     >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Morbi eu ornare sapien. Praesent ac dui
-                        maximus, cursus eros eu, malesuada tortor.
-                        Praesent vulputate molestie leo, eu sollicitudin nisl
-                        efficitur sed. Etiam vitae tortor neque.
-                        Nullam blandit vestibulum mauris, in tristique velit
-                        pretium eu. Nullam ut malesuada ligula. Sed sit amet eros ligula.
-                        Cras purus elit, dictum sit amet
-                        orci ut, dapibus pulvinar ligula. Vivamus ac sollicitudin orci.
-                        Class aptent taciti sociosqu ad.
-                    </Typography>
-                </Drawer.Content>
+                        <Grid>
+                            <Grid.Column
+                                width={12}
+                            >
+                                <Typography
+                                    variant="h4"
+                                >
+                                    Color
+                                </Typography>
+
+                                <Select
+                                    clearable={false}
+                                    options={[
+                                        {
+                                            label: 'All Colors',
+                                            value: 'All Colors',
+                                        }, {
+                                            label: 'Red',
+                                            value: 'Red',
+                                        }, {
+                                            label: 'Blue',
+                                            value: 'Blue',
+                                        }, {
+                                            label: 'Green',
+                                            value: 'Green',
+                                        }, {
+                                            label: 'Cyan',
+                                            value: 'Cyan',
+                                        }, {
+                                            label: 'Yellow',
+                                            value: 'Yellow',
+                                        }, {
+                                            label: 'Magenta',
+                                            value: 'Magenta',
+                                        }, {
+                                            label: 'Black',
+                                            value: 'Black',
+                                        }, {
+                                            label: 'White',
+                                            value: 'White',
+                                        },
+                                    ]}
+                                    onChange={this.onColorSelectChange}
+                                    searchable
+                                    underline
+                                    value={dirtyFiltersForRails.selectedColor}
+                                />
+                            </Grid.Column>
+                        </Grid>
+                    </Drawer.FiltersRail>
+                    <Drawer.Content
+                        isFiltersRailOpen={isFiltersDrawerOpen}
+                    >
+                        <Typography
+                            variant="body2"
+                        >
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Morbi eu ornare sapien. Praesent ac dui
+                            maximus, cursus eros eu, malesuada tortor.
+                            Praesent vulputate molestie leo, eu sollicitudin nisl
+                            efficitur sed. Etiam vitae tortor neque.
+                            Nullam blandit vestibulum mauris, in tristique velit
+                            pretium eu. Nullam ut malesuada ligula. Sed sit amet eros ligula.
+                            Cras purus elit, dictum sit amet
+                            orci ut, dapibus pulvinar ligula. Vivamus ac sollicitudin orci.
+                            Class aptent taciti sociosqu ad.
+                        </Typography>
+                    </Drawer.Content>
+                </Drawer.Container>
             </Drawer>
         );
     }

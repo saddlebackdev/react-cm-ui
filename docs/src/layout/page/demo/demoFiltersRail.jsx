@@ -6,10 +6,10 @@ import {
     Radio,
     Select,
     Typography,
-} from '@saddlebackchurch/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
-import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles';
+import makeStyles from '@saddlebackchurch/react-cm-ui/styles/makeStyles'; // eslint-disable-line import/no-unresolved
 
 const propTypes = {
     isOpen: PropTypes.bool,
@@ -55,6 +55,20 @@ function DemoFiltersRail(props) {
 
     const classes = useStyles();
 
+    const onApplyFiltersClick = useCallback(() => {
+        console.log('You just clicked the Apply Filters button!'); // eslint-disable-line no-console
+    }, []);
+
+    const onClearAllClick = useCallback(() => {
+        console.log('You just clicked the Clear All link!'); // eslint-disable-line no-console
+    }, []);
+
+    const onColorSelectChange = useCallback((colorOption) => {
+        setSelectedColorOption(colorOption);
+    }, [
+        setSelectedColorOption,
+    ]);
+
     const onRadioPillChange = useCallback((id, value) => {
         setRadioPillValue(value);
     }, [
@@ -67,16 +81,15 @@ function DemoFiltersRail(props) {
         setSelectedSortOption,
     ]);
 
-    const onColorSelectChange = useCallback((colorOption) => {
-        setSelectedColorOption(colorOption);
-    }, [
-        setSelectedColorOption,
-    ]);
-
     return (
         <Page.FiltersRail
             isOpen={isOpen}
             isScrollable
+            filterOptions={{
+                isDirty: false,
+                onClear: onClearAllClick,
+                onApply: onApplyFiltersClick,
+            }}
         >
             <Grid
                 className={classes.grid}
