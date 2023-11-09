@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.8.0
+_November 9, 2023_
+- Add ability to have Apply and Clear buttons in the `<FiltersRail>` for Pages and Drawers.  [PR #474](https://github.com/saddlebackdev/react-cm-ui/pull/474)
+
 ## 10.7.7
 _November 6, 2023_
 - Add new `<Icon>` types `journey-candle`, `journey-crib`, `journey-crown`, `journey-manger`, and `journey-star`.  [PR #476](https://github.com/saddlebackdev/react-cm-ui/pull/476)
