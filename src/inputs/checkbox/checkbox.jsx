@@ -34,6 +34,10 @@ const propTypes = {
         PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
     ]),
     id: PropTypes.string,
+    /**
+     * To prevent sensitive data from being read, we need to be able to block the contents of the
+     * control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+     */
     isRedacted: PropTypes.bool,
     inverse: PropTypes.bool,
     label: PropTypes.oneOfType([
@@ -195,6 +199,7 @@ class Checkbox extends React.Component {
             toggle,
             value,
         } = this.props;
+
         let { isChecked } = this.state;
         isChecked = isRedacted ? false : isChecked;
         const isDisabled = disable || disabled || isRedacted;

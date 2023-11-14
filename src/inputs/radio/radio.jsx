@@ -48,6 +48,10 @@ const propTypes = {
     disabled: PropTypes.bool,
     fluid: PropTypes.bool,
     id: PropTypes.string,
+    /**
+     * To prevent sensitive data from being read, we need to be able to block the contents of the
+     * control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+     */
     isRedacted: PropTypes.bool,
     label: PropTypes.string,
     labelClick: PropTypes.bool,
