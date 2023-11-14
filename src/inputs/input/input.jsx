@@ -10,6 +10,7 @@ import ClassNames from 'classnames';
 import InputMasked from 'react-text-mask';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { InputScreenGuard } from '../greyScreenGuard';
 import Icon from '../../dataDisplay/icon';
 import KeyCode from '../../global/keyCode';
 
@@ -87,6 +88,13 @@ const propTypes = {
      * Assign an element ID to the Input.
      */
     id: PropTypes.string,
+
+    /**
+     * To prevent sensitive data from being read, we need to be able to block the contents of the
+     * control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+     */
+    isRedacted: PropTypes.bool,
+
     /**
      * It provides a hint to browsers as to the type of virtual keyboard configuration to use when editing this element or its contents.
      * Values include none, text, tel, url, email, numeric, decimal, and search.
@@ -231,6 +239,7 @@ const defaultProps = {
     id: null,
     inputMode: null,
     inverse: false,
+    isRedacted: false,
     keepCharPositions: false,
     label: null,
     labelPosition: null,
@@ -590,6 +599,7 @@ class Input extends React.PureComponent {
             id,
             inputMode,
             inverse,
+            isRedacted,
             keepCharPositions,
             label,
             labelPosition,
@@ -616,7 +626,7 @@ class Input extends React.PureComponent {
 
         const type = this.getType();
         const newLabelPosition = labelPosition || 'top';
-        const isDisabled = disable || disabled;
+        const isDisabled = disable || disabled || isRedacted;
 
         const containerClasses = ClassNames('ui', 'input', className, {
             'input-disabled': isDisabled,
@@ -673,6 +683,8 @@ class Input extends React.PureComponent {
                 className={containerClasses}
                 style={style}
             >
+                {isRedacted && <InputScreenGuard hasLabel={!isEmpty(label)} />}
+
                 {newLabelPosition === 'top' && renderLabel()}
 
                 {mask ? (
@@ -697,7 +709,7 @@ class Input extends React.PureComponent {
                         required={required}
                         tabIndex={tabIndex}
                         type={type}
-                        value={value}
+                        value={isRedacted ? '' : value}
                     />
                 ) : (
                     <input
@@ -721,7 +733,7 @@ class Input extends React.PureComponent {
                         required={required}
                         tabIndex={tabIndex}
                         type={type}
-                        value={value}
+                        value={isRedacted ? '' : value}
                     />
                 )}
 

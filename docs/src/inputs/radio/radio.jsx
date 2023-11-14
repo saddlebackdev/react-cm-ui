@@ -195,6 +195,21 @@ export default class RadioGroupPillSample extends React.Component {
 
 }`;
 
+const isRedactedSample = `import React from 'react';
+
+import { Radio } from '@saddlebackchurch/react-cm-ui';
+
+export default class RadioGroupSample extends React.Component {
+
+    render() {
+        return (
+            <Radio isRedacted label="Sensitive data 1" /><br /><br />
+            <Radio checked isRedacted label="Sensitive data 2" />
+        );
+    }
+
+}`;
+
 export default class ElementsRadio extends React.Component {
     constructor(props) {
         super(props);
@@ -269,6 +284,12 @@ export default class ElementsRadio extends React.Component {
                 type: 'string',
                 default: '',
                 description: 'Give a radio input an id.',
+                allowedTypes: '',
+            }, {
+                name: 'isRedacted',
+                type: 'bool',
+                default: 'false',
+                description: 'To prevent sensitive data from being read, we need to be able to block the contents of the control with a gray placeholder. This flag triggers this kind of display instead of the usual one.',
                 allowedTypes: '',
             }, {
                 name: 'label',
@@ -560,6 +581,23 @@ export default class ElementsRadio extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {radioGroupPillSample}
+                    </Highlighter>
+
+                    {/* isRedacted */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub>
+                        isRedacted
+                        <Header.Subheader>
+                            To prevent sensitive data from being read, we need to be able to block the contents of the control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+                        </Header.Subheader>
+                    </Header>
+
+                    <Radio isRedacted label="Sensitive data 1" />
+                    <br />
+                    <br />
+                    <Radio checked isRedacted label="Sensitive data 2" />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {isRedactedSample}
                     </Highlighter>
                 </Main.Content>
             </Main>

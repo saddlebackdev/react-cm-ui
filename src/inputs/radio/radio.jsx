@@ -8,6 +8,7 @@ import {
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { RadioScreenGuard } from '../greyScreenGuard';
 import KeyCode from '../../global/keyCode';
 import RadioItem from './radioItem';
 import withStyles from '../../styles/withStyles';
@@ -47,6 +48,11 @@ const propTypes = {
     disabled: PropTypes.bool,
     fluid: PropTypes.bool,
     id: PropTypes.string,
+    /**
+     * To prevent sensitive data from being read, we need to be able to block the contents of the
+     * control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+     */
+    isRedacted: PropTypes.bool,
     label: PropTypes.string,
     labelClick: PropTypes.bool,
     multi: PropTypes.bool,
@@ -71,6 +77,7 @@ const defaultProps = {
     disabled: false,
     fluid: false,
     id: null,
+    isRedacted: false,
     label: null,
     labelClick: true,
     multi: false,
@@ -430,6 +437,7 @@ class Radio extends React.Component {
             disabled,
             fluid,
             id,
+            isRedacted,
             label,
             labelClick,
             multi,
@@ -442,7 +450,7 @@ class Radio extends React.Component {
         } = this.props;
 
         const { isChecked } = this.state;
-        const isDisabled = disable || disabled;
+        const isDisabled = disable || disabled || isRedacted;
 
         const shouldShowRequiredIndicator = required && (alwaysShowRequiredIndicator || !isChecked);
 
@@ -491,7 +499,7 @@ class Radio extends React.Component {
 
         return (
             <div
-                aria-checked={isChecked}
+                aria-checked={isRedacted ? false : isChecked}
                 aria-labelledby={id}
                 className={rootClasses}
                 onClick={this.onClick}
@@ -502,7 +510,7 @@ class Radio extends React.Component {
                 tabIndex={isDisabled ? -1 : tabIndex}
             >
                 <input
-                    checked={isChecked}
+                    checked={isRedacted ? false : isChecked}
                     className={ClassNames(
                         'input',
                         classes.input,
@@ -533,6 +541,8 @@ class Radio extends React.Component {
                             onKeyDown={this.onLabelKeyDown}
                         >
                             {label}
+
+                            {isRedacted && <RadioScreenGuard />}
                         </span>
                     )}
 

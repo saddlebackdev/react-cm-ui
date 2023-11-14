@@ -304,6 +304,23 @@ export default class ResizeSample extends React.Component {
 
 }`;
 
+const isRedactedSample = `import React from 'react';
+import { TextArea } from '@saddlebackchurch/react-cm-ui';
+
+export default class ResizeSample extends React.Component {
+
+    render() {
+        return (
+            <TextArea
+                isRedacted
+                label="Sensitive data"
+                minHeight={200}
+            />
+        );
+    }
+
+}`;
+
 export default class ElementsTextArea extends React.Component {
     constructor(props) {
         super(props);
@@ -370,6 +387,12 @@ export default class ElementsTextArea extends React.Component {
                 default: '',
                 description: 'Format to appear on dark backgrounds.',
                 allowedTypes: ''
+            }, {
+                name: 'isRedacted',
+                type: 'bool',
+                default: 'false',
+                description: 'To prevent sensitive data from being read, we need to be able to block the contents of the control with a gray placeholder. This flag triggers this kind of display instead of the usual one.',
+                allowedTypes: '',
             }, {
                 name: 'label',
                 type: 'string',
@@ -782,6 +805,24 @@ export default class ElementsTextArea extends React.Component {
 
                     <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
                         {resizeSample}
+                    </Highlighter>
+
+                    {/* isRedacted */}
+                    <Header size="large" style={{ marginTop: '55px' }} sub >
+                        isRedacted
+                        <Header.Subheader>
+                            To prevent sensitive data from being read, we need to be able to block the contents of the control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+                        </Header.Subheader>
+                    </Header>
+
+                    <TextArea
+                        isRedacted
+                        label="Sensitive data"
+                        minHeight={200}
+                    />
+
+                    <Highlighter customStyle={{ marginBottom: '44px', marginTop: '44px' }}>
+                        {isRedactedSample}
                     </Highlighter>
                 </Main.Content>
             </Main>

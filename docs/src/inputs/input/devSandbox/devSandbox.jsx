@@ -30,6 +30,7 @@ import ExampleInputPlaceholder from '../examples/exampleInputPlaceholder';
 import ExampleInputRequired from '../examples/exampleInputRequired';
 import ExampleInputType from '../examples/exampleInputType';
 import ExampleInputMask from '../examples/exampleInputMask';
+import ExampleInputIsRedacted from '../examples/exampleInputIsRedacted';
 import Heading from '../../../global/heading';
 import Main from '../../../global/main';
 import MarkdownContainer from '../../../global/markdownContainer';
@@ -556,6 +557,27 @@ function InputDevSandbox() {
                     rawCode={require('!!raw-loader!../examples/exampleInputMask').default}
                 >
                     <ExampleInputMask />
+                </Example>
+
+                <MarkdownContainer>
+                    <Heading
+                        anchorLink="isRedacted"
+                        variant="h2"
+                    >
+                        isRedacted
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        To prevent sensitive data from being read, we need to be able to block the contents of the control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+                    </Typography>
+                </MarkdownContainer>
+
+                <Example
+                    rawCode={require('!!raw-loader!../examples/exampleInputIsRedacted').default}
+                >
+                    <ExampleInputIsRedacted />
                 </Example>
             </Main.Content>
         </Main>
