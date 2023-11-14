@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18.2 - 11/14/2023
+- [PR #477](https://github.com/saddlebackdev/react-cm-ui/pull/477) / Merge Commit e442f9a
+  - Add examples of using new `isRedacted` prop to show various form inputs in 'redacted' mode for displaying sensitive data.
+
 ## 0.18.1 - 11/09/2023
 - [PR #474](https://github.com/saddlebackdev/react-cm-ui/pull/474) / Merge Commit 7d9954f
   - Add ability to have Apply and Clear buttons in the `<FiltersRail>` for Pages and Drawers.  Update Demo Page and Drawer to show this new capability.
