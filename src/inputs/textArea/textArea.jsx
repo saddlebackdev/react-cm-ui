@@ -1,5 +1,4 @@
 import {
-    isEmpty,
     isFunction,
     isString,
     isUndefined,
@@ -298,7 +297,7 @@ class TextArea extends React.Component {
                 )}
 
                 <div className="text-area-container">
-                    {isRedacted && <InputScreenGuard hasLabel={!isEmpty(label)} />}
+                    {isRedacted && <InputScreenGuard />}
 
                     <textarea
                         disabled={isDisabled}

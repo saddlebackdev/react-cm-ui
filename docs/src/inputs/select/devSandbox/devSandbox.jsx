@@ -13,6 +13,7 @@ import ExampleDisableSelect from '../examples/exampleDisableSelect';
 import ExampleErrorSelect from '../examples/exampleErrorSelect';
 import ExampleLabelSelect from '../examples/exampleLabelSelect';
 import ExampleMultipleSelect from '../examples/exampleMultipleSelect';
+import ExampleIsRedactedSelect from '../examples/exampleIsRedactedSelect';
 import ExampleRequiredSelect from '../examples/exampleRequiredSelect';
 import ExampleSearchableSelect from '../examples/exampleSearchableSelect';
 import Heading from '../../../global/heading';
@@ -155,6 +156,27 @@ function ElementsSelect() {
                         rawCode={require('!!raw-loader!../examples/exampleCreatableAdvancedSelect').default}
                     >
                         <ExampleCreatableAdvancedSelect />
+                    </Example>
+
+                    <MarkdownContainer>
+                        <Heading
+                            anchorLink="select-is-redacted"
+                            variant="h2"
+                        >
+                            isRedacted
+                        </Heading>
+
+                        <Typography
+                            variant="body1"
+                        >
+                            To prevent sensitive data from being read, we need to be able to block the contents of the control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+                        </Typography>
+                    </MarkdownContainer>
+
+                    <Example
+                        rawCode={require('!!raw-loader!../examples/exampleIsRedactedSelect').default}
+                    >
+                        <ExampleIsRedactedSelect />
                     </Example>
                 </MarkdownContainer>
             </Main.Content>
