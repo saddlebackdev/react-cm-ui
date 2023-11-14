@@ -17,6 +17,7 @@ import {
     BEM_SELECT,
     UI_CLASS_NAME,
 } from '../../global/constants';
+import { SelectScreenGuard } from '../greyScreenGuard';
 import Icon from '../../dataDisplay/icon';
 import makeStyles from '../../styles/makeStyles';
 
@@ -88,6 +89,13 @@ const propTypes = {
      * The `id` of the Select.
      */
     id: PropTypes.string,
+
+    /**
+     * To prevent sensitive data from being read, we need to be able to block the contents of the
+     * control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+     */
+    isRedacted: PropTypes.bool,
+
     /**
      * The label for the Select.
      */
@@ -177,6 +185,7 @@ const defaultProps = {
     dropdownMenuStyle: null,
     fluid: false,
     id: null,
+    isRedacted: false,
     label: null,
     matchProp: 'any',
     multiple: false,
@@ -798,6 +807,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         error,
         fluid: isFluid,
         id,
+        isRedacted,
         label,
         matchProp,
         multiple,
@@ -1016,6 +1026,8 @@ const Select = React.forwardRef(function Select(props, ref) {
                 </label>
             )}
 
+            {isRedacted && <SelectScreenGuard hasLabel={!isEmpty(label)} />}
+
             <ReactSelectComponent
                 arrowRenderer={() => {
                     if (isCreatable) {
@@ -1064,7 +1076,7 @@ const Select = React.forwardRef(function Select(props, ref) {
                     </div>
                 )}
                 clearable={isClearable}
-                disabled={disabledProp || disableProp}
+                disabled={disabledProp || disableProp || isRedacted}
                 matchProp={!isCreatable ? matchProp : null}
                 menuContainerStyle={dropdownMenuContainerStyle}
                 menuRenderer={menuRenderer}

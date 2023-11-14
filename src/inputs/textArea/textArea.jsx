@@ -8,6 +8,7 @@ import autosize from 'autosize';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { InputScreenGuard } from '../greyScreenGuard';
 
 const propTypes = {
     /**
@@ -42,6 +43,11 @@ const propTypes = {
     ]),
     id: PropTypes.string,
     inverse: PropTypes.bool,
+    /**
+     * To prevent sensitive data from being read, we need to be able to block the contents of the
+     * control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+     */
+    isRedacted: PropTypes.bool,
     label: PropTypes.string,
     labelStyle: PropTypes.shape({}),
     maxHeight: PropTypes.oneOfType([
@@ -82,6 +88,7 @@ const defaultProps = {
     forwardedRef: undefined,
     id: null,
     inverse: false,
+    isRedacted: false,
     label: null,
     labelStyle: null,
     maxHeight: null,
@@ -245,6 +252,7 @@ class TextArea extends React.Component {
             fluid,
             id,
             inverse,
+            isRedacted,
             label,
             labelStyle,
             maxHeight,
@@ -264,7 +272,7 @@ class TextArea extends React.Component {
             isFocused,
         } = this.state;
 
-        const isDisabled = disable || disabled;
+        const isDisabled = disable || disabled || isRedacted;
 
         const rootClasses = ClassNames('ui', 'text-area', className, {
             'text-area-auto-height': autoHeight,
@@ -289,6 +297,8 @@ class TextArea extends React.Component {
                 )}
 
                 <div className="text-area-container">
+                    {isRedacted && <InputScreenGuard />}
+
                     <textarea
                         disabled={isDisabled}
                         cols={columns}
@@ -310,7 +320,7 @@ class TextArea extends React.Component {
                             minHeight,
                             resize: !isUndefined(resize) && !resize ? 'none' : 'auto',
                         }}
-                        value={value}
+                        value={isRedacted ? '' : value}
                     />
 
                     {error && isString(error) && (

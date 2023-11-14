@@ -4,6 +4,7 @@ import {
 import React from 'react';
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
+import { CheckboxScreenGuard } from '../greyScreenGuard';
 import Icon from '../../dataDisplay/icon';
 
 const propTypes = {
@@ -33,6 +34,11 @@ const propTypes = {
         PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
     ]),
     id: PropTypes.string,
+    /**
+     * To prevent sensitive data from being read, we need to be able to block the contents of the
+     * control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+     */
+    isRedacted: PropTypes.bool,
     inverse: PropTypes.bool,
     label: PropTypes.oneOfType([
         PropTypes.shape({}),
@@ -65,6 +71,7 @@ const defaultProps = {
     fluid: false,
     forwardedRef: undefined,
     id: null,
+    isRedacted: false,
     inverse: null,
     label: null,
     labelClassName: null,
@@ -177,6 +184,7 @@ class Checkbox extends React.Component {
             disabled,
             fluid,
             id,
+            isRedacted,
             inverse,
             label,
             labelClassName,
@@ -191,8 +199,10 @@ class Checkbox extends React.Component {
             toggle,
             value,
         } = this.props;
-        const { isChecked } = this.state;
-        const isDisabled = disable || disabled;
+
+        let { isChecked } = this.state;
+        isChecked = isRedacted ? false : isChecked;
+        const isDisabled = disable || disabled || isRedacted;
         const newValue = value || '';
         const containerClasses = ClassNames('ui', 'checkbox', className, {
             'checkbox-align-left': align === 'left',
@@ -253,6 +263,8 @@ class Checkbox extends React.Component {
                             style={labelStyle}
                         >
                             {label}
+
+                            {isRedacted && <CheckboxScreenGuard />}
                         </span>
                     )}
 
