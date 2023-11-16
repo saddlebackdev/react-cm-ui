@@ -129,6 +129,12 @@ const propTypes = {
     includeDates: PropTypes.arrayOf(MomentPropTypes.momentObj),
 
     /**
+     * To prevent sensitive data from being read, we need to be able to block the contents of the
+     * control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+     */
+    isRedacted: PropTypes.bool,
+
+    /**
      * Specifies a label for the DatePickerInput control.
      */
     label: PropTypes.string,
@@ -209,6 +215,7 @@ const defaultProps = {
     hideCalendarPickerOnKeyDown: false,
     id: null,
     includeDates: null,
+    isRedacted: false,
     label: null,
     locale: 'en-US',
     maxDate: null,
@@ -515,6 +522,7 @@ class DatePickerInput extends React.PureComponent {
             fluid,
             id,
             includeDates,
+            isRedacted,
             label,
             locale,
             rangeFrom,
@@ -617,10 +625,11 @@ class DatePickerInput extends React.PureComponent {
                                         color={iconColor}
                                         compact
                                         disable={isDisabled}
-                                        onClick={this.onIconClick}
+                                        onClick={isRedacted ? null : this.onIconClick}
                                         type="calendar"
                                     />
                                 )}
+                                isRedacted={isRedacted}
                                 keepCharPositions
                                 label={label}
                                 mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
