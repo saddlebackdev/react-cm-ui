@@ -40,6 +40,11 @@ const propTypes = {
      */
     allowNegativeNumbers: PropTypes.bool,
     /**
+     * Indicates whether or not the field allows empty value
+     * for Input of type "number".
+     */
+    allowEmptyValueWithRequired: PropTypes.bool,
+    /**
      * Additional classes.
      */
     className: PropTypes.string,
@@ -225,6 +230,7 @@ const defaultProps = {
     autoComplete: null,
     allowDecimals: true,
     allowNegativeNumbers: true,
+    allowEmptyValueWithRequired: false,
     alwaysShowRequiredIndicator: false,
     autoFocus: null,
     className: null,
@@ -343,6 +349,7 @@ class Input extends React.PureComponent {
             max,
             min,
             required,
+            allowEmptyValueWithRequired,
         } = this.props;
 
         const isDisabled = disable || disabled;
@@ -358,7 +365,7 @@ class Input extends React.PureComponent {
 
                 this.inputTimer = setTimeout(() => {
                     if (isEmpty(newValue)) {
-                        if (required) {
+                        if (required && !allowEmptyValueWithRequired) {
                             if (isNumber(min)) {
                                 newValue = min;
                             } else if (isNumber(max)) {
@@ -368,10 +375,10 @@ class Input extends React.PureComponent {
                             }
                         }
                     } else {
-                        const newValueAsNumber = +newValue;
+                        let newValueAsNumber = +newValue;
 
                         if (isNumber(max)) {
-                            newValue = Math.min(max, newValueAsNumber);
+                            newValueAsNumber = Math.min(max, newValueAsNumber);
                         }
 
                         if (isNumber(min)) {
