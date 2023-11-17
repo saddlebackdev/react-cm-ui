@@ -650,6 +650,9 @@ class Input extends React.PureComponent {
             'label-top': newLabelPosition === 'top',
         });
 
+        const hasLabel = !isEmpty(label);
+        const hasIcon = isString(icon) || isObject(icon) || loading || type === 'number';
+
         const renderLabel = () => {
             if (!label) {
                 return null;
@@ -683,7 +686,12 @@ class Input extends React.PureComponent {
                 className={containerClasses}
                 style={style}
             >
-                {isRedacted && <InputScreenGuard hasLabel={!isEmpty(label)} />}
+                {isRedacted && (
+                    <InputScreenGuard
+                        hasIcon={hasIcon}
+                        hasLabel={hasLabel}
+                    />
+                )}
 
                 {newLabelPosition === 'top' && renderLabel()}
 
@@ -739,7 +747,7 @@ class Input extends React.PureComponent {
 
                 {newLabelPosition === 'bottom' && renderLabel()}
 
-                {(isString(icon) || isObject(icon) || loading || type === 'number') && (
+                {hasIcon && (
                     <div
                         className="input-actions"
                         // eslint-disable-next-line no-underscore-dangle
