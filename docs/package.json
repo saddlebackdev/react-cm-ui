@@ -1,6 +1,6 @@
 {
   "name": "react-cm-ui-docs",
-  "version": "0.18.2",
+  "version": "0.18.3",
   "scripts": {
     "build": "webpack",
     "build:clean": "rimraf build",
@@ -43,7 +43,7 @@
     "resolve-url-loader": "^3.1.5",
     "rimraf": "^2.6.1",
     "sass-loader": "^7.1.0",
-    "sharp": "^0.32.3",
+    "sharp": "^0.32.6",
     "style-loader": "^0.13.1",
     "terser-webpack-plugin": "^4.2.2",
     "ts-loader": "^8.1.0",

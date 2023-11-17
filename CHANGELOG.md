@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.9.1
+_November 17, 2023_
+- Add `isRedacted` support for `<DatePickerInput>` and fix some styling issues with the redaction functionality for `<Checkbox>`, `<Radio>` and `<Input>` components.  [PR #478 (https://github.com/saddlebackdev/react-cm-ui/pull/478)
+
 ## 10.9.0
 _November 14, 2023_
 - Add ability to show various form inputs in 'redacted' mode for displaying sensitive data with new `isRedacted` prop.  [PR #477](https://github.com/saddlebackdev/react-cm-ui/pull/477)
