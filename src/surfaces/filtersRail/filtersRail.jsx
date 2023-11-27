@@ -40,7 +40,7 @@ const propTypes = {
      */
     filterOptions: PropTypes.shape({
         /**
-         * If `true`, filters are dirty
+         * If true, then filter options have been modified but not yet applied to the list results.
          */
         isDirty: PropTypes.bool.isRequired,
         /**
