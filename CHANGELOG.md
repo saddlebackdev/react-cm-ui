@@ -1,9 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.9.2
+_November 28, 2023_
+- Add new `allowEmptyValueWithRequired` prop to `<Input>` to allow Inputs of type number that are also `required` to allow an empty value for UI/UX reasons (versus defaulting to a configured miniumum value or 0, as is the default behavior).  [PR #479](https://github.com/saddlebackdev/react-cm-ui/pull/479)
+- Add `isFiltering` field to `filterOptions` prop of `<FiltersRail>` to fix a UI/UX issue when using the new Clear and Apply button functionality in the Filters Rail.  [PR #481](https://github.com/saddlebackdev/react-cm-ui/pull/481)
+
 ## 10.9.1
 _November 17, 2023_
-- Add `isRedacted` support for `<DatePickerInput>` and fix some styling issues with the redaction functionality for `<Checkbox>`, `<Radio>` and `<Input>` components.  [PR #478 (https://github.com/saddlebackdev/react-cm-ui/pull/478)
+- Add `isRedacted` support for `<DatePickerInput>` and fix some styling issues with the redaction functionality for `<Checkbox>`, `<Radio>` and `<Input>` components.  [PR #478](https://github.com/saddlebackdev/react-cm-ui/pull/478)
 
 ## 10.9.0
 _November 14, 2023_
