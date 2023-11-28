@@ -25,6 +25,24 @@ const propTypes = {
      */
     allowDecimals: PropTypes.bool,
     /**
+     * Determines whether or not the field allows a completely empty value
+     * for Inputs of type "number", when the Input is also marked `required`.
+     *
+     * This is purely a UI/UX/behavioral option that does not really change the
+     * 'required field' semantics.  By default, an Input of type number that is
+     * required will default to either the configured minimum value (specified via the `min` prop)
+     * or else 0.  By setting this prop to `true`, you can suppress that behavior and allow
+     * the input to be completely empty.  The use case for this is for cases where the user wishes
+     * to completely clear out the existing value and type a new one
+     * (versus having some default automatically entered) for slightly smoother UX.
+     */
+    allowEmptyValueWithRequired: PropTypes.bool,
+    /**
+     * Indicates whether or not the field allows negative numbers (or just positive numbers)
+     * for Input of type "number".
+     */
+    allowNegativeNumbers: PropTypes.bool,
+    /**
      * Forces the Input component to always show the required indicator
      * next to the label. The default behavior (if this prop is omitted or false) is for
      * the required field indicator to disappear once a value has been entered.
@@ -34,16 +52,6 @@ const propTypes = {
      * Gives Input immediate focus.
      */
     autoFocus: PropTypes.bool,
-    /**
-     * Indicates whether or not the field allows negative numbers (or just positive numbers)
-     * for Input of type "number".
-     */
-    allowNegativeNumbers: PropTypes.bool,
-    /**
-     * Indicates whether or not the field allows empty value
-     * for Input of type "number".
-     */
-    allowEmptyValueWithRequired: PropTypes.bool,
     /**
      * Additional classes.
      */
@@ -227,11 +235,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-    autoComplete: null,
     allowDecimals: true,
-    allowNegativeNumbers: true,
     allowEmptyValueWithRequired: false,
+    allowNegativeNumbers: true,
     alwaysShowRequiredIndicator: false,
+    autoComplete: null,
     autoFocus: null,
     className: null,
     dataTestId: undefined,
@@ -344,12 +352,12 @@ class Input extends React.PureComponent {
 
     onChange(event) {
         const {
+            allowEmptyValueWithRequired,
             disable,
             disabled,
             max,
             min,
             required,
-            allowEmptyValueWithRequired,
         } = this.props;
 
         const isDisabled = disable || disabled;
@@ -378,7 +386,7 @@ class Input extends React.PureComponent {
                         let newValueAsNumber = +newValue;
 
                         if (isNumber(max)) {
-                            newValueAsNumber = Math.min(max, newValueAsNumber);
+                            newValue = newValueAsNumber = Math.min(max, newValueAsNumber); /* Chained assignment is intended; we want to update both variables. */ // eslint-disable-line no-multi-assign
                         }
 
                         if (isNumber(min)) {
