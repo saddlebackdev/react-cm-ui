@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18.3
+- [PR #478](https://github.com/saddlebackdev/react-cm-ui/pull/478) / Merge Commit 90bb4a8
+  - Add example of using new `isRedacted` prop for the `<DatePickerInput>` component
+- [PR #480](https://github.com/saddlebackdev/react-cm-ui/pull/480) / Merge Commit 87281d1
+  - `[Dependabot]` Upgrade `sharp` package.
+
 ## 0.18.2 - 11/14/2023
 - [PR #477](https://github.com/saddlebackdev/react-cm-ui/pull/477) / Merge Commit e442f9a
   - Add examples of using new `isRedacted` prop to show various form inputs in 'redacted' mode for displaying sensitive data.

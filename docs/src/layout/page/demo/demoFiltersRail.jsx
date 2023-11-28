@@ -87,6 +87,7 @@ function DemoFiltersRail(props) {
             isScrollable
             filterOptions={{
                 isDirty: false,
+                isFiltering: false,
                 onClear: onClearAllClick,
                 onApply: onApplyFiltersClick,
             }}

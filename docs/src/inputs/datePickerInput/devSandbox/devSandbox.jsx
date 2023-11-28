@@ -22,6 +22,7 @@ import ExampleDatePickerInputMinDate from '../examples/exampleDatePickerInputMin
 import ExampleDatePickerInputOnChange from '../examples/exampleDatePickerInputOnChange';
 import ExampleDatePickerInputOnMonthChange from '../examples/exampleDatePickerInputOnMonthChange';
 import ExampleDatePickerInputRange from '../examples/exampleDatePickerInputRange';
+import ExampleDatePickerInputIsRedacted from '../examples/exampleDatePickerInputIsRedacted';
 import Heading from '../../../global/heading';
 import Main from '../../../global/main';
 import MarkdownContainer from '../../../global/markdownContainer';
@@ -345,6 +346,27 @@ function DatePickerInputDevSandbox() {
                     rawCode={require('!!raw-loader!../examples/exampleDatePickerInputRange').default}
                 >
                     <ExampleDatePickerInputRange />
+                </Example>
+
+                <MarkdownContainer>
+                    <Heading
+                        anchorLink="isRedacted"
+                        variant="h2"
+                    >
+                        isRedacted
+                    </Heading>
+
+                    <Typography
+                        variant="body1"
+                    >
+                        To prevent sensitive data from being read, we need to be able to block the contents of the control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+                    </Typography>
+                </MarkdownContainer>
+
+                <Example
+                    rawCode={require('!!raw-loader!../examples/exampleDatePickerInputIsRedacted').default}
+                >
+                    <ExampleDatePickerInputIsRedacted />
                 </Example>
             </Main.Content>
         </Main>

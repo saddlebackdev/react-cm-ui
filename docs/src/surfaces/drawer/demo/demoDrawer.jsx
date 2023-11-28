@@ -237,6 +237,7 @@ class DrawerDemo extends React.PureComponent {
 
         const isDirty = !isEqual(appliedFilters, dirtyFilters);
         const isDirtyRailsFilter = !isEqual(appliedFiltersForRails, dirtyFiltersForRails);
+        const isFilteringRailsFilter = !isEqual(this.defaultFiltersForRails, appliedFiltersForRails);
         const isFiltering = !isEqual(this.defaultFilters, appliedFilters);
 
         const actionBarIconFilter = {
@@ -637,6 +638,7 @@ class DrawerDemo extends React.PureComponent {
                         isOpen={isFiltersDrawerOpen}
                         filterOptions={{
                             isDirty: isDirtyRailsFilter,
+                            isFiltering: isFilteringRailsFilter,
                             onClear: this.onClearFiltersRailClick,
                             onApply: this.onApplyFiltersRailClick,
                         }}
