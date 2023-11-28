@@ -119,6 +119,7 @@ describe('<FiltersRail />', () => {
             ...props,
             filterOptions: {
                 isDirty: false,
+                isFiltering: false,
                 onApply: jest.fn(),
                 onClear: jest.fn(),
             },
@@ -145,6 +146,7 @@ describe('<FiltersRail />', () => {
             ...props,
             filterOptions: {
                 isDirty: false,
+                isFiltering: false,
                 onApply: jest.fn(),
             },
         };

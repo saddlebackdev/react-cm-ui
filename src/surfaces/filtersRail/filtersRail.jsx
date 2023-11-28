@@ -40,9 +40,13 @@ const propTypes = {
      */
     filterOptions: PropTypes.shape({
         /**
-         * If `true`, filters are applied
+         * If true, then filter options have been modified but not yet applied to the list results.
          */
         isDirty: PropTypes.bool.isRequired,
+        /**
+         * If `true`, filters are applied
+         */
+        isFiltering: PropTypes.bool.isRequired,
         /**
          * Apply filters Button onClick event handler
          */
@@ -243,9 +247,10 @@ function FiltersRail(props) {
 
     if (!isEmpty(filterOptions) &&
         (!('isDirty' in filterOptions) ||
+        !('isFiltering' in filterOptions) ||
         !('onClear' in filterOptions) ||
         !('onApply' in filterOptions))) {
-        console.warn('Filter Options are missing required keys(isDirty, onClear, onApply)');
+        console.warn('Filter Options are missing required keys(isDirty, isFiltering, onClear, onApply)');
         filterOptionsRequiredKeysMissing = true;
     }
 
@@ -285,7 +290,7 @@ function FiltersRail(props) {
                             <div className={actionButtonsClasses}>
                                 <A
                                     className={clearFiltersClasses}
-                                    disable={!filterOptions.isDirty}
+                                    disable={!filterOptions.isDirty || !filterOptions.isFiltering}
                                     onClick={onClearClick}
                                 >
                                     Clear All

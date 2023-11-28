@@ -16,6 +16,9 @@ function ExampleInputType() {
             <Input label="Number: Min: 25, Max: 99, Required" type="number" min={25} max={99} required style={{ width: 235 }} />
             <br />
             <br />
+            <Input label="Number: Min: 25, Max: 99, Allow empty value, Required" allowEmptyValueWithRequired type="number" min={25} max={99} required style={{ width: 235 }} />
+            <br />
+            <br />
             <Input label="Number: No Decimals, Required" type="number" allowDecimals={false} required style={{ width: 235 }} />
             <br />
             <br />

@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18.4
+- [PR #481](https://github.com/saddlebackdev/react-cm-ui/pull/481) / Merge Commit be2635f
+  - Update Demo Page and Demo Drawer Filter Rails to add new `isFiltering` field to `filterOptions`.
+
 ## 0.18.3
 - [PR #478](https://github.com/saddlebackdev/react-cm-ui/pull/478) / Merge Commit 90bb4a8
   - Add example of using new `isRedacted` prop for the `<DatePickerInput>` component

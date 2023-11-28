@@ -25,6 +25,10 @@ const propTypes = {
          */
         isDirty: PropTypes.bool.isRequired,
         /**
+         * If `true`, filters are applied
+         */
+        isFiltering: PropTypes.bool.isRequired,
+        /**
          * Apply filters Button onClick event handler
          */
         onApply: PropTypes.func.isRequired,
