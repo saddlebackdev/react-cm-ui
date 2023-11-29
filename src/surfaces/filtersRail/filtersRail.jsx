@@ -290,7 +290,7 @@ function FiltersRail(props) {
                             <div className={actionButtonsClasses}>
                                 <A
                                     className={clearFiltersClasses}
-                                    disable={!filterOptions.isDirty || !filterOptions.isFiltering}
+                                    disable={!filterOptions.isDirty && !filterOptions.isFiltering}
                                     onClick={onClearClick}
                                 >
                                     Clear All
