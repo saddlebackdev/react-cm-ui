@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.9.3
+_November 29, 2023_
+- Fix a small bug with logic to disable Clear All link button in `<FiltersRail>`.  [PR #482](https://github.com/saddlebackdev/react-cm-ui/pull/482)
+
 ## 10.9.2
 _November 28, 2023_
 - Add new `allowEmptyValueWithRequired` prop to `<Input>` to allow Inputs of type number that are also `required` to allow an empty value for UI/UX reasons (versus defaulting to a configured miniumum value or 0, as is the default behavior).  [PR #479](https://github.com/saddlebackdev/react-cm-ui/pull/479)
