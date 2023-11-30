@@ -1052,6 +1052,7 @@ class PageDemo extends React.PureComponent {
 
                         <DemoFiltersRail
                             isOpen={isFiltersDrawerOpen}
+                            onClose={this.onFiltersToggle}
                         />
 
                         <Page.Content
