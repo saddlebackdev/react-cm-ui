@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.9.4
+_December 1, 2023_
+- No substantive changes in the library itself.  All documentation changes.  [PR #483](https://github.com/saddlebackdev/react-cm-ui/pull/483)
+
 ## 10.9.3
 _November 29, 2023_
 - Fix a small bug with logic to disable Clear All link button in `<FiltersRail>`.  [PR #482](https://github.com/saddlebackdev/react-cm-ui/pull/482)
