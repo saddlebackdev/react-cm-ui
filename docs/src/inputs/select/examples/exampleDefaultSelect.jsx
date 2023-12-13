@@ -6,6 +6,7 @@ import {
     SelectNext,
 } from '@saddlebackchurch/react-cm-ui';
 import { options } from '../constants';
+import { Box } from '../../../../../src';
 
 function ExampleDefaultSelect() {
     const [selectedValue, setOption] = useState({});
@@ -54,6 +55,69 @@ function ExampleDefaultSelect() {
                     value={!isEmpty(selectedNextValue) ? selectedNextValue : null}
                     dropdownMenuMaxHeight="unset"
                 />
+            </Grid.Column>
+            <Grid.Column>
+                cccccccccccccccccccccccccc
+                <SelectNext
+                    clearable
+                    id="block--select_next_id"
+                    label="Select Option"
+                    name="select_next_example"
+                    onChange={setNextOption}
+                    options={options}
+                    placeholder="Select"
+                    tabIndex={0}
+                    value={!isEmpty(selectedNextValue) ? selectedNextValue : null}
+                    dropdownMenuMaxHeight="unset"
+                />
+            </Grid.Column>
+            <Grid.Column>
+                dddddddddddddddddddddddddd
+                <SelectNext
+                    id="block--select_next_id"
+                    label="Select Option"
+                    name="select_next_example"
+                    onChange={setNextOption}
+                    options={options}
+                    placeholder="Select"
+                    isSearchable
+                    tabIndex={0}
+                    value={!isEmpty(selectedNextValue) ? selectedNextValue : null}
+                    dropdownMenuMaxHeight="unset"
+                />
+            </Grid.Column>
+            <br />
+            <Grid.Column>
+                eeeeeeeeeeeeeeeeeeeeeeeeee
+                <Box sx={{ width: '500px' }}>
+                    <SelectNext
+                        id="block--select_next_id"
+                        label="Select Option"
+                        name="select_next_example"
+                        onChange={setNextOption}
+                        options={options}
+                        placeholder="Select"
+                        isFluid
+                        isMultiple
+                        tabIndex={0}
+                        value={!isEmpty(selectedNextValue) ? selectedNextValue : null}
+                        dropdownMenuMaxHeight="unset"
+                    />
+                </Box>
+            </Grid.Column>
+            <Grid.Column>
+                eeeeeeeeeeeeeeeeeeeeeeeeee
+                <Box sx={{ width: '500px' }}>
+                    <Select
+                        id="block--multiple_select_id"
+                        fluid
+                        multiple
+                        options={options}
+                        placeholder="Select multiple options"
+                        onChange={setOption}
+                        value={!isEmpty(selectedValue) ? selectedValue : null}
+                    />
+                </Box>
             </Grid.Column>
         </Grid>
     );

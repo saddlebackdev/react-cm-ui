@@ -540,12 +540,12 @@ const useStyles = makeStyles((theme) => {
                 '&:hover': {
                     color: selectClearHoverColor,
                 },
-            },
+            }, // here finished
             '& .Select-clear': {
                 display: 'inline-block',
                 fontSize: selectClearSize,
                 lineHeight: 1,
-            },
+            }, // here finished
             '& .Select--multi .Select-clear-zone': {
                 width: selectClearWidth,
             },

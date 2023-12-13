@@ -59,6 +59,14 @@ type PropTypes = {
      */
     id?: string;
     /**
+     * A Select will be resized to its parent container's width.
+     */
+    isFluid?: boolean;
+    /**
+    * A Select can enable multiple option search
+    */
+    isMultiple?: boolean;
+    /**
     * A Select can enable option search
     */
     isSearchable?: boolean;
@@ -121,6 +129,8 @@ const defaultProps = {
     dropdownMenuMinHeight: null,
     error: null,
     id: null,
+    isFluid: false,
+    isMultiple: false,
     isSearchable: false,
     menuPortalTarget: null,
     noOptionsMessage: () => ('No results found'),
@@ -319,12 +329,16 @@ const useStyles = makeStyles((theme) => {
             },
         },
         hasError: {},
+        isFluid: {},
         root: {
             display: 'inline-block',
             minWidth: 200,
             position: 'relative',
             '&$hasError .react_select__control': {
                 borderColor: p.error.main, //
+            },
+            '&$isFluid': {
+                display: 'block',
             },
         },
         label: {
@@ -462,6 +476,8 @@ const SelectNext = React.forwardRef(function SelectNext(
         dropdownMenuMinHeight,
         error,
         id,
+        isFluid,
+        isMultiple,
         isSearchable,
         label,
         menuPortalTarget,
@@ -494,6 +510,7 @@ const SelectNext = React.forwardRef(function SelectNext(
         className,
         {
             [classes.hasError]: !!error,
+            [classes.isFluid]: isFluid,
         },
 
     );
@@ -536,6 +553,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                 dropdownMenuMinHeight={dropdownMenuMinHeight}
                 isClearable={clearable}
                 isDisabled={disabled}
+                isMulti={isMultiple}
                 isSearchable={isSearchable}
                 menuPortalTarget={menuPortalTarget}
                 name={name}
