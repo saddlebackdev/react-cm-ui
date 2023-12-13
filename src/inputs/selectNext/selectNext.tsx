@@ -218,8 +218,15 @@ const useStyles = makeStyles((theme) => {
                     },
                     '&--is-disabled': {
                         backgroundColor: selectInputBgDisabled,
+                        color: selectInputPlaceholder,
+                        cursor: 'not-allowed',
                         '&:hover': {
                             boxShadow: 'none',
+                        },
+                        '& .react_select__indicator': {
+                            '& .ui.icon .icon-use-path': {
+                                fill: p.grey[400],
+                            },
                         },
                     },
                     '&--is-focused:not(.react_select__control--menu-is-open)': {
@@ -301,11 +308,6 @@ const useStyles = makeStyles((theme) => {
                         backgroundColor: selectOptionSelectedBg,
                         color: `${p.text.primary} !important`,
                     },
-                    // '&--is-disabled': {
-                    //     backgroundColor: selectOptionBg,
-                    //     color: selectInputPlaceholder,
-                    //     cursor: 'not-allowed',
-                    // },
                 },
                 '&--clear_icon_container': {
                     marginRight: spacing(1),
