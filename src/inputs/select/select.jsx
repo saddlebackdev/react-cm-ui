@@ -400,15 +400,16 @@ const useStyles = makeStyles((theme) => {
                 '&:hover': {
                     boxShadow: '0 1px 0 rgba(0, 0, 0, 0.06)',
                 },
+                // .
                 '& .Select-input:focus': {
                     outline: 'none',
                 },
             },
             '&$hasError .Select-control': {
-                borderColor: p.error.main,
+                borderColor: p.error.main, //
             },
             '& .is-searchable.is-open > .Select-control': {
-                cursor: 'text',
+                cursor: 'text', //
             },
             '& .is-open:not(.Select--multi) > .Select-control': {
                 backgroundColor: selectInputBgFocus,
@@ -427,7 +428,8 @@ const useStyles = makeStyles((theme) => {
                         fill: selectInputArrowColorFocus,
                     },
                 },
-            },
+            }, // here finished
+
             '& .is-searchable.is-focused:not(.is-open) > .Select-control': {
                 cursor: 'text',
             },
@@ -441,7 +443,7 @@ const useStyles = makeStyles((theme) => {
                         `0 0 5px -1px rgba(${selectInputBorderFocus}, 50%)`,
                     ],
                 ],
-            },
+            }, // here finished
             '& .Select-placeholder, & .Select--single > .Select-control .Select-value': {
                 bottom: 0,
                 color: selectInputPlaceholder,
@@ -456,7 +458,7 @@ const useStyles = makeStyles((theme) => {
                 textOverflow: 'ellipsis',
                 top: 0,
                 whiteSpace: 'nowrap',
-            },
+            }, // here finished
             '& .has-value.Select--single > .Select-control .Select-value, & .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value': {
                 '& .Select-value-label': {
                     color: selectTextColor,
@@ -572,7 +574,7 @@ const useStyles = makeStyles((theme) => {
                     display: 'flex',
                     justifyContent: 'center',
                 },
-            },
+            }, // here finished
             '& .Select-arrow': {
                 borderColor: `${selectArrowColor} transparent transparent`,
                 borderStyle: 'solid',
@@ -598,7 +600,7 @@ const useStyles = makeStyles((theme) => {
                 top: '100%',
                 width: '100%',
                 zIndex: selectMenuZindex,
-            },
+            }, // here finished
             '& .Select-option': {
                 backgroundColor: selectOptionBg,
                 boxSizing: 'border-box',
@@ -623,7 +625,7 @@ const useStyles = makeStyles((theme) => {
                     color: selectOptionDisabledColor,
                     cursor: 'not-allowed',
                 },
-            },
+            }, // here finished
             '& .Select-noresults': {
                 boxSizing: 'border-box',
                 color: selectNoresultsColor,
@@ -987,6 +989,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         }
     };
 
+    console.log(!!error, 'error');
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
         BEM_SELECT,

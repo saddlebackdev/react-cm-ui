@@ -2,6 +2,7 @@ import ClassNames from 'classnames';
 import {
     isEmpty,
     isFunction,
+    isString,
 } from 'lodash';
 import React, {
     LegacyRef,
@@ -49,6 +50,10 @@ type PropTypes = {
     * Supply dropdown menu minimum height
     */
     dropdownMenuMinHeight?: number;
+    /**
+    * A select can have an error
+    */
+    error?: string;
     /**
      * The `id` of the Select.
      */
@@ -114,6 +119,7 @@ const defaultProps = {
     disabled: false,
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
+    error: null,
     id: null,
     isSearchable: false,
     menuPortalTarget: null,
@@ -227,6 +233,9 @@ const useStyles = makeStyles((theme) => {
                             ],
                         ],
                     },
+                    '& .is-searchable.react_select__control--menu-is-open': {
+                        cursor: 'text',
+                    },
                 },
                 '&__menu': {
                     backgroundColor: selectMenuBg,
@@ -292,6 +301,11 @@ const useStyles = makeStyles((theme) => {
                         backgroundColor: selectOptionSelectedBg,
                         color: `${p.text.primary} !important`,
                     },
+                    // '&--is-disabled': {
+                    //     backgroundColor: selectOptionBg,
+                    //     color: selectInputPlaceholder,
+                    //     cursor: 'not-allowed',
+                    // },
                 },
                 '&--clear_icon_container': {
                     marginRight: spacing(1),
@@ -302,10 +316,14 @@ const useStyles = makeStyles((theme) => {
                 },
             },
         },
+        hasError: {},
         root: {
             display: 'inline-block',
             minWidth: 200,
             position: 'relative',
+            '&$hasError .react_select__control': {
+                borderColor: p.error.main, //
+            },
         },
         label: {
             marginBottom: 8,
@@ -315,6 +333,11 @@ const useStyles = makeStyles((theme) => {
             display: 'inline-block',
             fontSize: typography.pxToRem(14),
             marginLeft: 3,
+        },
+        errorMessage: {
+            color: p.error.main,
+            fontSize: typography.pxToRem(14),
+            marginTop: spacing(0.5),
         },
     };
 });
@@ -435,6 +458,7 @@ const SelectNext = React.forwardRef(function SelectNext(
         disabled,
         dropdownMenuMaxHeight,
         dropdownMenuMinHeight,
+        error,
         id,
         isSearchable,
         label,
@@ -459,11 +483,17 @@ const SelectNext = React.forwardRef(function SelectNext(
         }
     };
 
+    console.log(!!error, 'error');
+
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
         BEM_SELECT,
         classes.root,
         className,
+        {
+            [classes.hasError]: !!error,
+        },
+
     );
 
     const showRequiredIndicator = required && (alwaysShowRequiredIndicator || isEmpty(value));
@@ -519,6 +549,11 @@ const SelectNext = React.forwardRef(function SelectNext(
                 unstyled
                 {...otherProps}
             />
+            {isString(error) && !!error && (
+                <p className={classes.errorMessage}>
+                    {error}
+                </p>
+            )}
         </div>
     );
 });
