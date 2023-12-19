@@ -13,6 +13,7 @@ import Select, {
     components,
     StylesConfig,
 } from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 import { ClearIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
 import Icon from '../../dataDisplay/icon';
 import {
@@ -54,6 +55,7 @@ type PropTypes = {
     * A select can have an error
     */
     error?: string;
+    isCreatable?: boolean;
     /**
      * The `id` of the Select.
      */
@@ -61,15 +63,15 @@ type PropTypes = {
     /**
      * A Select will be resized to its parent container's width.
      */
-    isFluid?: boolean;
+    fluid?: boolean;
     /**
     * A Select can enable multiple option search
     */
-    isMultiple?: boolean;
+    multiple?: boolean;
     /**
     * A Select can enable option search
     */
-    isSearchable?: boolean;
+    searchable?: boolean;
     /**
      * The label for the Select.
      */
@@ -128,10 +130,11 @@ const defaultProps = {
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
     error: null,
+    isCreatable: false,
     id: null,
-    isFluid: false,
-    isMultiple: false,
-    isSearchable: false,
+    fluid: false,
+    multiple: false,
+    searchable: false,
     menuPortalTarget: null,
     noOptionsMessage: () => ('No results found'),
     onChange: null,
@@ -169,11 +172,13 @@ const useStyles = makeStyles((theme) => {
     const selectTextColor = p.text.primary;
     const selectTextColorFocus = p.text.contrastText;
     const selectPaddingHorizontal = 11;
+    const selectItemFontSize = '.9em';
+    const selectMenuMarginTop = 4;
 
     // Menu Options
     const selectMenuBg = p.grey[500];
     const selectMenuBorderRadius = 3;
-    const selectMenuMarginTop = 4;
+    const selectItemBorderRadius = 2;
     const selectMenuPaddingVertical = 11;
     const selectMenuZindex = 1000;
 
@@ -291,6 +296,69 @@ const useStyles = makeStyles((theme) => {
                 '&__single-value': {
                     ...inputTextBaseStyle,
                 },
+                '&__multi-value': {
+                    alignItems: 'flex-start',
+                    backgroundColor: p.grey[100],
+                    border: `1px solid ${p.border.primary}`,
+                    borderRadius: selectItemBorderRadius,
+                    color: p.text.primary,
+                    display: 'inline-flex',
+                    fontSize: selectItemFontSize,
+                    height: 30,
+                    justifyContent: 'flex-start',
+                    marginLeft: 6,
+                    marginTop: 6,
+                    verticalAlign: 'top',
+                    '&__label': {
+                        alignItems: 'center',
+                        alignSelf: 'stretch',
+                        display: 'inline-flex',
+                        flex: '0 1 auto',
+                        justifyContent: 'center',
+                        verticalAlign: 'middle',
+                        borderBottomLeftRadius: selectItemBorderRadius,
+                        borderTopLeftRadius: selectItemBorderRadius,
+                        cursor: 'default',
+                        fontSize: 14,
+                        padding: '0 11px',
+                    },
+                    '&__remove': {
+                        alignItems: 'center',
+                        alignSelf: 'stretch',
+                        display: 'inline-flex',
+                        flex: '0 1 auto',
+                        justifyContent: 'center',
+                        verticalAlign: 'middle',
+                        border: `1px solid ${p.border.primary}`,
+                        borderBottomRightRadius: selectItemBorderRadius,
+                        borderRightRadius: selectItemBorderRadius,
+                        borderTopRightRadius: selectItemBorderRadius,
+                        color: p.text.secondary,
+                        cursor: 'pointer',
+                        lineHeight: 1,
+                        margin: '-1px -1px -1px 0',
+                        padding: '0 9px',
+                        position: 'relative',
+                        speak: 'none',
+                        textTransform: 'none',
+                        transition: [
+                            [
+                                'background-color 150ms linear',
+                            ],
+                            [
+                                'border-color 150ms linear',
+                            ],
+                            [
+                                'color 150ms linear',
+                            ],
+                        ],
+                        '&:hover, &:focus': {
+                            backgroundColor: p.grey[400],
+                            borderColor: p.grey[400],
+                            color: p.text.contrastText,
+                        },
+                    },
+                },
                 '&__menu-notice--no-options': {
                     color: selectNoresultsColor,
                     cursor: 'default',
@@ -326,16 +394,25 @@ const useStyles = makeStyles((theme) => {
                     justifyContent: 'center',
                     cursor: 'pointer',
                 },
+
             },
         },
         hasError: {},
         isFluid: {},
+        isMultiple: {},
         root: {
             display: 'inline-block',
             minWidth: 200,
             position: 'relative',
             '&$hasError .react_select__control': {
                 borderColor: p.error.main, //
+            },
+            '&$isMultiple .react_select__control': {
+                height: 'auto',
+                minHeight: selectInputHeight,
+            },
+            '&$isMultiple .react_select__value-container--has-value': {
+                marginBottom: 6,
             },
             '&$isFluid': {
                 display: 'block',
@@ -475,10 +552,11 @@ const SelectNext = React.forwardRef(function SelectNext(
         dropdownMenuMaxHeight,
         dropdownMenuMinHeight,
         error,
+        isCreatable,
         id,
-        isFluid,
-        isMultiple,
-        isSearchable,
+        fluid: isFluid,
+        multiple: isMultiple,
+        searchable: isSearchable,
         label,
         menuPortalTarget,
         name,
@@ -501,7 +579,7 @@ const SelectNext = React.forwardRef(function SelectNext(
         }
     };
 
-    console.log(!!error, 'error');
+    console.log(!!error, 'error', clearable);
 
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
@@ -511,6 +589,7 @@ const SelectNext = React.forwardRef(function SelectNext(
         {
             [classes.hasError]: !!error,
             [classes.isFluid]: isFluid,
+            [classes.isMultiple]: isMultiple,
         },
 
     );
@@ -574,6 +653,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                     {error}
                 </p>
             )}
+            {isCreatable && <CreatableSelect />}
         </div>
     );
 });

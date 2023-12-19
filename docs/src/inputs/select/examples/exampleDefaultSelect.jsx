@@ -119,6 +119,22 @@ function ExampleDefaultSelect() {
                     />
                 </Box>
             </Grid.Column>
+            <Grid.Column>
+                ffffffffffffffffffffffffff
+                <SelectNext
+                    isCreatable
+                    isSearchable
+                    id="block--select_next_id"
+                    label="Select Option"
+                    name="select_next_example"
+                    onChange={setNextOption}
+                    options={options}
+                    placeholder="Select"
+                    tabIndex={0}
+                    value={!isEmpty(selectedNextValue) ? selectedNextValue : null}
+                    dropdownMenuMaxHeight="unset"
+                />
+            </Grid.Column>
         </Grid>
     );
 }

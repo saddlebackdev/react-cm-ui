@@ -645,6 +645,7 @@ const useStyles = makeStyles((theme) => {
                 '&.has-value .Select-input': {
                     marginLeft: selectItemGutter,
                 },
+                // here
                 '& .Select-value': {
                     alignItems: 'flex-start',
                     backgroundColor: theme.palette.grey[100],
