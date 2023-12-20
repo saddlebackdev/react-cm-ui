@@ -455,6 +455,25 @@ const CustomArrow = (componentProps) => (
 );
 
 /**
+ * Define custom Arrow Component
+ */
+const CustomAdd = (componentProps) => (
+    <components.DropdownIndicator
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...componentProps}
+    >
+        <div>
+            <Icon
+                compact
+                size={16}
+                title="Creatable"
+                type="add"
+            />
+        </div>
+    </components.DropdownIndicator>
+);
+
+/**
  * Define custom MenuList Component
  */
 const CustomMenuList = (componentProps) => {
@@ -620,40 +639,70 @@ const SelectNext = React.forwardRef(function SelectNext(
                 </label>
             )}
 
-            <Select
-                components={{
-                    DropdownIndicator: CustomArrow,
-                    MenuList: CustomMenuList,
-                    Option: CustomOption,
-                    ClearIndicator: CustomClear,
-                }}
-                // @ts-ignore
-                dropdownMenuMaxHeight={dropdownMenuMaxHeight}
-                dropdownMenuMinHeight={dropdownMenuMinHeight}
-                isClearable={clearable}
-                isDisabled={disabled}
-                isMulti={isMultiple}
-                isSearchable={isSearchable}
-                menuPortalTarget={menuPortalTarget}
-                name={name}
-                noOptionsMessage={noOptionsMessage}
-                onChange={onChange}
-                options={options}
-                placeholder={placeholder}
-                tabIndex={tabIndex}
-                value={value}
-                styles={styles}
-                menuShouldScrollIntoView={false}
-                classNamePrefix="react_select"
-                unstyled
-                {...otherProps}
-            />
+            {!isCreatable && (
+                <Select
+                    components={{
+                        DropdownIndicator: CustomArrow,
+                        MenuList: CustomMenuList,
+                        Option: CustomOption,
+                        ClearIndicator: CustomClear,
+                    }}
+                    // @ts-ignore
+                    dropdownMenuMaxHeight={dropdownMenuMaxHeight}
+                    dropdownMenuMinHeight={dropdownMenuMinHeight}
+                    isClearable={clearable}
+                    isDisabled={disabled}
+                    isMulti={isMultiple}
+                    isSearchable={isSearchable}
+                    menuPortalTarget={menuPortalTarget}
+                    name={name}
+                    noOptionsMessage={noOptionsMessage}
+                    onChange={onChange}
+                    options={options}
+                    placeholder={placeholder}
+                    tabIndex={tabIndex}
+                    value={value}
+                    styles={styles}
+                    menuShouldScrollIntoView={false}
+                    classNamePrefix="react_select"
+                    unstyled
+                    {...otherProps}
+                />
+            )}
             {isString(error) && !!error && (
                 <p className={classes.errorMessage}>
                     {error}
                 </p>
             )}
-            {isCreatable && <CreatableSelect />}
+            {isCreatable && (
+                <CreatableSelect
+                    components={{
+                        DropdownIndicator: CustomAdd,
+                        MenuList: CustomMenuList,
+                        Option: CustomOption,
+                        ClearIndicator: CustomClear,
+                    }}
+                    // @ts-ignore
+                    dropdownMenuMaxHeight={dropdownMenuMaxHeight}
+                    dropdownMenuMinHeight={dropdownMenuMinHeight}
+                    isClearable={clearable}
+                    // isDisabled={disabled}
+                    // isMulti={isMultiple}
+                    // isSearchable={isSearchable}
+                    menuPortalTarget={menuPortalTarget}
+                    name={name}
+                    noOptionsMessage={noOptionsMessage}
+                    onChange={onChange}
+                    options={options}
+                    placeholder={placeholder}
+                    tabIndex={tabIndex}
+                    value={value}
+                    styles={styles}
+                    menuShouldScrollIntoView={false}
+                    classNamePrefix="react_select"
+                    unstyled
+                />
+            )}
         </div>
     );
 });

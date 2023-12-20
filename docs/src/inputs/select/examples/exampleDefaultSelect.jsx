@@ -124,6 +124,7 @@ function ExampleDefaultSelect() {
                 <SelectNext
                     isCreatable
                     isSearchable
+                    clearable
                     id="block--select_next_id"
                     label="Select Option"
                     name="select_next_example"
