@@ -990,7 +990,6 @@ const Select = React.forwardRef(function Select(props, ref) {
         }
     };
 
-    console.log(!!error, 'error');
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
         BEM_SELECT,

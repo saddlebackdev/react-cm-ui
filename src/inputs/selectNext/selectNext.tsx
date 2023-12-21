@@ -40,6 +40,10 @@ type PropTypes = {
     */
     clearable?: boolean,
     /**
+    * A Select can create an option
+    */
+    creatable?: boolean,
+    /**
     * A Select can be disabled
     */
     disabled?: boolean,
@@ -55,7 +59,6 @@ type PropTypes = {
     * A select can have an error
     */
     error?: string;
-    isCreatable?: boolean;
     /**
      * The `id` of the Select.
      */
@@ -126,21 +129,21 @@ const defaultProps = {
     alwaysShowRequiredIndicator: false,
     className: null,
     clearable: false,
+    creatable: false,
     disabled: false,
     dropdownMenuMaxHeight: 180,
     dropdownMenuMinHeight: null,
     error: null,
-    isCreatable: false,
-    id: null,
     fluid: false,
+    id: null,
     multiple: false,
-    searchable: false,
     menuPortalTarget: null,
     noOptionsMessage: () => ('No results found'),
     onChange: null,
     options: [],
     placeholder: null,
     required: false,
+    searchable: false,
     tabIndex: -1,
     value: null,
 };
@@ -337,7 +340,7 @@ const useStyles = makeStyles((theme) => {
                         cursor: 'pointer',
                         lineHeight: 1,
                         margin: '-1px -1px -1px 0',
-                        padding: '0 9px',
+                        padding: '0 6px',
                         position: 'relative',
                         speak: 'none',
                         textTransform: 'none',
@@ -405,7 +408,7 @@ const useStyles = makeStyles((theme) => {
             minWidth: 200,
             position: 'relative',
             '&$hasError .react_select__control': {
-                borderColor: p.error.main, //
+                borderColor: p.error.main,
             },
             '&$isMultiple .react_select__control': {
                 height: 'auto',
@@ -455,7 +458,7 @@ const CustomArrow = (componentProps) => (
 );
 
 /**
- * Define custom Arrow Component
+ * Define custom Component for creatable option
  */
 const CustomAdd = (componentProps) => (
     <components.DropdownIndicator
@@ -567,16 +570,15 @@ const SelectNext = React.forwardRef(function SelectNext(
         alwaysShowRequiredIndicator,
         className,
         clearable,
+        creatable: isCreatable,
         disabled,
         dropdownMenuMaxHeight,
         dropdownMenuMinHeight,
         error,
-        isCreatable,
-        id,
         fluid: isFluid,
-        multiple: isMultiple,
-        searchable: isSearchable,
+        id,
         label,
+        multiple: isMultiple,
         menuPortalTarget,
         name,
         noOptionsMessage,
@@ -584,6 +586,7 @@ const SelectNext = React.forwardRef(function SelectNext(
         options,
         placeholder,
         required,
+        searchable: isSearchable,
         styles,
         tabIndex,
         value,
@@ -597,8 +600,6 @@ const SelectNext = React.forwardRef(function SelectNext(
             onChangeProp(selectedOption);
         }
     };
-
-    console.log(!!error, 'error', clearable);
 
     const rootClasses = ClassNames(
         UI_CLASS_NAME,

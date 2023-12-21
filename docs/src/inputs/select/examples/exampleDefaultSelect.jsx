@@ -80,7 +80,7 @@ function ExampleDefaultSelect() {
                     onChange={setNextOption}
                     options={options}
                     placeholder="Select"
-                    isSearchable
+                    searchable
                     tabIndex={0}
                     value={!isEmpty(selectedNextValue) ? selectedNextValue : null}
                     dropdownMenuMaxHeight="unset"
@@ -97,8 +97,8 @@ function ExampleDefaultSelect() {
                         onChange={setNextOption}
                         options={options}
                         placeholder="Select"
-                        isFluid
-                        isMultiple
+                        fluid
+                        multiple
                         tabIndex={0}
                         value={!isEmpty(selectedNextValue) ? selectedNextValue : null}
                         dropdownMenuMaxHeight="unset"
@@ -122,8 +122,8 @@ function ExampleDefaultSelect() {
             <Grid.Column>
                 ffffffffffffffffffffffffff
                 <SelectNext
-                    isCreatable
-                    isSearchable
+                    creatable
+                    searchable
                     clearable
                     id="block--select_next_id"
                     label="Select Option"
