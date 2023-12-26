@@ -136,6 +136,21 @@ function ExampleDefaultSelect() {
                     dropdownMenuMaxHeight="unset"
                 />
             </Grid.Column>
+            <Grid.Column>
+                gggggggggggggggggggggggggg
+                <SelectNext
+                    id="block--select_next_id"
+                    isRedacted
+                    label="Select Option"
+                    name="select_next_example"
+                    onChange={setNextOption}
+                    options={options}
+                    placeholder="Select"
+                    tabIndex={0}
+                    value={!isEmpty(selectedNextValue) ? selectedNextValue : null}
+                    dropdownMenuMaxHeight="unset"
+                />
+            </Grid.Column>
         </Grid>
     );
 }

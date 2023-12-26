@@ -15,6 +15,7 @@ import Select, {
 } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { ClearIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
+import { SelectScreenGuard } from 'inputs/greyScreenGuard';
 import Icon from '../../dataDisplay/icon';
 import {
     BEM_SELECT,
@@ -63,6 +64,11 @@ type PropTypes = {
      * The `id` of the Select.
      */
     id?: string;
+    /**
+     * To prevent sensitive data from being read, we need to be able to block the contents of the
+     * control with a gray placeholder. This flag triggers this kind of display instead of the usual one.
+     */
+    isRedacted?: boolean;
     /**
      * A Select will be resized to its parent container's width.
      */
@@ -136,6 +142,7 @@ const defaultProps = {
     error: null,
     fluid: false,
     id: null,
+    isRedacted: false,
     multiple: false,
     menuPortalTarget: null,
     noOptionsMessage: () => ('No results found'),
@@ -577,6 +584,7 @@ const SelectNext = React.forwardRef(function SelectNext(
         error,
         fluid: isFluid,
         id,
+        isRedacted,
         label,
         multiple: isMultiple,
         menuPortalTarget,
@@ -640,6 +648,8 @@ const SelectNext = React.forwardRef(function SelectNext(
                 </label>
             )}
 
+            {isRedacted && <SelectScreenGuard hasLabel={!isEmpty(label)} />}
+
             {!isCreatable && (
                 <Select
                     components={{
@@ -652,7 +662,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                     dropdownMenuMaxHeight={dropdownMenuMaxHeight}
                     dropdownMenuMinHeight={dropdownMenuMinHeight}
                     isClearable={clearable}
-                    isDisabled={disabled}
+                    isDisabled={disabled || isRedacted}
                     isMulti={isMultiple}
                     isSearchable={isSearchable}
                     menuPortalTarget={menuPortalTarget}
