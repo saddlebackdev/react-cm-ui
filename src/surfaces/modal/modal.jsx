@@ -353,9 +353,10 @@ class Modal extends React.Component {
         const {
             onClickOutside,
             onClose,
+            isOpen,
         } = this.props;
 
-        if (this.modalContainerRef.contains(event.target) || !onClickOutside) {
+        if (!isOpen || this.modalContainerRef.contains(event.target) || !onClickOutside) {
             return;
         }
 
