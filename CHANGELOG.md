@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.9.5
+_December 28, 2023_
+- Bug fix in `<Modal>`: Bail out of `onClickOutside` event handler if the Modal is not open.  [PR #484](https://github.com/saddlebackdev/react-cm-ui/pull/484)
+
 ## 10.9.4
 _December 1, 2023_
 - No substantive changes in the library itself.  All documentation changes.  [PR #483](https://github.com/saddlebackdev/react-cm-ui/pull/483)
