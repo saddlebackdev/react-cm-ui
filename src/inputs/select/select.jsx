@@ -782,7 +782,7 @@ const useStyles = makeStyles((theme) => {
                         fill: `${p.cyan[500]} !important`,
                     },
                 },
-            },
+            }, // here finished
         },
     };
 });

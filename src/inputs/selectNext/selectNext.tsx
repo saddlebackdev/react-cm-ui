@@ -126,6 +126,10 @@ type PropTypes = {
      */
     tabIndex?: number;
     /**
+     * Underlined Select selection.
+     */
+    underline?: boolean;
+    /**
      * The value of the select; reflected by the selected option
      */
     value?: Option;
@@ -152,6 +156,7 @@ const defaultProps = {
     required: false,
     searchable: false,
     tabIndex: -1,
+    underline: false,
     value: null,
 };
 
@@ -294,6 +299,9 @@ const useStyles = makeStyles((theme) => {
                     '& > div': {
                         height: 16,
                         width: 16,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                     },
                 },
                 '&__indicator-separator': {
@@ -448,21 +456,48 @@ const useStyles = makeStyles((theme) => {
 /**
  * Define custom Arrow Component
  */
-const CustomArrow = (componentProps) => (
-    <components.DropdownIndicator
+const CustomArrow = (componentProps) => {
+    const {
+        selectProps: {
+            underline,
+        },
+    } = componentProps;
+    console.log(componentProps, 'componentProps', underline);
+
+    if (underline) {
+        return (
+            <components.DropdownIndicator
+            // eslint-disable-next-line react/jsx-props-no-spreading
+                {...componentProps}
+            >
+                <div>
+                    <Icon
+                        compact
+                        size={10}
+                        title="Select"
+                        type="caret-down"
+                    />
+                </div>
+            </components.DropdownIndicator>
+        );
+    }
+
+    return (
+        <components.DropdownIndicator
         // eslint-disable-next-line react/jsx-props-no-spreading
-        {...componentProps}
-    >
-        <div>
-            <Icon
-                compact
-                size={16}
-                title="Select"
-                type="chevron-down"
-            />
-        </div>
-    </components.DropdownIndicator>
-);
+            {...componentProps}
+        >
+            <div>
+                <Icon
+                    compact
+                    size={16}
+                    title="Select"
+                    type="chevron-down"
+                />
+            </div>
+        </components.DropdownIndicator>
+    );
+};
 
 /**
  * Define custom Component for creatable option
@@ -597,6 +632,7 @@ const SelectNext = React.forwardRef(function SelectNext(
         searchable: isSearchable,
         styles,
         tabIndex,
+        underline: isUnderlined,
         value,
         ...otherProps
     } = props;
@@ -676,6 +712,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                     styles={styles}
                     menuShouldScrollIntoView={false}
                     classNamePrefix="react_select"
+                    underline={isUnderlined}
                     unstyled
                     {...otherProps}
                 />
@@ -697,9 +734,9 @@ const SelectNext = React.forwardRef(function SelectNext(
                     dropdownMenuMaxHeight={dropdownMenuMaxHeight}
                     dropdownMenuMinHeight={dropdownMenuMinHeight}
                     isClearable={clearable}
-                    // isDisabled={disabled}
+                    isDisabled={disabled}
                     // isMulti={isMultiple}
-                    // isSearchable={isSearchable}
+                    isSearchable={isSearchable}
                     menuPortalTarget={menuPortalTarget}
                     name={name}
                     noOptionsMessage={noOptionsMessage}

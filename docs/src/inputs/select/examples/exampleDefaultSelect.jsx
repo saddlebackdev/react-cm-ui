@@ -94,12 +94,14 @@ function ExampleDefaultSelect() {
                         id="block--select_next_id"
                         label="Select Option"
                         name="select_next_example"
+                        disabled
                         onChange={setNextOption}
                         options={options}
                         placeholder="Select"
                         fluid
                         multiple
                         tabIndex={0}
+                        underline
                         value={!isEmpty(selectedNextValue) ? selectedNextValue : null}
                         dropdownMenuMaxHeight="unset"
                     />
@@ -112,6 +114,7 @@ function ExampleDefaultSelect() {
                         id="block--multiple_select_id"
                         fluid
                         multiple
+                        underline
                         options={options}
                         placeholder="Select multiple options"
                         onChange={setOption}
@@ -147,6 +150,7 @@ function ExampleDefaultSelect() {
                     options={options}
                     placeholder="Select"
                     tabIndex={0}
+                    underline
                     value={!isEmpty(selectedNextValue) ? selectedNextValue : null}
                     dropdownMenuMaxHeight="unset"
                 />
