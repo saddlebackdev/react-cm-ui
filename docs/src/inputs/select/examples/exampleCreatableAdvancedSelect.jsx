@@ -8,6 +8,7 @@ import {
     Select,
 } from '@saddlebackchurch/react-cm-ui';
 import { options } from '../constants';
+import { SelectNext } from '../../../../../src';
 
 function ExampleCreatableAdvancedSelect() {
     const [selectedValue, setOption] = useState({});
@@ -71,21 +72,38 @@ function ExampleCreatableAdvancedSelect() {
     const formatCreatableLabelOption = (label) => label;
 
     return (
-        <div>
-            <Select
-                clearable
-                creatable
-                id="block--creatable_advanced_select_id"
-                options={options}
-                optionComponent={formatOptionLabelCustom}
-                onChange={onSelectOption}
-                placeholder="Select Option"
-                promptTextCreator={formatCreatableLabelOption}
-                searchable
-                value={!isEmpty(selectedValue) ? selectedValue : null}
-                valueComponent={!isEmpty(selectedValue) ? formatValueComponent : undefined}
-            />
-        </div>
+        <React.Fragment>
+            <div>
+                <Select
+                    clearable
+                    creatable
+                    id="block--creatable_advanced_select_id"
+                    options={options}
+                    optionComponent={formatOptionLabelCustom}
+                    onChange={onSelectOption}
+                    placeholder="Select Option"
+                    promptTextCreator={formatCreatableLabelOption}
+                    searchable
+                    value={!isEmpty(selectedValue) ? selectedValue : null}
+                    valueComponent={!isEmpty(selectedValue) ? formatValueComponent : undefined}
+                />
+            </div>
+            <div>
+                <SelectNext
+                    clearable
+                    creatable
+                    id="block--creatable_advanced_select_id"
+                    options={options}
+                    optionComponent={formatOptionLabelCustom}
+                    onChange={onSelectOption}
+                    placeholder="Select Option"
+                    // promptTextCreator={formatCreatableLabelOption}
+                    searchable
+                    value={!isEmpty(selectedValue) ? selectedValue : null}
+                    valueComponent={!isEmpty(selectedValue) ? formatValueComponent : undefined}
+                />
+            </div>
+        </React.Fragment>
     );
 }
 

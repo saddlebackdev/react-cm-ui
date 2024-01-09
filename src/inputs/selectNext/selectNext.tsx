@@ -106,6 +106,7 @@ type PropTypes = {
      * Supply a list of options that the user can select from.
      */
     options: Option[];
+    optionComponent?;
     /**
      * Supply a placeholder text for the best UX.
      */
@@ -133,6 +134,7 @@ type PropTypes = {
      * The value of the select; reflected by the selected option
      */
     value?: Option;
+    valueComponent?;
 };
 
 const defaultProps = {
@@ -152,12 +154,14 @@ const defaultProps = {
     noOptionsMessage: () => ('No results found'),
     onChange: null,
     options: [],
+    optionComponent: null,
     placeholder: null,
     required: false,
     searchable: false,
     tabIndex: -1,
     underline: false,
     value: null,
+    valueComponent: null,
 };
 
 const useStyles = makeStyles((theme) => {
@@ -462,7 +466,7 @@ const CustomArrow = (componentProps) => {
             underline,
         },
     } = componentProps;
-    console.log(componentProps, 'componentProps', underline);
+    // console.log(componentProps, 'componentProps', underline);
 
     if (underline) {
         return (
@@ -595,6 +599,49 @@ const CustomOption = (componentProps) => {
     );
 };
 
+const CustomAdvanceOption = (componentProps) => {
+    const {
+        children,
+        className,
+        clearable,
+        disabled,
+        innerRef,
+        isSelected,
+        selectOption,
+    } = componentProps;
+
+    const optionClass = ClassNames(
+        className,
+    );
+
+    console.log(children, 'children', componentProps);
+
+    return (
+        <components.Option
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...componentProps}
+            aria-selected={isSelected}
+            className={optionClass}
+            isClearable={clearable}
+            isDisabled={disabled}
+            selectOption={selectOption}
+            ref={innerRef}
+            tabIndex={0}
+        >
+            <Icon
+                compact
+                size={16}
+                title="Creatable"
+                type="add"
+            />
+            <span>
+                {children}
+            </span>
+            {/* {selectOption.optionComponent()} */}
+        </components.Option>
+    );
+};
+
 type Option = {
     value: string;
     label: string;
@@ -627,6 +674,7 @@ const SelectNext = React.forwardRef(function SelectNext(
         noOptionsMessage,
         onChange: onChangeProp,
         options,
+        optionComponent,
         placeholder,
         required,
         searchable: isSearchable,
@@ -634,10 +682,15 @@ const SelectNext = React.forwardRef(function SelectNext(
         tabIndex,
         underline: isUnderlined,
         value,
+        valueComponent,
         ...otherProps
     } = props;
 
     const classes = useStyles(props);
+
+    const optionSelect = !isEmpty(optionComponent) ? CustomAdvanceOption : CustomOption;
+
+    console.log(optionComponent, 'optionnnnnnnn', optionSelect);
 
     const onChange = (selectedOption) => {
         if (isFunction(onChangeProp)) {
@@ -727,8 +780,9 @@ const SelectNext = React.forwardRef(function SelectNext(
                     components={{
                         DropdownIndicator: CustomAdd,
                         MenuList: CustomMenuList,
-                        Option: CustomOption,
+                        Option: CustomAdvanceOption,
                         ClearIndicator: CustomClear,
+                        SingleValue: valueComponent,
                     }}
                     // @ts-ignore
                     dropdownMenuMaxHeight={dropdownMenuMaxHeight}
@@ -742,6 +796,7 @@ const SelectNext = React.forwardRef(function SelectNext(
                     noOptionsMessage={noOptionsMessage}
                     onChange={onChange}
                     options={options}
+                    optionComponent={optionComponent}
                     placeholder={placeholder}
                     tabIndex={tabIndex}
                     value={value}

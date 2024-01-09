@@ -133,9 +133,11 @@ function ExampleDefaultSelect() {
                     name="select_next_example"
                     onChange={setNextOption}
                     options={options}
+                    optionComponent
                     placeholder="Select"
                     tabIndex={0}
                     value={!isEmpty(selectedNextValue) ? selectedNextValue : null}
+                    valueComponent
                     dropdownMenuMaxHeight="unset"
                 />
             </Grid.Column>
