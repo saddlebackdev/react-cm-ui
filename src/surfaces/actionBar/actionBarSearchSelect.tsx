@@ -42,11 +42,14 @@ function ActionBarSearchSelect(props: PropTypes) {
                 className="action_bar--search_select"
                 data-testid={`${UI_CLASS_NAME}--search_select`}
                 dropdownArrowIconType={dropdownArrowIconType}
+                // @ts-ignore
                 options={options}
+                // @ts-ignore
                 onChange={onChange}
                 onClose={onCloseSelectMenu}
                 onOpen={onOpenSelectMenu}
                 placeholder={placeholder}
+                // @ts-ignore
                 value={value}
             />
             <div className="action_bar--search_divider_container">

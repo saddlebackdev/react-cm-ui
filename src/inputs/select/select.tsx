@@ -1,5 +1,6 @@
 import ClassNames from 'classnames';
 import {
+    find,
     isEmpty,
     isFunction,
     isString,
@@ -7,6 +8,8 @@ import {
 import React, {
     LegacyRef,
     ReactNode,
+    // useEffect,
+    useRef,
 } from 'react';
 import ScrollBar from 'react-custom-scrollbars';
 import Select, {
@@ -55,7 +58,7 @@ type PropTypes = {
     /**
     * Supply dropdown menu maximum height
     */
-    dropdownMenuMaxHeight?: number;
+    dropdownMenuMaxHeight?: number | string;
     /**
     * Supply dropdown menu minimum height
     */
@@ -160,7 +163,7 @@ const defaultProps = {
     creatable: false,
     disabled: false,
     disable: false,
-    dropdownMenuMaxHeight: 180,
+    dropdownMenuMaxHeight: 'unset',
     dropdownMenuMinHeight: null,
     error: null,
     fluid: false,
@@ -594,6 +597,8 @@ const CustomOption = (componentProps) => {
         selectOption,
     } = componentProps;
 
+    console.log(children, 'children');
+
     const optionClass = ClassNames(
         className,
     );
@@ -682,7 +687,7 @@ const SelectNext = React.forwardRef(function SelectNext(
         id,
         isRedacted,
         label,
-        matchProp,
+        // matchProp,
         multiple: isMultiple,
         menuPortalTarget,
         name,
@@ -702,9 +707,42 @@ const SelectNext = React.forwardRef(function SelectNext(
     } = props;
 
     const classes = useStyles(props);
+    // const innerMenuRef = useRef();
+    // const menuScrollBarRef = useRef();
+    // const focusedOptionRef = useRef();
+    // const [scrollToFocusedOption, setScrollToFocusedOption] = React.useState(false);
+
+    // useEffect(() => {
+    //     if (
+    //         scrollToFocusedOption &&
+    //         focusedOptionRef && focusedOptionRef.current &&
+    //         innerMenuRef && innerMenuRef.current &&
+    //         menuScrollBarRef && menuScrollBarRef.current
+    //     ) {
+    //         // const focusedDOM = focusedOptionRef.current;
+    //         // const focusedRect = focusedDOM.getBoundingClientReact();
+    //         // const innerMenuDOM = innerMenuRef.current;
+    //         // const innerMenuRect = innerMenuDOM.getBoundingClientRect();
+
+    //         // if (focusedRect.bottom > innerMenuRect.bottom) {
+    //         //     menuScrollBarRef.current.scrollTop(
+    //         //         focusedDOM.offsetTop + focusedDOM.clientHeight - innerMenuDOM.offsetHeight,
+    //         //     );
+    //         // } else if (focusedRect.top < innerMenuRect.top) {
+    //         //     menuScrollBarRef.current.scrollTop(focusedDOM.offsetTop);
+    //         // }
+
+    //         setScrollToFocusedOption(false);
+    //     }
+    // }, [scrollToFocusedOption]);
 
     const onChange = (selectedOption) => {
+        console.log(selectedOption, 'selectedOption');
+
         if (isFunction(onChangeProp)) {
+            // const selectedValueObject = find(options, { value: selectedOption.value });
+            // const selectedLabelObject = find(options, { label: selectedOption.label });
+            // console.log(selectedValueObject, selectedLabelObject, 'aaaaaaaaaaaaaa');
             onChangeProp(selectedOption);
         }
     };
@@ -715,6 +753,46 @@ const SelectNext = React.forwardRef(function SelectNext(
     // ) => option.label.toLowerCase().includes(rawInput.toLowerCase());
 
     // const anyMatchProp = matchProp === 'any' ? filterOption : null;
+
+    // const onOpen = () => {
+    //     // if (isFunction(onOpenProp)) {
+    //     //     onOpenProp();
+    //     // }
+
+    //     if (menuScrollBarRef && menuScrollBarRef.current && value) {
+    //         const itemHeight = menuScrollBarRef.current.getScrollHeight() / size(options);
+    //         const pageSize = menuScrollBarRef.current.getClientHeight() / itemHeight;
+
+    //         const selectionIndex = findIndex(options, (o) => {
+    //             if (matchProp === 'any') {
+    //                 const hasValue = has(o, 'value');
+    //                 const hasLabel = has(o, 'label');
+
+    //                 if (!hasValue && !hasLabel) {
+    //                     return false;
+    //                 }
+
+    //                 return (
+    //                     (
+    //                         hasValue && o.value === value.value
+    //                     ) || o.value === value
+    //                 ) || (
+    //                     (
+    //                         hasLabel && o.label === value.label
+    //                     ) || o.label === value
+    //                 );
+    //             }
+
+    //             return o[matchProp] === value[matchProp];
+    //         });
+
+    //         const scrollRatio = selectionIndex / pageSize;
+
+    //         if (scrollRatio >= 1) {
+    //             menuScrollBarRef.current.scrollTop(scrollRatio * pageSize * itemHeight);
+    //         }
+    //     }
+    // };
 
     const rootClasses = ClassNames(
         UI_CLASS_NAME,
@@ -730,6 +808,22 @@ const SelectNext = React.forwardRef(function SelectNext(
     );
 
     const showRequiredIndicator = required && (alwaysShowRequiredIndicator || isEmpty(value));
+
+    // const valueLabel = find(options, { label: value });
+    // const valueOption = find(options, { value });
+    // const valuesingle = valueLabel || valueOption;
+    const valueSingle = find(options, { label: value }) || find(options, { value });
+    const finalValue = valueSingle === undefined ? value : valueSingle;
+
+    // console.log(value, valueTest, 'value');
+
+    // const valueTest = () => {
+    //     const valueA = find(options, { value });
+    //     // const b = find(options, { value: value?.value });
+    //     return valueA;
+    // };
+
+    // console.log(value, valueLabel, valueOption, valueSingle, finalValue, 'value');
 
     return (
         <div
@@ -777,13 +871,14 @@ const SelectNext = React.forwardRef(function SelectNext(
                     name={name}
                     noOptionsMessage={noOptionsMessage || noResultsText}
                     onChange={onChange}
+                    // onMenuOpen={onOpen}
                     onMenuClose={onClose}
                     options={options}
                     placeholder={placeholder}
                     tabIndex={tabIndex}
-                    value={value}
+                    value={finalValue}
                     styles={styles}
-                    menuShouldScrollIntoView={false}
+                    menuShouldScrollIntoView
                     classNamePrefix="react_select"
                     underline={isUnderlined}
                     unstyled
