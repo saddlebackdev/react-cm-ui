@@ -10,6 +10,7 @@ import { options } from '../constants';
 function ExampleDefaultSelect() {
     const [selectedValue, setOption] = useState({});
     const [selectedNextValue, setNextOption] = useState({});
+
     return (
         <Grid spacing={2}>
             <Grid.Column>
@@ -19,7 +20,7 @@ function ExampleDefaultSelect() {
                     options={options}
                     placeholder="Select"
                     tabIndex={0}
-                    value={!isEmpty(selectedValue) ? selectedValue.label : null}
+                    value={!isEmpty(selectedValue) ? selectedValue : null}
                 />
             </Grid.Column>
 
