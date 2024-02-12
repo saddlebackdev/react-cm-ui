@@ -3,6 +3,7 @@ import {
     includes,
     isArray,
     isFunction,
+    noop,
     remove,
 } from 'lodash';
 import ClassNames from 'classnames';
@@ -502,9 +503,9 @@ class Radio extends React.Component {
                 aria-checked={isRedacted ? false : isChecked}
                 aria-labelledby={id}
                 className={rootClasses}
-                onClick={this.onClick}
-                onKeyDown={this.onKeyDown}
-                onMouseDown={this.onMouseDown}
+                onClick={isRedacted ? noop : this.onClick}
+                onKeyDown={isRedacted ? noop : this.onKeyDown}
+                onMouseDown={isRedacted ? noop : this.onMouseDown}
                 role="radio"
                 style={style}
                 tabIndex={isDisabled ? -1 : tabIndex}
