@@ -1,5 +1,6 @@
 import {
     isFunction,
+    noop,
 } from 'lodash';
 import React from 'react';
 import ClassNames from 'classnames';
@@ -232,8 +233,8 @@ class Checkbox extends React.Component {
             <div
                 className={containerClasses}
                 id={id}
-                onClick={this.onClick}
-                onKeyDown={this.onKeyDown}
+                onClick={isRedacted ? noop : this.onClick}
+                onKeyDown={isRedacted ? noop : this.onKeyDown}
                 style={style}
                 tabIndex={tabIndex}
             >
