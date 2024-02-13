@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18.6
+- [PR #485](https://github.com/saddlebackdev/react-cm-ui/pull/485) / Merge Commit a66da4b
+  - `[Dependabot]` Upgrade `follow-redirects` package.
+
 ## 0.18.5
 - [PR #483](https://github.com/saddlebackdev/react-cm-ui/pull/483) / Merge Commit 9d2a1e8
   - Update Demo Page `<FiltersRail>` so that filter state can be altered and Clear and Apply controls are functional.
