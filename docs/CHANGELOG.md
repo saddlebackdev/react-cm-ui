@@ -1,19 +1,27 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 0.18.6
+## 0.18.7 - 04/01/2024
+- [PR #487](https://github.com/saddlebackdev/react-cm-ui/pull/487) / Merge Commit b344606
+  - `[Dependabot]` Upgrade `follow-redirects` package.
+- [PR #488](https://github.com/saddlebackdev/react-cm-ui/pull/488) / Merge Commit 8a4955b
+  - `[Dependabot]` Upgrade `webpack-dev-middleware` package.
+- [PR #489](https://github.com/saddlebackdev/react-cm-ui/pull/489) / Merge Commit 247e5c3
+  - `[Dependabot]` Upgrade `express` package.
+
+## 0.18.6 - 02/13/2024
 - [PR #485](https://github.com/saddlebackdev/react-cm-ui/pull/485) / Merge Commit a66da4b
   - `[Dependabot]` Upgrade `follow-redirects` package.
 
-## 0.18.5
+## 0.18.5 - 12/01/2023
 - [PR #483](https://github.com/saddlebackdev/react-cm-ui/pull/483) / Merge Commit 9d2a1e8
   - Update Demo Page `<FiltersRail>` so that filter state can be altered and Clear and Apply controls are functional.
 
-## 0.18.4
+## 0.18.4 - 11/28/2023
 - [PR #481](https://github.com/saddlebackdev/react-cm-ui/pull/481) / Merge Commit be2635f
   - Update Demo Page and Demo Drawer Filter Rails to add new `isFiltering` field to `filterOptions`.
 
-## 0.18.3
+## 0.18.3 - 11/17/2023
 - [PR #478](https://github.com/saddlebackdev/react-cm-ui/pull/478) / Merge Commit 90bb4a8
   - Add example of using new `isRedacted` prop for the `<DatePickerInput>` component
 - [PR #480](https://github.com/saddlebackdev/react-cm-ui/pull/480) / Merge Commit 87281d1

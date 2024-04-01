@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.9.7
+_April 1, 2024_
+- Expose `onInputChange` event handler function prop on `<Select>` component.  [PR #490](https://github.com/saddlebackdev/react-cm-ui/pull/490)
+
 ## 10.9.6
 _February 13, 2024_
 - Ensure that `<Checkbox>` and `<Radio>` components do not dispatch change events when `isRedacted` prop is set to `true`.  [PR #486](https://github.com/saddlebackdev/react-cm-ui/pull/486)
