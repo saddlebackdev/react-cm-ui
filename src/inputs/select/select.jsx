@@ -196,7 +196,7 @@ const defaultProps = {
     noResultsText: 'No results found',
     onChange: null,
     onClose: undefined,
-    onInputChange: null,
+    onInputChange: undefined,
     onOpen: undefined,
     optionComponent: null,
     options: [],
