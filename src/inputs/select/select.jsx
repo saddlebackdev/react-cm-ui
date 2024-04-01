@@ -126,6 +126,10 @@ const propTypes = {
      */
     onClose: PropTypes.func,
     /**
+     * The onInputChange event handler.
+     */
+    onInputChange: PropTypes.func,
+    /**
      * The onOpen event handler.
      */
     onOpen: PropTypes.func,
@@ -192,6 +196,7 @@ const defaultProps = {
     noResultsText: 'No results found',
     onChange: null,
     onClose: undefined,
+    onInputChange: undefined,
     onOpen: undefined,
     optionComponent: null,
     options: [],
@@ -814,6 +819,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         noResultsText,
         onChange: onChangeProp,
         onClose,
+        onInputChange: onInputChangeProp,
         onOpen: onOpenProp,
         optionComponent,
         options,
@@ -861,6 +867,12 @@ const Select = React.forwardRef(function Select(props, ref) {
     const onChange = (selectedOption) => {
         if (isFunction(onChangeProp)) {
             onChangeProp(selectedOption);
+        }
+    };
+
+    const onInputChange = (inputValue) => {
+        if (isFunction(onInputChangeProp)) {
+            onInputChangeProp(inputValue);
         }
     };
 
@@ -1088,6 +1100,7 @@ const Select = React.forwardRef(function Select(props, ref) {
                 onOpen={onOpen}
                 name="firstSelect"
                 onChange={onChange}
+                onInputChange={onInputChange}
                 optionComponent={optionComponent}
                 options={options}
                 promptTextCreator={isCreatable && promptTextCreator}
