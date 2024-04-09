@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.9.8
+_April 9, 2024_
+- Fix issue in the TypeScript types for the `<Chip>` component.  [PR #491](https://github.com/saddlebackdev/react-cm-ui/pull/491)
+
 ## 10.9.7
 _April 1, 2024_
 - Expose `onInputChange` event handler function prop on `<Select>` component.  [PR #490](https://github.com/saddlebackdev/react-cm-ui/pull/490)
