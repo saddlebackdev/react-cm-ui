@@ -3,6 +3,7 @@ import React from 'react';
 export interface ChipPropTypes {
     children?: React.ReactNode;
     className?: string;
+    /* eslint-disable @typescript-eslint/indent */
     color?: 'active' | 'action' | 'alert' |
         'alternate' | 'bright' | 'condition' |
         'configuration' | 'disable' | 'highlight' |
@@ -10,8 +11,10 @@ export interface ChipPropTypes {
         'nest' | 'outline' | 'primary' |
         'secondary' | 'static' | 'subject' |
         'success' | 'transparent' | 'warning',
+    /* eslint-enable @typescript-eslint/indent */
     fluid?: boolean;
     inverse?: boolean;
+    label?: string;
     onClearClick?: Function;
     onClearKeyDown?: Function;
     onClick?: Function;
