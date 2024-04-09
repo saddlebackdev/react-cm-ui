@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.9.9
+_April 9, 2024_
+- Fix another issue in the TypeScript types for the `<Chip>` component.  [PR #492](https://github.com/saddlebackdev/react-cm-ui/pull/492)
+
 ## 10.9.8
 _April 9, 2024_
 - Fix issue in the TypeScript types for the `<Chip>` component.  [PR #491](https://github.com/saddlebackdev/react-cm-ui/pull/491)

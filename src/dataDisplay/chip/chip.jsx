@@ -241,6 +241,7 @@ function Chip(props) {
                         compact
                         inverse
                         size="xxsmall"
+                        title={false}
                         type="times"
                     />
                 </div>
