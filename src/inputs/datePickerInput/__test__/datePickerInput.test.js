@@ -16,8 +16,8 @@ describe('<DatePickerInput />', () => {
     describe('render()', () => {
         it('OK (all default props)', () => {
             const props = {
-                dataTestId: `foo_block--bar_date_picker_input`,
-            }
+                dataTestId: 'foo_block--bar_date_picker_input',
+            };
 
             render(
                 <DatePickerInput {...props} />,
@@ -28,9 +28,9 @@ describe('<DatePickerInput />', () => {
 
         it('OK (has a date value)', () => {
             const props = {
-                dataTestId: `foo_block--bar_date_picker_input`,
+                dataTestId: 'foo_block--bar_date_picker_input',
                 date: moment.utc('2022-01-10T00:00:00'),
-            }
+            };
 
             render(
                 <DatePickerInput {...props} />,
@@ -44,10 +44,10 @@ describe('<DatePickerInput />', () => {
     describe('Change event', () => {
         it('Works (single date value)', () => {
             const props = {
-                dataTestId: `foo_block--bar_date_picker_input`,
+                dataTestId: 'foo_block--bar_date_picker_input',
                 date: null,
                 onChange: jest.fn(),
-            }
+            };
 
             const { getByTestId } = render(
                 <DatePickerInput {...props} />,
@@ -76,10 +76,10 @@ describe('<DatePickerInput />', () => {
 
         it('Works (date range - from)', () => {
             const props = {
-                dataTestId: `foo_block--bar_date_picker_input`,
+                dataTestId: 'foo_block--bar_date_picker_input',
                 onChange: jest.fn(),
                 rangeFrom: true,
-            }
+            };
 
             const { getByTestId } = render(
                 <DatePickerInput {...props} />,
@@ -108,11 +108,11 @@ describe('<DatePickerInput />', () => {
 
         it('Works (date range - to)', () => {
             const props = {
-                dataTestId: `foo_block--bar_date_picker_input`,
+                dataTestId: 'foo_block--bar_date_picker_input',
                 onChange: jest.fn(),
                 dateFrom: moment.utc('2022-01-01T00:00:00'),
                 rangeTo: true,
-            }
+            };
 
             const { getByTestId } = render(
                 <DatePickerInput {...props} />,
