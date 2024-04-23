@@ -4,14 +4,17 @@ export interface ChipPropTypes {
     children?: React.ReactNode;
     className?: string;
     /* eslint-disable @typescript-eslint/indent */
-    color?: 'active' | 'action' | 'alert' |
-        'alternate' | 'bright' | 'condition' |
-        'configuration' | 'disable' | 'highlight' |
-        'inverse' | 'inverse-alternate' | 'light' |
-        'nest' | 'outline' | 'primary' |
-        'secondary' | 'static' | 'subject' |
-        'success' | 'transparent' | 'warning',
+    color?: 'cyan'
+        | 'green'
+        | 'orange'
+        | 'pink'
+        | 'purple'
+        | 'red'
+        | 'redOrange'
+        | 'sky'
+        | 'teal',
     /* eslint-enable @typescript-eslint/indent */
+    disabled?: boolean;
     fluid?: boolean;
     inverse?: boolean;
     label?: string;
