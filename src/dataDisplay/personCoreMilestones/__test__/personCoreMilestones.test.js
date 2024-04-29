@@ -28,6 +28,10 @@ describe('<PersonCoreMilestones />', () => {
             firstSmallGroupJoinDate: '2001-10-10T12:00:00',
             gender: 'm',
             hasAcceptedChrist: false,
+            hasAttendedActivate1: false,
+            hasAttendedActivate2: false,
+            hasAttendedActivate3: false,
+            hasAttendedActivate4: false,
             hasSignedMaturityCovenant: false,
             hasSignedMembershipAgreement: false,
             hasSignedMinistryCovenant: false,
@@ -123,6 +127,10 @@ describe('<PersonCoreMilestones />', () => {
                 hasSignedMembershipAgreement
                 hasSignedMinistryCovenant
                 hasSignedMissionCovenant
+                hasAttendedActivate1
+                hasAttendedActivate2
+                hasAttendedActivate3
+                hasAttendedActivate4
                 hasTakenClass101
                 hasTakenClass201
                 hasTakenClass301
@@ -185,6 +193,10 @@ describe('<PersonCoreMilestones />', () => {
         expect(column.props().attendedClass20Date).toEqual(props.data.attendedClass20Date);
         expect(column.props().attendedClass301Date).toEqual(props.data.attendedClass301Date);
         expect(column.props().attendedClass401Date).toEqual(props.data.attendedClass401Date);
+        expect(column.props().hasAttendedActivate1).toEqual(props.data.hasAttendedActivate1);
+        expect(column.props().hasAttendedActivate2).toEqual(props.data.hasAttendedActivate2);
+        expect(column.props().hasAttendedActivate3).toEqual(props.data.hasAttendedActivate3);
+        expect(column.props().hasAttendedActivate4).toEqual(props.data.hasAttendedActivate4);
         expect(column.props().hasSignedMaturityCovenant)
             .toEqual(props.data.hasSignedMaturityCovenant);
         expect(column.props().hasSignedMembershipAgreement)

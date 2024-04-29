@@ -33,6 +33,10 @@ import {
     FIRST_MINISTRY_JOIN_DATE_PROP_TYPE,
     FIRST_SMALL_GROUP_JOIN_DATE_PROP_TYPE,
     HAS_ACCEPTED_CHRIST_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE1_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE2_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE3_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE4_PROP_TYPE,
     HAS_SIGNED_MATURITY_COVENANT_PROP_TYPE,
     HAS_SIGNED_MEMBERSHIP_AGREEMENT_PROP_TYPE,
     HAS_SIGNED_MINISTRY_COVENANT_PROP_TYPE,
@@ -103,6 +107,10 @@ const propTypes = {
         firstSmallGroupJoinDate: FIRST_SMALL_GROUP_JOIN_DATE_PROP_TYPE,
         gender: GENDER_PROP_TYPE,
         hasAcceptedChrist: HAS_ACCEPTED_CHRIST_PROP_TYPE,
+        hasAttendedActivate1: HAS_ATTENDED_ACTIVATE1_PROP_TYPE,
+        hasAttendedActivate2: HAS_ATTENDED_ACTIVATE2_PROP_TYPE,
+        hasAttendedActivate3: HAS_ATTENDED_ACTIVATE3_PROP_TYPE,
+        hasAttendedActivate4: HAS_ATTENDED_ACTIVATE4_PROP_TYPE,
         hasSignedMaturityCovenant: HAS_SIGNED_MATURITY_COVENANT_PROP_TYPE,
         hasSignedMembershipAgreement: HAS_SIGNED_MEMBERSHIP_AGREEMENT_PROP_TYPE,
         hasSignedMinistryCovenant: HAS_SIGNED_MINISTRY_COVENANT_PROP_TYPE,
@@ -290,6 +298,10 @@ function PersonCoreMilestones(props) {
         firstMinistryJoinDate,
         firstSmallGroupJoinDate,
         gender,
+        hasAttendedActivate1,
+        hasAttendedActivate2,
+        hasAttendedActivate3,
+        hasAttendedActivate4,
         hasAcceptedChrist,
         hasTakenClass101,
         hasTakenClass201,
@@ -428,6 +440,10 @@ function PersonCoreMilestones(props) {
                     }}
                     congregationDate={congregationDateProp}
                     disablePopover={disablePopover}
+                    hasAttendedActivate1={hasAttendedActivate1}
+                    hasAttendedActivate2={hasAttendedActivate2}
+                    hasAttendedActivate3={hasAttendedActivate3}
+                    hasAttendedActivate4={hasAttendedActivate4}
                     hasSignedMaturityCovenant={hasSignedMaturityCovenant}
                     hasSignedMembershipAgreement={hasSignedMembershipAgreement}
                     hasSignedMinistryCovenant={hasSignedMinistryCovenant}
