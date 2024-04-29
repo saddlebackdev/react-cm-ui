@@ -6,6 +6,10 @@ import React from 'react';
 function ExamplePersonCoreMilestones() {
     const data = {
         acceptedChristDate: '1991-03-31T00:00:00',
+        activate1Date: null,
+        activate2Date: null,
+        activate3Date: null,
+        activate4Date: null,
         activeInMissionsDate: null,
         attendedClass101Date: null,
         attendedClass201Date: null,

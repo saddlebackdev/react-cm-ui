@@ -13,6 +13,10 @@ describe('<PersonCoreMilestones />', () => {
         data: {
             acceptedChristDate: '2001-10-10T12:00:00',
             activeInMissionsDate: '2003-12-30T12:00:00',
+            activate1Date: '2001-10-10T12:00:00',
+            activate2Date: '2001-10-10T12:00:00',
+            activate3Date: '2001-10-10T12:00:00',
+            activate4Date: '2001-10-10T12:00:00',
             attendedClass101Date: '2001-10-10T12:00:00',
             attendedClass201Date: '2001-10-10T12:00:00',
             attendedClass301Date: '2001-10-10T12:00:00',
@@ -173,6 +177,10 @@ describe('<PersonCoreMilestones />', () => {
 
         const column = wrapper.find('GridColumnClassBaseballDiamond');
 
+        expect(column.props().activate1Date).toEqual(props.data.activate1Date);
+        expect(column.props().activate2Date).toEqual(props.data.activate2Date);
+        expect(column.props().activate3Date).toEqual(props.data.activate3Date);
+        expect(column.props().activate4Date).toEqual(props.data.activate4Date);
         expect(column.props().attendedClass101Date).toEqual(props.data.attendedClass101Date);
         expect(column.props().attendedClass20Date).toEqual(props.data.attendedClass20Date);
         expect(column.props().attendedClass301Date).toEqual(props.data.attendedClass301Date);

@@ -7,6 +7,10 @@ function ExampleUndefined() {
     const data = {
         acceptedChristDate: '1991-03-31T00:00:00',
         activeInMissionsDate: null,
+        activate1Date: null,
+        activate2Date: null,
+        activate3Date: null,
+        activate4Date: null,
         attendedClass101Date: null,
         attendedClass201Date: null,
         attendedClass301Date: null,

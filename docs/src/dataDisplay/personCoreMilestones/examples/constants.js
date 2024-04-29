@@ -1,6 +1,10 @@
 export const DATA_ADULT_MALE = {
     acceptedChristDate: '2018-01-01T00:00:00',
     activeInMissionsDate: null,
+    activate1Date: '2020-02-23T00:00:00',
+    activate2Date: null,
+    activate3Date: null,
+    activate4Date: null,
     attendedClass101Date: '2020-02-23T00:00:00',
     attendedClass201Date: '2020-08-12T00:00:00',
     attendedClass301Date: null,

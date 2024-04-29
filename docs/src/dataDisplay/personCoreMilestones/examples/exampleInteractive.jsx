@@ -71,6 +71,34 @@ function ExampleAdultMaleWhite() {
                 };
 
                 break;
+            case 'activate1Date':
+                newData = {
+                    ...data,
+                    activate1Date: moment(value.date).toISOString(),
+                };
+
+                break;
+            case 'activate2Date':
+                newData = {
+                    ...data,
+                    activate2Date: moment(value.date).toISOString(),
+                };
+
+                break;
+            case 'activate3Date':
+                newData = {
+                    ...data,
+                    activate3Date: moment(value.date).toISOString(),
+                };
+
+                break;
+            case 'activate4Date':
+                newData = {
+                    ...data,
+                    activate4Date: moment(value.date).toISOString(),
+                };
+
+                break;
             case 'attendedClass101Date':
                 newData = {
                     ...data,
@@ -502,6 +530,25 @@ function ExampleAdultMaleWhite() {
                                         gutterBottom
                                         variant="h5"
                                     >
+                                        data.activate1Date
+                                    </Typography>
+
+                                    <DatePickerInput
+                                        date={data.activate1Date ?
+                                            moment(data.activate1Date) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'activate1Date',
+                                                value,
+                                            )
+                                        }
+                                    />
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
                                         data.hasSignedMembershipAgreement
                                     </Typography>
 
@@ -512,7 +559,9 @@ function ExampleAdultMaleWhite() {
                                                 sm="auto"
                                             >
                                                 <Radio
-                                                    checked={data.hasSignedMembershipAgreement === type}
+                                                    checked={
+                                                        data.hasSignedMembershipAgreement === type
+                                                    }
                                                     id={type.toString()}
                                                     label={type.toString()}
                                                     name="hasSignedMembershipAgreementRadioGroup"
@@ -611,6 +660,25 @@ function ExampleAdultMaleWhite() {
                                         gutterBottom
                                         variant="h5"
                                     >
+                                        data.activate2Date
+                                    </Typography>
+
+                                    <DatePickerInput
+                                        date={data.activate2Date ?
+                                            moment(data.activate2Date) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'activate2Date',
+                                                value,
+                                            )
+                                        }
+                                    />
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
                                         data.hasSignedMaturityCovenant
                                     </Typography>
 
@@ -621,7 +689,9 @@ function ExampleAdultMaleWhite() {
                                                 sm="auto"
                                             >
                                                 <Radio
-                                                    checked={data.hasSignedMaturityCovenant === type}
+                                                    checked={
+                                                        data.hasSignedMaturityCovenant === type
+                                                    }
                                                     id={type.toString()}
                                                     label={type.toString()}
                                                     name="hasSignedMaturityCovenantRadioGroup"
@@ -711,6 +781,25 @@ function ExampleAdultMaleWhite() {
                                         onChange={
                                             (value) => onDataChange(
                                                 'attendedClass301Date',
+                                                value,
+                                            )
+                                        }
+                                    />
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.activate3Date
+                                    </Typography>
+
+                                    <DatePickerInput
+                                        date={data.activate3Date ?
+                                            moment(data.activate3Date) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'activate3Date',
                                                 value,
                                             )
                                         }
@@ -815,6 +904,25 @@ function ExampleAdultMaleWhite() {
                                         onChange={
                                             (value) => onDataChange(
                                                 'attendedClass401Date',
+                                                value,
+                                            )
+                                        }
+                                    />
+
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        data.activate4Date
+                                    </Typography>
+
+                                    <DatePickerInput
+                                        date={data.activate4Date ?
+                                            moment(data.activate4Date) :
+                                            null}
+                                        onChange={
+                                            (value) => onDataChange(
+                                                'activate4Date',
                                                 value,
                                             )
                                         }
