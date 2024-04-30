@@ -529,8 +529,8 @@ function GridColumnClassBaseballDiamond(props) {
     let class301Title;
     let class401Title;
 
-    if (!hasTakenClass101) {
-        class101Title = 'Has not taken DYP 1';
+    if (!hasTakenClass101 && !hasAttendedActivate1) {
+        class101Title = 'Has not taken DYP/Activate 1';
     }
 
     if (!hasSignedMembershipAgreement) {
@@ -541,8 +541,8 @@ function GridColumnClassBaseballDiamond(props) {
         }
     }
 
-    if (!hasTakenClass201) {
-        class201Title = 'Has not taken DYP 2';
+    if (!hasTakenClass201 && !hasAttendedActivate2) {
+        class201Title = 'Has not taken DYP/Activate 2';
     }
 
     if (!hasSignedMaturityCovenant) {
@@ -553,8 +553,8 @@ function GridColumnClassBaseballDiamond(props) {
         }
     }
 
-    if (!hasTakenClass301) {
-        class301Title = 'Has not taken DYP 3';
+    if (!hasTakenClass301 && !hasAttendedActivate3) {
+        class301Title = 'Has not taken DYP/Activate 3';
     }
 
     if (!hasSignedMinistryCovenant) {
@@ -565,8 +565,8 @@ function GridColumnClassBaseballDiamond(props) {
         }
     }
 
-    if (!hasTakenClass401) {
-        class401Title = 'Has not taken DYP 4';
+    if (!hasTakenClass401 && !hasAttendedActivate4) {
+        class401Title = 'Has not taken DYP/Activate 4';
     }
 
     if (!hasSignedMissionCovenant) {
@@ -627,7 +627,7 @@ function GridColumnClassBaseballDiamond(props) {
         <Popover
             content={(
                 <MilestonePopoverContent
-                    title="Discover Your Purpose"
+                    title="Activate (DYP)"
                     milestonesDates={milestonesClassesDates}
                 />
             )}
