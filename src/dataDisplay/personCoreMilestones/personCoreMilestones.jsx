@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
     GENDER_PROP_TYPE,
-    RECORD_TYPE_COLOR,
     RECORD_TYPE_PROP_TYPE,
 } from '../personPanel/personPanelConstants';
 import {
@@ -17,6 +16,10 @@ import {
 } from '../../global/constants';
 import {
     ACCEPTED_CHRIST_DATE_PROP_TYPE,
+    ACTIVATE1_DATE_PROP_TYPE,
+    ACTIVATE2_DATE_PROP_TYPE,
+    ACTIVATE3_DATE_PROP_TYPE,
+    ACTIVATE4_DATE_PROP_TYPE,
     ACTIVE_IN_MISSIONS_DATE_PROP_TYPE,
     ATTENDED_CLASS101_DATE_PROP_TYPE,
     ATTENDED_CLASS201_DATE_PROP_TYPE,
@@ -30,6 +33,10 @@ import {
     FIRST_MINISTRY_JOIN_DATE_PROP_TYPE,
     FIRST_SMALL_GROUP_JOIN_DATE_PROP_TYPE,
     HAS_ACCEPTED_CHRIST_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE1_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE2_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE3_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE4_PROP_TYPE,
     HAS_SIGNED_MATURITY_COVENANT_PROP_TYPE,
     HAS_SIGNED_MEMBERSHIP_AGREEMENT_PROP_TYPE,
     HAS_SIGNED_MINISTRY_COVENANT_PROP_TYPE,
@@ -85,6 +92,10 @@ const propTypes = {
     data: PropTypes.shape({
         acceptedChristDate: ACCEPTED_CHRIST_DATE_PROP_TYPE,
         activeInMissionsDate: ACTIVE_IN_MISSIONS_DATE_PROP_TYPE,
+        activate1Date: ACTIVATE1_DATE_PROP_TYPE,
+        activate2Date: ACTIVATE2_DATE_PROP_TYPE,
+        activate3Date: ACTIVATE3_DATE_PROP_TYPE,
+        activate4Date: ACTIVATE4_DATE_PROP_TYPE,
         attendedClass101Date: ATTENDED_CLASS101_DATE_PROP_TYPE,
         attendedClass201Date: ATTENDED_CLASS201_DATE_PROP_TYPE,
         attendedClass301Date: ATTENDED_CLASS301_DATE_PROP_TYPE,
@@ -96,6 +107,10 @@ const propTypes = {
         firstSmallGroupJoinDate: FIRST_SMALL_GROUP_JOIN_DATE_PROP_TYPE,
         gender: GENDER_PROP_TYPE,
         hasAcceptedChrist: HAS_ACCEPTED_CHRIST_PROP_TYPE,
+        hasAttendedActivate1: HAS_ATTENDED_ACTIVATE1_PROP_TYPE,
+        hasAttendedActivate2: HAS_ATTENDED_ACTIVATE2_PROP_TYPE,
+        hasAttendedActivate3: HAS_ATTENDED_ACTIVATE3_PROP_TYPE,
+        hasAttendedActivate4: HAS_ATTENDED_ACTIVATE4_PROP_TYPE,
         hasSignedMaturityCovenant: HAS_SIGNED_MATURITY_COVENANT_PROP_TYPE,
         hasSignedMembershipAgreement: HAS_SIGNED_MEMBERSHIP_AGREEMENT_PROP_TYPE,
         hasSignedMinistryCovenant: HAS_SIGNED_MINISTRY_COVENANT_PROP_TYPE,
@@ -268,6 +283,10 @@ function PersonCoreMilestones(props) {
 
     const {
         acceptedChristDate,
+        activate1Date,
+        activate2Date,
+        activate3Date,
+        activate4Date,
         activeInMissionsDate,
         attendedClass101Date,
         attendedClass201Date,
@@ -279,6 +298,10 @@ function PersonCoreMilestones(props) {
         firstMinistryJoinDate,
         firstSmallGroupJoinDate,
         gender,
+        hasAttendedActivate1,
+        hasAttendedActivate2,
+        hasAttendedActivate3,
+        hasAttendedActivate4,
         hasAcceptedChrist,
         hasTakenClass101,
         hasTakenClass201,
@@ -404,6 +427,10 @@ function PersonCoreMilestones(props) {
                 />
 
                 <GridColumnClassBaseballDiamond
+                    activate1Date={activate1Date}
+                    activate2Date={activate2Date}
+                    activate3Date={activate3Date}
+                    activate4Date={activate4Date}
                     attendedClass101Date={attendedClass101Date}
                     attendedClass201Date={attendedClass201Date}
                     attendedClass301Date={attendedClass301Date}
@@ -413,6 +440,10 @@ function PersonCoreMilestones(props) {
                     }}
                     congregationDate={congregationDateProp}
                     disablePopover={disablePopover}
+                    hasAttendedActivate1={hasAttendedActivate1}
+                    hasAttendedActivate2={hasAttendedActivate2}
+                    hasAttendedActivate3={hasAttendedActivate3}
+                    hasAttendedActivate4={hasAttendedActivate4}
                     hasSignedMaturityCovenant={hasSignedMaturityCovenant}
                     hasSignedMembershipAgreement={hasSignedMembershipAgreement}
                     hasSignedMinistryCovenant={hasSignedMinistryCovenant}

@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 // PropTypes
 export const ACCEPTED_CHRIST_DATE_PROP_TYPE = PropTypes.string;
+export const ACTIVATE1_DATE_PROP_TYPE = PropTypes.string;
+export const ACTIVATE2_DATE_PROP_TYPE = PropTypes.string;
+export const ACTIVATE3_DATE_PROP_TYPE = PropTypes.string;
+export const ACTIVATE4_DATE_PROP_TYPE = PropTypes.string;
 export const ACTIVE_IN_MISSIONS_DATE_PROP_TYPE = PropTypes.string;
 export const ATTENDED_CLASS101_DATE_PROP_TYPE = PropTypes.string;
 export const ATTENDED_CLASS201_DATE_PROP_TYPE = PropTypes.string;
@@ -22,6 +26,10 @@ export const FIRST_CONTACT_DATE_PROP_TYPE = PropTypes.oneOfType([
 ]);
 export const FIRST_MINISTRY_JOIN_DATE_PROP_TYPE = PropTypes.string;
 export const FIRST_SMALL_GROUP_JOIN_DATE_PROP_TYPE = PropTypes.string;
+export const HAS_ATTENDED_ACTIVATE1_PROP_TYPE = PropTypes.bool;
+export const HAS_ATTENDED_ACTIVATE2_PROP_TYPE = PropTypes.bool;
+export const HAS_ATTENDED_ACTIVATE3_PROP_TYPE = PropTypes.bool;
+export const HAS_ATTENDED_ACTIVATE4_PROP_TYPE = PropTypes.bool;
 export const HAS_SIGNED_MATURITY_COVENANT_PROP_TYPE = PropTypes.bool;
 export const HAS_SIGNED_MEMBERSHIP_AGREEMENT_PROP_TYPE = PropTypes.bool;
 export const HAS_SIGNED_MINISTRY_COVENANT_PROP_TYPE = PropTypes.bool;

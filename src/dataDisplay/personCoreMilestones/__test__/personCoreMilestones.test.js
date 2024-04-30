@@ -13,6 +13,10 @@ describe('<PersonCoreMilestones />', () => {
         data: {
             acceptedChristDate: '2001-10-10T12:00:00',
             activeInMissionsDate: '2003-12-30T12:00:00',
+            activate1Date: '2001-10-10T12:00:00',
+            activate2Date: '2001-10-10T12:00:00',
+            activate3Date: '2001-10-10T12:00:00',
+            activate4Date: '2001-10-10T12:00:00',
             attendedClass101Date: '2001-10-10T12:00:00',
             attendedClass201Date: '2001-10-10T12:00:00',
             attendedClass301Date: '2001-10-10T12:00:00',
@@ -24,6 +28,10 @@ describe('<PersonCoreMilestones />', () => {
             firstSmallGroupJoinDate: '2001-10-10T12:00:00',
             gender: 'm',
             hasAcceptedChrist: false,
+            hasAttendedActivate1: true,
+            hasAttendedActivate2: true,
+            hasAttendedActivate3: true,
+            hasAttendedActivate4: true,
             hasSignedMaturityCovenant: false,
             hasSignedMembershipAgreement: false,
             hasSignedMinistryCovenant: false,
@@ -119,6 +127,10 @@ describe('<PersonCoreMilestones />', () => {
                 hasSignedMembershipAgreement
                 hasSignedMinistryCovenant
                 hasSignedMissionCovenant
+                hasAttendedActivate1
+                hasAttendedActivate2
+                hasAttendedActivate3
+                hasAttendedActivate4
                 hasTakenClass101
                 hasTakenClass201
                 hasTakenClass301
@@ -163,7 +175,7 @@ describe('<PersonCoreMilestones />', () => {
         expect(column.children()).toHaveLength(0);
     });
 
-    it('Should render without C.L.A.S.S column', () => {
+    it('Should render without C.L.A.S.S. column', () => {
         const wrapper = mountWithTheme(
             <PersonCoreMilestones
                 {...props}
@@ -173,10 +185,18 @@ describe('<PersonCoreMilestones />', () => {
 
         const column = wrapper.find('GridColumnClassBaseballDiamond');
 
+        expect(column.props().activate1Date).toEqual(props.data.activate1Date);
+        expect(column.props().activate2Date).toEqual(props.data.activate2Date);
+        expect(column.props().activate3Date).toEqual(props.data.activate3Date);
+        expect(column.props().activate4Date).toEqual(props.data.activate4Date);
         expect(column.props().attendedClass101Date).toEqual(props.data.attendedClass101Date);
         expect(column.props().attendedClass20Date).toEqual(props.data.attendedClass20Date);
         expect(column.props().attendedClass301Date).toEqual(props.data.attendedClass301Date);
         expect(column.props().attendedClass401Date).toEqual(props.data.attendedClass401Date);
+        expect(column.props().hasAttendedActivate1).toEqual(props.data.hasAttendedActivate1);
+        expect(column.props().hasAttendedActivate2).toEqual(props.data.hasAttendedActivate2);
+        expect(column.props().hasAttendedActivate3).toEqual(props.data.hasAttendedActivate3);
+        expect(column.props().hasAttendedActivate4).toEqual(props.data.hasAttendedActivate4);
         expect(column.props().hasSignedMaturityCovenant)
             .toEqual(props.data.hasSignedMaturityCovenant);
         expect(column.props().hasSignedMembershipAgreement)
