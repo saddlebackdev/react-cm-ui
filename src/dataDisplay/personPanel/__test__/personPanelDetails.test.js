@@ -3,9 +3,9 @@
  * npx jest ./src/dataDisplay/personPanel/__test__/personPanelDetails.test.js
  */
 import React from 'react';
-import mountWithTheme from '../../../testUtils/enzymeHelpers.jsx';
-import PersonPanelDetails from '../personPanelDetails.jsx';
-import KeyCode from '../../../global/keyCode.js';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
+import PersonPanelDetails from '../personPanelDetails';
+import KeyCode from '../../../global/keyCode';
 
 describe('<PersonPanelDetails />', () => {
     const helloWorld = 'hello world';
@@ -93,6 +93,10 @@ describe('<PersonPanelDetails />', () => {
             gender: 'm',
             gradeLevel: 'none',
             hasAcceptedChrist: true,
+            hasAttendedActivate1: true,
+            hasAttendedActivate2: false,
+            hasAttendedActivate3: false,
+            hasAttendedActivate4: false,
             hasSignedMaturityCovenant: false,
             hasSignedMembershipAgreement: true,
             hasSignedMinistryCovenant: false,

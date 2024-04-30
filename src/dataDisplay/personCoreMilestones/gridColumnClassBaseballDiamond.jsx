@@ -10,12 +10,21 @@ import {
     BEM_PERSON_CORE_MILESTONES,
 } from '../../global/constants';
 import {
+    ACTIVATE1_DATE_PROP_TYPE,
+    ACTIVATE2_DATE_PROP_TYPE,
+    ACTIVATE3_DATE_PROP_TYPE,
+    ACTIVATE4_DATE_PROP_TYPE,
     ATTENDED_CLASS101_DATE_PROP_TYPE,
     ATTENDED_CLASS201_DATE_PROP_TYPE,
     ATTENDED_CLASS301_DATE_PROP_TYPE,
     ATTENDED_CLASS401_DATE_PROP_TYPE,
+    CONGREGATION_DATE_PROP_TYPE,
     DISABLE_POPOVER_DEFAULT_PROP,
     DISABLE_POPOVER_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE1_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE2_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE3_PROP_TYPE,
+    HAS_ATTENDED_ACTIVATE4_PROP_TYPE,
     HAS_SIGNED_MATURITY_COVENANT_PROP_TYPE,
     HAS_SIGNED_MEMBERSHIP_AGREEMENT_PROP_TYPE,
     HAS_SIGNED_MINISTRY_COVENANT_PROP_TYPE,
@@ -33,7 +42,6 @@ import {
     REMOVE_CLASS_COLUMN_DEFAULT_PROP,
     REMOVE_CLASS_COLUMN_PROP_TYPE,
     SIGNED_MATURITY_COVENANT_DATE_PROP_TYPE,
-    SIGNED_MEMBERSHIP_AGREEMENT_DATE_PROP_TYPE,
     SIGNED_MINISTRY_COVENANT_DATE_PROP_TYPE,
     SIGNED_MISSION_COVENANT_DATE_PROP_TYPE,
 } from './constants';
@@ -44,14 +52,23 @@ import MilestonePopoverContent from './milestonePopoverContent';
 import Popover from '../popover';
 
 const propTypes = {
+    activate1Date: ACTIVATE1_DATE_PROP_TYPE,
+    activate2Date: ACTIVATE2_DATE_PROP_TYPE,
+    activate3Date: ACTIVATE3_DATE_PROP_TYPE,
+    activate4Date: ACTIVATE4_DATE_PROP_TYPE,
     attendedClass101Date: ATTENDED_CLASS101_DATE_PROP_TYPE,
     attendedClass201Date: ATTENDED_CLASS201_DATE_PROP_TYPE,
     attendedClass301Date: ATTENDED_CLASS301_DATE_PROP_TYPE,
     attendedClass401Date: ATTENDED_CLASS401_DATE_PROP_TYPE,
+    congregationDate: CONGREGATION_DATE_PROP_TYPE,
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
     disablePopover: DISABLE_POPOVER_PROP_TYPE,
+    hasAttendedActivate1: HAS_ATTENDED_ACTIVATE1_PROP_TYPE,
+    hasAttendedActivate2: HAS_ATTENDED_ACTIVATE2_PROP_TYPE,
+    hasAttendedActivate3: HAS_ATTENDED_ACTIVATE3_PROP_TYPE,
+    hasAttendedActivate4: HAS_ATTENDED_ACTIVATE4_PROP_TYPE,
     hasSignedMaturityCovenant: HAS_SIGNED_MATURITY_COVENANT_PROP_TYPE,
     hasSignedMembershipAgreement: HAS_SIGNED_MEMBERSHIP_AGREEMENT_PROP_TYPE,
     hasSignedMinistryCovenant: HAS_SIGNED_MINISTRY_COVENANT_PROP_TYPE,
@@ -76,12 +93,21 @@ const propTypes = {
 };
 
 const defaultProps = {
+    activate1Date: null,
+    activate2Date: null,
+    activate3Date: null,
+    activate4Date: null,
     attendedClass101Date: null,
     attendedClass201Date: null,
     attendedClass301Date: null,
     attendedClass401Date: null,
+    congregationDate: null,
     classes: null,
     disablePopover: DISABLE_POPOVER_DEFAULT_PROP,
+    hasAttendedActivate1: null,
+    hasAttendedActivate2: null,
+    hasAttendedActivate3: null,
+    hasAttendedActivate4: null,
     hasSignedMaturityCovenant: null,
     hasSignedMembershipAgreement: null,
     hasSignedMinistryCovenant: null,
@@ -376,12 +402,20 @@ const useStyles = makeStyles((theme) => {
 
 function GridColumnClassBaseballDiamond(props) {
     const {
+        activate1Date,
+        activate2Date,
+        activate3Date,
+        activate4Date,
         attendedClass101Date,
         attendedClass201Date,
         attendedClass301Date,
         attendedClass401Date,
         congregationDate,
         disablePopover,
+        hasAttendedActivate1,
+        hasAttendedActivate2,
+        hasAttendedActivate3,
+        hasAttendedActivate4,
         hasSignedMaturityCovenant,
         hasSignedMembershipAgreement,
         hasSignedMinistryCovenant,
@@ -416,7 +450,8 @@ function GridColumnClassBaseballDiamond(props) {
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMembershipAgreement]: hasSignedMembershipAgreement,
-            [classes.hasTakenClass101]: hasTakenClass101 && !hasSignedMembershipAgreement,
+            [classes.hasTakenClass101]:
+                (hasTakenClass101 || hasAttendedActivate1) && !hasSignedMembershipAgreement,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -432,7 +467,8 @@ function GridColumnClassBaseballDiamond(props) {
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMaturityCovenant]: hasSignedMaturityCovenant,
-            [classes.hasTakenClass201]: hasTakenClass201 && !hasSignedMaturityCovenant,
+            [classes.hasTakenClass201]:
+                (hasTakenClass201 || hasAttendedActivate2) && !hasSignedMaturityCovenant,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -448,7 +484,8 @@ function GridColumnClassBaseballDiamond(props) {
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMinistryCovenant]: hasSignedMinistryCovenant,
-            [classes.hasTakenClass301]: hasTakenClass301 && !hasSignedMinistryCovenant,
+            [classes.hasTakenClass301]:
+                (hasTakenClass301 || hasAttendedActivate3) && !hasSignedMinistryCovenant,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -464,7 +501,8 @@ function GridColumnClassBaseballDiamond(props) {
             [classes.genderMale]: isMale,
             [classes.genderUndefined]: !isFemale && !isMale,
             [classes.hasSignedMissionCovenant]: hasSignedMissionCovenant,
-            [classes.hasTakenClass401]: hasTakenClass401 && !hasSignedMissionCovenant,
+            [classes.hasTakenClass401]:
+                (hasTakenClass401 || hasAttendedActivate4) && !hasSignedMissionCovenant,
             [classes.isAdult]: recordType === 'adult',
             [classes.isChild]: recordType === 'child',
             [classes.isStudent]: recordType === 'student',
@@ -473,12 +511,16 @@ function GridColumnClassBaseballDiamond(props) {
 
     const milestonesClassesDates = [
         ...(attendedClass101Date ? [{ label: 'DYP 1', date: attendedClass101Date }] : []),
+        ...(activate1Date ? [{ label: 'Activate 1', date: activate1Date }] : []),
         ...(congregationDate ? [{ label: 'Became Member', date: congregationDate }] : []),
         ...(attendedClass201Date ? [{ label: 'DYP 2', date: attendedClass201Date }] : []),
+        ...(activate2Date ? [{ label: 'Activate 2', date: activate2Date }] : []),
         ...(signedMaturityCovenantDate ? [{ label: 'Maturity Covenant', date: signedMaturityCovenantDate }] : []),
         ...(attendedClass301Date ? [{ label: 'DYP 3', date: attendedClass301Date }] : []),
+        ...(activate3Date ? [{ label: 'Activate 3', date: activate3Date }] : []),
         ...(signedMinistryCovenantDate ? [{ label: 'Ministry Covenant', date: signedMinistryCovenantDate }] : []),
         ...(attendedClass401Date ? [{ label: 'DYP 4', date: attendedClass401Date }] : []),
+        ...(activate4Date ? [{ label: 'Activate 4', date: activate4Date }] : []),
         ...(signedMissionCovenantDate ? [{ label: 'Mission Commitment', date: signedMissionCovenantDate }] : []),
     ];
 
@@ -487,8 +529,8 @@ function GridColumnClassBaseballDiamond(props) {
     let class301Title;
     let class401Title;
 
-    if (!hasTakenClass101) {
-        class101Title = 'Has not taken DYP 1';
+    if (!hasTakenClass101 && !hasAttendedActivate1) {
+        class101Title = 'Has not taken DYP/Activate 1';
     }
 
     if (!hasSignedMembershipAgreement) {
@@ -499,8 +541,8 @@ function GridColumnClassBaseballDiamond(props) {
         }
     }
 
-    if (!hasTakenClass201) {
-        class201Title = 'Has not taken DYP 2';
+    if (!hasTakenClass201 && !hasAttendedActivate2) {
+        class201Title = 'Has not taken DYP/Activate 2';
     }
 
     if (!hasSignedMaturityCovenant) {
@@ -511,8 +553,8 @@ function GridColumnClassBaseballDiamond(props) {
         }
     }
 
-    if (!hasTakenClass301) {
-        class301Title = 'Has not taken DYP 3';
+    if (!hasTakenClass301 && !hasAttendedActivate3) {
+        class301Title = 'Has not taken DYP/Activate 3';
     }
 
     if (!hasSignedMinistryCovenant) {
@@ -523,8 +565,8 @@ function GridColumnClassBaseballDiamond(props) {
         }
     }
 
-    if (!hasTakenClass401) {
-        class401Title = 'Has not taken DYP 4';
+    if (!hasTakenClass401 && !hasAttendedActivate4) {
+        class401Title = 'Has not taken DYP/Activate 4';
     }
 
     if (!hasSignedMissionCovenant) {
@@ -585,7 +627,7 @@ function GridColumnClassBaseballDiamond(props) {
         <Popover
             content={(
                 <MilestonePopoverContent
-                    title="Discover Your Purpose"
+                    title="Activate (DYP)"
                     milestonesDates={milestonesClassesDates}
                 />
             )}
