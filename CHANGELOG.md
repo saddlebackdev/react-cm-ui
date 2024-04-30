@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.10.0
+_April 30, 2024_
+- Fix _yet another_ issue in the TypeScript types for the `<Chip>` component.  [PR #494](https://github.com/saddlebackdev/react-cm-ui/pull/494)
+- Update `<PersonCoreMilestones>` and `<PersonPanel>` components for new **"Activate"** milestones.  [PR #496](https://github.com/saddlebackdev/react-cm-ui/pull/496)
+
 ## 10.9.9
 _April 9, 2024_
 - Fix another issue in the TypeScript types for the `<Chip>` component.  [PR #492](https://github.com/saddlebackdev/react-cm-ui/pull/492)
