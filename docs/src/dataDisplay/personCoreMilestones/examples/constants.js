@@ -1,7 +1,7 @@
 export const DATA_ADULT_MALE = {
     acceptedChristDate: '2018-01-01T00:00:00',
     activeInMissionsDate: null,
-    activate1Date: '2020-02-23T00:00:00',
+    activate1Date: '2024-02-23T00:00:00',
     activate2Date: null,
     activate3Date: null,
     activate4Date: null,
@@ -17,7 +17,7 @@ export const DATA_ADULT_MALE = {
     gender: 'm',
     hasAcceptedChrist: true,
     hasAttendedActivate1: true,
-    hasAttendedActivate2: true,
+    hasAttendedActivate2: false,
     hasAttendedActivate3: false,
     hasAttendedActivate4: false,
     hasSignedMaturityCovenant: false,

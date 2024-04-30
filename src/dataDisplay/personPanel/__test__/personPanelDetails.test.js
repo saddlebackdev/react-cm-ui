@@ -3,9 +3,9 @@
  * npx jest ./src/dataDisplay/personPanel/__test__/personPanelDetails.test.js
  */
 import React from 'react';
-import mountWithTheme from '../../../testUtils/enzymeHelpers.jsx';
-import PersonPanelDetails from '../personPanelDetails.jsx';
-import KeyCode from '../../../global/keyCode.js';
+import mountWithTheme from '../../../testUtils/enzymeHelpers';
+import PersonPanelDetails from '../personPanelDetails';
+import KeyCode from '../../../global/keyCode';
 
 describe('<PersonPanelDetails />', () => {
     const helloWorld = 'hello world';

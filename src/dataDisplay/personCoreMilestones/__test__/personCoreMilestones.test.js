@@ -28,10 +28,10 @@ describe('<PersonCoreMilestones />', () => {
             firstSmallGroupJoinDate: '2001-10-10T12:00:00',
             gender: 'm',
             hasAcceptedChrist: false,
-            hasAttendedActivate1: false,
-            hasAttendedActivate2: false,
-            hasAttendedActivate3: false,
-            hasAttendedActivate4: false,
+            hasAttendedActivate1: true,
+            hasAttendedActivate2: true,
+            hasAttendedActivate3: true,
+            hasAttendedActivate4: true,
             hasSignedMaturityCovenant: false,
             hasSignedMembershipAgreement: false,
             hasSignedMinistryCovenant: false,
@@ -175,7 +175,7 @@ describe('<PersonCoreMilestones />', () => {
         expect(column.children()).toHaveLength(0);
     });
 
-    it('Should render without C.L.A.S.S column', () => {
+    it('Should render without C.L.A.S.S. column', () => {
         const wrapper = mountWithTheme(
             <PersonCoreMilestones
                 {...props}
