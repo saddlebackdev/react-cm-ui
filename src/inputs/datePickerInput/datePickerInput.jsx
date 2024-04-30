@@ -632,13 +632,13 @@ class DatePickerInput extends React.PureComponent {
                                 isRedacted={isRedacted}
                                 keepCharPositions
                                 label={label}
-                                mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+                                mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]} // TODO: Localize!
                                 onBlur={this.onInputBlur}
                                 onChange={this.onInputChange}
                                 onClick={this.onInputClick}
                                 onFocus={this.onInputFocus}
                                 onKeyDown={this.onInputKeyDown}
-                                placeholder="mm/dd/yyyy"
+                                placeholder="mm/dd/yyyy" // TODO: Localize!
                                 required={required}
                                 ref={this.datePickerInput}
                                 tabIndex={tabIndex}

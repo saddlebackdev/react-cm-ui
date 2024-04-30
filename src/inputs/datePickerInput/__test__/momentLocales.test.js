@@ -63,4 +63,12 @@ describe('Moment Locales', () => {
         expect(filLocaleData.months()).toEqual(['Enero', 'Pebrero', 'Marso', 'Abril', 'Mayo', 'Hunyo', 'Hulyo', 'Agosto', 'Setyembre', 'Oktubre', 'Nobyembre', 'Disyembre']);
         expect(filLocaleData.monthsShort()).toEqual(['Ene', 'Peb', 'Mar', 'Abr', 'May', 'Hun', 'Hul', 'Ago', 'Set', 'Okt', 'Nob', 'Dis']);
     });
+
+    it('Can use the \'zh-CN\' (Chinese - Mainland China [Simplified]) locale', () => {
+
+    });
+
+    it('Can use \'zh-HK\' (Chinese - Hong Kong [Traditional]) locale', () => {
+
+    });
 });
