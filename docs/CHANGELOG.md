@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18.8 - 04/30/2024
+- [PR #496](https://github.com/saddlebackdev/react-cm-ui/pull/496) / Merge Commit f7e7a34
+  - Update `<PersonCoreMilestones>` and `<PersonPanel>` component examples for new **"Activate"** milestones.
+
 ## 0.18.7 - 04/01/2024
 - [PR #487](https://github.com/saddlebackdev/react-cm-ui/pull/487) / Merge Commit b344606
   - `[Dependabot]` Upgrade `follow-redirects` package.
