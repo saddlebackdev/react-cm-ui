@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.10.1
+_May 1, 2024_
+- Incorporate change from `10.9.9-hotfix1` into `latest`.
+
 ## 10.9.9 Hotfix 1
 _May 1, 2024_
 - Add some conditional logic to `<Select>` component to prevent `onInputChange` prop and using "createable" options from stomping on each others' toes.  [PR #497](https://github.com/saddlebackdev/react-cm-ui/pull/497).
