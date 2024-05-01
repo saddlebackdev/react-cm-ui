@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.9.9 Hotfix 1
+_May 1, 2024_
+- Add some conditional logic to `<Select>` component to prevent `onInputChange` prop and using "createable" options from stomping on each others' toes.  [PR #497](https://github.com/saddlebackdev/react-cm-ui/pull/497).
+
 ## 10.9.9
 _April 9, 2024_
 - Fix another issue in the TypeScript types for the `<Chip>` component.  [PR #492](https://github.com/saddlebackdev/react-cm-ui/pull/492)
