@@ -18,7 +18,7 @@
 
 const versions = {
     'react-cm-ui': {
-        package: '10.11.0-rc1',
+        package: '10.11.0-rc2',
         components: {
             dataDisplay: {
                 chip: {
