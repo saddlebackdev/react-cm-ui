@@ -1014,6 +1014,83 @@ const Select = React.forwardRef(function Select(props, ref) {
     const showRequiredIndicator = required && (alwaysShowRequiredIndicator || isEmpty(value));
     const ReactSelectComponent = isCreatable ? ReactSelect.Creatable : CustomReactSelect;
 
+    const selectProps = {
+        arrowRenderer: () => {
+            if (isCreatable) {
+                return (
+                    <div>
+                        <Icon
+                            compact
+                            size={16}
+                            title="Select"
+                            type="plus"
+                        />
+                    </div>
+                );
+            }
+
+            if (isUnderlined) {
+                return (
+                    <Icon
+                        compact
+                        size={10}
+                        title="Select"
+                        type="caret-down"
+                    />
+                );
+            }
+
+            return (
+                <div>
+                    <Icon
+                        compact
+                        size={16}
+                        title="Select"
+                        type={dropdownArrowIconType}
+                    />
+                </div>
+            );
+        },
+        clearRenderer: () => (
+            <div>
+                <Icon
+                    compact
+                    size={16}
+                    title="Clear Selection"
+                    type="times"
+                />
+            </div>
+        ),
+        clearable: isClearable,
+        disabled: disabledProp || disableProp || isRedacted,
+        matchProp: !isCreatable ? matchProp : null,
+        menuContainerStyle: dropdownMenuContainerStyle,
+        menuRenderer,
+        menuStyle: dropdownMenuStyle,
+        multi: multiple,
+        noResultsText,
+        onClose,
+        onInputKeyDown,
+        onOpen,
+        name: 'firtsSelect',
+        onChange,
+        optionComponent,
+        options,
+        promptTextCreator: isCreatable && promptTextCreator,
+        placeholder,
+        searchable: isSearchable,
+        tabIndex,
+        value,
+        valueComponent,
+    };
+
+    // Conditionaly passing this prop because if it's passed to the component
+    // it will prevent the creatable option to work correctly
+    // TODO: Investigate further on ways to make both props work together
+    if (isFunction(onInputChangeProp)) {
+        selectProps.onInputChange = onInputChange;
+    }
+
     return (
         <div
             // eslint-disable-next-line react/jsx-props-no-spreading
@@ -1041,74 +1118,8 @@ const Select = React.forwardRef(function Select(props, ref) {
             {isRedacted && <SelectScreenGuard hasLabel={!isEmpty(label)} />}
 
             <ReactSelectComponent
-                arrowRenderer={() => {
-                    if (isCreatable) {
-                        return (
-                            <div>
-                                <Icon
-                                    compact
-                                    size={16}
-                                    title="Select"
-                                    type="plus"
-                                />
-                            </div>
-                        );
-                    }
-
-                    if (isUnderlined) {
-                        return (
-                            <Icon
-                                compact
-                                size={10}
-                                title="Select"
-                                type="caret-down"
-                            />
-                        );
-                    }
-
-                    return (
-                        <div>
-                            <Icon
-                                compact
-                                size={16}
-                                title="Select"
-                                type={dropdownArrowIconType}
-                            />
-                        </div>
-                    );
-                }}
-                clearRenderer={() => (
-                    <div>
-                        <Icon
-                            compact
-                            size={16}
-                            title="Clear Selection"
-                            type="times"
-                        />
-                    </div>
-                )}
-                clearable={isClearable}
-                disabled={disabledProp || disableProp || isRedacted}
-                matchProp={!isCreatable ? matchProp : null}
-                menuContainerStyle={dropdownMenuContainerStyle}
-                menuRenderer={menuRenderer}
-                menuStyle={dropdownMenuStyle}
-                multi={multiple}
-                noResultsText={noResultsText}
-                onClose={onClose}
-                onInputKeyDown={onInputKeyDown}
-                onOpen={onOpen}
-                name="firstSelect"
-                onChange={onChange}
-                onInputChange={onInputChange}
-                optionComponent={optionComponent}
-                options={options}
-                promptTextCreator={isCreatable && promptTextCreator}
-                placeholder={placeholder}
-                searchable={isSearchable}
-                tabIndex={tabIndex}
-                value={value}
-                valueComponent={valueComponent}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...selectProps}
             >
                 {isCreatable && CustomCreatableSelect}
             </ReactSelectComponent>
