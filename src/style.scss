@@ -1,7 +1,19 @@
 .hc-ui {
-  font-family: sans-serif;
+  @import './colors', './fonts', './fontSizeCalculator';
+
+  // Source Sans Pro
+  @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,600italic,400italic,700italic);
+
+  color: color(color);
+  font-family: $fontFamily;
+  font-size: em(16px);
+  font-weight: $fontWeightRegular;
+  //letter-spacing: .7px;
+  line-height: 1.375;
+  -moz-osx-font-smoothing: grayscale;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 
 // Base
 @import './styles/normalize';
