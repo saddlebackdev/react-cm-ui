@@ -1,8 +1,8 @@
+// Source Sans Pro
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,600italic,400italic,700italic);
+
 .hc-ui {
   @import './styles/colors', './styles/fonts', './styles/fontSizeCalculator';
-
-  // Source Sans Pro
-  @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,600italic,400italic,700italic);
 
   color: color(color);
   font-family: $fontFamily;
