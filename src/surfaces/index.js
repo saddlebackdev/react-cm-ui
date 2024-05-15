@@ -13,6 +13,7 @@ export { default as DrawerDeprecated } from './drawerDeprecated';
 export { default as FiltersDrawer } from './filtersDrawer';
 export { default as FiltersRail } from './filtersRail';
 export { default as InfoBar } from './infoBar';
+export { default as MaterialDrawer } from './materialDrawer';
 export { default as Modal } from './modal';
 export { default as ModalDeprecated } from './modalDeprecated';
 export { default as Paper } from './paper';

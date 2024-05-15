@@ -99,6 +99,7 @@ export { default as DrawerDeprecated } from './surfaces/drawerDeprecated';
 export { default as FiltersDrawer } from './surfaces/filtersDrawer';
 export { default as FiltersRail } from './surfaces/filtersRail';
 export { default as InfoBar } from './surfaces/infoBar';
+export { default as MaterialDrawer } from './surfaces/materialDrawer';
 export { default as Modal } from './surfaces/modal';
 export { default as ModalDeprecated } from './surfaces/modalDeprecated';
 export { default as Paper } from './surfaces/paper';

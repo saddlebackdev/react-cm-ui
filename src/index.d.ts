@@ -278,6 +278,9 @@ export * from './surfaces/modal';
 export { default as Paper } from './surfaces/paper';
 export * from './surfaces/paper';
 
+export { default as MaterialDrawer } from './surfaces/materialDrawer';
+export * from './surfaces/materialDrawer';
+
 export { default as ModalDeprecated } from './surfaces/modalDeprecated';
 export * from './surfaces/modalDeprecated';
 
