@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.11.0
+_May 23, 2024_
+- Adds a new parent class name for all CSS from the React CM UI library, to assist with controlling styling bundled with Healthy Church widgets.  [PR #495](https://github.com/saddlebackdev/react-cm-ui/pull/495)
+
 ## 10.10.1
 _May 1, 2024_
 - Incorporate change from `10.9.9-hotfix1` into `latest`.
