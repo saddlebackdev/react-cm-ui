@@ -1,19 +1,6 @@
 @import './colors', './fonts', './fontSizeCalculator';
 
-// Source Sans Pro
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,600italic,400italic,700italic);
 
-html { font-size: 100%; }
-    body {
-        color: color(color);
-        font-family: $fontFamily;
-        font-size: em(16px);
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-        font-weight: $fontWeightRegular;
-        //letter-spacing: .7px;
-        line-height: 1.375;
-    }
         //Links
         a {
             color: color(colorLink);
