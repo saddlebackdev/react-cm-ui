@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const increaseSpecificity = require('postcss-increase-specificity');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -61,7 +62,16 @@ module.exports = (env, options) => {
                             loader: 'postcss-loader',
                             options: {
                                 plugins: [
-                                    autoprefixer(),
+                                    // TODO/FIXME: Ilya do we need to use increaseSpecificity plugin?  If so, in what order?
+                                    // increaseSpecificity({
+                                    //     stackableRoot: '.hc-ui',
+                                    //     repeat: 1,
+                                    // }),
+                                    autoprefixer(), // do we still need this here?
+                                    // increaseSpecificity({
+                                    //     stackableRoot: '.hc-ui',
+                                    //     repeat: 1,
+                                    // }),
                                 ],
                                 sourceMap: true,
                             },
@@ -134,6 +144,13 @@ module.exports = (env, options) => {
         },
         plugins: [
             new webpack.LoaderOptionsPlugin({
+                // TODO/FIXME: Ilya do we need this?
+                // options: {
+                //     postcss() {
+                //         // eslint-disable-next-line global-require
+                //         return [require('autoprefixer')];
+                //     },
+                // },
                 proxy: {
                     '*': 'http://0.0.0.0:5000',
                 },

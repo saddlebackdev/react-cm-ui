@@ -1,15 +1,19 @@
 import '@babel/register';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+// eslint-disable-next-line import/no-unresolved
 import 'css-cm-ui';
 
 import { browserHistory, Router } from 'react-router';
+import { StylesProvider } from '@material-ui/styles';
+// eslint-disable-next-line import/no-unresolved
 import { theme, ThemeProvider } from '@saddlebackchurch/react-cm-ui/styles';
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { appReduxStore } from './global/configureReduxStore';
 import routes from './routes';
+import jssPreset from './app/jssPreset';
 
 /**
  * `theme` is being pushed into the global window object for documentation purposes. This gives
@@ -35,17 +39,21 @@ const onUpdate = () => {
     }
 };
 
+const jss = jssPreset();
+
 const render = () => {
     ReactDOM.render(
-        <ThemeProvider theme={theme}>
-            <Provider store={appReduxStore}>
-                <Router
-                    history={browserHistory}
-                    onUpdate={onUpdate}
-                    routes={routes}
-                />
-            </Provider>
-        </ThemeProvider>,
+        <StylesProvider jss={jss}>
+            <ThemeProvider theme={theme}>
+                <Provider store={appReduxStore}>
+                    <Router
+                        history={browserHistory}
+                        onUpdate={onUpdate}
+                        routes={routes}
+                    />
+                </Provider>
+            </ThemeProvider>
+        </StylesProvider>,
         document.getElementById('coreApp'),
     );
 };
