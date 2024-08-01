@@ -13,10 +13,7 @@ const propTypes = {
     maskId: PropTypes.string.isRequired,
     path: PropTypes.shape({
         id: PropTypes.string.isRequired,
-        d: PropTypes.oneOf([
-            PropTypes.string.isRequired,
-            PropTypes.arrayOf(PropTypes.string).isRequired,
-        ]).isRequired,
+        d: PropTypes.string.isRequired,
         transform: PropTypes.string,
     }),
     polygon: PropTypes.shape({
