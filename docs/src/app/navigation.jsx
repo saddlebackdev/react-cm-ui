@@ -2,18 +2,18 @@ import {
     Divider,
     Header,
     Icon,
-} from '@saddlebackchurch/react-cm-ui';
+} from '@saddlebackchurch/react-cm-ui'; // eslint-disable-line import/no-unresolved
 import {
     backgroundColorInverse,
     borderColorQuaternary,
     color,
     colorInverse,
     colorStatic,
-} from '@saddlebackchurch/react-cm-ui/styles/colorExports';
+} from '@saddlebackchurch/react-cm-ui/styles/colorExports'; // eslint-disable-line import/no-unresolved
 import _ from 'lodash';
-import { domUtils } from '@saddlebackchurch/react-cm-ui/utils';
+import { domUtils } from '@saddlebackchurch/react-cm-ui/utils'; // eslint-disable-line import/no-unresolved
 import { Link } from 'react-router';
-import { withStyles } from '@saddlebackchurch/react-cm-ui/styles';
+import { withStyles } from '@saddlebackchurch/react-cm-ui/styles'; // eslint-disable-line import/no-unresolved
 import ClassNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -119,7 +119,7 @@ const useStyles = (theme) => ({
         padding: 0,
     },
     ulLink: {
-        color: colorStatic,
+        color: `${colorStatic} !important`,
         fontSize: '14px',
         transition: `${color} 300ms ease-out`,
         '&.is-active': {
@@ -266,7 +266,7 @@ class CoreAppNavigation extends React.PureComponent {
                     <a
                         className={classes.ulLink}
                         href={item.href}
-                        // eslint-disable-next-line react/jsx-no-target-blank
+                        rel="noreferrer"
                         target="_blank"
                     >
                         {item.label}

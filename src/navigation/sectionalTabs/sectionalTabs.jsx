@@ -5,6 +5,7 @@ import {
     find,
     findIndex,
     get,
+    isEmpty,
     isFunction,
     isEqual,
     sortBy,
@@ -281,6 +282,12 @@ class SectionalTabs extends Component {
                 ...(didPropsItemsChange && {
                     items,
                     selectedTabKey,
+                }),
+                ...(isEmpty(items) && {
+                    selectedTabDimensions: {
+                        left: null,
+                        width: null,
+                    },
                 }),
             };
 
