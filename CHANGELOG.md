@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 10.11.1
+_August 2, 2024_
+- `[Dependabot]` Upgrade packages `braces`, `chokidar` and `gulp`.  [PR #499](https://github.com/saddlebackdev/react-cm-ui/pull/499)
+  - Also updated `caniuse-lite` via `npx browserslist@latest --update-db`
+- Adds some new icon types: `devotion`, `home`, `music`, `prayer`, `reassigned-2`, `saddleback` and `share-2`.  [PR #502](https://github.com/saddlebackdev/react-cm-ui/pull/502)
+
 ## 10.11.0
 _May 23, 2024_
 - Adds a new parent class name for all CSS from the React CM UI library, to assist with controlling styling bundled with Healthy Church widgets.  [PR #495](https://github.com/saddlebackdev/react-cm-ui/pull/495)
