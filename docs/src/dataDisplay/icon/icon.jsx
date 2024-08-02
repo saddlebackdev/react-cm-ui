@@ -303,6 +303,7 @@ const categorizedIconSet = [
             'blocked',
             'open',
             'reassigned',
+            'reassigned-2',
             'replied-successful',
             'replied-unsuccessful',
         ],
