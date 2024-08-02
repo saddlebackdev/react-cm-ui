@@ -1,6 +1,14 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.18.9 - 08/02/2024
+- [PR #498](https://github.com/saddlebackdev/react-cm-ui/pull/498) / Merge Commit 199bdba
+  - Fix the UI Docs after [#495](https://github.com/saddlebackdev/react-cm-ui/pull/495).
+- [PR #503](https://github.com/saddlebackdev/react-cm-ui/pull/503) / Merge Commit 6b78a01
+  - `[Dependabot]` Upgrade `ws` package.
+- [4ff7662](https://github.com/saddlebackdev/react-cm-ui/commit/4ff76626c666b6aae59d7a7c4e4815da62ad3449)
+  - Fix a style issue style with the nav links in UI Docs (also fallout from [#495](https://github.com/saddlebackdev/react-cm-ui/pull/495)) and also fix an issue with the <SectionalTabs> where the indicator was not going away if the `items` become empty on a props update (this was also causing a bug in UI docs, though likely it was a longstanding issue).
+
 ## 0.18.8 - 04/30/2024
 - [PR #496](https://github.com/saddlebackdev/react-cm-ui/pull/496) / Merge Commit f7e7a34
   - Update `<PersonCoreMilestones>` and `<PersonPanel>` component examples for new **"Activate"** milestones.
